@@ -378,20 +378,42 @@
         }
 
         .contact-info {
-            padding: 2rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
 
         .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
         }
 
         .contact-icon {
+            font-size: 2rem;
             margin-right: 1rem;
             color: #00d4ff;
-            font-size: 1.5rem;
+        }
+        
+        .contact-item a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #00d4ff;
         }
 
         /* Footer */
@@ -478,6 +500,7 @@
                 <li><a href="#pasos">Presencia Digital</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#solicitudes">Solicitudes</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
             <div class="mobile-menu">
                 <span></span>
@@ -602,6 +625,31 @@
 
     <footer>
         <div class="container">
+            <section id="contacto" class="contact-section">
+                <h2 class="section-title">Contacto</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smartphone"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></span>
+                        <span><a href="https://wa.me/5620042412" target="_blank">WhatsApp: 5620042412</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>
+                        <span><a href="mailto:soporteseguro98@gmail.com">Correo: soporteseguro98@gmail.com</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></span>
+                        <span><a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank">Facebook</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></span>
+                        <span><a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank">TikTok</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></span>
+                        <span><a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank">Instagram</a></span>
+                    </div>
+                </div>
+            </section>
         </div>
     </footer>
 
