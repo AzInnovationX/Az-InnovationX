@@ -113,7 +113,28 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, #0f172a, rgba(15, 23, 42, 0.5));
+            z-index: -1;
         }
 
         .hero::before {
@@ -261,22 +282,31 @@
             color: #e0e6ff;
         }
 
+        .section-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
         /* About Us */
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            margin-top: 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
-        }
-
-        .about-image {
-            text-align: center;
+            margin-bottom: 2rem;
         }
 
         /* Contact */
@@ -318,39 +348,51 @@
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
         }
 
+        .contact-section {
+            padding-bottom: 6rem;
+        }
+
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
 
         .contact-item {
             background: #1e293b;
-            padding: 1.5rem;
-            border-radius: 8px;
+            padding: 2rem;
+            border-radius: 12px;
             display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
             transition: all 0.3s ease;
             border: 1px solid #334155;
         }
 
         .contact-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             background: #334155;
             border-color: #38bdf8;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .contact-icon {
-            font-size: 2rem;
-            margin-right: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
             color: #38bdf8;
+            background: -webkit-linear-gradient(45deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .contact-item a {
             color: #e0e6ff;
             text-decoration: none;
             transition: color 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
         .contact-item a:hover {
@@ -452,6 +494,7 @@
     </header>
 
     <section id="inicio" class="hero">
+        <img src="https://i.ibb.co/ZpMPXNHj/Inteligencia-artificial-amigo-o-enemigo-jpg.webp" alt="Fondo de inteligencia artificial" class="hero-bg-image">
         <div class="floating-element">⚡</div>
         <div class="floating-element">🚀</div>
         <div class="floating-element">💻</div>
@@ -461,7 +504,8 @@
         </div>
     </section>
 
-    <section id="servicios" class="container">
+    <section id="servicios" class="container" style="position: relative;">
+        <img src="https://i.ibb.co/z3g3Rsj/imagen-sobre-inteligencia-artificial.jpg" alt="Fondo de inteligencia artificial" class="section-bg-image">
         <h2 class="section-title">Nuestros Servicios</h2>
         <div class="services-grid">
             <div class="service-card fade-in">
@@ -497,25 +541,23 @@
         </div>
     </section>
 
-    <section id="nosotros" class="container">
+    <section id="nosotros" class="container" style="position: relative;">
+        <img src="https://i.ibb.co/STk0jqY/tecnologias-del-futuro-y-el-impacto-en-tu-negocio.jpg" alt="Tecnologías del futuro" class="section-bg-image">
         <h2 class="section-title">¿Quiénes somos?</h2>
         <div class="about-content">
             <div class="about-text fade-in">
-                <p>En Az InnovationX creemos que las grandes ideas merecen soluciones digitales a su altura. Nacimos con una visión clara: transformar la forma en que emprendedores, startups y empresas resuelven sus desafíos tecnológicos, con innovación, agilidad y enfoque estratégico.</p>
-                <p>Somos un equipo de desarrolladores y creativos con mentalidad emprendedora. Sabemos lo que significa empezar desde cero, apostar por una visión y construir algo que realmente genere impacto. Por eso, no solo programamos soluciones: las diseñamos pensando en escalabilidad, eficiencia y valor real para tu proyecto.</p>
-                <p>Nos apasiona automatizar procesos, optimizar recursos y convertir ideas en plataformas funcionales, intuitivas y listas para crecer. En cada línea de código ponemos compromiso, ingenio y ese empuje que solo quienes también emprenden pueden entender.</p>
-                <p>En Az InnovationX no vendemos promesas. Creamos soluciones digitales que hacen avanzar a las personas que se atreven a construir el futuro.</p>
-            </div>
-            <div class="about-image fade-in">
-                <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="Equipo de Az InnovationX" style="width: 100%; border-radius: 12px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);">
+                <p>En Az InnovationX convertimos ideas en soluciones digitales con impacto real.<br>Ayudamos a emprendedores, startups y empresas a resolver desafíos tecnológicos con innovación, agilidad y enfoque estratégico.</p>
+                <p>Somos desarrolladores con mentalidad emprendedora: entendemos lo que significa empezar desde cero y construir algo que crezca. Diseñamos plataformas escalables, eficientes y listas para el futuro.</p>
+                <p>Nos apasiona automatizar, optimizar y dar vida a ideas que transforman. En cada proyecto ponemos compromiso, ingenio y visión.</p>
+                <p>No vendemos promesas. Creamos soluciones.</p>
             </div>
         </div>
     </section>
 
 
-    <footer>
-        <div class="container">
-            <section id="contacto" class="contact-section">
+    <main>
+        <section id="contacto" class="contact-section">
+            <div class="container">
                 <h2 class="section-title">Contacto</h2>
                 <div class="contact-info">
                     <div class="contact-item">
@@ -543,9 +585,69 @@
                         <span><a href="https://aplicacionesinnovation12.blogspot.com/?m=1" target="_blank">Tienda Aplicaciones</a></span>
                     </div>
                 </div>
-            </section>
-        </div>
-    </footer>
+            </div>
+        </section>
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Solicitudes</h2>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo *</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono">
+                        </div>
+                        <div class="form-group">
+                            <label for="empresa">Empresa/Organización</label>
+                            <input type="text" id="empresa" name="empresa">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="servicio">Servicio de Interés *</label>
+                        <select id="servicio" name="servicio" required>
+                            <option value="">Selecciona un servicio</option>
+                            <option value="aplicaciones-android">Desarrollo de Aplicaciones Android</option>
+                            <option value="paginas-web">Páginas Web</option>
+                            <option value="tiendas-online">Tiendas Online</option>
+                            <option value="chatbots">Chatbots Inteligentes</option>
+                            <option value="seguridad">Consultoría en Seguridad Informática</option>
+                            <option value="multiple">Múltiples Servicios</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="presupuesto">Presupuesto Estimado</label>
+                        <select id="presupuesto" name="presupuesto">
+                            <option value="">Selecciona un rango</option>
+                            <option value="menos-3000">Menos de $3,000 MXN</option>
+                            <option value="3000-5000">$3,000 - $5,000 MXN</option>
+                            <option value="5000-8000">$5,000 - $8,000 MXN</option>
+                            <option value="8000-12000">$8,000 - $12,000 MXN</option>
+                            <option value="12000-16000">$12,000 - $16,000 MXN</option>
+                            <option value="16000-20000">$16,000 - $20,000 MXN</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Cuéntanos sobre tu proyecto *</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Describe tu idea, objetivos, funcionalidades deseadas, timeline, etc. Mientras más detalles compartas, mejor podremos ayudarte." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" style="width: 100%; padding: 15px; background: linear-gradient(45deg, #38bdf8, #818cf8); color: white; border: none; border-radius: 8px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">Enviar Solicitud</button>
+                    <div class="success-message" id="successMessage">
+                        ¡Gracias por contactarnos! Hemos recibido tu mensaje y nos pondremos en contacto contigo en las próximas 24 horas.
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <script>
         // Smooth scrolling
