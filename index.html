@@ -556,7 +556,8 @@
 
 
     <main>
-        <section id="contacto" class="contact-section">
+        <section id="contacto" class="contact-section" style="position: relative;">
+            <img src="https://i.ibb.co/xSgV86Wd/broadsoft.jpg" alt="broadsoft" class="section-bg-image">
             <div class="container">
                 <h2 class="section-title">Contacto</h2>
                 <div class="contact-info">
@@ -587,7 +588,8 @@
                 </div>
             </div>
         </section>
-        <section class="contact-section">
+        <section class="contact-section" style="position: relative;">
+            <img src="https://i.ibb.co/hxjPLHbS/3-HEUNZDOVRDHDPNMMIEOVBSFBI.jpg" alt="3-HEUNZDOVRDHDPNMMIEOVBSFBI" class="section-bg-image">
             <div class="container">
                 <h2 class="section-title">Solicitudes</h2>
                 <form class="contact-form" id="contactForm">
@@ -808,76 +810,14 @@
             icon.style.animation = 'float 6s ease-in-out infinite';
         });
     </script>
-    <main>
-        <section class="contact-section">
-            <div class="container">
-                <h2 class="section-title">Solicitudes</h2>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="nombre">Nombre Completo *</label>
-                            <input type="text" id="nombre" name="nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono">
-                        </div>
-                        <div class="form-group">
-                            <label for="empresa">Empresa/Organización</label>
-                            <input type="text" id="empresa" name="empresa">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="servicio">Servicio de Interés *</label>
-                        <select id="servicio" name="servicio" required>
-                            <option value="">Selecciona un servicio</option>
-                            <option value="aplicaciones-android">Desarrollo de Aplicaciones Android</option>
-                            <option value="paginas-web">Páginas Web</option>
-                            <option value="tiendas-online">Tiendas Online</option>
-                            <option value="chatbots">Chatbots Inteligentes</option>
-                            <option value="seguridad">Consultoría en Seguridad Informática</option>
-                            <option value="multiple">Múltiples Servicios</option>
-                            <option value="otro">Otro</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="presupuesto">Presupuesto Estimado</label>
-                        <select id="presupuesto" name="presupuesto">
-                            <option value="">Selecciona un rango</option>
-                            <option value="menos-3000">Menos de $3,000 MXN</option>
-                            <option value="3000-5000">$3,000 - $5,000 MXN</option>
-                            <option value="5000-8000">$5,000 - $8,000 MXN</option>
-                            <option value="8000-12000">$8,000 - $12,000 MXN</option>
-                            <option value="12000-16000">$12,000 - $16,000 MXN</option>
-                            <option value="16000-20000">$16,000 - $20,000 MXN</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="mensaje">Cuéntanos sobre tu proyecto *</label>
-                        <textarea id="mensaje" name="mensaje" placeholder="Describe tu idea, objetivos, funcionalidades deseadas, timeline, etc. Mientras más detalles compartas, mejor podremos ayudarte." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn" style="width: 100%; padding: 15px; background: linear-gradient(45deg, #38bdf8, #818cf8); color: white; border: none; border-radius: 8px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">Enviar Solicitud</button>
-                    <div class="success-message" id="successMessage">
-                        ¡Gracias por contactarnos! Hemos recibido tu mensaje y nos pondremos en contacto contigo en las próximas 24 horas.
-                    </div>
-                </form>
-            </div>
-        </section>
-    </main>
-
+    
     <!-- Firebase SDKs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-firestore-compat.min.js"></script>
     <script>
         // Firebase Configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyDyk6XjQ72k73oza9fkkUxup9GQvDsFT5o",
+            apiKey: "YOUR_API_KEY",
             authDomain: "weatherwise-aywzg.firebaseapp.com",
             projectId: "weatherwise-aywzg",
             storageBucket: "weatherwise-aywzg.firebasestorage.app",
@@ -901,16 +841,30 @@
             
             const requiredFields = ['nombre', 'email', 'servicio', 'mensaje'];
             let isValid = true;
-            
+            let firstInvalidField = null;
+
             requiredFields.forEach(field => {
                 const input = document.getElementById(field);
                 if (!formObj[field] || formObj[field].trim() === '') {
                     input.style.borderColor = '#ef4444';
                     isValid = false;
+                    if (!firstInvalidField) {
+                        firstInvalidField = input;
+                    }
                 } else {
                     input.style.borderColor = '#e0e6ff';
                 }
             });
+
+            const emailInput = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value)) {
+                emailInput.style.borderColor = '#ef4444';
+                isValid = false;
+                if (!firstInvalidField) {
+                    firstInvalidField = emailInput;
+                }
+            }
             
             if (isValid) {
                 try {
@@ -933,6 +887,11 @@
                     console.error('Error al enviar el formulario:', error);
                     alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
                 }
+            } else {
+                if (firstInvalidField) {
+                    firstInvalidField.focus();
+                }
+                alert('Por favor, completa todos los campos obligatorios.');
             }
             
             submitBtn.textContent = originalText;
