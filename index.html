@@ -6,6 +6,9 @@
     <meta name="google-site-verification" content="dgEYbDRoIIdq6e_mAuLH1Ml50FbCnmeBexSEbU4Tu04" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Az InnovationX - Donde las Ideas Cobran Vida</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,10 +17,10 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #ffffff;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: #e0e6ff;
+            background: #0f172a;
             overflow-x: hidden;
         }
 
@@ -29,13 +32,14 @@
 
         /* Header */
         header {
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(226, 232, 255, 0.1);
         }
 
         nav {
@@ -48,7 +52,7 @@
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            background: linear-gradient(45deg, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -61,14 +65,14 @@
         }
 
         .nav-links a {
-            color: #ffffff;
+            color: #e0e6ff;
             text-decoration: none;
             transition: all 0.3s ease;
             position: relative;
         }
 
         .nav-links a:hover {
-            color: #00d4ff;
+            color: #38bdf8;
         }
 
         .nav-links a::after {
@@ -78,7 +82,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            background: linear-gradient(45deg, #38bdf8, #818cf8);
             transition: width 0.3s ease;
         }
 
@@ -95,7 +99,7 @@
         .mobile-menu span {
             width: 25px;
             height: 3px;
-            background: #ffffff;
+            background: #e0e6ff;
             margin: 3px 0;
             transition: 0.3s;
         }
@@ -109,6 +113,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
         }
 
         .hero::before {
@@ -118,7 +123,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="%23e0e6ff" stroke-width="0.2" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
             animation: float 20s ease-in-out infinite;
         }
 
@@ -135,9 +140,10 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ffffff, #00d4ff);
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #e0e6ff, #38bdf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -145,28 +151,31 @@
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.8;
             animation: slideInUp 1s ease-out 0.3s both;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            padding: 16px 32px;
+            background: linear-gradient(45deg, #38bdf8, #818cf8);
             color: white;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
+            border-radius: 8px;
+            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
             animation: slideInUp 1s ease-out 0.6s both;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(56, 189, 248, 0.4);
         }
 
         @keyframes slideInUp {
@@ -182,15 +191,16 @@
 
         /* Sections */
         section {
-            padding: 5rem 0;
+            padding: 6rem 0;
             position: relative;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(45deg, #ffffff, #00d4ff);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, #e0e6ff, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -200,16 +210,15 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             margin-top: 3rem;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 2.5rem;
             text-align: center;
             transition: all 0.3s ease;
             position: relative;
@@ -223,7 +232,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
             transition: left 0.5s ease;
         }
 
@@ -233,13 +242,14 @@
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: #38bdf8;
         }
 
         .service-icon {
             font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -248,64 +258,14 @@
         .service-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #00d4ff;
-        }
-
-        /* Steps Section */
-        .steps-section {
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .step-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .step-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.5);
-            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.1);
-        }
-
-        .step-number {
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-        }
-
-        .step-card h3 {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            color: #00d4ff;
-            font-size: 1.3rem;
+            color: #e0e6ff;
         }
 
         /* About Us */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: center;
             margin-top: 2rem;
         }
@@ -315,40 +275,16 @@
             line-height: 1.8;
         }
 
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .stat-card {
-            background: rgba(0, 212, 255, 0.1);
-            border-radius: 10px;
-            padding: 1.5rem;
+        .about-image {
             text-align: center;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #00d4ff;
         }
 
         /* Contact */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
         .contact-form {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 2.5rem;
+            border: 1px solid #334155;
         }
 
         .form-group {
@@ -358,82 +294,75 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #00d4ff;
+            color: #94a3b8;
+            font-weight: 500;
         }
 
         .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            color: white;
-            font-size: 1.1rem;
-        }
-
+        .form-group textarea,
         .form-group select {
             width: 100%;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            color: black;
-            font-size: 1.1rem;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e0e6ff;
+            font-size: 1rem;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
-            border-color: #00d4ff;
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+            border-color: #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
         }
 
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
             margin-top: 3rem;
         }
 
         .contact-item {
-            background: rgba(255, 255, 255, 0.05);
+            background: #1e293b;
             padding: 1.5rem;
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #334155;
         }
 
         .contact-item:hover {
             transform: translateY(-5px);
-            background: rgba(0, 212, 255, 0.1);
-            border-color: #00d4ff;
+            background: #334155;
+            border-color: #38bdf8;
         }
 
         .contact-icon {
             font-size: 2rem;
-            margin-right: 1rem;
-            color: #00d4ff;
+            margin-right: 1.5rem;
+            color: #38bdf8;
         }
         
         .contact-item a {
-            color: #ffffff;
+            color: #e0e6ff;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .contact-item a:hover {
-            color: #00d4ff;
+            color: #38bdf8;
         }
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.8);
+            background: #0f172a;
             text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 0;
+            border-top: 1px solid #334155;
         }
 
         /* Mobile Responsive */
@@ -459,8 +388,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .steps-grid {
-                grid-template-columns: 1fr;
+            .about-image {
+                margin-top: 2rem;
             }
         }
 
@@ -509,7 +438,6 @@
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#pasos">Presencia Digital</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#solicitudes">Solicitudes</a></li>
                 <li><a href="https://aplicacionesinnovation12.blogspot.com/?m=1" target="_blank">Tienda Aplicaciones</a></li>
@@ -569,59 +497,6 @@
         </div>
     </section>
 
-    <section id="pasos" class="steps-section">
-        <div class="container">
-            <h2 class="section-title">9 Razones por las cuales es importante tener presencia en Internet</h2>
-            <div class="steps-grid">
-                <div class="step-card fade-in">
-                    <div class="step-number">1</div>
-                    <h3>Visibilidad 24/7 Global</h3>
-                    <p>Mientras duermes, tu competencia está ganando clientes online. Una presencia digital profesional trabaja para ti las 24 horas, capturando oportunidades de negocio que de otra forma se perderían para siempre.</p>
-                </div>
-                <div class="step-card fade-in">
-                    <h3>Credibilidad Instantánea</h3>
-                    <div class="step-number">2</div>
-                    <p>El 93% de los consumidores investiga online antes de comprar. Sin presencia digital, tu negocio simplemente NO EXISTE para la mayoría de clientes potenciales. Es la diferencia entre ser una opción o ser invisible.</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">3</div>
-                    <h3>Ventaja Competitiva Decisiva</h3>
-                    <p>Cada día que esperas, tus competidores ganan terreno digital que será cada vez más difícil de recuperar. El primer movimiento en internet otorga ventajas estratégicas permanentes en tu mercado.</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">4</div>
-                    <h3>ROI Mensurable y Escalable</h3>
-                    <p>A diferencia de la publicidad tradicional, cada peso invertido en digital es rastreable y optimizable. Conoces exactamente qué genera resultados y puedes escalar lo que funciona exponencialmente.</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">5</div>
-                    <h3>Automatización de Ventas</h3>
-                    <p>Tu sitio web puede generar, nutrir y convertir leads automáticamente. Es como tener un vendedor experto trabajando sin descanso, generando ingresos incluso cuando no estás presente.</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">6</div>
-                    <h3>Expansión Sin Límites Geográficos</h3>
-                    <p>Internet elimina las barreras físicas. Tu negocio local puede convertirse en nacional o internacional de la noche a la mañana, multiplicando tu mercado potencial exponencialmente.</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">7</div>
-                    <h3>Datos Estratégicos en Tiempo Real</h3>
-                    <p>Obtén insights precisos sobre el comportamiento de tus clientes, preferencias y tendencias de compra. Esta inteligencia de mercado te permite tomar decisiones basadas en datos, no en suposiciones.</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">8</div>
-                    <h3>Reducción de Costos Operativos</h3>
-                    <p>La atención automatizada, catálogos digitales y procesos optimizados reducen significativamente tus costos operativos mientras mejoran la experiencia del cliente.</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">9</div>
-                    <h3>Futuro-Proofing de tu Negocio</h3>
-                    <p>Las crisis como COVID-19 demostraron que los negocios digitales sobreviven y prosperan. Tener presencia online no es una opción, es una necesidad de supervivencia empresarial.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="nosotros" class="container">
         <h2 class="section-title">¿Quiénes somos?</h2>
         <div class="about-content">
@@ -631,7 +506,9 @@
                 <p>Nos apasiona automatizar procesos, optimizar recursos y convertir ideas en plataformas funcionales, intuitivas y listas para crecer. En cada línea de código ponemos compromiso, ingenio y ese empuje que solo quienes también emprenden pueden entender.</p>
                 <p>En Az InnovationX no vendemos promesas. Creamos soluciones digitales que hacen avanzar a las personas que se atreven a construir el futuro.</p>
             </div>
-            <div class="floating-element" style="font-size: 10rem; top: 40%; right: 15%;">🔐</div>
+            <div class="about-image fade-in">
+                <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="Equipo de Az InnovationX" style="width: 100%; border-radius: 12px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);">
+            </div>
         </div>
     </section>
 
@@ -707,9 +584,9 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
             } else {
-                header.style.background = 'rgba(0, 0, 0, 0.9)';
+                header.style.background = 'rgba(15, 23, 42, 0.8)';
             }
         });
 
@@ -765,43 +642,6 @@
             }
         });
 
-        // Counter animation for stats
-        function animateCounter(element, target) {
-            let count = 0;
-            const increment = target / 100;
-            const timer = setInterval(() => {
-                count += increment;
-                if (count >= target) {
-                    count = target;
-                    clearInterval(timer);
-                }
-                element.textContent = Math.floor(count) + (target === 95 ? '%' : target === 200 ? '+' : target.toString().includes('+') ? '+' : target === 24 ? '/7' : '');
-            }, 20);
-        }
-
-        // Animate counters when visible
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumber = entry.target.querySelector('.stat-number');
-                    const text = statNumber.textContent;
-                    let target = parseInt(text);
-                    
-                    if (text.includes('%')) target = 95;
-                    else if (text.includes('+')) target = 200;
-                    else if (text.includes('/')) target = 24;
-                    else target = parseInt(text);
-                    
-                    animateCounter(statNumber, target);
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        });
-
-        document.querySelectorAll('.stat-card').forEach(card => {
-            statsObserver.observe(card);
-        });
-
         // Add CSS for mobile menu when active
         const style = document.createElement('style');
         style.textContent = `
@@ -823,7 +663,7 @@
                     top: 100%;
                     left: 0;
                     width: 100%;
-                    background: rgba(0, 0, 0, 0.95);
+                    background: rgba(15, 23, 42, 0.95);
                     backdrop-filter: blur(10px);
                     padding: 2rem 0;
                     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -864,11 +704,6 @@
         document.querySelectorAll('.service-icon').forEach((icon, index) => {
             icon.style.animationDelay = `${index * 0.2}s`;
             icon.style.animation = 'float 6s ease-in-out infinite';
-        });
-
-        // Smooth reveal animation for steps
-        document.querySelectorAll('.step-card').forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.1}s`;
         });
     </script>
     <main>
@@ -925,7 +760,7 @@
                         <label for="mensaje">Cuéntanos sobre tu proyecto *</label>
                         <textarea id="mensaje" name="mensaje" placeholder="Describe tu idea, objetivos, funcionalidades deseadas, timeline, etc. Mientras más detalles compartas, mejor podremos ayudarte." required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn" style="width: 100%; padding: 15px; background: linear-gradient(45deg, #00d4ff, #0099cc); color: white; border: none; border-radius: 10px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">Enviar Solicitud</button>
+                    <button type="submit" class="submit-btn" style="width: 100%; padding: 15px; background: linear-gradient(45deg, #38bdf8, #818cf8); color: white; border: none; border-radius: 8px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">Enviar Solicitud</button>
                     <div class="success-message" id="successMessage">
                         ¡Gracias por contactarnos! Hemos recibido tu mensaje y nos pondremos en contacto contigo en las próximas 24 horas.
                     </div>
