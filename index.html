@@ -416,6 +416,24 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 2rem 0;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links.active li {
+                margin: 0.5rem 0;
+                text-align: center;
             }
 
             .mobile-menu {
@@ -565,14 +583,21 @@
             <div class="form-group">
                 <label for="nombre">Nombre Completo</label>
                 <input type="text" id="nombre" name="nombre" required>
+                <span class="error-message" style="color: #ef4444; display: none;">Por favor, ingresa tu nombre.</span>
             </div>
             <div class="form-group">
                 <label for="email">Correo Electrónico</label>
                 <input type="email" id="email" name="email" required>
+                <span class="error-message" style="color: #ef4444; display: none;">Por favor, ingresa un correo electrónico válido.</span>
             </div>
             <div class="form-group">
                 <label for="telefono">Número de Teléfono</label>
                 <input type="tel" id="telefono" name="telefono">
+            </div>
+            <div class="form-group">
+                <label for="asunto">Asunto</label>
+                <input type="text" id="asunto" name="asunto" required>
+                <span class="error-message" style="color: #ef4444; display: none;">Por favor, ingresa un asunto.</span>
             </div>
             <div class="form-group">
                 <label for="servicio">Servicio de Interés</label>
@@ -586,14 +611,23 @@
                     <option value="cloud">Soluciones Cloud</option>
                     <option value="otro">Otro</option>
                 </select>
+                <span class="error-message" style="color: #ef4444; display: none;">Por favor, selecciona un servicio.</span>
             </div>
             <div class="form-group">
                 <label for="presupuesto">Presupuesto Estimado (Opcional)</label>
-                <input type="text" id="presupuesto" name="presupuesto">
+                <select id="presupuesto" name="presupuesto">
+                    <option value="">Selecciona un rango de presupuesto</option>
+                    <option value="menos_de_500">$500 USD o menos</option>
+                    <option value="500-1000">$500 - $1,000 USD</option>
+                    <option value="1000-2000">$1,000 - $2,000 USD</option>
+                    <option value="2000-5000">$2,000 - $5,000 USD</option>
+                    <option value="mas_de_5000">Más de $5,000 USD</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="mensaje">Describe tu proyecto</label>
                 <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                <span class="error-message" style="color: #ef4444; display: none;">Por favor, describe tu proyecto.</span>
             </div>
             <button type="submit" class="cta-button submit-btn">Enviar Solicitud</button>
         </form>
@@ -689,106 +723,9 @@
             navLinks.classList.toggle('active');
         });
 
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Simple validation
-            if (!data.nombre || !data.email || !data.telefono) {
-                alert('Por favor, completa todos los campos obligatorios.');
-                return;
-            }
-            
-            // Show success message
-            alert('¡Gracias por tu interés! Nos pondremos en contacto contigo dentro de las próximas 24 horas para programar tu consultoría gratuita.');
-            
-            // Reset form
-            this.reset();
-        });
 
-        // Add hover effects to service cards
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(-10px) scale(1)';
-            });
-        });
 
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            const heroContent = document.querySelector('.hero-content');
-            
-            if (hero && heroContent) {
-                heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
 
-        // Add CSS for mobile menu when active
-        const style = document.createElement('style');
-        style.textContent = `
-            .mobile-menu.active span:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-            .mobile-menu.active span:nth-child(2) {
-                opacity: 0;
-            }
-            .mobile-menu.active span:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
-            
-            @media (max-width: 768px) {
-                .nav-links.active {
-                    display: flex;
-                    flex-direction: column;
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    width: 100%;
-                    background: rgba(15, 23, 42, 0.95);
-                    backdrop-filter: blur(10px);
-                    padding: 2rem 0;
-                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-                }
-                
-                .nav-links.active li {
-                    margin: 0.5rem 0;
-                    text-align: center;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Add typing effect to hero title
-        function typeWriter(element, text, speed = 50) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        // Initialize typing effect after page load
-        window.addEventListener('load', () => {
-            const heroTitle = document.querySelector('.hero h1');
-            const originalText = heroTitle.textContent;
-            setTimeout(() => {
-                typeWriter(heroTitle, originalText, 100);
-            }, 1000);
-        });
 
         // Add floating animation to service icons
         document.querySelectorAll('.service-icon').forEach((icon, index) => {
@@ -797,48 +734,35 @@
         });
     </script>
     
-    <!-- Firebase SDKs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-firestore-compat.min.js"></script>
     <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "weatherwise-aywzg.firebaseapp.com",
-            projectId: "weatherwise-aywzg",
-            storageBucket: "weatherwise-aywzg.firebasestorage.app",
-            messagingSenderId: "699516071771",
-            appId: "1:699516071771:web:5a84dcf771b1ee5c38b47e"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
         // Contact form handling
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const submitBtn = document.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Enviando...';
-            submitBtn.disabled = true;
             
+            // Reset all previous error messages
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(el => el.style.borderColor = '#e0e6ff');
+
             const formData = new FormData(this);
             const formObj = {};
             formData.forEach((value, key) => { formObj[key] = value; });
             
-            const requiredFields = ['nombre', 'email', 'servicio', 'mensaje', 'telefono', 'presupuesto'];
+            const requiredFields = ['nombre', 'email', 'asunto', 'servicio', 'mensaje'];
             let isValid = true;
             let firstInvalidField = null;
 
             requiredFields.forEach(field => {
                 const input = document.getElementById(field);
+                const errorSpan = input.nextElementSibling;
                 if (!formObj[field] || formObj[field].trim() === '') {
                     input.style.borderColor = '#ef4444';
+                    errorSpan.style.display = 'block';
                     isValid = false;
                     if (!firstInvalidField) {
                         firstInvalidField = input;
                     }
-                } else {
-                    input.style.borderColor = '#e0e6ff';
                 }
             });
 
@@ -846,6 +770,7 @@
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(emailInput.value)) {
                 emailInput.style.borderColor = '#ef4444';
+                emailInput.nextElementSibling.style.display = 'block';
                 isValid = false;
                 if (!firstInvalidField) {
                     firstInvalidField = emailInput;
@@ -853,35 +778,50 @@
             }
             
             if (isValid) {
-                try {
-                    const contactData = {
-                        ...formObj,
-                        fechaEnvio: firebase.firestore.Timestamp.now(),
-                        estado: 'nuevo',
-                        ip: '',
-                        userAgent: navigator.userAgent
-                    };
-                    
-                    await db.collection('contactos').add(contactData);
-                    document.getElementById('successMessage').style.display = 'block';
-                    this.reset();
-                    
-                    setTimeout(() => {
-                        document.getElementById('successMessage').style.display = 'none';
-                    }, 5000);
-                } catch (error) {
-                    console.error('Error al enviar el formulario:', error);
-                    alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
-                }
+                submitBtn.textContent = 'Enviando...';
+                submitBtn.disabled = true;
+
+                // TODO: Replace with your own backend endpoint
+                // try {
+                //     const response = await fetch('YOUR_BACKEND_ENDPOINT', {
+                //         method: 'POST',
+                //         headers: {
+                //             'Content-Type': 'application/json'
+                //         },
+                //         body: JSON.stringify(formObj)
+                //     });
+                //     if (response.ok) {
+                //         document.getElementById('successMessage').style.display = 'block';
+                //         this.reset();
+                //         setTimeout(() => {
+                //             document.getElementById('successMessage').style.display = 'none';
+                //         }, 5000);
+                //     } else {
+                //         throw new Error('Error al enviar el formulario');
+                //     }
+                // } catch (error) {
+                //     console.error('Error al enviar el formulario:', error);
+                //     alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+                // } finally {
+                //      submitBtn.textContent = originalText;
+                //      submitBtn.disabled = false;
+                // }
+                
+                // Placeholder for successful submission
+                document.getElementById('successMessage').style.display = 'block';
+                this.reset();
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+                
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+
             } else {
                 if (firstInvalidField) {
                     firstInvalidField.focus();
                 }
-                alert('Por favor, completa todos los campos obligatorios.');
             }
-            
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
         });
 
         // Real-time field validation
