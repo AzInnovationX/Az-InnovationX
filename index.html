@@ -109,7 +109,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            background-image: url('https://i.ibb.co/S7MtH0Wz/illustrationstock-cyberthreats-recolored-adobestock-422696329.jpg');
+            background-image: url('https://i.ibb.co/VK5YfCT/881563d6444b370fa4ceea0c3183bb4c.gif');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -466,6 +466,24 @@
             .steps-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 2rem 0;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+            
+            .nav-links.active li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
         }
 
         /* Animations */
@@ -504,6 +522,16 @@
             left: 15%;
             animation-delay: 10s;
         }
+
+        .mobile-menu.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .mobile-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .mobile-menu.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
     </style>
 </head>
 <body>
@@ -537,7 +565,7 @@
         </div>
     </section>
 
-    <section id="servicios" class="container" style="background-image: url('https://i.ibb.co/YFjSKtFZ/CIberseguridad-05042022.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+    <section id="servicios" class="container" style="background-image: url('https://i.ibb.co/WQVD0hq/gif-nuevo.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
         <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.5; z-index: 0;">
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
         <div style="position: relative; z-index: 2;">
@@ -577,7 +605,7 @@
     </section>
 
 
-    <section id="nosotros" class="container" style="background-image: url('https://i.ibb.co/HLNNzZBc/tiny-cute-cartoon-robot-glowing-eyes-holding-heart-its-tiny-arms-black-background-tiny-cute-cartoon.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+    <section id="nosotros" class="container" style="background-image: url('https://i.ibb.co/gM8zZPym/Gif-OPDA-1.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
         <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.5; z-index: 0;">
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
         <div style="position: relative; z-index: 2;">
@@ -599,7 +627,7 @@
 
     <footer>
         <div class="container">
-            <section id="contacto" class="contact-section" style="background-image: url('https://i.ibb.co/G3dg2KQP/93885707-artificial-intelligence-future-technology-and-communication-concept-robot-and-human-hand-on.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+            <section id="contacto" class="contact-section" style="background-image: url('https://i.ibb.co/8D12BWNX/45405a22b539b3cbfe5fe96846324dc1.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
                 <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.5; z-index: 0;">
                 <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
                 <div style="position: relative; z-index: 2;">
@@ -687,27 +715,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-
-            // Simple validation
-            if (!data.nombre || !data.email || !data.telefono) {
-                alert('Por favor, completa todos los campos obligatorios.');
-                return;
-            }
-
-            // Show success message
-            alert('¡Gracias por tu interés! Nos pondremos en contacto contigo dentro de las próximas 24 horas para programar tu consultoría gratuita.');
-
-            // Reset form
-            this.reset();
-        });
-
         // Add hover effects to service cards
         document.querySelectorAll('.service-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
@@ -767,41 +774,6 @@
             statsObserver.observe(card);
         });
 
-        // Add CSS for mobile menu when active
-        const style = document.createElement('style');
-        style.textContent = `
-            .mobile-menu.active span:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-            .mobile-menu.active span:nth-child(2) {
-                opacity: 0;
-            }
-            .mobile-menu.active span:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
-            
-            @media (max-width: 768px) {
-                .nav-links.active {
-                    display: flex;
-                    flex-direction: column;
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    width: 100%;
-                    background: rgba(0, 0, 0, 0.95);
-                    backdrop-filter: blur(10px);
-                    padding: 2rem 0;
-                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-                }
-                
-                .nav-links.active li {
-                    margin: 0.5rem 0;
-                    text-align: center;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
         // Add typing effect to hero title
         function typeWriter(element, text, speed = 50) {
             let i = 0;
@@ -837,7 +809,7 @@
         });
     </script>
     <main>
-        <section id="solicitudes" class="contact-section" style="background-image: url('https://i.ibb.co/8Dh0HbZG/cyberwarfare-pic.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+        <section id="solicitudes" class="contact-section" style="background-image: url('https://i.ibb.co/84ffsSxc/Power-BI-gif-header.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
             <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.5; z-index: 0;">
             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
             <div class="container" style="position: relative; z-index: 2;">
