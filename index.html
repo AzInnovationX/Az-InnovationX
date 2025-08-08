@@ -100,6 +100,18 @@
             transition: 0.3s;
         }
 
+        .mobile-menu.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -163,6 +175,7 @@
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
+.
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
             animation: slideInUp 1s ease-out 0.6s both;
@@ -444,6 +457,24 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 2rem 0;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links.active li {
+                margin: 0.5rem 0;
+                text-align: center;
             }
 
             .mobile-menu {
@@ -687,6 +718,16 @@
             navLinks.classList.toggle('active');
         });
 
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
         // Form submission
         document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -766,41 +807,6 @@
         document.querySelectorAll('.stat-card').forEach(card => {
             statsObserver.observe(card);
         });
-
-        // Add CSS for mobile menu when active
-        const style = document.createElement('style');
-        style.textContent = `
-            .mobile-menu.active span:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-            .mobile-menu.active span:nth-child(2) {
-                opacity: 0;
-            }
-            .mobile-menu.active span:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
-            
-            @media (max-width: 768px) {
-                .nav-links.active {
-                    display: flex;
-                    flex-direction: column;
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    width: 100%;
-                    background: rgba(0, 0, 0, 0.95);
-                    backdrop-filter: blur(10px);
-                    padding: 2rem 0;
-                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-                }
-                
-                .nav-links.active li {
-                    margin: 0.5rem 0;
-                    text-align: center;
-                }
-            }
-        `;
-        document.head.appendChild(style);
 
         // Add typing effect to hero title
         function typeWriter(element, text, speed = 50) {
@@ -975,6 +981,7 @@
             field.addEventListener('input', function() {
                 if (this.value.trim() !== '') {
                     this.style.borderColor = '#22c55e';
+                .
                 } else {
                     this.style.borderColor = '#e0e6ff';
                 }
