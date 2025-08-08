@@ -175,7 +175,6 @@
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-.
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
             animation: slideInUp 1s ease-out 0.6s both;
@@ -352,20 +351,20 @@
             color: #00d4ff;
         }
 
-        /* Contact */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
+        /* Contact Form Styles */
         .contact-form {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 2rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
         }
 
         .form-group {
@@ -376,36 +375,140 @@
             display: block;
             margin-bottom: 0.5rem;
             color: #00d4ff;
+            font-weight: 500;
         }
 
         .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            color: white;
-            font-size: 1.1rem;
-        }
-
+        .form-group textarea,
         .form-group select {
             width: 100%;
             padding: 15px;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px;
-            color: black;
-            font-size: 1.1rem;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group select {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group select option {
+            background: #1a1a2e;
+            color: white;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: #00d4ff;
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            transform: translateY(-2px);
         }
 
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+            animation: slideIn 0.5s ease;
+        }
+
+        .error-message {
+            display: none;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ffffff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Validation styles */
+        .form-group input.valid,
+        .form-group select.valid,
+        .form-group textarea.valid {
+            border-color: #22c55e;
+        }
+
+        .form-group input.invalid,
+        .form-group select.invalid,
+        .form-group textarea.invalid {
+            border-color: #ef4444;
+        }
+
+        /* Contact Info in Footer */
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -490,7 +593,8 @@
             }
 
             .about-content,
-            .contact-grid {
+            .contact-grid, /* This class is no longer used but keep for media query */
+            .form-row {
                 grid-template-columns: 1fr;
             }
 
@@ -558,76 +662,140 @@
         </nav>
     </header>
 
-    <section id="inicio" class="hero">
-        <div class="floating-element">⚡</div>
-        <div class="floating-element">🚀</div>
-        <div class="floating-element">💻</div>
-        <div class="hero-content">
-            <h1>Donde las Ideas Cobran Vida</h1>
-            <p>Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas</p>
-        </div>
-    </section>
+    <main>
+        <section id="inicio" class="hero">
+            <div class="floating-element">⚡</div>
+            <div class="floating-element">🚀</div>
+            <div class="floating-element">💻</div>
+            <div class="hero-content">
+                <h1>Donde las Ideas Cobran Vida</h1>
+                <p>Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas</p>
+            </div>
+        </section>
 
-    <section id="servicios" class="container" style="background-image: url('https://i.ibb.co/WQVD0hq/gif-nuevo.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-        <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.5; z-index: 0;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
-        <div style="position: relative; z-index: 2;">
-            <h2 class="section-title">Nuestros Servicios</h2>
-        <div class="services-grid">
-            <div class="service-card fade-in">
-                <div class="service-icon">🌐</div>
-                <h3>Páginas Web Profesionales</h3>
-                <p>Diseños modernos, adaptables a cualquier dispositivo y pensados para convertir visitantes en clientes. Impulsamos tu presencia digital con tecnología de última generación y una experiencia de usuario que enamora.</p>
-                <p>Además, creamos plantillas personalizadas para solicitudes, reservas de citas y cualquier otro tipo de formulario que tus clientes necesiten, todo integrado para que tu negocio funcione de manera más ágil y profesional.</p>
+        <section id="servicios" class="container" style="background-image: url('https://i.ibb.co/WQVD0hq/gif-nuevo.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+            <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.5; z-index: 0;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <h2 class="section-title">Nuestros Servicios</h2>
+                <div class="services-grid">
+                    <div class="service-card fade-in">
+                        <div class="service-icon">🌐</div>
+                        <h3>Páginas Web Profesionales</h3>
+                        <p>Diseños modernos, adaptables a cualquier dispositivo y pensados para convertir visitantes en clientes. Impulsamos tu presencia digital con tecnología de última generación y una experiencia de usuario que enamora.</p>
+                        <p>Además, creamos plantillas personalizadas para solicitudes, reservas de citas y cualquier otro tipo de formulario que tus clientes necesiten, todo integrado para que tu negocio funcione de manera más ágil y profesional.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">📱</div>
+                        <h3>Aplicaciones Móviles</h3>
+                        <p>Desarrollamos aplicaciones Android personalizadas y multiplataforma que conectan con tu audiencia. Desde el concepto hasta su publicación en nuestra plataforma para una descarga rápida y directa por parte de tus clientes.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">🛒</div>
+                        <h3>Tiendas Online</h3>
+                        <p>Plataformas de comercio electrónico robustas y seguras. Impulsa tus ventas online con soluciones personalizadas y sistemas de pago integrados.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">🤖</div>
+                        <h3>Chatbots Inteligentes</h3>
+                        <p>Automatiza la atención al cliente con IA avanzada. Disponibilidad 24/7, respuestas personalizadas y aumento de conversiones garantizado.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">🔒</div>
+                        <h3>Seguridad Informática</h3>
+                        <p>Protege tu negocio digital con nuestras soluciones de ciberseguridad. Auditorías, implementación de protocolos y formación especializada.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">☁️</div>
+                        <h3>Soluciones Cloud</h3>
+                        <p>Migración y optimización en la nube. Escalabilidad, respaldo automático y acceso global para hacer crecer tu negocio sin límites.</p>
+                    </div>
+                </div>
             </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">📱</div>
-                <h3>Aplicaciones Móviles</h3>
-                <p>Desarrollamos aplicaciones Android personalizadas y multiplataforma que conectan con tu audiencia. Desde el concepto hasta su publicación en nuestra plataforma para una descarga rápida y directa por parte de tus clientes.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">🛒</div>
-                <h3>Tiendas Online</h3>
-                <p>Plataformas de comercio electrónico robustas y seguras. Impulsa tus ventas online con soluciones personalizadas y sistemas de pago integrados.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">🤖</div>
-                <h3>Chatbots Inteligentes</h3>
-                <p>Automatiza la atención al cliente con IA avanzada. Disponibilidad 24/7, respuestas personalizadas y aumento de conversiones garantizado.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">🔒</div>
-                <h3>Seguridad Informática</h3>
-                <p>Protege tu negocio digital con nuestras soluciones de ciberseguridad. Auditorías, implementación de protocolos y formación especializada.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">☁️</div>
-                <h3>Soluciones Cloud</h3>
-                <p>Migración y optimización en la nube. Escalabilidad, respaldo automático y acceso global para hacer crecer tu negocio sin límites.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-
-    <section id="nosotros" class="container" style="background-image: url('https://i.ibb.co/wNZCGfc3/Hot-desking-trabajo-empresa-mesas-calientes-nueva-tendencia-vuelta-oficinas-empleo-app-sitios-1.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-        <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.5; z-index: 0;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
-        <div style="position: relative; z-index: 2;">
-            <h2 class="section-title">¿Quiénes somos?</h2>
-        <div class="about-content">
-            <div class="about-text fade-in">
-                <p>En Az InnovationX convertimos ideas en soluciones digitales con impacto real.</p>
-                <p>Ayudamos a emprendedores, startups y empresas a resolver desafíos tecnológicos con innovación, agilidad y enfoque estratégico.</p>
-                <p>Somos desarrolladores con mentalidad emprendedora: entendemos lo que significa empezar desde cero y construir algo que crezca. Diseñamos plataformas escalables, eficientes y listas para el futuro.</p>
-                <p>Nos apasiona automatizar, optimizar y dar vida a ideas que transforman. En cada proyecto ponemos compromiso, ingenio y visión.</p>
-                <p>No vendemos promesas. Creamos soluciones.</p>
+        <section id="nosotros" class="container" style="background-image: url('https://i.ibb.co/wNZCGfc3/Hot-desking-trabajo-empresa-mesas-calientes-nueva-tendencia-vuelta-oficinas-empleo-app-sitios-1.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+            <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.5; z-index: 0;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <h2 class="section-title">¿Quiénes somos?</h2>
+                <div class="about-content">
+                    <div class="about-text fade-in">
+                        <p>En Az InnovationX convertimos ideas en soluciones digitales con impacto real.</p>
+                        <p>Ayudamos a emprendedores, startups y empresas a resolver desafíos tecnológicos con innovación, agilidad y enfoque estratégico.</p>
+                        <p>Somos desarrolladores con mentalidad emprendedora: entendemos lo que significa empezar desde cero y construir algo que crezca. Diseñamos plataformas escalables, eficientes y listas para el futuro.</p>
+                        <p>Nos apasiona automatizar, optimizar y dar vida a ideas que transforman. En cada proyecto ponemos compromiso, ingenio y visión.</p>
+                        <p>No vendemos promesas. Creamos soluciones.</p>
+                    </div>
+                    <div class="floating-element" style="font-size: 10rem; top: 40%; right: 15%;">🔐</div>
+                </div>
             </div>
-            <div class="floating-element" style="font-size: 10rem; top: 40%; right: 15%;">🔐</div>
-        </div>
-        </div>
-        </div>
-    </section>
-
+        </section>
+        
+        <section id="solicitudes">
+          <div class="container">
+              <h2 class="section-title">Solicitudes</h2>
+              <form class="contact-form" id="contactForm">
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="nombre">Nombre Completo *</label>
+                          <input type="text" id="nombre" name="nombre" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="email">Correo Electrónico *</label>
+                          <input type="email" id="email" name="email" required>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="telefono">Teléfono</label>
+                          <input type="tel" id="telefono" name="telefono">
+                      </div>
+                      <div class="form-group">
+                          <label for="empresa">Empresa/Organización</label>
+                          <input type="text" id="empresa" name="empresa">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="servicio">Servicio de Interés *</label>
+                      <select id="servicio" name="servicio" required>
+                          <option value="">Selecciona un servicio</option>
+                          <option value="aplicaciones-android">Desarrollo de Aplicaciones Android</option>
+                          <option value="paginas-web">Páginas Web</option>
+                          <option value="tiendas-online">Tiendas Online</option>
+                          <option value="chatbots">Chatbots Inteligentes</option>
+                          <option value="seguridad">Consultoría en Seguridad Informática</option>
+                          <option value="multiple">Múltiples Servicios</option>
+                          <option value="otro">Otro</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="presupuesto">Presupuesto Estimado</label>
+                      <select id="presupuesto" name="presupuesto">
+                          <option value="">Selecciona un rango</option>
+                          <option value="menos-3000">Menos de $3,000 MXN</option>
+                          <option value="3000-5000">$3,000 - $5,000 MXN</option>
+                          <option value="5000-8000">$5,000 - $8,000 MXN</option>
+                          <option value="8000-12000">$8,000 - $12,000 MXN</option>
+                          <option value="12000-16000">$12,000 - $16,000 MXN</option>
+                          <option value="16000-20000">$16,000 - $20,000 MXN</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="mensaje">Cuéntanos sobre tu proyecto *</label>
+                      <textarea id="mensaje" name="mensaje" placeholder="Describe tu idea, objetivos, funcionalidades deseadas, timeline, etc. Mientras más detalles compartas, mejor podremos ayudarte." required></textarea>
+                  </div>
+                  <button type="submit" class="submit-btn" id="submitBtn">Enviar Solicitud</button>
+                  <div class="success-message" id="successMessage">
+                      ¡Gracias por contactarnos! Hemos recibido tu mensaje y nos pondremos en contacto contigo en las próximas 24 horas.
+                  </div>
+                  <div class="error-message" id="errorMessage">
+                      Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.
+                  </div>
+              </form>
+          </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
@@ -636,39 +804,40 @@
                 <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
                 <div style="position: relative; z-index: 2;">
                     <h2 class="section-title">Contacto</h2>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smartphone"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></span>
-                        <span><a href="https://wa.me/5620042412" target="_blank">WhatsApp</a></span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>
-                        <span><a href="mailto:soporteseguro98@gmail.com">Correo Electrónico</a></span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></span>
-                        <span><a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank">Facebook</a></span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon"><svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smartphone"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></span>
+                            <span><a href="https://wa.me/5620042412" target="_blank">WhatsApp</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>
+                            <span><a href="mailto:soporteseguro98@gmail.com">Correo Electrónico</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></span>
+                            <span><a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank">Facebook</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="96" height="96" rx="21" fill="white" style="fill:white;fill-opacity:1;"/>
 <path d="M73.31 25.7456C72.785 25.4743 72.274 25.1769 71.7788 24.8545C70.3389 23.9025 69.0186 22.7808 67.8465 21.5135C64.9139 18.158 63.8186 14.7538 63.4151 12.3705H63.4313C63.0943 10.3921 63.2337 9.11214 63.2547 9.11214H49.8974V60.7624C49.8974 61.4558 49.8974 62.1412 49.8682 62.8185C49.8682 62.9027 49.8601 62.9805 49.8553 63.0712C49.8553 63.1085 49.8553 63.1474 49.8472 63.1863C49.8472 63.196 49.8472 63.2057 49.8472 63.2154C49.7064 65.0686 49.1123 66.8588 48.1173 68.4286C47.1222 69.9983 45.7566 71.2994 44.1407 72.2175C42.4565 73.1757 40.5517 73.6782 38.614 73.6757C32.3906 73.6757 27.3468 68.6011 27.3468 62.334C27.3468 56.0669 32.3906 50.9923 38.614 50.9923C39.7921 50.9912 40.9629 51.1766 42.083 51.5415L42.0992 37.9412C38.6989 37.502 35.2444 37.7722 31.9538 38.7348C28.6631 39.6975 25.6077 41.3317 22.9802 43.5343C20.678 45.5346 18.7425 47.9214 17.2608 50.5872C16.6969 51.5594 14.5695 55.4658 14.3119 61.8058C14.1499 65.4044 15.2306 69.1326 15.7458 70.6734V70.7058C16.0699 71.6132 17.3256 74.7094 19.372 77.3197C21.0221 79.4135 22.9716 81.2527 25.1579 82.7783V82.7459L25.1903 82.7783C31.6567 87.1724 38.8263 86.884 38.8263 86.884C40.0674 86.8338 44.2249 86.884 48.9463 84.6464C54.183 82.1658 57.1642 78.47 57.1642 78.47C59.0688 76.2618 60.5832 73.7452 61.6426 71.0282C62.8513 67.8509 63.2547 64.0401 63.2547 62.5171V35.1155C63.4168 35.2127 65.5749 36.6401 65.5749 36.6401C65.5749 36.6401 68.6842 38.633 73.5352 39.9309C77.0155 40.8544 81.7045 41.0488 81.7045 41.0488V27.7887C80.0615 27.9669 76.7255 27.4485 73.31 25.7456Z" fill="black" style="fill:black;fill-opacity:1;"/></svg></span>
-                        <span><a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank">TikTok</a></span>
+                            <span><a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank">TikTok</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></span>
+                            <span><a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank">Instagram</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></span>
+                            <span><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" target="_blank">Tienda Aplicaciones</a></span>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></span>
-                        <span><a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank">Instagram</a></span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></span>
-                        <span><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" target="_blank">Tienda Aplicaciones</a></span>
-                    </div>
-                </div>
                 </div>
             </section>
         </div>
     </footer>
 
+    <!-- General Page Scripts -->
     <script>
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -729,27 +898,6 @@
                     navLinks.classList.remove('active');
                 }
             });
-        });
-
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-
-            // Simple validation
-            if (!data.nombre || !data.email || !data.telefono) {
-                alert('Por favor, completa todos los campos obligatorios.');
-                return;
-            }
-
-            // Show success message
-            alert('¡Gracias por tu interés! Nos pondremos en contacto contigo dentro de las próximas 24 horas para programar tu consultoría gratuita.');
-
-            // Reset form
-            this.reset();
         });
 
         // Add hover effects to service cards
@@ -845,75 +993,10 @@
             card.style.animationDelay = `${index * 0.1}s`;
         });
     </script>
-    <main>
-        <section id="solicitudes" class="contact-section" style="background-image: url('https://i.ibb.co/84ffsSxc/Power-BI-gif-header.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-            <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.5; z-index: 0;">
-            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
-            <div class="container" style="position: relative; z-index: 2;">
-                <h2 class="section-title">Solicitudes</h2>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="nombre">Nombre Completo *</label>
-                            <input type="text" id="nombre" name="nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono">
-                        </div>
-                        <div class="form-group">
-                            <label for="empresa">Empresa/Organización</label>
-                            <input type="text" id="empresa" name="empresa">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="servicio">Servicio de Interés *</label>
-                        <select id="servicio" name="servicio" required>
-                            <option value="">Selecciona un servicio</option>
-                            <option value="aplicaciones-android">Desarrollo de Aplicaciones Android</option>
-                            <option value="paginas-web">Páginas Web</option>
-                            <option value="tiendas-online">Tiendas Online</option>
-                            <option value="chatbots">Chatbots Inteligentes</option>
-                            <option value="seguridad">Consultoría en Seguridad Informática</option>
-                            <option value="multiple">Múltiples Servicios</option>
-                            <option value="otro">Otro</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="presupuesto">Presupuesto Estimado</label>
-                        <select id="presupuesto" name="presupuesto">
-                            <option value="">Selecciona un rango</option>
-                            <option value="menos-3000">Menos de $3,000 MXN</option>
-                            <option value="3000-5000">$3,000 - $5,000 MXN</option>
-                            <option value="5000-8000">$5,000 - $8,000 MXN</option>
-                            <option value="8000-12000">$8,000 - $12,000 MXN</option>
-                            <option value="12000-16000">$12,000 - $16,000 MXN</option>
-                            <option value="16000-20000">$16,000 - $20,000 MXN</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="mensaje">Cuéntanos sobre tu proyecto *</label>
-                        <textarea id="mensaje" name="mensaje" placeholder="Describe tu idea, objetivos, funcionalidades deseadas, timeline, etc. Mientras más detalles compartas, mejor podremos ayudarte." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn" style="width: 100%; padding: 15px; background: linear-gradient(45deg, #00d4ff, #0099cc); color: white; border: none; border-radius: 10px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">Enviar Solicitud</button>
-                    <div class="success-message" id="successMessage">
-                        ¡Gracias por contactarnos! Hemos recibido tu mensaje y nos pondremos en contacto contigo en las próximas 24 horas.
-                    </div>
-                </form>
-            </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Firebase SDKs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-firestore-compat.min.js"></script>
+    
+    <!-- Firebase and Form Submission Script -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script>
         // Firebase Configuration
         const firebaseConfig = {
@@ -924,71 +1007,164 @@
             messagingSenderId: "699516071771",
             appId: "1:699516071771:web:5a84dcf771b1ee5c38b47e"
         };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
 
-        // Contact form handling
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const submitBtn = document.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Enviando...';
-            submitBtn.disabled = true;
+        // Initialize Firebase
+        let db;
+        try {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            console.log('Firebase inicializado correctamente');
+        } catch (error) {
+            console.error('Error al inicializar Firebase:', error);
+        }
 
-            const formData = new FormData(this);
-            const formObj = {};
-            formData.forEach((value, key) => { formObj[key] = value; });
-
+        // Form validation
+        function validateForm() {
             const requiredFields = ['nombre', 'email', 'servicio', 'mensaje'];
             let isValid = true;
 
-            requiredFields.forEach(field => {
-                const input = document.getElementById(field);
-                if (!formObj[field] || formObj[field].trim() === '') {
-                    input.style.borderColor = '#ef4444';
+            requiredFields.forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                const value = field.value.trim();
+
+                if (!value) {
+                    field.classList.add('invalid');
+                    field.classList.remove('valid');
                     isValid = false;
                 } else {
-                    input.style.borderColor = '#e0e6ff';
+                    field.classList.remove('invalid');
+                    field.classList.add('valid');
                 }
             });
 
-            if (isValid) {
-                try {
-                    const contactData = {
-                        ...formObj,
-                        fechaEnvio: firebase.firestore.Timestamp.now(),
-                        estado: 'nuevo',
-                        ip: '',
-                        userAgent: navigator.userAgent
-                    };
-
-                    await db.collection('contactos').add(contactData);
-                    document.getElementById('successMessage').style.display = 'block';
-                    this.reset();
-
-                    setTimeout(() => {
-                        document.getElementById('successMessage').style.display = 'none';
-                    }, 5000);
-                } catch (error) {
-                    console.error('Error al enviar el formulario:', error);
-                    alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
-                }
+            // Email validation
+            const emailField = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailField.value && !emailRegex.test(emailField.value)) {
+                emailField.classList.add('invalid');
+                emailField.classList.remove('valid');
+                isValid = false;
             }
 
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        });
+            return isValid;
+        }
 
-        // Real-time field validation
+        // Real-time validation
         document.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
-            field.addEventListener('input', function() {
-                if (this.value.trim() !== '') {
-                    this.style.borderColor = '#22c55e';
-                .
+            field.addEventListener('blur', function() {
+                const value = this.value.trim();
+                if (value) {
+                    this.classList.remove('invalid');
+                    this.classList.add('valid');
                 } else {
-                    this.style.borderColor = '#e0e6ff';
+                    this.classList.add('invalid');
+                    this.classList.remove('valid');
                 }
             });
+
+            field.addEventListener('input', function() {
+                if (this.classList.contains('invalid') && this.value.trim()) {
+                    this.classList.remove('invalid');
+                    this.classList.add('valid');
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+
+            // Validate form
+            if (!validateForm()) {
+                errorMessage.textContent = 'Por favor, completa todos los campos obligatorios correctamente.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Show loading state
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading"></span>Enviando...';
+            submitBtn.disabled = true;
+
+            try {
+                // Get form data
+                const formData = new FormData(this);
+                const formObj = {};
+                formData.forEach((value, key) => {
+                    formObj[key] = value;
+                });
+
+                // Prepare data for Firebase
+                const contactData = {
+                    nombre: formObj.nombre || '',
+                    email: formObj.email || '',
+                    telefono: formObj.telefono || '',
+                    empresa: formObj.empresa || '',
+                    servicio: formObj.servicio || '',
+                    presupuesto: formObj.presupuesto || '',
+                    mensaje: formObj.mensaje || '',
+                    fechaEnvio: firebase.firestore.Timestamp.now(),
+                    estado: 'nuevo',
+                    userAgent: navigator.userAgent,
+                    timestamp: new Date().toISOString()
+                };
+
+                console.log('Enviando datos:', contactData);
+
+                // Save to Firebase
+                if (db) {
+                    await db.collection('contactos').add(contactData);
+                    console.log('Datos guardados en Firebase');
+                    
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Remove validation classes
+                    document.querySelectorAll('.valid, .invalid').forEach(field => {
+                        field.classList.remove('valid', 'invalid');
+                    });
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+
+                } else {
+                    throw new Error('Base de datos no disponible');
+                }
+
+            } catch (error) {
+                console.error('Error al enviar formulario:', error);
+                errorMessage.textContent = 'Error al enviar el formulario: ' + error.message;
+                errorMessage.style.display = 'block';
+            } finally {
+                // Restore button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Test Firebase connection on page load
+        window.addEventListener('load', async () => {
+            if (db) {
+                try {
+                    await db.collection('contactos').limit(1).get();
+                    console.log('Conexión a Firebase exitosa');
+                } catch (error) {
+                    console.error('Error de conexión a Firebase:', error);
+                }
+            }
         });
     </script>
 </body>
