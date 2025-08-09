@@ -275,6 +275,126 @@
             background-clip: text;
         }
 
+        /* Services (Modernized) */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+            perspective: 1800px;
+        }
+
+        .service-card:nth-child(1) { grid-column: span 2; }
+        .service-card:nth-child(6) { grid-column: span 2; }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card-content {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .service-preview {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(10, 20, 40, 0.7);
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .service-preview h4 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .service-preview ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .service-preview ul li {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .service-card .service-icon {
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card .service-image {
+            max-width: 80%;
+            height: auto;
+            margin-top: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.4s ease;
+        }
+
+        /* Hover effects */
+        .service-card:hover {
+            transform: translateY(0) rotateX(0) rotateY(0) translateZ(30px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+
+        .service-card:hover .service-card-content {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .service-card:hover .service-preview {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto; /* Make it interactive on hover */
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2) translateY(-10px);
+        }
+        
+        .service-card:hover .service-image {
+            transform: scale(1.1);
+        }
+
+        @keyframes subtle-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .service-icon {
+            animation: subtle-float 6s ease-in-out infinite;
+        }
+
         /* Services */
         .services-grid {
             display: grid;
@@ -900,9 +1020,14 @@
 
             .about-content,
             .bento-grid, /* New Bento Grid */
+            .services-grid, /* New Services Grid */
             .contact-grid, /* This class is no longer used but keep for media query */
             .form-row {
                 grid-template-columns: 1fr;
+            }
+
+            .service-card:nth-child(n) {
+                grid-column: auto !important; /* Reset asymmetric spans on mobile */
             }
 
             .bento-box {
@@ -1009,42 +1134,77 @@
             <div style="position: relative; z-index: 2;">
                 <h2 class="section-title">Nuestros Servicios</h2>
                 <div class="services-grid">
-                    <div class="service-card fade-in">
-                        <div class="service-icon">🌐</div>
-                        <h3>Páginas Web Profesionales</h3>
-                        <p>Diseños modernos, adaptables a cualquier dispositivo y pensados para convertir visitantes en clientes. Impulsamos tu presencia digital con tecnología de última generación y una experiencia de usuario que enamora.</p>
-                        <p>Además, creamos plantillas personalizadas para solicitudes, reservas de citas y cualquier otro tipo de formulario que tus clientes necesiten, todo integrado para que tu negocio funcione de manera más ágil y profesional.</p>
-                        <img src="https://i.ibb.co/kVStpRH6/for-blog-3.gif" alt="Páginas Web Profesionales" class="service-image">
+                    <div class="service-card">
+                        <div class="service-card-content">
+                            <div class="service-icon">🌐</div>
+                            <h3>Páginas Web Profesionales</h3>
+                            <p>Diseños modernos y adaptables para convertir visitantes en clientes.</p>
+                            <img src="https://i.ibb.co/kVStpRH6/for-blog-3.gif" alt="Páginas Web Profesionales" class="service-image">
+                        </div>
+                        <div class="service-preview">
+                            <h4>Características Clave:</h4>
+                            <ul><li>SEO Optimizado</li><li>Integración de APIs</li><li>Formularios Personalizados</li></ul>
+                        </div>
                     </div>
-                    <div class="service-card fade-in">
-                        <div class="service-icon">📱</div>
-                        <h3>Aplicaciones Móviles</h3>
-                        <p>Desarrollamos aplicaciones Android personalizadas y multiplataforma que conectan con tu audiencia. Desde el concepto hasta su publicación en nuestra plataforma para una descarga rápida y directa por parte de tus clientes.</p>
-                        <img src="https://i.ibb.co/7xy6NTnm/13.gif" alt="Aplicaciones Móviles" class="service-image">
+                    <div class="service-card">
+                        <div class="service-card-content">
+                            <div class="service-icon">📱</div>
+                            <h3>Aplicaciones Móviles</h3>
+                            <p>Apps Android y multiplataforma que conectan con tu audiencia.</p>
+                            <img src="https://i.ibb.co/7xy6NTnm/13.gif" alt="Aplicaciones Móviles" class="service-image">
+                        </div>
+                        <div class="service-preview">
+                            <h4>Características Clave:</h4>
+                            <ul><li>Publicación Rápida</li><li>Notificaciones Push</li><li>Diseño Intuitivo</li></ul>
+                        </div>
                     </div>
-                    <div class="service-card fade-in">
-                        <div class="service-icon">🛒</div>
-                        <h3>Tiendas Online</h3>
-                        <p>Plataformas de comercio electrónico robustas y seguras. Impulsa tus ventas online con soluciones personalizadas y sistemas de pago integrados.</p>
-                        <img src="https://i.ibb.co/Wv2kGCfL/app-online-store.gif" alt="Tiendas Online" class="service-image">
+                    <div class="service-card">
+                        <div class="service-card-content">
+                            <div class="service-icon">🛒</div>
+                            <h3>Tiendas Online</h3>
+                            <p>Plataformas de e-commerce robustas y seguras para impulsar tus ventas.</p>
+                             <img src="https://i.ibb.co/Wv2kGCfL/app-online-store.gif" alt="Tiendas Online" class="service-image">
+                        </div>
+                        <div class="service-preview">
+                            <h4>Características Clave:</h4>
+                            <ul><li>Pasarelas de Pago</li><li>Gestión de Inventario</li><li>Seguridad SSL</li></ul>
+                        </div>
                     </div>
-                    <div class="service-card fade-in">
-                        <div class="service-icon">🤖</div>
-                        <h3>Chatbots Inteligentes</h3>
-                        <p>Automatiza la atención al cliente con IA avanzada. Disponibilidad 24/7, respuestas personalizadas y aumento de conversiones garantizado.</p>
-                        <img src="https://i.ibb.co/zWJ5ZntM/ded0bbdd8485e424327257405a86a884.gif" alt="Chatbots Inteligentes" class="service-image">
+                    <div class="service-card">
+                        <div class="service-card-content">
+                            <div class="service-icon">🤖</div>
+                            <h3>Chatbots Inteligentes</h3>
+                            <p>Automatiza la atención al cliente con IA avanzada, 24/7.</p>
+                            <img src="https://i.ibb.co/zWJ5ZntM/ded0bbdd8485e424327257405a86a884.gif" alt="Chatbots Inteligentes" class="service-image">
+                        </div>
+                         <div class="service-preview">
+                            <h4>Características Clave:</h4>
+                            <ul><li>Respuestas Instantáneas</li><li>Aumento de Conversión</li><li>Personalización</li></ul>
+                        </div>
                     </div>
-                    <div class="service-card fade-in">
-                        <div class="service-icon">🔒</div>
-                        <h3>Seguridad Informática</h3>
-                        <p>Protege tu negocio digital con nuestras soluciones de ciberseguridad. Auditorías, implementación de protocolos y formación especializada.</p>
-                        <img src="https://i.ibb.co/wr7MyB9L/giphy.gif" alt="Seguridad Informática" class="service-image">
+                    <div class="service-card">
+                        <div class="service-card-content">
+                            <div class="service-icon">🔒</div>
+                            <h3>Seguridad Informática</h3>
+                            <p>Protege tu negocio digital con auditorías y protocolos de ciberseguridad.</p>
+                            <img src="https://i.ibb.co/wr7MyB9L/giphy.gif" alt="Seguridad Informática" class="service-image">
+                        </div>
+                        <div class="service-preview">
+                            <h4>Características Clave:</h4>
+                            <ul><li>Análisis de Vulnerabilidades</li><li>Formación de Personal</li><li>Respuesta a Incidentes</li></ul>
+                        </div>
                     </div>
-                    <div class="service-card fade-in">
-                        <div class="service-icon">☁️</div>
-                        <h3>Soluciones Cloud</h3>
-                        <p>Migración y optimización en la nube. Escalabilidad, respaldo automático y acceso global para hacer crecer tu negocio sin límites.</p>
-                        <img src="https://i.ibb.co/Pvth5B1V/nube-animada.gif" alt="Soluciones Cloud" class="service-image">
+                    <div class="service-card">
+                        <div class="service-card-content">
+                            <div class="service-icon">☁️</div>
+                            <h3>Soluciones Cloud</h3>
+                            <p>Migración y optimización en la nube para escalabilidad sin límites.</p>
+                            <img src="https://i.ibb.co/Pvth5B1V/nube-animada.gif" alt="Soluciones Cloud" class="service-image">
+                        </div>
+                        <div class="service-preview">
+                            <h4>Características Clave:</h4>
+                            <ul><li>Alta Disponibilidad</li><li>Backups Automáticos</li><li>Acceso Global</li></ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1686,6 +1846,41 @@
                     const xOffset = x * speed * 20;
                     const yOffset = y * speed * 20;
                     el.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+                });
+            });
+
+
+            // --- Services Section Interactivity ---
+            const servicesSection = document.querySelector('#servicios');
+            const serviceCards = document.querySelectorAll('.service-card');
+
+            const servicesObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        serviceCards.forEach((card, index) => {
+                            card.style.transitionDelay = `${index * 100}ms`;
+                            card.classList.add('visible');
+                        });
+                        servicesObserver.unobserve(servicesSection);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            if(servicesSection) {
+                servicesObserver.observe(servicesSection);
+            }
+
+            serviceCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    const rotateX = (y / rect.height) * -12;
+                    const rotateY = (x / rect.width) * 12;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = ''; // Reset to CSS state
                 });
             });
 
