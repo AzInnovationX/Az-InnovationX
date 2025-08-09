@@ -167,6 +167,36 @@
             animation: slideInUp 1s ease-out 0.3s both;
         }
 
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 560px;
+            margin: 2rem auto 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .video-container:hover {
+            transform: scale(1.02);
+        }
+
+        .video-container::after {
+            content: '';
+            display: block;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+
         .cta-button {
             display: inline-block;
             padding: 15px 30px;
@@ -677,6 +707,15 @@
             <div class="hero-content">
                 <h1>Donde las Ideas Cobran Vida</h1>
                 <p>Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas</p>
+                <div class="video-container">
+                    <iframe 
+                      src="https://www.youtube.com/embed/yufJwl8WxEs" 
+                      frameborder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allowfullscreen
+                      loading="lazy">
+                    </iframe>
+                </div>
             </div>
         </section>
 
