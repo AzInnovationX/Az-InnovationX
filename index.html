@@ -354,6 +354,126 @@
             font-size: 1.3rem;
         }
 
+        /* About Us - Bento Box Layout */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto;
+            gap: 1.5rem;
+            margin-top: 4rem;
+            perspective: 2000px;
+        }
+
+        #nosotros .section-title {
+            background: linear-gradient(90deg, #00d4ff, #ffffff, #00d4ff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 5s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .bento-box {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: rotateX(5deg) rotateY(5deg);
+            opacity: 0; /* Initial state for scroll animation */
+        }
+        
+        .bento-box.visible {
+            transform: rotateX(0) rotateY(0);
+            opacity: 1;
+        }
+
+        .bento-box:hover {
+            transform: translateZ(30px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 15px rgba(0, 212, 255, 0.3);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .bento-box h3 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .bento-box p {
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .bento-icon {
+            font-size: 2.5rem;
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            opacity: 0.7;
+        }
+
+        /* Bento Box Grid Areas */
+        .box-1 { grid-column: span 2; }
+        .box-2 { grid-column: span 2; }
+        .box-3 { 
+            grid-column: span 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        .box-4 { 
+            grid-column: span 2;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .box-5 { grid-column: span 1; }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .deco-shape {
+            position: absolute;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.2), rgba(0, 153, 204, 0.2));
+            border-radius: 50%;
+            filter: blur(30px);
+            z-index: -1;
+        }
+
+        .shape-1 { width: 150px; height: 150px; top: -50px; left: -50px; }
+        .shape-2 { width: 120px; height: 120px; bottom: -40px; right: -40px; }
+        .shape-3 { width: 100px; height: 100px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+
         /* About Us */
         .about-content {
             display: grid;
@@ -746,9 +866,14 @@
             }
 
             .about-content,
+            .bento-grid, /* New Bento Grid */
             .contact-grid, /* This class is no longer used but keep for media query */
             .form-row {
                 grid-template-columns: 1fr;
+            }
+
+            .bento-box {
+                grid-column: auto !important; /* Ensure boxes stack in a single column */
             }
 
             .steps-grid {
@@ -887,15 +1012,37 @@
             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
             <div style="position: relative; z-index: 2;">
                 <h2 class="section-title">¿Quiénes somos?</h2>
-                <div class="about-content">
-                    <div class="about-text fade-in">
-                        <p>En Az InnovationX convertimos ideas en soluciones digitales con impacto real.</p>
-                        <p>Ayudamos a emprendedores, startups y empresas a resolver desafíos tecnológicos con innovación, agilidad y enfoque estratégico.</p>
-                        <p>Somos desarrolladores con mentalidad emprendedora: entendemos lo que significa empezar desde cero y construir algo que crezca. Diseñamos plataformas escalables, eficientes y listas para el futuro.</p>
-                        <p>Nos apasiona automatizar, optimizar y dar vida a ideas que transforman. En cada proyecto ponemos compromiso, ingenio y visión.</p>
-                        <p>No vendemos promesas. Creamos soluciones.</p>
+                <div class="bento-grid">
+                    <div class="bento-box box-1">
+                        <span class="bento-icon">🚀</span>
+                        <h3>Nuestra Misión</h3>
+                        <p>Convertimos ideas en soluciones digitales con impacto real, ayudando a emprendedores a resolver desafíos tecnológicos con innovación y agilidad.</p>
+                        <span class="deco-shape shape-1"></span>
                     </div>
-                    <div class="floating-element" style="font-size: 10rem; top: 40%; right: 15%;">🔐</div>
+                    <div class="bento-box box-2">
+                        <h3>Mentalidad Emprendedora</h3>
+                        <p>Entendemos lo que significa empezar desde cero. Diseñamos plataformas escalables, eficientes y listas para el futuro.</p>
+                         <span class="deco-shape shape-2"></span>
+                    </div>
+                    <div class="bento-box box-3">
+                        <p class="typewriter-text">No vendemos promesas. Creamos soluciones.</p>
+                    </div>
+                    <div class="bento-box box-4">
+                        <div class="stat">
+                            <span class="stat-number" data-target="50">+50</span>
+                            <span class="stat-label">Proyectos Completados</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="100">100%</span>
+                            <span class="stat-label">Compromiso</span>
+                        </div>
+                         <span class="deco-shape shape-3"></span>
+                    </div>
+                    <div class="bento-box box-5">
+                         <span class="bento-icon">💡</span>
+                        <h3>Ingenio y Visión</h3>
+                        <p>Nos apasiona automatizar, optimizar y dar vida a ideas que transforman. En cada proyecto ponemos nuestro máximo ingenio.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1338,6 +1485,87 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- "Quiénes Somos" Section Interactivity ---
+            const nosotrosSection = document.querySelector('#nosotros');
+            const bentoBoxes = document.querySelectorAll('.bento-box');
+            const typewriterElement = document.querySelector('.typewriter-text');
+            const stats = document.querySelectorAll('.stat-number');
+
+            const nosotrosObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animate bento boxes
+                        bentoBoxes.forEach((box, index) => {
+                            box.style.transitionDelay = `${index * 150}ms`;
+                            box.classList.add('visible');
+                        });
+
+                        // Animate stats
+                        stats.forEach(stat => {
+                            const target = +stat.getAttribute('data-target');
+                            animateCounter(stat, target);
+                        });
+
+                        // Animate typewriter
+                        if (typewriterElement) {
+                            const text = typewriterElement.textContent;
+                            typewriterElement.textContent = '';
+                            setTimeout(() => typeWriter(typewriterElement, text), bentoBoxes.length * 150);
+                        }
+                        
+                        nosotrosObserver.unobserve(nosotrosSection); // Stop observing
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            if (nosotrosSection) {
+                nosotrosObserver.observe(nosotrosSection);
+            }
+
+            // 3D tilt effect for bento boxes
+            bentoBoxes.forEach(box => {
+                box.addEventListener('mousemove', (e) => {
+                    const rect = box.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    const rotateX = (y / rect.height) * -20;
+                    const rotateY = (x / rect.width) * 20;
+                    box.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05) translateZ(30px)`;
+                });
+                box.addEventListener('mouseleave', () => {
+                    box.style.transform = ''; // Reset to CSS state
+                });
+            });
+
+            // Re-usable counter and typewriter functions (adapted from existing code)
+            function animateCounter(element, target) {
+                let count = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        count = target;
+                        clearInterval(timer);
+                    }
+                     // Keep the "+" sign if it exists in the original text
+                    element.textContent = Math.ceil(count) + (element.textContent.includes('+') ? '+' : '');
+                }, 20);
+            }
+
+            function typeWriter(element, text, speed = 60) {
+                let i = 0;
+                element.style.opacity = 1;
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    }
+                }
+                type();
+            }
+
+
             // --- Staggered Entry Animation for Contact Cards ---
             const contactSection = document.querySelector('#contacto');
             const contactCards = document.querySelectorAll('.contact-item');
