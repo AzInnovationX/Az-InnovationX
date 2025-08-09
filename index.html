@@ -151,20 +151,19 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             margin-bottom: 1rem;
             background: linear-gradient(45deg, #ffffff, #00d4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: slideInUp 1s ease-out;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
         }
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
             opacity: 0.9;
-            animation: slideInUp 1s ease-out 0.3s both;
         }
 
         .video-container {
@@ -175,7 +174,9 @@
             margin: 2rem auto 0;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
+            animation: pulse-glow-video 3s ease-in-out infinite;
+            border: 1px solid rgba(0, 212, 255, 0.3);
         }
 
         .video-container:hover {
@@ -224,6 +225,38 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        .custom-cursor {
+            width: 25px;
+            height: 25px;
+            border: 2px solid #00d4ff;
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease-out, background-color 0.2s ease, width 0.2s ease, height 0.2s ease;
+        }
+
+        .text-reveal-container {
+            overflow: hidden;
+        }
+
+        .hero h1, .hero p {
+            transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform: translateY(120%);
+        }
+
+        .text-reveal-container.visible h1,
+        .text-reveal-container.visible p {
+            transform: translateY(0);
+        }
+
+        @keyframes pulse-glow-video {
+            0% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.7); }
+            100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
         }
 
         /* Sections */
@@ -942,13 +975,19 @@
 
     <main>
         <section id="inicio" class="hero">
-            <div class="floating-element">⚡</div>
-            <div class="floating-element">🚀</div>
-            <div class="floating-element">💻</div>
+            <canvas id="particle-canvas" style="position: absolute; top: 0; left: 0; z-index: 1;"></canvas>
+            <div id="custom-cursor" class="custom-cursor"></div>
+            <div class="floating-element" data-parallax-speed="3">⚡</div>
+            <div class="floating-element" data-parallax-speed="-2">🚀</div>
+            <div class="floating-element" data-parallax-speed="1">💻</div>
             <div class="hero-content">
-                <h1>Donde las Ideas Cobran Vida</h1>
-                <p>Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas</p>
-                <div class="video-container">
+                <div class="text-reveal-container">
+                    <h1 data-parallax-speed="2">Donde las Ideas Cobran Vida</h1>
+                </div>
+                <div class="text-reveal-container">
+                    <p data-parallax-speed="-1">Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas</p>
+                </div>
+                <div class="video-container" data-parallax-speed="-1.5">
                     <iframe 
                       src="https://www.youtube.com/embed/yufJwl8WxEs" 
                       frameborder="0" 
@@ -1485,6 +1524,168 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Hero Section: Interactive Particle System ---
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let particlesArray;
+
+            const mouse = {
+                x: null,
+                y: null,
+                radius: 150
+            };
+
+            window.addEventListener('mousemove', (event) => {
+                mouse.x = event.x;
+                mouse.y = event.y;
+            });
+            
+            window.addEventListener('mouseout', () => {
+                mouse.x = null;
+                mouse.y = null;
+            });
+
+            class Particle {
+                constructor(x, y, directionX, directionY, size, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.directionX = directionX;
+                    this.directionY = directionY;
+                    this.size = size;
+                    this.color = color;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+
+                update() {
+                    if (this.x > canvas.width || this.x < 0) {
+                        this.directionX = -this.directionX;
+                    }
+                    if (this.y > canvas.height || this.y < 0) {
+                        this.directionY = -this.directionY;
+                    }
+
+                    // Mouse interaction
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius + this.size) {
+                        if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+                            this.x += 5;
+                        }
+                        if (mouse.x > this.x && this.x > this.size * 10) {
+                            this.x -= 5;
+                        }
+                        if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+                            this.y += 5;
+                        }
+                        if (mouse.y > this.y && this.y > this.size * 10) {
+                            this.y -= 5;
+                        }
+                    }
+                    this.x += this.directionX;
+                    this.y += this.directionY;
+                    this.draw();
+                }
+            }
+
+            function initParticles() {
+                particlesArray = [];
+                let numberOfParticles = (canvas.height * canvas.width) / 9000;
+                for (let i = 0; i < numberOfParticles; i++) {
+                    let size = (Math.random() * 2) + 1;
+                    let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                    let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                    let directionX = (Math.random() * .4) - .2;
+                    let directionY = (Math.random() * .4) - .2;
+                    let color = 'rgba(0, 212, 255, 0.6)';
+                    particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+                }
+            }
+
+            function connectParticles() {
+                let opacityValue = 1;
+                for (let a = 0; a < particlesArray.length; a++) {
+                    for (let b = a; b < particlesArray.length; b++) {
+                        let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
+                            ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                        if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                            opacityValue = 1 - (distance / 20000);
+                            ctx.strokeStyle = `rgba(0, 212, 255, ${opacityValue})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function animateParticles() {
+                requestAnimationFrame(animateParticles);
+                ctx.clearRect(0, 0, innerWidth, innerHeight);
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update();
+                }
+                connectParticles();
+            }
+
+            window.addEventListener('resize', () => {
+                canvas.width = innerWidth;
+                canvas.height = innerHeight;
+                initParticles();
+            });
+            
+            if (canvas) {
+                initParticles();
+                animateParticles();
+            }
+
+            // --- Hero Section: Animations & Mouse Effects ---
+            const heroTextContainers = document.querySelectorAll('.hero .text-reveal-container');
+            const customCursor = document.getElementById('custom-cursor');
+            const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
+
+            // 1. Cinematic Text Reveal
+            window.addEventListener('load', () => {
+                heroTextContainers.forEach((container, index) => {
+                    setTimeout(() => {
+                        container.classList.add('visible');
+                    }, 500 + (index * 250)); // Staggered delay
+                });
+            });
+
+            // 2. Custom Cursor and Parallax Mouse-follow
+            window.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+
+                // Update custom cursor position
+                if (customCursor) {
+                    customCursor.style.transform = `translate(${clientX - 12.5}px, ${clientY - 12.5}px)`;
+                }
+
+                // Update parallax elements
+                const x = (clientX - window.innerWidth / 2) / window.innerWidth * -1;
+                const y = (clientY - window.innerHeight / 2) / window.innerHeight * -1;
+
+                parallaxElements.forEach(el => {
+                    const speed = el.getAttribute('data-parallax-speed');
+                    const xOffset = x * speed * 20;
+                    const yOffset = y * speed * 20;
+                    el.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+                });
+            });
+
+
             // --- "Quiénes Somos" Section Interactivity ---
             const nosotrosSection = document.querySelector('#nosotros');
             const bentoBoxes = document.querySelectorAll('.bento-box');
