@@ -2491,7 +2491,7 @@
                 inputField.value = '';
                 inputField.disabled = true;
 
-                setTimeout(async () => { // Make callback async
+                setTimeout(() => { // No longer need async
                     let response;
                     if (currentState) {
                         // Handle lead capture sequence
@@ -2509,26 +2509,15 @@
                         } else if (currentState === "get_project_desc") {
                             leadData.project_desc = input;
                             
-                            // Save lead to Firebase
-                            if (db) {
-                                try {
-                                    await db.collection('chatbot_leads').add({
-                                        nombre: leadData.name,
-                                        email: leadData.email,
-                                        descripcion_proyecto: leadData.project_desc,
-                                        fechaEnvio: firebase.firestore.Timestamp.now(),
-                                        origen: 'chatbot'
-                                    });
-                                    console.log("Lead guardado en Firebase desde el chatbot.");
-                                    response = { message: "¡Genial! Hemos recibido tu información. Un especialista de nuestro equipo se pondrá en contacto contigo pronto. ¿Hay algo más en lo que pueda ayudarte?", options: ["Nuestros Servicios", "Tengo una pregunta (FAQ)"] };
-                                } catch (error) {
-                                    console.error("Error al guardar lead en Firebase:", error);
-                                    response = { message: "Hubo un problema al guardar tu información. Por favor, intenta de nuevo o contáctanos directamente.", options: ["Contacto Directo", "Volver al inicio"] };
-                                }
-                            } else {
-                                console.error("Firebase DB no está disponible.");
-                                response = { message: "Lo siento, no puedo guardar tu información en este momento. Por favor, contáctanos directamente.", options: ["Contacto Directo", "Volver al inicio"] };
-                            }
+                            // Prepare WhatsApp message
+                            const message = `¡Hola! Me gustaría solicitar un presupuesto.\n\n*Nombre:* ${leadData.name}\n*Email:* ${leadData.email}\n*Descripción del proyecto:* ${leadData.project_desc}`;
+                            const whatsappUrl = `https://wa.me/52620042412?text=${encodeURIComponent(message)}`;
+
+                            // Open WhatsApp link in a new tab
+                            window.open(whatsappUrl, '_blank');
+
+                            // Inform the user
+                            response = { message: "¡Perfecto! He abierto WhatsApp en una nueva pestaña con tu solicitud de presupuesto lista para ser enviada. ¿Puedo ayudarte en algo más?", options: ["Nuestros Servicios", "Tengo una pregunta (FAQ)"] };
 
                             leadData = {}; // Reset for next lead
                             currentState = null; // Reset state after completion
