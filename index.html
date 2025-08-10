@@ -1034,8 +1034,247 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Chatbot Styles */
+        #chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10001;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        #chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        #chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.6);
+        }
+
+        #chatbot-toggle .icon-open {
+            font-size: 28px;
+            color: white;
+        }
+        
+        #chatbot-toggle .icon-close {
+            display: none; /* Hidden by default */
+            font-size: 28px;
+            color: white;
+        }
+
+        #chatbot-window {
+            width: 370px;
+            max-width: 90vw;
+            height: 500px;
+            max-height: 70vh;
+            background: rgba(10, 20, 40, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            transform-origin: bottom right;
+            animation: slideInUp-chat 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #chatbot-window.active {
+            display: flex;
+        }
+
+        @keyframes slideInUp-chat {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        #chatbot-header {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+        }
+        
+        #chatbot-header .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        #chatbot-header .bot-info h4 {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        #chatbot-header .bot-info p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: #00d4ff;
+            opacity: 0.9;
+        }
+
+        #chatbot-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        /* Custom scrollbar for chat */
+        #chatbot-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #chatbot-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #chatbot-messages::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 212, 255, 0.5);
+            border-radius: 10px;
+        }
+
+        .chat-message {
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 80%;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            background: rgba(0, 212, 255, 0.2);
+            align-self: flex-start;
+            border-bottom-left-radius: 3px;
+        }
+
+        .user-message {
+            background: rgba(255, 255, 255, 0.2);
+            align-self: flex-end;
+            border-bottom-right-radius: 3px;
+        }
+        
+        .chat-message .options {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chat-message .option-button {
+            background: rgba(0, 212, 255, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .chat-message .option-button:hover {
+            background: rgba(0, 212, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        #chatbot-input-form {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        #chatbot-input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: white;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+        #chatbot-input:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        #chatbot-send {
+            width: 45px;
+            height: 45px;
+            border: none;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #chatbot-send:hover {
+            transform: scale(1.1);
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            #chatbot-window {
+                width: 100%;
+                height: 100%;
+                max-width: 100vw;
+                max-height: 100vh;
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                border-radius: 0;
+                margin-bottom: 0;
+            }
+            
+            #chatbot-container {
+                bottom: 15px;
+                right: 15px;
+            }
+
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -1409,6 +1648,32 @@
             </section>
         </div>
     </footer>
+
+    <!-- Chatbot HTML Structure -->
+    <div id="chatbot-container">
+        <div id="chatbot-window">
+            <div id="chatbot-header">
+                <div class="avatar">AZ</div>
+                <div class="bot-info">
+                    <h4>Asistente Virtual</h4>
+                    <p>En línea</p>
+                </div>
+            </div>
+            <div id="chatbot-messages">
+                <!-- Messages will be appended here by JavaScript -->
+            </div>
+            <form id="chatbot-input-form">
+                <input type="text" id="chatbot-input" placeholder="Escribe un mensaje..." autocomplete="off">
+                <button type="submit" id="chatbot-send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+            </form>
+        </div>
+        <button id="chatbot-toggle">
+            <span class="icon-open">🤖</span>
+            <span class="icon-close">✕</span>
+        </button>
+    </div>
 
     <!-- General Page Scripts -->
     <script>
@@ -2084,6 +2349,254 @@
                     // This will smoothly return it to the ".visible" state.
                     card.style.transform = ''; 
                 });
+            });
+        });
+    </script>
+
+    <!-- Chatbot Logic Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatbotToggle = document.getElementById('chatbot-toggle');
+            const chatbotWindow = document.getElementById('chatbot-window');
+            const iconOpen = chatbotToggle.querySelector('.icon-open');
+            const iconClose = chatbotToggle.querySelector('.icon-close');
+            const messagesContainer = document.getElementById('chatbot-messages');
+            const inputForm = document.getElementById('chatbot-input-form');
+            const inputField = document.getElementById('chatbot-input');
+
+            // --- Knowledge Base & Conversation Tree ---
+            const knowledgeBase = {
+                saludo: {
+                    message: "¡Hola! Soy AZ, el asistente virtual de Az InnovationX. Estoy aquí para ayudarte a dar el siguiente paso en tu proyecto. ¿Qué te gustaría hacer?",
+                    options: ["Nuestros Servicios", "Tengo una pregunta (FAQ)", "Solicitar Presupuesto", "Contacto Directo"]
+                },
+                servicios: {
+                    message: "Ofrecemos una gama de soluciones para llevar tu idea al siguiente nivel. ¿Cuál de nuestros servicios te interesa?",
+                    options: ["Páginas Web", "Aplicaciones Móviles", "Tiendas Online", "Chatbots Inteligentes", "Seguridad Informática", "Soluciones Cloud", "Volver al inicio"]
+                },
+                presupuesto: {
+                    message: "¡Excelente! Para darte una mejor orientación, necesitamos algunos datos. Primero, ¿cuál es tu nombre?",
+                    next_state: "get_name"
+                },
+                faq: {
+                    message: "Aquí tienes algunas preguntas frecuentes. ¡Espero que te sirvan!",
+                    options: ["¿Cuánto tiempo tarda un proyecto?", "¿Qué tecnología usan?", "¿Ofrecen mantenimiento?", "Volver al inicio"]
+                },
+                contacto: {
+                    message: "Para consultas complejas o si prefieres un trato más personal, puedes contactarnos directamente por WhatsApp. ¡Será un placer atenderte!",
+                    options: [{ text: "Abrir WhatsApp", url: "https://wa.me/52620042412" }, "Volver al inicio"]
+                },
+                // Detailed service info
+                "Páginas Web": {
+                    message: "Creamos páginas web profesionales con diseños modernos, adaptables y optimizadas para SEO. Integramos APIs y formularios personalizados para convertir visitantes en clientes.",
+                    options: ["Ver otros servicios", "Solicitar Presupuesto", "Volver al inicio"]
+                },
+                "Aplicaciones Móviles": {
+                    message: "Desarrollamos aplicaciones móviles para Android y multiplataforma. Nos enfocamos en una publicación rápida, notificaciones push y un diseño intuitivo.",
+                    options: ["Ver otros servicios", "Solicitar Presupuesto", "Volver al inicio"]
+                },
+                "Tiendas Online": {
+                    message: "Construimos plataformas de e-commerce robustas con pasarelas de pago, gestión de inventario y seguridad SSL para impulsar tus ventas.",
+                    options: ["Ver otros servicios", "Solicitar Presupuesto", "Volver al inicio"]
+                },
+                "Chatbots Inteligentes": {
+                    message: "Automatizamos la atención al cliente 24/7 con chatbots de IA avanzada, mejorando la conversión y personalizando la experiencia.",
+                    options: ["Ver otros servicios", "Solicitar Presupuesto", "Volver al inicio"]
+                },
+                "Seguridad Informática": {
+                    message: "Protegemos tu negocio digital con auditorías, análisis de vulnerabilidades y protocolos de ciberseguridad para mantener tu información segura.",
+                    options: ["Ver otros servicios", "Solicitar Presupuesto", "Volver al inicio"]
+                },
+                "Soluciones Cloud": {
+                    message: "Ofrecemos migración y optimización en la nube, asegurando alta disponibilidad, backups automáticos y acceso global para tu negocio.",
+                    options: ["Ver otros servicios", "Solicitar Presupuesto", "Volver al inicio"]
+                },
+                // FAQ Answers
+                "¿Cuánto tiempo tarda un proyecto?": {
+                    message: "El tiempo de desarrollo varía según la complejidad. Un sitio web básico puede tomar de 2 a 4 semanas, mientras que una aplicación móvil puede llevar de 2 a 4 meses. Siempre establecemos un cronograma claro desde el inicio.",
+                    options: ["Tengo otra pregunta (FAQ)", "Volver al inicio"]
+                },
+                "¿Qué tecnología usan?": {
+                    message: "Utilizamos tecnologías modernas y probadas como HTML5, CSS3, JavaScript, y frameworks como React o Vue. Para el backend y las bases de datos, confiamos en Node.js y Firebase/Firestore, garantizando soluciones escalables y seguras.",
+                    options: ["Tengo otra pregunta (FAQ)", "Volver al inicio"]
+                },
+                "¿Ofrecen mantenimiento?": {
+                    message: "Sí, ofrecemos planes de mantenimiento y soporte post-lanzamiento para asegurar que tu plataforma esté siempre actualizada, segura y funcionando de manera óptima.",
+                    options: ["Tengo otra pregunta (FAQ)", "Volver al inicio"]
+                },
+                // Default/fallback
+                default: {
+                    message: "No he entendido muy bien. ¿Podrías intentarlo de otra manera? Aquí tienes las opciones principales:",
+                    options: ["Nuestros Servicios", "Tengo una pregunta (FAQ)", "Solicitar Presupuesto", "Contacto Directo"]
+                }
+            };
+
+            let currentState = null;
+            let leadData = {};
+
+            // --- Core Functions ---
+            const toggleChatbot = () => {
+                const isActive = chatbotWindow.classList.toggle('active');
+                iconOpen.style.display = isActive ? 'none' : 'block';
+                iconClose.style.display = isActive ? 'block' : 'none';
+                
+                // If chat is opened for the first time, show welcome message
+                if (isActive && messagesContainer.children.length === 0) {
+                    showBotMessage(knowledgeBase.saludo);
+                }
+            };
+
+            const showBotMessage = (response) => {
+                const botMessageElement = document.createElement('div');
+                botMessageElement.classList.add('chat-message', 'bot-message');
+                
+                const messageText = document.createElement('p');
+                messageText.innerHTML = response.message; // Use innerHTML to allow links
+                botMessageElement.appendChild(messageText);
+
+                if (response.options) {
+                    const optionsContainer = document.createElement('div');
+                    optionsContainer.classList.add('options');
+                    response.options.forEach(option => {
+                        const button = document.createElement('button');
+                        button.classList.add('option-button');
+                        if (typeof option === 'object') {
+                            button.textContent = option.text;
+                            button.dataset.url = option.url;
+                        } else {
+                            button.textContent = option;
+                            button.dataset.value = option;
+                        }
+                        optionsContainer.appendChild(button);
+                    });
+                    botMessageElement.appendChild(optionsContainer);
+                }
+
+                messagesContainer.appendChild(botMessageElement);
+                scrollToBottom();
+                
+                currentState = response.next_state || null;
+            };
+
+            const showUserMessage = (message) => {
+                const userMessageElement = document.createElement('div');
+                userMessageElement.classList.add('chat-message', 'user-message');
+                userMessageElement.textContent = message;
+                messagesContainer.appendChild(userMessageElement);
+                scrollToBottom();
+            };
+
+            const handleInput = (input) => {
+                showUserMessage(input);
+                inputField.value = '';
+                inputField.disabled = true;
+
+                setTimeout(async () => { // Make callback async
+                    let response;
+                    if (currentState) {
+                        // Handle lead capture sequence
+                        if (currentState === "get_name") {
+                            leadData.name = input;
+                            response = { message: `Gracias, ${leadData.name}. Ahora, por favor, introduce tu correo electrónico.`, next_state: "get_email" };
+                        } else if (currentState === "get_email") {
+                            // Basic email validation
+                            if (/\S+@\S+\.\S+/.test(input)) {
+                                leadData.email = input;
+                                response = { message: "Perfecto. Por último, ¿podrías darnos una breve descripción de tu proyecto o idea?", next_state: "get_project_desc" };
+                            } else {
+                                response = { message: "Hmm, ese correo no parece válido. Por favor, inténtalo de nuevo.", next_state: "get_email" };
+                            }
+                        } else if (currentState === "get_project_desc") {
+                            leadData.project_desc = input;
+                            
+                            // Save lead to Firebase
+                            if (db) {
+                                try {
+                                    await db.collection('chatbot_leads').add({
+                                        nombre: leadData.name,
+                                        email: leadData.email,
+                                        descripcion_proyecto: leadData.project_desc,
+                                        fechaEnvio: firebase.firestore.Timestamp.now(),
+                                        origen: 'chatbot'
+                                    });
+                                    console.log("Lead guardado en Firebase desde el chatbot.");
+                                    response = { message: "¡Genial! Hemos recibido tu información. Un especialista de nuestro equipo se pondrá en contacto contigo pronto. ¿Hay algo más en lo que pueda ayudarte?", options: ["Nuestros Servicios", "Tengo una pregunta (FAQ)"] };
+                                } catch (error) {
+                                    console.error("Error al guardar lead en Firebase:", error);
+                                    response = { message: "Hubo un problema al guardar tu información. Por favor, intenta de nuevo o contáctanos directamente.", options: ["Contacto Directo", "Volver al inicio"] };
+                                }
+                            } else {
+                                console.error("Firebase DB no está disponible.");
+                                response = { message: "Lo siento, no puedo guardar tu información en este momento. Por favor, contáctanos directamente.", options: ["Contacto Directo", "Volver al inicio"] };
+                            }
+
+                            leadData = {}; // Reset for next lead
+                            currentState = null; // Reset state after completion
+                        }
+                    } else {
+                        // Keyword-based response
+                        const lowerCaseInput = input.toLowerCase();
+                        if (knowledgeBase[input]) {
+                            response = knowledgeBase[input];
+                        } else if (lowerCaseInput.includes("servicio")) {
+                            response = knowledgeBase.servicios;
+                        } else if (lowerCaseInput.includes("pregunta") || lowerCaseInput.includes("faq")) {
+                            response = knowledgeBase.faq;
+                        } else if (lowerCaseInput.includes("presupuesto") || lowerCaseInput.includes("cotizar")) {
+                            response = knowledgeBase.presupuesto;
+                        } else if (lowerCaseInput.includes("contacto") || lowerCaseInput.includes("humano")) {
+                            response = knowledgeBase.contacto;
+                        } else if (input === "Volver al inicio") {
+                            response = knowledgeBase.saludo;
+                        } else if (input === "Ver otros servicios") {
+                            response = knowledgeBase.servicios;
+                        } else if (input === "Tengo otra pregunta (FAQ)") {
+                            response = knowledgeBase.faq;
+                        } else if (input === "Solicitar Presupuesto") {
+                            response = knowledgeBase.presupuesto;
+                        } else {
+                            response = knowledgeBase.default;
+                        }
+                    }
+                    
+                    if (response) { 
+                        showBotMessage(response);
+                    }
+                    inputField.disabled = false;
+                    inputField.focus();
+                }, 800); // Simulate bot thinking
+            };
+
+            const scrollToBottom = () => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            };
+
+            // --- Event Listeners ---
+            chatbotToggle.addEventListener('click', toggleChatbot);
+
+            inputForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const userInput = inputField.value.trim();
+                if (userInput) {
+                    handleInput(userInput);
+                }
+            });
+
+            messagesContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('option-button')) {
+                    const value = e.target.dataset.value;
+                    const url = e.target.dataset.url;
+
+                    if (url) {
+                        window.open(url, '_blank');
+                        showUserMessage(`He seleccionado: ${e.target.textContent}`);
+                        setTimeout(() => {
+                            showBotMessage({ message: "¿Hay algo más en lo que pueda ayudarte?", options: ["Nuestros Servicios", "Tengo una pregunta (FAQ)"] });
+                        }, 800);
+                    } else if (value) {
+                        handleInput(value);
+                    }
+                }
             });
         });
     </script>
