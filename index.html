@@ -2377,6 +2377,32 @@
     <!-- Chatbot Logic Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            let lastBotQuestionKey = null;
+            const affirmativeAnswers = ['si', 'sí', 'yes', 'claro', 'ok', 'está bien', 'esta bien', 'dale', 'va', 'por supuesto', 'acepto', 'afirmativo', 'de acuerdo'];
+            const negativeAnswers = ['no', 'no gracias', 'cancelar', 'ahora no'];
+
+            const conversationState = {
+                currentTopic: null,
+                mentionedServices: [],
+                budgetRange: null,
+                userFrustration: 0,
+                history: [],
+                suggestedQuote: false,
+                suggestedWebAppAndEcomm: false,
+                suggestedPortfolio: false,
+            };
+
+            const intents = {
+                greet: ['hola', 'buenos dias', 'buenas tardes'],
+                request_service_info: ['servicio', 'información', 'que haces', 'ayuda', 'productos'],
+                request_quote: ['precio', 'costo', 'cuánto', 'presupuesto', 'tarifa', 'cotización', 'cotizar'],
+                request_contact: ['redes', 'social', 'síguelos', 'facebook', 'instagram', 'tiktok', 'seguir', 'contacto', 'llamar', 'email', 'correo'],
+                request_examples: ['ejemplos', 'portfolio', 'trabajos', 'proyectos anteriores', 'muestra'],
+                request_process: ['tiempo', 'cuándo', 'plazos', 'entrega', 'duración', 'proceso'],
+                request_support: ['soporte', 'mantenimiento', 'garantía', 'actualizaciones'],
+                frustration: ['no funciona', 'no sirve', 'frustrado', 'agente', 'humano', 'persona', 'no entiendo'],
+            };
+
             const chatbotToggle = document.getElementById('chatbot-toggle');
             const chatbotWindow = document.getElementById('chatbot-window');
             const iconOpen = chatbotToggle.querySelector('.icon-open');
@@ -2384,24 +2410,39 @@
             const messagesContainer = document.getElementById('chatbot-messages');
             const inputForm = document.getElementById('chatbot-input-form');
             const inputField = document.getElementById('chatbot-input');
-            let misunderstandingCounter = 0; // Counter for escalation
+            let misunderstandingCounter = 0;
 
             const knowledgeBase = {
                 saludo: {
                     message: "¡Qué padre que estás aquí! Soy AZ, tu asistente virtual de Az InnovationX. Estoy listo para ayudarte a convertir tu idea en una solución digital. ¿En qué te puedo ayudar?",
-                    options: ["Nuestros Servicios", "Preguntas Frecuentes (FAQ)", "Ver Ejemplos", "Contacto y Redes Sociales"]
+                    options: [
+                        { text: "Nuestros Servicios", key: "servicios_menu" },
+                        { text: "Preguntas Frecuentes (FAQ)", key: "faq_menu" },
+                        { text: "Ver Ejemplos", key: "ejemplos" },
+                        { text: "Contacto y Redes Sociales", key: "contacto" }
+                    ]
                 },
-                servicios: {
+                servicios_menu: {
                     message: "¡Súper! Ofrecemos varias soluciones de alta tecnología. ¿Cuál te interesa para contarte más?",
-                    options: ["Páginas Web Profesionales", "Aplicaciones Móviles", "Tiendas Online", "Chatbots Inteligentes", "Seguridad Informática", "Soluciones Cloud", "Volver al inicio"]
+                    options: [
+                        { text: "Páginas Web Profesionales", key: "servicio_web" },
+                        { text: "Aplicaciones Móviles", key: "servicio_app" },
+                        { text: "Tiendas Online", key: "servicio_ecommerce" },
+                        { text: "Chatbots Inteligentes", key: "servicio_chatbot" },
+                        { text: "Seguridad Informática", key: "servicio_seguridad" },
+                        { text: "Soluciones Cloud", key: "servicio_cloud" },
+                        { text: "Volver al inicio", key: "saludo" }
+                    ],
                 },
-                presupuesto: {
-                    message: "¡Excelente! Para darte un presupuesto personalizado y preciso, lo mejor es hablar directamente con un experto. ¿Te gustaría que te dirija a nuestro WhatsApp?",
-                    options: [{ text: "Sí, llevar a WhatsApp", url: "https://wa.me/5620042412" }, "Volver al inicio"]
-                },
-                faq: {
+                faq_menu: {
                     message: "¡Excelente! Aquí tienes los temas de nuestras preguntas más comunes. ¿Sobre qué te gustaría saber?",
-                    options: ["Precios y Presupuestos", "Sobre el Proceso", "Sobre Tecnología", "Soporte Post-Venta", "Volver al inicio"]
+                    options: [
+                        { text: "Precios y Presupuestos", key: "faq_precios_menu" },
+                        { text: "Sobre el Proceso", key: "faq_proceso_menu" },
+                        { text: "Sobre Tecnología", key: "faq_tecnologia_menu" },
+                        { text: "Soporte Post-Venta", key: "faq_soporte_menu" },
+                        { text: "Volver al inicio", key: "saludo" }
+                    ]
                 },
                 contacto: {
                     message: "¡Claro! Aquí tienes todas nuestras redes y formas de contacto. ¡Nos encantará saber de ti!",
@@ -2412,81 +2453,126 @@
                         { text: "TikTok", url: "https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" },
                         { text: "Tienda de Aplicaciones", url: "https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" },
                         { text: "Email", url: "mailto:soporteseguro98@gmail.com" },
-                        "Volver al inicio"
+                        { text: "Volver al inicio", key: "saludo" }
+                    ],
+                },
+                ejemplos: { 
+                    message: "¡Claro! Puedes ver algunos de nuestros trabajos en nuestra tienda de aplicaciones.",
+                    options: [
+                        { text: "Ir a la Tienda de Aplicaciones", url: "https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" },
+                        { text: "Volver al inicio", key: "saludo" }
                     ]
                 },
-                "Precios y Presupuestos": {
+                servicio_web: { message: "Creamos páginas web profesionales con diseños modernos, SEO optimizado e integración de APIs. ¡Perfectas para convertir visitantes en clientes!", nextContext: 'Páginas Web' },
+                servicio_app: { message: "Desarrollamos apps para Android y multiplataforma con notificaciones push y un diseño intuitivo para conectar con tu audiencia.", nextContext: 'Aplicaciones Móviles' },
+                servicio_ecommerce: { message: "Construimos plataformas de e-commerce robustas con pasarelas de pago seguras y gestión de inventario para que vendas sin parar.", nextContext: 'Tiendas Online' },
+                servicio_chatbot: { message: "Automatizamos la atención al cliente 24/7 con IA. ¡Respuestas al instante para no perder ni un cliente!", nextContext: 'Chatbots Inteligentes' },
+                servicio_seguridad: { message: "Protegemos tu negocio digital con auditorías y protocolos de ciberseguridad. ¡Tu tranquilidad es nuestra prioridad!", nextContext: 'Seguridad Informática' },
+                servicio_cloud: { message: "Migramos y optimizamos tu infraestructura en la nube para darte escalabilidad, alta disponibilidad y backups automáticos.", nextContext: 'Soluciones Cloud' },
+                
+                faq_precios_menu: {
                     message: "¡Claro! Hablemos de números. ¿Qué duda tienes sobre nuestros precios?",
-                    options: ["¿Cuáles son sus tarifas?", "¿Ofrecen planes de pago?", "¿Hay costos ocultos?", "¿Cuánto cuesta una página web?", "¿Cuánto cuesta una app móvil?", "Volver a FAQ"]
+                    options: [
+                        { text: "¿Cuáles son sus tarifas?", key: "faq_tarifas" },
+                        { text: "¿Ofrecen planes de pago?", key: "faq_planes_pago" },
+                        { text: "¿Hay costos ocultos?", key: "faq_costos_ocultos" },
+                        { text: "¿Cuánto cuesta una página web?", key: "faq_precio_web" },
+                        { text: "¿Cuánto cuesta una app móvil?", key: "faq_precio_app" },
+                        { text: "Volver a FAQ", key: "faq_menu" }
+                    ]
                 },
-                "Sobre el Proceso": {
-                    message: "¡Perfecto! Nuestro proceso es súper ágil. ¿Qué te gustaría saber?",
-                    options: ["¿Cómo empezamos un proyecto?", "¿Qué necesitan de mi parte?", "¿Puedo ver el progreso?", "¿Hacen cambios durante el desarrollo?", "¿Entregan el código fuente?", "Volver a FAQ"]
+                faq_proceso_menu: { 
+                    message: "¡Perfecto! Nuestro proceso es súper ágil. ¿Qué te gustaría saber?", 
+                    options: [
+                        { text: "¿Cómo empezamos?", key: "faq_proceso_inicio" },
+                        { text: "¿Qué necesitan de mí?", key: "faq_proceso_requisitos" },
+                        { text: "¿Puedo ver el progreso?", key: "faq_proceso_progreso" },
+                        { text: "Volver a FAQ", key: "faq_menu" }
+                    ] 
                 },
-                "Sobre Tecnología": {
-                    message: "¡Nos encanta la tecnología! Usamos lo más moderno y eficiente. ¿Qué quieres saber?",
-                    options: ["¿Qué lenguajes de programación usan?", "¿Mis datos están seguros?", "¿Es compatible con móviles?", "¿Qué bases de datos utilizan?", "Volver a FAQ"]
+                faq_tecnologia_menu: { 
+                    message: "¡Nos encanta la tecnología! Usamos lo más moderno y eficiente. ¿Qué quieres saber?", 
+                    options: [
+                        { text: "¿Qué tecnologías usan?", key: "faq_tech_stack" },
+                        { text: "¿Mis datos están seguros?", key: "faq_tech_seguridad" },
+                        { text: "Volver a FAQ", key: "faq_menu" }
+                    ] 
                 },
-                "Soporte Post-Venta": {
-                    message: "¡Claro! Nuestro compromiso no termina con la entrega. ¿Qué duda tienes sobre el soporte?",
-                    options: ["¿Ofrecen capacitación?", "¿Qué incluye el soporte?", "¿Hacen actualizaciones?", "¿Tienen garantía?", "Volver a FAQ"]
+                faq_soporte_menu: { 
+                    message: "¡Claro! Nuestro compromiso no termina con la entrega. ¿Qué duda tienes sobre el soporte?", 
+                    options: [
+                        { text: "¿Ofrecen capacitación?", key: "faq_soporte_capacitacion" },
+                        { text: "¿Qué incluye el soporte?", key: "faq_soporte_incluye" },
+                        { text: "¿Tienen garantía?", key: "faq_soporte_garantia" },
+                        { text: "Volver a FAQ", key: "faq_menu" }
+                    ] 
                 },
-                "Páginas Web Profesionales": { message: "Creamos páginas web profesionales con diseños modernos, SEO optimizado e integración de APIs. ¡Perfectas para convertir visitantes en clientes!" },
-                "Aplicaciones Móviles": { message: "Desarrollamos apps para Android y multiplataforma con notificaciones push y un diseño intuitivo para conectar con tu audiencia." },
-                "Tiendas Online": { message: "Construimos plataformas de e-commerce robustas con pasarelas de pago seguras y gestión de inventario para que vendas sin parar." },
-                "Chatbots Inteligentes": { message: "Automatizamos la atención al cliente 24/7 con IA. ¡Respuestas al instante para no perder ni un cliente!" },
-                "Seguridad Informática": { message: "Protegemos tu negocio digital con auditorías y protocolos de ciberseguridad. ¡Tu tranquilidad es nuestra prioridad!" },
-                "Soluciones Cloud": { message: "Migramos y optimizamos tu infraestructura en la nube para darte escalabilidad, alta disponibilidad y backups automáticos." },
-                "¿Cuáles son sus tarifas?": { message: "Nuestros precios varían según el proyecto. Las páginas web básicas inician en $3,000 MXN y las apps móviles desde $8,000 MXN. ¿Te gustaría un presupuesto personalizado?" },
-                "¿Ofrecen planes de pago?": { message: "¡Sí! Ofrecemos planes de pago flexibles. Generalmente es 50% al inicio y 50% al finalizar el proyecto. ¡Súper accesible! ¿Te interesa conocer más detalles?" },
-                "¿Hay costos ocultos?": { message: "Para nada. Somos 100% transparentes. El presupuesto que te damos incluye todo lo acordado. Los servicios adicionales que pidas después se cobran por separado, pero siempre con tu aprobación." },
-                "¿Cuánto cuesta una página web?": { message: "Una página web profesional y moderna empieza desde $3,000 MXN. Incluye diseño responsivo (se ve bien en todos los dispositivos), SEO básico y formulario de contacto." },
-                "¿Cuánto cuesta una app móvil?": { message: "El desarrollo de apps móviles inicia desde $8,000 MXN, dependiendo de qué tan compleja sea. ¿Te gustaría contarme sobre tu idea para darte un número más exacto?" },
-                "¿Cómo empezamos un proyecto?": { message: "¡Súper fácil! 1) Nos cuentas tu idea, 2) Te damos presupuesto, 3) Firmamos contrato, 4) ¡Empezamos a crear!" },
-                "¿Qué necesitan de mi parte?": { message: "Solo necesitamos que nos cuentes tu visión, compartas contenido (textos, imágenes) y que tengas comunicación fluida con nosotros." },
-                "¿Puedo ver el progreso?": { message: "¡Por supuesto! Te enviamos actualizaciones semanales con capturas y avances. Siempre estarás al tanto." },
-                "¿Hacen cambios durante el desarrollo?": { message: "¡Claro! Incluimos hasta 3 rondas de cambios sin costo. Queremos que quedes 100% satisfecho." },
-                "¿Entregan el código fuente?": { message: "Sí, al finalizar el proyecto recibes todo: código fuente, archivos de diseño y documentación completa." },
-                "¿Qué lenguajes de programación usan?": { message: "Usamos tecnologías modernas: HTML5, CSS3, JavaScript, React, Node.js, Firebase. Siempre lo más actual y eficiente." },
-                "¿Mis datos están seguros?": { message: "¡Totalmente! Implementamos protocolos de seguridad SSL, encriptación y cumplimos con estándares internacionales de protección de datos." },
-                "¿Es compatible con móviles?": { message: "¡100%! Todos nuestros desarrollos son responsivos y se adaptan perfectamente a móviles, tablets y computadoras." },
-                "¿Qué bases de datos utilizan?": { message: "Principalmente Firebase/Firestore para proyectos ágiles, y MySQL/PostgreSQL para proyectos más robustos." },
-                "¿Ofrecen capacitación?": { message: "¡Sí! Incluimos sesión de capacitación para que sepas manejar tu plataforma como un experto." },
-                "¿Qué incluye el soporte?": { message: "Soporte técnico por 30 días, corrección de bugs, y asesoría para dudas básicas sin costo adicional." },
-                "¿Hacen actualizaciones?": { message: "Ofrecemos planes de mantenimiento mensuales desde $800 MXN que incluyen actualizaciones, backups y monitoreo." },
-                "¿Tienen garantía?": { message: "¡Por supuesto! 30 días de garantía total contra defectos de funcionamiento y bugs." },
-                "ejemplos": { message: "¡Claro! Puedes ver algunos de nuestros trabajos en nuestra tienda de aplicaciones: https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" },
-                "ubicacion": { message: "Estamos ubicados en México y atendemos clientes de toda Latinoamérica de forma remota." },
-                "experiencia": { message: "Tenemos más de 50 proyectos completados con 100% de compromiso en cada uno. ¡Nos apasiona lo que hacemos!" },
-                "certificaciones": { message: "Trabajamos con las mejores prácticas de la industria y tecnologías certificadas como Firebase, Google Cloud y más." },
-                "human_escalation": { message: "Para una consulta tan específica, te recomiendo hablar directamente con nuestro equipo técnico vía WhatsApp: https://wa.me/5620042412" },
-                default: {
-                    message: "No he entendido muy bien. ¿Podrías intentarlo de otra manera? Aquí tienes las opciones principales:",
-                    options: ["Nuestros Servicios", "Preguntas Frecuentes (FAQ)", "Ver Ejemplos", "Contacto y Redes Sociales"]
-                }
+                faq_tarifas: { message: "Nuestros precios varían según el proyecto. Las páginas web básicas inician en $3,000 MXN y las apps móviles desde $8,000 MXN. ¿Te gustaría un presupuesto personalizado?", options: [{text:"Sí, por favor", key: "presupuesto"}, {text: "No, gracias", key: "faq_precios_menu"}], nextContext: 'presupuesto_offer' },
+                faq_planes_pago: { message: "¡Sí! Ofrecemos planes de pago flexibles. Generalmente es 50% al inicio y 50% al finalizar el proyecto. ¡Súper accesible! ¿Te interesa conocer más detalles?", options: [{text:"Sí, quiero más detalles", key: "contacto"}, {text:"No, gracias", key: "faq_precios_menu"}], nextContext: 'contact_offer' },
+                faq_costos_ocultos: { message: "Para nada. Somos 100% transparentes. El presupuesto que te damos incluye todo lo acordado. Los servicios adicionales que pidas después se cobran por separado, pero siempre con tu aprobación." },
+                faq_precio_web: { message: "Una página web profesional y moderna empieza desde $3,000 MXN. Incluye diseño responsivo, SEO básico y formulario de contacto. ¿Te gustaría un presupuesto personalizado?", options: [{text:"Sí, por favor", key: "presupuesto"}, {text:"No, gracias", key: "faq_precios_menu"}], nextContext: 'presupuesto_offer' },
+                faq_precio_app: { message: "El desarrollo de apps móviles inicia desde $8,000 MXN, dependiendo de qué tan compleja sea. ¿Te gustaría contarme sobre tu idea para darte un número más exacto?", options: [{text:"Sí, me gustaría", key: "presupuesto"}, {text:"No, gracias", key: "faq_precios_menu"}], nextContext: 'presupuesto_offer' },
+                faq_proceso_inicio: { message: "¡Súper fácil! 1) Nos cuentas tu idea, 2) Te damos presupuesto, 3) Firmamos contrato, 4) ¡Empezamos a crear!" },
+                faq_proceso_requisitos: { message: "Solo necesitamos que nos cuentes tu visión, compartas contenido (textos, imágenes) y que tengas comunicación fluida con nosotros." },
+                faq_proceso_progreso: { message: "¡Por supuesto! Te enviamos actualizaciones semanales con capturas y avances. Siempre estarás al tanto." },
+                faq_tech_stack: { message: "Usamos tecnologías modernas: HTML5, CSS3, JavaScript, React, Node.js, Firebase. Siempre lo más actual y eficiente." },
+                faq_tech_seguridad: { message: "¡Totalmente! Implementamos protocolos de seguridad SSL, encriptación y cumplimos con estándares internacionales de protección de datos." },
+                faq_soporte_capacitacion: { message: "¡Sí! Incluimos sesión de capacitación para que sepas manejar tu plataforma como un experto." },
+                faq_soporte_incluye: { message: "Soporte técnico por 30 días, corrección de bugs, y asesoría para dudas básicas sin costo adicional." },
+                faq_soporte_garantia: { message: "¡Por supuesto! 30 días de garantía total contra defectos de funcionamiento y bugs." },
+                presupuesto: {
+                    message: "¡Excelente! Para darte una cotización más precisa, ¿podrías indicarme tu presupuesto aproximado para este proyecto?",
+                    options: [
+                        { text: "Menos de $3,000 MXN", budget: "0-3000" },
+                        { text: "$3,000 - $5,000 MXN", budget: "3000-5000" },
+                        { text: "$5,000 - $8,000 MXN", budget: "5000-8000" },
+                        { text: "Más de $8,000 MXN", budget: "8000+" },
+                        { text: "Prefiero no decirlo", budget: "nda" }
+                    ],
+                    nextContext: 'capture_budget'
+                },
+                human_escalation: { message: "Entiendo. Para darte una atención más personalizada, te recomiendo hablar directamente con nuestro equipo técnico vía WhatsApp. ¿Quieres que te redirija?", options: [{ text: "Sí, llevar a WhatsApp", url: "https://wa.me/5620042412" }, {text: "No, gracias", key: "saludo"}], nextContext: 'whatsapp_redirect' },
             };
 
-            // --- Core Functions ---
+            const getProactiveSuggestion = () => {
+                const { currentTopic, mentionedServices, history, suggestedQuote, suggestedWebAppAndEcomm, suggestedPortfolio } = conversationState;
+                if (!suggestedWebAppAndEcomm && mentionedServices.includes('Páginas Web') && mentionedServices.includes('Tiendas Online')) {
+                    conversationState.suggestedWebAppAndEcomm = true;
+                    return "Veo que te interesan tanto las páginas web como las tiendas online. ¿Sabías que nuestras tiendas online son sitios web completos con todo lo que necesitas para vender?";
+                }
+                const askedAboutPrice = history.some(input => intents.request_quote.some(kw => input.includes(kw)));
+                if (!suggestedQuote && currentTopic && askedAboutPrice) {
+                    conversationState.suggestedQuote = true;
+                    return `Si quieres, podemos hacer una cotización más detallada para tu proyecto de ${currentTopic} sin ningún compromiso. Solo di "cotizar".`;
+                }
+                if (currentTopic && history.filter(i => i.toLowerCase().includes(currentTopic.toLowerCase().split(' ')[0])).length > 1) {
+                    if (!suggestedPortfolio) {
+                        conversationState.suggestedPortfolio = true;
+                        return `Parece que te interesa mucho ${currentTopic}. ¿Te gustaría ver algunos ejemplos de nuestros trabajos en esa área?`;
+                    }
+                }
+                return null;
+            }
+
             const toggleChatbot = () => {
                 const isActive = chatbotWindow.classList.toggle('active');
                 iconOpen.style.display = isActive ? 'none' : 'block';
                 iconClose.style.display = isActive ? 'block' : 'none';
                 if (isActive && messagesContainer.children.length === 0) {
-                    showBotMessage(knowledgeBase.saludo);
+                    showBotMessage(knowledgeBase.saludo, 'saludo');
                 }
             };
 
-            const showBotMessage = (response) => {
+            const showBotMessage = (response, key = null) => {
                 const botMessageElement = document.createElement('div');
                 botMessageElement.classList.add('chat-message', 'bot-message');
                 let message = response.message;
-                const followUpOptions = ["¿Te gustaría conocer algún otro servicio?", "¿Tienes alguna pregunta específica sobre este tema?", "¿Te interesa solicitar un presupuesto personalizado?", "¿Hay algo más en lo que pueda ayudarte?"];
-                const lastChar = message.trim().slice(-1);
-                const hasQuestion = lastChar === '?' || lastChar === '¿';
-                const isMainMenu = response.message === knowledgeBase.saludo.message;
-                if (!hasQuestion && !isMainMenu) {
-                    const randomFollowUp = followUpOptions[Math.floor(Math.random() * followUpOptions.length)];
-                    message += `<br><br><em>${randomFollowUp}</em>`;
+                if (key && key !== 'saludo' && !response.options && !message.includes('?')) {
+                    let followUp = "¿Hay algo más en lo que pueda ayudarte?";
+                    if (conversationState.currentTopic) {
+                        followUp = `¿Tienes alguna otra pregunta sobre ${conversationState.currentTopic}, o te gustaría explorar otro servicio?`;
+                    }
+                    message += `<br><br><em>${followUp}</em>`;
                 }
                 const messageText = document.createElement('p');
                 messageText.innerHTML = message;
@@ -2497,19 +2583,21 @@
                     response.options.forEach(option => {
                         const button = document.createElement('button');
                         button.classList.add('option-button');
-                        if (typeof option === 'object') {
-                            button.textContent = option.text;
-                            button.dataset.url = option.url;
-                        } else {
-                            button.textContent = option;
-                            button.dataset.value = option;
-                        }
+                        button.textContent = option.text;
+                        if (option.key) button.dataset.key = option.key;
+                        if (option.url) button.dataset.url = option.url;
+                        if (option.budget) button.dataset.budget = option.budget;
                         optionsContainer.appendChild(button);
                     });
                     botMessageElement.appendChild(optionsContainer);
                 }
                 messagesContainer.appendChild(botMessageElement);
                 scrollToBottom();
+                lastBotQuestionKey = response.nextContext || key;
+                if(response.nextContext && !conversationState.mentionedServices.includes(response.nextContext)) {
+                    conversationState.mentionedServices.push(response.nextContext);
+                    conversationState.currentTopic = response.nextContext;
+                }
             };
 
             const showUserMessage = (message) => {
@@ -2522,58 +2610,83 @@
 
             const handleInput = (input) => {
                 showUserMessage(input);
+                conversationState.history.push(input.toLowerCase().trim());
                 inputField.value = '';
                 inputField.disabled = true;
                 setTimeout(() => {
                     let response;
+                    let responseKey = null;
                     const lowerCaseInput = input.toLowerCase().trim();
-                    if (knowledgeBase[input]) {
-                        response = knowledgeBase[input];
-                        misunderstandingCounter = 0;
-                    } else if (input === "Volver al inicio" || lowerCaseInput === 'inicio') {
-                        response = knowledgeBase.saludo;
-                        misunderstandingCounter = 0;
-                    } else if (input === "Volver a FAQ") {
-                        response = knowledgeBase.faq;
-                        misunderstandingCounter = 0;
-                    } else if (input === "Ver otros servicios") {
-                        response = knowledgeBase.servicios;
-                        misunderstandingCounter = 0;
-                    } else if (['ayuda', 'problema', 'no funciona', 'no sirve', 'frustrado', 'agente', 'humano', 'persona'].some(kw => lowerCaseInput.includes(kw))) {
-                        response = knowledgeBase.human_escalation;
-                        misunderstandingCounter = 0;
-                    } else if (['redes','social','síguelos','facebook','instagram','tiktok','seguir','contacto','llamar','email','correo'].some(kw => lowerCaseInput.includes(kw))) {
-                        response = knowledgeBase.contacto;
-                        misunderstandingCounter = 0;
-                    } else if (['precio','costo','cuánto','presupuesto','tarifa','cotización','cotizar'].some(kw => lowerCaseInput.includes(kw))) {
-                        response = knowledgeBase['Precios y Presupuestos'];
-                        misunderstandingCounter = 0;
-                    } else if (['tiempo','cuándo','plazos','entrega','duración','proceso'].some(kw => lowerCaseInput.includes(kw))) {
-                        response = knowledgeBase['Sobre el Proceso'];
-                        misunderstandingCounter = 0;
-                    } else if (['ejemplos','portfolio','trabajos','proyectos anteriores','muestra'].some(kw => lowerCaseInput.includes(kw))) {
-                        response = knowledgeBase.ejemplos;
-                        misunderstandingCounter = 0;
-                    } else if (['soporte','mantenimiento','garantía','actualizaciones'].some(kw => lowerCaseInput.includes(kw))) {
-                        response = knowledgeBase['Soporte Post-Venta'];
-                        misunderstandingCounter = 0;
-                    } else if (lowerCaseInput.includes("servicio")) {
-                        response = knowledgeBase.servicios;
-                        misunderstandingCounter = 0;
-                    } else if (lowerCaseInput.includes("pregunta") || lowerCaseInput.includes("faq")) {
-                        response = knowledgeBase.faq;
-                        misunderstandingCounter = 0;
-                    } else {
-                        misunderstandingCounter++;
-                        if (misunderstandingCounter >= 2) {
-                            response = knowledgeBase.human_escalation;
-                            misunderstandingCounter = 0; 
-                        } else {
-                            response = knowledgeBase.default;
+                    if (lastBotQuestionKey) {
+                        if (affirmativeAnswers.includes(lowerCaseInput)) {
+                            switch (lastBotQuestionKey) {
+                                case 'presupuesto_offer': responseKey = 'presupuesto'; break;
+                                case 'contact_offer': responseKey = 'contacto'; break;
+                                case 'whatsapp_redirect':
+                                    window.open("https://wa.me/5620042412", '_blank');
+                                    response = { message: "¡Perfecto! Te estoy redirigiendo a WhatsApp. Si no se abre la ventana, puedes hacer clic aquí: <a href='https://wa.me/5620042412' target='_blank'>Abrir WhatsApp</a>" };
+                                    break;
+                            }
+                        } else if (negativeAnswers.includes(lowerCaseInput)) {
+                            responseKey = "saludo";
                         }
                     }
+                    if (!response) {
+                        for (const intent in intents) {
+                            if (intents[intent].some(kw => lowerCaseInput.includes(kw))) {
+                                switch (intent) {
+                                    case 'request_quote': responseKey = 'presupuesto'; break;
+                                    case 'request_contact': responseKey = 'contacto'; break;
+                                    case 'request_examples': responseKey = 'ejemplos'; break;
+                                    case 'frustration': responseKey = 'human_escalation'; break;
+                                    case 'request_service_info': responseKey = 'servicios_menu'; break;
+                                    case 'greet': responseKey = 'saludo'; break;
+                                }
+                                if (responseKey) break;
+                            }
+                        }
+                    }
+                    const history = conversationState.history;
+                    if (!response && !responseKey && history.length > 2) {
+                        const lastThree = history.slice(-3);
+                        if (lastThree[0] === lastThree[1] && lastThree[1] === lastThree[2]) {
+                            response = JSON.parse(JSON.stringify(knowledgeBase['human_escalation']));
+                            response.message = "Parece que no nos estamos entendiendo. " + response.message;
+                            conversationState.history = [];
+                        }
+                    }
+                    if (responseKey) {
+                        response = knowledgeBase[responseKey];
+                        misunderstandingCounter = 0;
+                        conversationState.userFrustration = 0;
+                    }
+                    if (!response) {
+                        misunderstandingCounter++;
+                        conversationState.userFrustration++;
+                        if (misunderstandingCounter >= 2 || conversationState.userFrustration >= 3) {
+                            response = knowledgeBase['human_escalation'];
+                            misunderstandingCounter = 0;
+                        } else {
+                            let defaultMessage = "No he entendido muy bien. ";
+                            if (conversationState.currentTopic) {
+                                defaultMessage += `¿Tu pregunta está relacionada con ${conversationState.currentTopic}? `;
+                            }
+                            defaultMessage += "Puedes intentar con otras palabras o elegir una de las opciones principales.";
+                            response = {
+                                message: defaultMessage,
+                                options: [
+                                    { text: "Nuestros Servicios", key: "servicios_menu" },
+                                    { text: "Preguntas Frecuentes", key: "faq_menu" },
+                                ]
+                            };
+                        }
+                    }
+                    const proactiveSuggestion = getProactiveSuggestion();
+                    if (proactiveSuggestion && !response.options) {
+                        response.message += `<br><br><div style="border-left: 3px solid #00d4ff; padding-left: 10px; margin-top: 10px; opacity: 0.9;"><em>Sugerencia: ${proactiveSuggestion}</em></div>`;
+                    }
                     if (response) {
-                        showBotMessage(response);
+                        showBotMessage(response, responseKey);
                     }
                     inputField.disabled = false;
                     inputField.focus();
@@ -2584,7 +2697,6 @@
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
             };
 
-            // --- Event Listeners ---
             chatbotToggle.addEventListener('click', toggleChatbot);
             inputForm.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -2595,17 +2707,34 @@
             });
             messagesContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('option-button')) {
-                    const value = e.target.dataset.value;
+                    const key = e.target.dataset.key;
                     const url = e.target.dataset.url;
-                    if (url) {
-                        window.open(url, '_blank');
-                        showUserMessage(`He seleccionado: ${e.target.textContent}`);
-                        setTimeout(() => {
-                            showBotMessage({ message: "¿Hay algo más en lo que pueda ayudarte?", options: ["Nuestros Servicios", "Preguntas Frecuentes (FAQ)"] });
-                        }, 800);
-                    } else if (value) {
-                        handleInput(value);
-                    }
+                    const budget = e.target.dataset.budget;
+                    const text = e.target.textContent;
+
+                    showUserMessage(text);
+                    conversationState.history.push(text.toLowerCase().trim());
+                    inputField.disabled = true;
+
+                    setTimeout(() => {
+                        if (url) {
+                            window.open(url, '_blank');
+                            handleInput(`He seleccionado: ${text}`);
+                        } else if (key) {
+                            const response = knowledgeBase[key];
+                            if(response) showBotMessage(response, key);
+                        } else if (budget) {
+                            conversationState.budgetRange = text;
+                            let tailoredResponse = `¡Entendido! Con un presupuesto de ${text}, podemos explorar varias opciones. Para darte los detalles exactos, lo mejor es que hables con un experto. ¿Quieres que te dirija a WhatsApp para una cotización formal?`;
+                            showBotMessage({
+                                message: tailoredResponse,
+                                options: [{ text: "Sí, llevar a WhatsApp", url: "https://wa.me/5620042412" }, {text: "No, gracias", key: "saludo"}],
+                                nextContext: 'whatsapp_redirect'
+                            });
+                        }
+                        inputField.disabled = false;
+                        inputField.focus();
+                    }, 400);
                 }
             });
         });
