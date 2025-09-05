@@ -7,70 +7,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Az InnovationX - Donde las Ideas Cobran Vida</title>
     <style>
+        /* Importar fuente profesional */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
             color: #ffffff;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             overflow-x: hidden;
+            letter-spacing: 0.02em;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        /* Header */
+        
+        /* Header mejorado */
         header {
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(10, 15, 30, 0.95);
             backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
-
+        
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
         }
-
+        
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00d4ff, #ffffff, #0099cc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
         }
-
+        
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-
+        
         .nav-links a {
             color: #ffffff;
             text-decoration: none;
             transition: all 0.3s ease;
             position: relative;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
         }
-
+        
         .nav-links a:hover {
             color: #00d4ff;
         }
-
+        
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -81,38 +93,40 @@
             background: linear-gradient(45deg, #00d4ff, #0099cc);
             transition: width 0.3s ease;
         }
-
+        
         .nav-links a:hover::after {
             width: 100%;
         }
-
+        
         .mobile-menu {
             display: none;
             flex-direction: column;
             cursor: pointer;
+            z-index: 1001;
         }
-
+        
         .mobile-menu span {
-            width: 25px;
+            width: 28px;
             height: 3px;
             background: #ffffff;
-            margin: 3px 0;
+            margin: 4px 0;
             transition: 0.3s;
+            border-radius: 2px;
         }
-
+        
         .mobile-menu.active span:nth-child(1) {
             transform: rotate(-45deg) translate(-5px, 6px);
         }
-
+        
         .mobile-menu.active span:nth-child(2) {
             opacity: 0;
         }
-
+        
         .mobile-menu.active span:nth-child(3) {
             transform: rotate(45deg) translate(-5px, -6px);
         }
-
-        /* Hero Section */
+        
+        /* Hero Section mejorado */
         .hero {
             height: 100vh;
             display: flex;
@@ -125,8 +139,9 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: fixed;
         }
-
+        
         .hero::before {
             content: '';
             position: absolute;
@@ -134,148 +149,184 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* This will create a dark overlay */
+            background: linear-gradient(135deg, rgba(10, 15, 30, 0.85) 0%, rgba(26, 26, 46, 0.75) 100%);
             animation: float 20s ease-in-out infinite;
         }
-
+        
         @keyframes float {
             0%, 100% { transform: translateY(0px) translateX(0px); }
-            25% { transform: translateY(-20px) translateX(10px); }
+            25% { transform: translateY(-15px) translateX(10px); }
             50% { transform: translateY(0px) translateX(-10px); }
-            75% { transform: translateY(20px) translateX(5px); }
+            75% { transform: translateY(15px) translateX(5px); }
         }
-
+        
         .hero-content {
             position: relative;
             z-index: 2;
         }
-
+        
         .hero h1 {
-            font-size: 3.8rem;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             margin-bottom: 1rem;
             background: linear-gradient(45deg, #ffffff, #00d4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            font-weight: 800;
+            letter-spacing: -0.03em;
         }
-
+        
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
             opacity: 0.9;
         }
-
+        
         .video-container {
             position: relative;
             overflow: hidden;
             width: 100%;
             max-width: 560px;
-            margin: 2rem auto 0;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 2.5rem auto 0;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
             transition: transform 0.4s ease;
             animation: pulse-glow-video 3s ease-in-out infinite;
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            border: 2px solid rgba(0, 212, 255, 0.3);
         }
-
+        
         .video-container:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
-
+        
         .video-container::after {
             content: '';
             display: block;
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
         }
-
+        
         .video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 15px;
+            border-radius: 18px;
         }
-
+        
         .cta-button {
             display: inline-block;
-            padding: 15px 30px;
+            padding: 18px 36px;
             background: linear-gradient(45deg, #00d4ff, #0099cc);
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 700;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
             animation: slideInUp 1s ease-out 0.6s both;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.9rem;
         }
-
+        
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.6);
         }
-
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+            z-index: -1;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
         @keyframes slideInUp {
             from {
                 opacity: 0;
-                transform: translateY(50px);
+                transform: translateY(60px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
+        
         .custom-cursor {
-            width: 25px;
-            height: 25px;
-            border: 2px solid #00d4ff;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 212, 255, 0.8);
+            background: rgba(0, 212, 255, 0.1);
             border-radius: 50%;
             position: fixed;
             transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 9999;
-            transition: transform 0.15s ease-out, background-color 0.2s ease, width 0.2s ease, height 0.2s ease;
+            transition: transform 0.1s ease-out, background-color 0.2s ease, width 0.2s ease, height 0.2s ease;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
         }
-
+        
+        .custom-cursor.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: rgba(0, 212, 255, 0.3);
+        }
+        
         .text-reveal-container {
             overflow: hidden;
         }
-
+        
         .hero h1, .hero p {
             transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
             transform: translateY(120%);
         }
-
+        
         .text-reveal-container.visible h1,
         .text-reveal-container.visible p {
             transform: translateY(0);
         }
-
+        
         @keyframes pulse-glow-video {
             0% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
-            50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.7); }
+            50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.6); }
             100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
         }
-
-        /* Sections */
+        
+        /* Sections mejoradas */
         section {
             padding: 5rem 0;
             position: relative;
         }
-
+        
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: 2.8rem;
+            margin-bottom: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
             background: linear-gradient(45deg, #ffffff, #00d4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
         }
-
-        /* Services (Modernized) */
+        
+        /* Services mejorados */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -283,36 +334,36 @@
             margin-top: 4rem;
             perspective: 1800px;
         }
-
+        
         .service-card:nth-child(1) { grid-column: span 2; }
         .service-card:nth-child(6) { grid-column: span 2; }
-
+        
         .service-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 24px;
             padding: 2rem;
             text-align: center;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             transform-style: preserve-3d;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
             opacity: 0;
             transform: translateY(50px);
         }
-
+        
         .service-card.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
+        
         .service-card-content {
             transition: opacity 0.4s ease, transform 0.4s ease;
         }
-
+        
         .service-preview {
             position: absolute;
             top: 0;
@@ -335,7 +386,7 @@
             color: #00d4ff;
             margin-bottom: 1rem;
         }
-
+        
         .service-preview ul {
             list-style: none;
             padding: 0;
@@ -351,7 +402,7 @@
             text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
             transition: transform 0.4s ease;
         }
-
+        
         .service-card .service-image {
             max-width: 80%;
             height: auto;
@@ -360,49 +411,50 @@
             border: 1px solid rgba(255,255,255,0.1);
             transition: transform 0.4s ease;
         }
-
-        /* Hover effects */
+        
+        /* Hover effects mejorados */
         .service-card:hover {
             transform: translateY(0) rotateX(0) rotateY(0) translateZ(30px);
             box-shadow: 0 30px 60px rgba(0,0,0,0.6);
         }
-
+        
         .service-card:hover .service-card-content {
             opacity: 0;
             transform: translateY(-20px);
         }
-
+        
         .service-card:hover .service-preview {
             opacity: 1;
             transform: translateY(0);
-            pointer-events: auto; /* Make it interactive on hover */
+            pointer-events: auto;
         }
-
+        
         .service-card:hover .service-icon {
-            transform: scale(1.2) translateY(-10px);
+            transform: scale(1.3) translateY(-15px);
+            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.8));
         }
         
         .service-card:hover .service-image {
             transform: scale(1.1);
         }
-
+        
         @keyframes subtle-float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
-
+        
         .service-icon {
             animation: subtle-float 6s ease-in-out infinite;
         }
-
-        /* Services */
+        
+        /* Services grid mejorado */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
-
+        
         .service-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -414,7 +466,7 @@
             position: relative;
             overflow: hidden;
         }
-
+        
         .service-card::before {
             content: '';
             position: absolute;
@@ -425,16 +477,17 @@
             background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
             transition: left 0.5s ease;
         }
-
+        
         .service-card:hover::before {
             left: 100%;
         }
-
+        
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+            border-color: rgba(0, 212, 255, 0.4);
         }
-
+        
         .service-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
@@ -443,54 +496,68 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
+        
         .service-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
             margin-bottom: 1rem;
             color: #00d4ff;
+            text-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
         }
-
+        
+        .service-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
         .service-image {
             max-width: 100%;
             height: auto;
             margin-top: 1rem;
             border-radius: 10px;
         }
-
-        /* Steps Section */
+        
+        /* Steps Section mejorado */
         .steps-section {
-            background: rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(10, 15, 30, 0.8), rgba(26, 26, 46, 0.7));
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-
+        
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
-
+        
         .step-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(0, 212, 255, 0.2);
             border-radius: 15px;
             padding: 2rem;
             transition: all 0.3s ease;
             position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
-
+        
         .step-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.5);
-            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.1);
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.1);
         }
-
+        
         .step-number {
             position: absolute;
             top: -15px;
             left: 20px;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: linear-gradient(45deg, #00d4ff, #0099cc);
             border-radius: 50%;
             display: flex;
@@ -498,16 +565,27 @@
             justify-content: center;
             font-weight: bold;
             color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+            transition: all 0.3s ease;
         }
-
+        
+        .step-card:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.6);
+        }
+        
         .step-card h3 {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
+            margin-top: 1.2rem;
+            margin-bottom: 1.2rem;
             color: #00d4ff;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
         }
-
-        /* About Us - Bento Box Layout */
+        
+        /* About Us - Bento Box Layout mejorado */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -516,7 +594,7 @@
             margin-top: 4rem;
             perspective: 2000px;
         }
-
+        
         #nosotros .section-title {
             background: linear-gradient(90deg, #00d4ff, #ffffff, #00d4ff);
             background-size: 200% auto;
@@ -525,59 +603,64 @@
             background-clip: text;
             animation: shimmer 5s linear infinite;
         }
-
+        
         @keyframes shimmer {
             to {
                 background-position: 200% center;
             }
         }
-
+        
         .bento-box {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 24px;
             padding: 2rem;
             position: relative;
             overflow: hidden;
             transform-style: preserve-3d;
             transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
             transform: rotateX(5deg) rotateY(5deg);
-            opacity: 0; /* Initial state for scroll animation */
+            opacity: 0;
         }
         
         .bento-box.visible {
             transform: rotateX(0) rotateY(0);
             opacity: 1;
         }
-
+        
         .bento-box:hover {
-            transform: translateZ(30px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 15px rgba(0, 212, 255, 0.3);
-            border-color: rgba(0, 212, 255, 0.3);
+            transform: translateZ(40px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4), 0 0 20px rgba(0, 212, 255, 0.4);
+            border-color: rgba(0, 212, 255, 0.4);
         }
-
+        
         .bento-box h3 {
             color: #00d4ff;
             margin-bottom: 1rem;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
         }
-
+        
         .bento-box p {
             line-height: 1.7;
             opacity: 0.9;
+            font-size: 1rem;
         }
-
+        
         .bento-icon {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
+            top: 1.8rem;
+            right: 1.8rem;
             opacity: 0.7;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
         }
-
+        
         /* Bento Box Grid Areas */
         .box-1 { grid-column: span 2; }
         .box-2 { grid-column: span 2; }
@@ -597,15 +680,30 @@
             align-items: center;
         }
         .box-5 { grid-column: span 1; }
-
+        
         .stat {
             text-align: center;
+            padding: 1rem;
+            border-radius: 15px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
         }
-
+        
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(0, 212, 255, 0.15);
+        }
+        
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #00d4ff;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(45deg, #00d4ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
             display: block;
         }
         
@@ -613,7 +711,7 @@
             font-size: 0.9rem;
             opacity: 0.8;
         }
-
+        
         .deco-shape {
             position: absolute;
             background: linear-gradient(45deg, rgba(0, 212, 255, 0.2), rgba(0, 153, 204, 0.2));
@@ -621,13 +719,12 @@
             filter: blur(30px);
             z-index: -1;
         }
-
+        
         .shape-1 { width: 150px; height: 150px; top: -50px; left: -50px; }
         .shape-2 { width: 120px; height: 120px; bottom: -40px; right: -40px; }
         .shape-3 { width: 100px; height: 100px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-
-
-        /* About Us */
+        
+        /* About Us mejorado */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -635,18 +732,18 @@
             align-items: center;
             margin-top: 2rem;
         }
-
+        
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
         }
-
+        
         .about-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
         }
-
+        
         .stat-card {
             background: rgba(0, 212, 255, 0.1);
             border-radius: 10px;
@@ -654,16 +751,16 @@
             text-align: center;
             border: 1px solid rgba(0, 212, 255, 0.2);
         }
-
+        
         .stat-number {
             font-size: 2rem;
             font-weight: bold;
             color: #00d4ff;
         }
-
+        
         #solicitudes .section-title {
             position: relative;
-            z-index: 3; /* Ensure title is above ambient effects */
+            z-index: 3;
             background: linear-gradient(90deg, #00d4ff, #ffffff, #00d4ff, #ffffff, #00d4ff);
             background-size: 400% 100%;
             -webkit-background-clip: text;
@@ -671,13 +768,13 @@
             background-clip: text;
             animation: title-shimmer 8s linear infinite;
         }
-
+        
         @keyframes title-shimmer {
             from { background-position: 0% 0%; }
             to { background-position: -200% 0%; }
         }
-
-        /* Solicitudes Section Ambient Effects */
+        
+        /* Solicitudes Section Ambient Effects mejorado */
         .solicitudes-ambient-bg {
             position: absolute;
             top: 0;
@@ -688,7 +785,7 @@
             z-index: 1;
             transition: background 0.2s ease-out;
         }
-
+        
         .form-frame {
             position: absolute;
             top: -20px;
@@ -700,7 +797,7 @@
             pointer-events: none;
             animation: pulse-border 5s ease-in-out infinite;
         }
-
+        
         @keyframes pulse-border {
             0%, 100% {
                 border-color: rgba(0, 212, 255, 0.3);
@@ -711,137 +808,164 @@
                 box-shadow: 0 0 50px rgba(0, 212, 255, 0.3);
             }
         }
-
-
-        /* Contact Form Styles */
+        
+        /* Contact Form Styles mejorado */
         .contact-form {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 20px;
             padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
-
+        
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
-
+        
         .form-group {
             margin-bottom: 1.5rem;
         }
-
+        
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             color: #00d4ff;
             font-weight: 500;
         }
-
+        
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
             color: white;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-
+        
         .form-group select {
             color: white;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
         }
-
+        
         .form-group select option {
             background: #1a1a2e;
             color: white;
         }
-
+        
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #00d4ff;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
             transform: translateY(-2px);
         }
-
+        
         .form-group input::placeholder,
         .form-group textarea::placeholder {
             color: rgba(255, 255, 255, 0.6);
         }
-
+        
         .form-group textarea {
             min-height: 120px;
             resize: vertical;
         }
-
+        
         .submit-btn {
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             background: linear-gradient(45deg, #00d4ff, #0099cc);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: bold;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
-
+        
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.6);
         }
-
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+            z-index: -1;
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
         .submit-btn:disabled {
             opacity: 0.7;
             cursor: not-allowed;
             transform: none;
         }
-
+        
         .success-message {
             display: none;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.4);
             color: #22c55e;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 1rem;
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 1.5rem;
             text-align: center;
             animation: slideIn 0.5s ease;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            box-shadow: 0 5px 15px rgba(34, 197, 94, 0.2);
         }
-
+        
         .error-message {
             display: none;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
             color: #ef4444;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 1rem;
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 1.5rem;
             text-align: center;
             animation: slideIn 0.5s ease;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.2);
         }
-
+        
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(-30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
+        
         .loading {
             display: inline-block;
             width: 20px;
@@ -852,27 +976,29 @@
             animation: spin 1s ease-in-out infinite;
             margin-right: 10px;
         }
-
+        
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-
-        /* Validation styles */
+        
+        /* Validation styles mejorados */
         .form-group input.valid,
         .form-group select.valid,
         .form-group textarea.valid {
             border-color: #22c55e;
         }
-
+        
         .form-group input.invalid,
         .form-group select.invalid,
         .form-group textarea.invalid {
             border-color: #ef4444;
         }
-
-        /* Contact Info in Footer (Modernized) */
+        
+        /* Contact Info in Footer mejorado */
         #contacto .section-title {
-            text-shadow: 0 0 15px rgba(0, 212, 255, 0.7), 0 0 5px rgba(0, 212, 255, 0.5);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 10px rgba(0, 212, 255, 0.6);
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
         
         .contact-section {
@@ -881,27 +1007,28 @@
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
-            padding: 5rem 0; /* Ensure consistent padding */
+            background-attachment: fixed;
+            padding: 5rem 0;
         }
-
+        
         .contact-info {
-            perspective: 1500px; /* Crucial for 3D effect */
+            perspective: 1500px;
         }
-
+        
         .contact-item {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 2rem;
             border-radius: 20px;
             display: flex;
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-style: preserve-3d;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 5px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 212, 255, 0.3);
             position: relative;
-            opacity: 0; /* Initially hidden for entry animation */
+            opacity: 0;
             transform: translateY(40px);
         }
         
@@ -909,7 +1036,7 @@
              opacity: 1;
              transform: translateY(0px) rotateY(-10deg) rotateX(5deg);
         }
-
+        
         .contact-item::before {
             content: '';
             position: absolute;
@@ -922,10 +1049,9 @@
             opacity: 0;
             transition: opacity 0.4s ease;
             z-index: 1;
-            pointer-events: none; /* Allow clicks to pass through */
+            pointer-events: none;
         }
         
-        /* This is the base hover effect without JS. JS will enhance it. */
         .contact-item:hover {
             transform: translateY(0px) rotateY(0) rotateX(0) translateZ(40px) scale(1.05);
             border-color: rgba(0, 212, 255, 0.5);
@@ -935,65 +1061,79 @@
         .contact-item:hover::before {
             opacity: 1;
         }
-
+        
         .contact-icon {
              filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.6));
              transition: transform 0.3s ease;
+             font-size: 2.2rem;
+             margin-right: 1.2rem;
+             color: #00d4ff;
         }
         
         .contact-item:hover .contact-icon {
-            transform: scale(1.1);
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.8));
         }
-
+        
         .contact-item a {
-            z-index: 2; /* Ensure link is clickable */
+            z-index: 2;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            letter-spacing: 0.02em;
         }
-
-        /* Keyframe Animations for Icons */
+        
+        .contact-item a:hover {
+            color: #00d4ff;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        /* Keyframe Animations for Icons mejoradas */
         @keyframes shake {
           0%, 100% { transform: rotate(0deg) scale(1.1); }
           25% { transform: rotate(8deg) scale(1.1); }
           75% { transform: rotate(-8deg) scale(1.1); }
         }
-
+        
         @keyframes wiggle {
           0%, 100% { transform: skewX(0) scale(1.1); }
           50% { transform: skewX(-15deg) scale(1.1); }
         }
-
+        
         @keyframes pulse-glow {
           0%, 100% { transform: scale(1.1); filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.6)); }
           50% { transform: scale(1.2); filter: drop-shadow(0 0 14px rgba(0, 212, 255, 1)); }
         }
-
+        
         @keyframes jiggle {
             0%, 100% { transform: translate(0, 0) scale(1.1); }
             25% { transform: translate(1px, -1px) scale(1.1); }
             50% { transform: translate(-1px, 1px) scale(1.1); }
             75% { transform: translate(1px, 1px) scale(1.1); }
         }
-
+        
         @keyframes swing-bag {
             0%, 100% { transform: rotate(0deg) scale(1.1); }
             50% { transform: rotate(10deg) scale(1.1); }
         }
-
+        
         /* Applying animations to specific icons on hover */
-        .contact-item:nth-child(1):hover .contact-icon { animation: shake 0.4s ease-in-out; } /* WhatsApp */
-        .contact-item:nth-child(2):hover .contact-icon { animation: wiggle 0.5s ease-in-out; } /* Email */
-        .contact-item:nth-child(3):hover .contact-icon { animation: pulse-glow 0.6s ease-in-out; } /* Facebook */
-        .contact-item:nth-child(4):hover .contact-icon { animation: jiggle 0.3s linear infinite; } /* TikTok */
-        .contact-item:nth-child(5):hover .contact-icon { animation: pulse-glow 0.6s ease-in-out; } /* Instagram */
-        .contact-item:nth-child(6):hover .contact-icon { animation: swing-bag 0.5s ease-in-out; } /* Tienda */
-
-        /* Contact Info in Footer */
+        .contact-item:nth-child(1):hover .contact-icon { animation: shake 0.4s ease-in-out; }
+        .contact-item:nth-child(2):hover .contact-icon { animation: wiggle 0.5s ease-in-out; }
+        .contact-item:nth-child(3):hover .contact-icon { animation: pulse-glow 0.6s ease-in-out; }
+        .contact-item:nth-child(4):hover .contact-icon { animation: jiggle 0.3s linear infinite; }
+        .contact-item:nth-child(5):hover .contact-icon { animation: pulse-glow 0.6s ease-in-out; }
+        .contact-item:nth-child(6):hover .contact-icon { animation: swing-bag 0.5s ease-in-out; }
+        
+        /* Contact Info in Footer mejorado */
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             margin-top: 3rem;
         }
-
+        
         .contact-item-old {
             background: rgba(255, 255, 255, 0.05);
             padding: 1.5rem;
@@ -1003,38 +1143,45 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
+        
         .contact-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             background: rgba(0, 212, 255, 0.1);
             border-color: #00d4ff;
         }
-
+        
         .contact-icon {
             font-size: 2rem;
             margin-right: 1rem;
             color: #00d4ff;
         }
-
+        
         .contact-item a {
             color: #ffffff;
             text-decoration: none;
             transition: color 0.3s ease;
         }
-
+        
         .contact-item a:hover {
             color: #00d4ff;
         }
-
-        /* Footer */
+        
+        /* Footer mejorado */
         footer {
-            background: rgba(0, 0, 0, 0.8);
+            background: linear-gradient(180deg, rgba(10, 15, 30, 0.95), rgba(5, 10, 20, 1));
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        /* Chatbot Styles */
+        
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            margin-top: 1rem;
+        }
+        
+        /* Chatbot Styles mejorado */
         #chatbot-container {
             position: fixed;
             bottom: 20px;
@@ -1044,60 +1191,60 @@
             flex-direction: column;
             align-items: flex-end;
         }
-
+        
         #chatbot-toggle {
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             background: linear-gradient(45deg, #00d4ff, #0099cc);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
             transition: all 0.3s ease;
             border: none;
         }
-
+        
         #chatbot-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.6);
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.7);
         }
-
+        
         #chatbot-toggle .icon-open {
             font-size: 28px;
             color: white;
         }
         
         #chatbot-toggle .icon-close {
-            display: none; /* Hidden by default */
+            display: none;
             font-size: 28px;
             color: white;
         }
-
+        
         #chatbot-window {
             width: 370px;
             max-width: 90vw;
             height: 500px;
             max-height: 70vh;
-            background: rgba(10, 20, 40, 0.7);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            display: none; /* Hidden by default */
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            display: none;
             flex-direction: column;
             overflow: hidden;
             margin-bottom: 1rem;
             transform-origin: bottom right;
             animation: slideInUp-chat 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
+        
         #chatbot-window.active {
             display: flex;
         }
-
+        
         @keyframes slideInUp-chat {
             from {
                 opacity: 0;
@@ -1108,11 +1255,11 @@
                 transform: translateY(0) scale(1);
             }
         }
-
+        
         #chatbot-header {
             padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 212, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
         }
@@ -1127,85 +1274,94 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-        }
-
-        #chatbot-header .avatar {
             overflow: hidden;
             border: 2px solid rgba(0, 212, 255, 0.3);
             transition: all 0.3s ease;
         }
-
+        
         #chatbot-header .avatar:hover {
             border-color: rgba(0, 212, 255, 0.6);
             transform: scale(1.05);
         }
-
+        
         #chatbot-header .avatar img {
             transition: transform 0.3s ease;
         }
-
+        
         #chatbot-header .avatar:hover img {
             transform: scale(1.1);
         }
-
+        
         #chatbot-header .bot-info h4 {
             margin: 0;
             color: #ffffff;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            font-size: 1.1rem;
         }
-
+        
         #chatbot-header .bot-info p {
             margin: 0;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #00d4ff;
             opacity: 0.9;
+            font-weight: 500;
+            letter-spacing: 0.02em;
         }
-
+        
         #chatbot-messages {
             flex-grow: 1;
-            padding: 1rem;
+            padding: 1.2rem;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            margin: 0.8rem;
+            margin-bottom: 0;
         }
         
-        /* Custom scrollbar for chat */
+        /* Custom scrollbar for chat mejorado */
         #chatbot-messages::-webkit-scrollbar {
             width: 6px;
         }
-
+        
         #chatbot-messages::-webkit-scrollbar-track {
             background: transparent;
         }
-
+        
         #chatbot-messages::-webkit-scrollbar-thumb {
             background-color: rgba(0, 212, 255, 0.5);
             border-radius: 10px;
         }
-
+        
         .chat-message {
-            padding: 10px 15px;
-            border-radius: 15px;
+            padding: 12px 16px;
+            border-radius: 18px;
             max-width: 80%;
             line-height: 1.4;
             animation: fadeIn 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
+        
         .bot-message {
-            background: rgba(0, 212, 255, 0.2);
+            background: rgba(0, 212, 255, 0.15);
             align-self: flex-start;
             border-bottom-left-radius: 3px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
         }
-
+        
         .user-message {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             align-self: flex-end;
             border-bottom-right-radius: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .chat-message .options {
@@ -1214,49 +1370,53 @@
             flex-wrap: wrap;
             gap: 8px;
         }
-
+        
         .chat-message .option-button {
-            background: rgba(0, 212, 255, 0.3);
-            border: 1px solid rgba(0, 212, 255, 0.5);
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(0, 212, 255, 0.4);
             color: white;
-            padding: 8px 12px;
-            border-radius: 12px;
+            padding: 10px 16px;
+            border-radius: 20px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
         }
-
+        
         .chat-message .option-button:hover {
-            background: rgba(0, 212, 255, 0.5);
-            transform: translateY(-2px);
+            background: rgba(0, 212, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
         }
-
+        
         #chatbot-input-form {
             display: flex;
             padding: 1rem;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
-
+        
         #chatbot-input {
             flex-grow: 1;
-            padding: 10px 15px;
-            background: rgba(0, 0, 0, 0.3);
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
+            border-radius: 25px;
             color: white;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: border-color 0.3s ease;
             margin-right: 10px;
         }
-
+        
         #chatbot-input:focus {
             outline: none;
-            border-color: #00d4ff;
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
         }
-
+        
         #chatbot-send {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border: none;
             background: linear-gradient(45deg, #00d4ff, #0099cc);
             border-radius: 50%;
@@ -1267,13 +1427,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
         }
-
+        
         #chatbot-send:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.6);
         }
-
-        /* Mobile Responsive */
+        
+        /* Mobile Responsive mejorado */
         @media (max-width: 768px) {
             #chatbot-window {
                 width: 100%;
@@ -1293,7 +1455,7 @@
                 bottom: 15px;
                 right: 15px;
             }
-
+            
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -1301,12 +1463,13 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: rgba(0, 0, 0, 0.95);
-                backdrop-filter: blur(10px);
+                background: linear-gradient(180deg, rgba(10, 15, 30, 0.98), rgba(26, 26, 46, 0.95));
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
                 padding: 2rem 0;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             }
-
+            
             .nav-links.active {
                 display: flex;
             }
@@ -1315,75 +1478,87 @@
                 margin: 0.5rem 0;
                 text-align: center;
             }
-
+            
             .mobile-menu {
                 display: flex;
             }
-
+            
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: clamp(2rem, 8vw, 3rem);
             }
-
+            
             .hero p {
                 font-size: 1.1rem;
             }
-
+            
             .about-content,
-            .bento-grid, /* New Bento Grid */
-            .services-grid, /* New Services Grid */
-            .contact-grid, /* This class is no longer used but keep for media query */
+            .bento-grid,
+            .services-grid,
+            .contact-grid,
             .form-row {
                 grid-template-columns: 1fr;
             }
-
+            
             .service-card:nth-child(n) {
-                grid-column: auto !important; /* Reset asymmetric spans on mobile */
+                grid-column: auto !important;
             }
-
+            
             .bento-box {
-                grid-column: auto !important; /* Ensure boxes stack in a single column */
+                grid-column: auto !important;
             }
-
+            
             .custom-cursor {
-                display: none !important; /* Hide custom cursor on mobile */
+                display: none !important;
             }
-
+            
             .steps-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .section-title {
+                font-size: clamp(2rem, 6vw, 2.5rem);
+            }
+            
+            .contact-item {
+                padding: 1.5rem;
+            }
+            
+            .contact-icon {
+                font-size: 1.8rem;
+            }
         }
-
-        /* Animations */
+        
+        /* Animaciones mejoradas */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-
+        
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Floating Elements */
+        
+        /* Floating Elements mejorados */
         .floating-element {
             position: absolute;
             opacity: 0.1;
             animation: float 15s ease-in-out infinite;
         }
-
+        
         .floating-element:nth-child(1) {
             top: 20%;
             left: 10%;
             animation-delay: 0s;
         }
-
+        
         .floating-element:nth-child(2) {
             top: 60%;
             right: 10%;
             animation-delay: 5s;
         }
-
+        
         .floating-element:nth-child(3) {
             bottom: 20%;
             left: 15%;
@@ -1411,7 +1586,6 @@
             </div>
         </nav>
     </header>
-
     <main>
         <section id="inicio" class="hero">
             <canvas id="particle-canvas" style="position: absolute; top: 0; left: 0; z-index: 1;"></canvas>
@@ -1437,9 +1611,8 @@
                 </div>
             </div>
         </section>
-
         <section id="servicios" class="container" style="background-image: url('https://i.ibb.co/WQVD0hq/gif-nuevo.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-            <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.5; z-index: 0;">
+            <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.3; filter: grayscale(20%); transition: all 0.3s ease; z-index: 0;">
             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
             <div style="position: relative; z-index: 2;">
                 <h2 class="section-title">Nuestros Servicios</h2>
@@ -1519,9 +1692,8 @@
                 </div>
             </div>
         </section>
-
         <section id="nosotros" class="container" style="background-image: url('https://i.ibb.co/wNZCGfc3/Hot-desking-trabajo-empresa-mesas-calientes-nueva-tendencia-vuelta-oficinas-empleo-app-sitios-1.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-            <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.5; z-index: 0;">
+            <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.3; filter: grayscale(20%); transition: all 0.3s ease; z-index: 0;">
             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
             <div style="position: relative; z-index: 2;">
                 <h2 class="section-title">¿Quiénes somos?</h2>
@@ -1627,11 +1799,10 @@
             </div>
         </section>
     </main>
-
     <footer>
         <div class="container">
             <section id="contacto" class="contact-section" style="background-image: url('https://i.ibb.co/8D12BWNX/45405a22b539b3cbfe5fe96846324dc1.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-                <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.5; z-index: 0;">
+                <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 100px; opacity: 0.3; filter: grayscale(20%); transition: all 0.3s ease; z-index: 0;">
                 <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
                 <div style="position: relative; z-index: 2;">
                     <h2 class="section-title">Contacto</h2>
@@ -1671,7 +1842,6 @@
             </section>
         </div>
     </footer>
-
     <!-- Chatbot HTML Structure -->
     <div id="chatbot-container">
         <div id="chatbot-window">
@@ -1699,7 +1869,6 @@
             <span class="icon-close">✕</span>
         </button>
     </div>
-
     <!-- General Page Scripts -->
     <script>
         // Smooth scrolling
@@ -1715,13 +1884,13 @@
                 }
             });
         });
-
+        
         // Fade in animation on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1729,30 +1898,30 @@
                 }
             });
         }, observerOptions);
-
+        
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
-
+        
         // Header background on scroll
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.background = 'rgba(10, 15, 30, 0.98)';
             } else {
-                header.style.background = 'rgba(0, 0, 0, 0.9)';
+                header.style.background = 'rgba(10, 15, 30, 0.95)';
             }
         });
-
+        
         // Mobile menu toggle
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
-
+        
         mobileMenu.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
-
+        
         // Close menu when a link is clicked
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
@@ -1762,29 +1931,27 @@
                 }
             });
         });
-
+        
         // Add hover effects to service cards
         document.querySelectorAll('.service-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-15px) scale(1.02)';
             });
-
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(-10px) scale(1)';
             });
         });
-
+        
         // Parallax effect for hero section
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const hero = document.querySelector('.hero');
             const heroContent = document.querySelector('.hero-content');
-
             if (hero && heroContent) {
                 heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
             }
         });
-
+        
         // Counter animation for stats
         function animateCounter(element, target) {
             let count = 0;
@@ -1798,7 +1965,7 @@
                 element.textContent = Math.floor(count) + (target === 95 ? '%' : target === 200 ? '+' : target.toString().includes('+') ? '+' : target === 24 ? '/7' : '');
             }, 20);
         }
-
+        
         // Animate counters when visible
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1806,22 +1973,20 @@
                     const statNumber = entry.target.querySelector('.stat-number');
                     const text = statNumber.textContent;
                     let target = parseInt(text);
-
                     if (text.includes('%')) target = 95;
                     else if (text.includes('+')) target = 200;
                     else if (text.includes('/')) target = 24;
                     else target = parseInt(text);
-
                     animateCounter(statNumber, target);
                     statsObserver.unobserve(entry.target);
                 }
             });
         });
-
+        
         document.querySelectorAll('.stat-card').forEach(card => {
             statsObserver.observe(card);
         });
-
+        
         // Add typing effect to hero title
         function typeWriter(element, text, speed = 50) {
             let i = 0;
@@ -1835,7 +2000,7 @@
             }
             type();
         }
-
+        
         // Initialize typing effect after page load
         window.addEventListener('load', () => {
             const heroTitle = document.querySelector('.hero h1');
@@ -1844,13 +2009,13 @@
                 typeWriter(heroTitle, originalText, 100);
             }, 1000);
         });
-
+        
         // Add floating animation to service icons
         document.querySelectorAll('.service-icon').forEach((icon, index) => {
             icon.style.animationDelay = `${index * 0.2}s`;
             icon.style.animation = 'float 6s ease-in-out infinite';
         });
-
+        
         // Smooth reveal animation for steps
         document.querySelectorAll('.step-card').forEach((card, index) => {
             card.style.animationDelay = `${index * 0.1}s`;
@@ -1870,7 +2035,7 @@
             messagingSenderId: "699516071771",
             appId: "1:699516071771:web:5a84dcf771b1ee5c38b47e"
         };
-
+        
         // Initialize Firebase
         let db;
         try {
@@ -1880,16 +2045,15 @@
         } catch (error) {
             console.error('Error al inicializar Firebase:', error);
         }
-
+        
         // Form validation
         function validateForm() {
             const requiredFields = ['nombre', 'email', 'servicio', 'mensaje'];
             let isValid = true;
-
+            
             requiredFields.forEach(fieldName => {
                 const field = document.getElementById(fieldName);
                 const value = field.value.trim();
-
                 if (!value) {
                     field.classList.add('invalid');
                     field.classList.remove('valid');
@@ -1899,7 +2063,7 @@
                     field.classList.add('valid');
                 }
             });
-
+            
             // Email validation
             const emailField = document.getElementById('email');
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1908,10 +2072,10 @@
                 emailField.classList.remove('valid');
                 isValid = false;
             }
-
+            
             return isValid;
         }
-
+        
         // Real-time validation
         document.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
             field.addEventListener('blur', function() {
@@ -1924,7 +2088,7 @@
                     this.classList.remove('valid');
                 }
             });
-
+            
             field.addEventListener('input', function() {
                 if (this.classList.contains('invalid') && this.value.trim()) {
                     this.classList.remove('invalid');
@@ -1932,7 +2096,7 @@
                 }
             });
         });
-
+        
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -1944,19 +2108,19 @@
             // Hide previous messages
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
-
+            
             // Validate form
             if (!validateForm()) {
                 errorMessage.textContent = 'Por favor, completa todos los campos obligatorios correctamente.';
                 errorMessage.style.display = 'block';
                 return;
             }
-
+            
             // Show loading state
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<span class="loading"></span>Enviando...';
             submitBtn.disabled = true;
-
+            
             try {
                 // Get form data
                 const formData = new FormData(this);
@@ -1964,7 +2128,7 @@
                 formData.forEach((value, key) => {
                     formObj[key] = value;
                 });
-
+                
                 // Prepare data for Firebase
                 const contactData = {
                     nombre: formObj.nombre || '',
@@ -1979,9 +2143,9 @@
                     userAgent: navigator.userAgent,
                     timestamp: new Date().toISOString()
                 };
-
+                
                 console.log('Enviando datos:', contactData);
-
+                
                 // Save to Firebase
                 if (db) {
                     await db.collection('contactos').add(contactData);
@@ -2002,11 +2166,9 @@
                     setTimeout(() => {
                         successMessage.style.display = 'none';
                     }, 5000);
-
                 } else {
                     throw new Error('Base de datos no disponible');
                 }
-
             } catch (error) {
                 console.error('Error al enviar formulario:', error);
                 errorMessage.textContent = 'Error al enviar el formulario: ' + error.message;
@@ -2017,7 +2179,7 @@
                 submitBtn.disabled = false;
             }
         });
-
+        
         // Test Firebase connection on page load
         window.addEventListener('load', async () => {
             if (db) {
@@ -2037,15 +2199,13 @@
             const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-
             let particlesArray;
-
             const mouse = {
                 x: null,
                 y: null,
                 radius: 150
             };
-
+            
             window.addEventListener('mousemove', (event) => {
                 mouse.x = event.x;
                 mouse.y = event.y;
@@ -2055,7 +2215,7 @@
                 mouse.x = null;
                 mouse.y = null;
             });
-
+            
             class Particle {
                 constructor(x, y, directionX, directionY, size, color) {
                     this.x = x;
@@ -2065,14 +2225,14 @@
                     this.size = size;
                     this.color = color;
                 }
-
+                
                 draw() {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
                     ctx.fillStyle = this.color;
                     ctx.fill();
                 }
-
+                
                 update() {
                     if (this.x > canvas.width || this.x < 0) {
                         this.directionX = -this.directionX;
@@ -2080,11 +2240,12 @@
                     if (this.y > canvas.height || this.y < 0) {
                         this.directionY = -this.directionY;
                     }
-
+                    
                     // Mouse interaction
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
+                    
                     if (distance < mouse.radius + this.size) {
                         if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
                             this.x += 5;
@@ -2099,15 +2260,17 @@
                             this.y -= 5;
                         }
                     }
+                    
                     this.x += this.directionX;
                     this.y += this.directionY;
                     this.draw();
                 }
             }
-
+            
             function initParticles() {
                 particlesArray = [];
                 let numberOfParticles = (canvas.height * canvas.width) / 9000;
+                
                 for (let i = 0; i < numberOfParticles; i++) {
                     let size = (Math.random() * 2) + 1;
                     let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
@@ -2118,13 +2281,14 @@
                     particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
                 }
             }
-
+            
             function connectParticles() {
                 let opacityValue = 1;
                 for (let a = 0; a < particlesArray.length; a++) {
                     for (let b = a; b < particlesArray.length; b++) {
                         let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
                             ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                        
                         if (distance < (canvas.width / 7) * (canvas.height / 7)) {
                             opacityValue = 1 - (distance / 20000);
                             ctx.strokeStyle = `rgba(0, 212, 255, ${opacityValue})`;
@@ -2137,16 +2301,18 @@
                     }
                 }
             }
-
+            
             function animateParticles() {
                 requestAnimationFrame(animateParticles);
                 ctx.clearRect(0, 0, innerWidth, innerHeight);
+                
                 for (let i = 0; i < particlesArray.length; i++) {
                     particlesArray[i].update();
                 }
+                
                 connectParticles();
             }
-
+            
             window.addEventListener('resize', () => {
                 canvas.width = innerWidth;
                 canvas.height = innerHeight;
@@ -2157,12 +2323,12 @@
                 initParticles();
                 animateParticles();
             }
-
+            
             // --- Hero Section: Animations & Mouse Effects ---
             const heroTextContainers = document.querySelectorAll('.hero .text-reveal-container');
             const customCursor = document.getElementById('custom-cursor');
             const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
-
+            
             // 1. Cinematic Text Reveal
             window.addEventListener('load', () => {
                 heroTextContainers.forEach((container, index) => {
@@ -2171,20 +2337,20 @@
                     }, 500 + (index * 250)); // Staggered delay
                 });
             });
-
+            
             // 2. Custom Cursor and Parallax Mouse-follow
             window.addEventListener('mousemove', (e) => {
                 const { clientX, clientY } = e;
-
+                
                 // Update custom cursor position
                 if (customCursor) {
-                    customCursor.style.transform = `translate(${clientX - 12.5}px, ${clientY - 12.5}px)`;
+                    customCursor.style.transform = `translate(${clientX - 10}px, ${clientY - 10}px)`;
                 }
-
+                
                 // Update parallax elements
                 const x = (clientX - window.innerWidth / 2) / window.innerWidth * -1;
                 const y = (clientY - window.innerHeight / 2) / window.innerHeight * -1;
-
+                
                 parallaxElements.forEach(el => {
                     const speed = el.getAttribute('data-parallax-speed');
                     const xOffset = x * speed * 20;
@@ -2193,11 +2359,9 @@
                 });
             });
 
-
             // --- Services Section Interactivity ---
             const servicesSection = document.querySelector('#servicios');
             const serviceCards = document.querySelectorAll('.service-card');
-
             const servicesObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -2209,11 +2373,11 @@
                     }
                 });
             }, { threshold: 0.1 });
-
+            
             if(servicesSection) {
                 servicesObserver.observe(servicesSection);
             }
-
+            
             serviceCards.forEach(card => {
                 card.addEventListener('mousemove', (e) => {
                     const rect = card.getBoundingClientRect();
@@ -2223,33 +2387,31 @@
                     const rotateY = (x / rect.width) * 12;
                     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
                 });
+                
                 card.addEventListener('mouseleave', () => {
                     card.style.transform = ''; // Reset to CSS state
                 });
             });
 
-
             // --- Solicitudes Section Interactivity ---
             const solicitudesSection = document.querySelector('#solicitudes');
             const ambientBg = document.querySelector('.solicitudes-ambient-bg');
-
+            
             if (solicitudesSection && ambientBg) {
                 solicitudesSection.addEventListener('mousemove', (e) => {
                     const rect = solicitudesSection.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
-
                     ambientBg.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
                     ambientBg.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
                 });
             }
-
+            
             // --- "Quiénes Somos" Section Interactivity ---
             const nosotrosSection = document.querySelector('#nosotros');
             const bentoBoxes = document.querySelectorAll('.bento-box');
             const typewriterElement = document.querySelector('.typewriter-text');
             const stats = document.querySelectorAll('.stat-number');
-
             const nosotrosObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -2258,13 +2420,13 @@
                             box.style.transitionDelay = `${index * 150}ms`;
                             box.classList.add('visible');
                         });
-
+                        
                         // Animate stats
                         stats.forEach(stat => {
                             const target = +stat.getAttribute('data-target');
                             animateCounter(stat, target);
                         });
-
+                        
                         // Animate typewriter
                         if (typewriterElement) {
                             const text = typewriterElement.textContent;
@@ -2276,11 +2438,11 @@
                     }
                 });
             }, { threshold: 0.2 });
-
+            
             if (nosotrosSection) {
                 nosotrosObserver.observe(nosotrosSection);
             }
-
+            
             // 3D tilt effect for bento boxes
             bentoBoxes.forEach(box => {
                 box.addEventListener('mousemove', (e) => {
@@ -2291,11 +2453,12 @@
                     const rotateY = (x / rect.width) * 20;
                     box.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05) translateZ(30px)`;
                 });
+                
                 box.addEventListener('mouseleave', () => {
                     box.style.transform = ''; // Reset to CSS state
                 });
             });
-
+            
             // Re-usable counter and typewriter functions (adapted from existing code)
             function animateCounter(element, target) {
                 let count = 0;
@@ -2310,7 +2473,7 @@
                     element.textContent = Math.ceil(count) + (element.textContent.includes('+') ? '+' : '');
                 }, 20);
             }
-
+            
             function typeWriter(element, text, speed = 60) {
                 let i = 0;
                 element.style.opacity = 1;
@@ -2324,11 +2487,10 @@
                 type();
             }
 
-
             // --- Staggered Entry Animation for Contact Cards ---
             const contactSection = document.querySelector('#contacto');
             const contactCards = document.querySelectorAll('.contact-item');
-
+            
             if (contactCards.length > 0 && contactSection) {
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
@@ -2341,23 +2503,22 @@
                         }
                     });
                 }, { threshold: 0.2 });
-
+                
                 observer.observe(contactSection);
             }
-
+            
             // --- 3D Interactive Tilt Effect for Contact Cards ---
             contactCards.forEach(card => {
                 const intensity = 15; // Max degrees of rotation
-
+                
                 card.addEventListener('mousemove', (e) => {
                     const rect = card.getBoundingClientRect();
                     // Calculate mouse position relative to the card's center
                     const x = e.clientX - rect.left - rect.width / 2;
                     const y = e.clientY - rect.top - rect.height / 2;
-
                     const rotateX = (y / (rect.height / 2)) * -intensity;
                     const rotateY = (x / (rect.width / 2)) * intensity;
-
+                    
                     // Apply the transform for the interactive tilt. This overrides the CSS hover transform
                     // but creates a much more dynamic effect.
                     card.style.transform = `
@@ -2368,7 +2529,7 @@
                         scale(1.05)
                     `;
                 });
-
+                
                 card.addEventListener('mouseleave', () => {
                     // Reset the inline transform style, allowing CSS classes to take over again.
                     // This will smoothly return it to the ".visible" state.
@@ -2377,14 +2538,12 @@
             });
         });
     </script>
-
     <!-- Chatbot Logic Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             let lastBotQuestionKey = null;
             const affirmativeAnswers = ['si', 'sí', 'yes', 'claro', 'ok', 'está bien', 'esta bien', 'dale', 'va', 'por supuesto', 'acepto', 'afirmativo', 'de acuerdo'];
             const negativeAnswers = ['no', 'no gracias', 'cancelar', 'ahora no'];
-
             const conversationState = {
                 currentTopic: null,
                 mentionedServices: [],
@@ -2395,7 +2554,7 @@
                 suggestedWebAppAndEcomm: false,
                 suggestedPortfolio: false,
             };
-
+            
             const intents = {
                 greet: ['hola', 'buenos dias', 'buenas tardes'],
                 request_service_info: ['servicio', 'información', 'que haces', 'ayuda', 'productos'],
@@ -2406,7 +2565,7 @@
                 request_support: ['soporte', 'mantenimiento', 'garantía', 'actualizaciones'],
                 frustration: ['no funciona', 'no sirve', 'frustrado', 'agente', 'humano', 'persona', 'no entiendo'],
             };
-
+            
             const chatbotToggle = document.getElementById('chatbot-toggle');
             const chatbotWindow = document.getElementById('chatbot-window');
             const iconOpen = chatbotToggle.querySelector('.icon-open');
@@ -2415,7 +2574,7 @@
             const inputForm = document.getElementById('chatbot-input-form');
             const inputField = document.getElementById('chatbot-input');
             let misunderstandingCounter = 0;
-
+            
             const knowledgeBase = {
                 saludo: {
                     message: "¡Qué padre que estás aquí! Soy AZ, tu asistente virtual de Az InnovationX. Estoy listo para ayudarte a convertir tu idea en una solución digital. ¿En qué te puedo ayudar?",
@@ -2537,39 +2696,45 @@
                 },
                 human_escalation: { message: "Entiendo. Para darte una atención más personalizada, te recomiendo hablar directamente con nuestro equipo técnico vía WhatsApp. ¿Quieres que te redirija?", options: [{ text: "Sí, llevar a WhatsApp", url: "https://wa.me/5620042412" }, {text: "No, gracias", key: "saludo"}], nextContext: 'whatsapp_redirect' },
             };
-
+            
             const getProactiveSuggestion = () => {
                 const { currentTopic, mentionedServices, history, suggestedQuote, suggestedWebAppAndEcomm, suggestedPortfolio } = conversationState;
+                
                 if (!suggestedWebAppAndEcomm && mentionedServices.includes('Páginas Web') && mentionedServices.includes('Tiendas Online')) {
                     conversationState.suggestedWebAppAndEcomm = true;
                     return "Veo que te interesan tanto las páginas web como las tiendas online. ¿Sabías que nuestras tiendas online son sitios web completos con todo lo que necesitas para vender?";
                 }
+                
                 const askedAboutPrice = history.some(input => intents.request_quote.some(kw => input.includes(kw)));
                 if (!suggestedQuote && currentTopic && askedAboutPrice) {
                     conversationState.suggestedQuote = true;
                     return `Si quieres, podemos hacer una cotización más detallada para tu proyecto de ${currentTopic} sin ningún compromiso. Solo di "cotizar".`;
                 }
+                
                 if (currentTopic && history.filter(i => i.toLowerCase().includes(currentTopic.toLowerCase().split(' ')[0])).length > 1) {
                     if (!suggestedPortfolio) {
                         conversationState.suggestedPortfolio = true;
                         return `Parece que te interesa mucho ${currentTopic}. ¿Te gustaría ver algunos ejemplos de nuestros trabajos en esa área?`;
                     }
                 }
+                
                 return null;
-            }
-
+            };
+            
             const toggleChatbot = () => {
                 const isActive = chatbotWindow.classList.toggle('active');
                 iconOpen.style.display = isActive ? 'none' : 'block';
                 iconClose.style.display = isActive ? 'block' : 'none';
+                
                 if (isActive && messagesContainer.children.length === 0) {
                     showBotMessage(knowledgeBase.saludo, 'saludo');
                 }
             };
-
+            
             const showBotMessage = (response, key = null) => {
                 const botMessageElement = document.createElement('div');
                 botMessageElement.classList.add('chat-message', 'bot-message');
+                
                 let message = response.message;
                 if (key && key !== 'saludo' && !response.options && !message.includes('?')) {
                     let followUp = "¿Hay algo más en lo que pueda ayudarte?";
@@ -2578,12 +2743,15 @@
                     }
                     message += `<br><br><em>${followUp}</em>`;
                 }
+                
                 const messageText = document.createElement('p');
                 messageText.innerHTML = message;
                 botMessageElement.appendChild(messageText);
+                
                 if (response.options) {
                     const optionsContainer = document.createElement('div');
                     optionsContainer.classList.add('options');
+                    
                     response.options.forEach(option => {
                         const button = document.createElement('button');
                         button.classList.add('option-button');
@@ -2593,17 +2761,20 @@
                         if (option.budget) button.dataset.budget = option.budget;
                         optionsContainer.appendChild(button);
                     });
+                    
                     botMessageElement.appendChild(optionsContainer);
                 }
+                
                 messagesContainer.appendChild(botMessageElement);
                 scrollToBottom();
+                
                 lastBotQuestionKey = response.nextContext || key;
                 if(response.nextContext && !conversationState.mentionedServices.includes(response.nextContext)) {
                     conversationState.mentionedServices.push(response.nextContext);
                     conversationState.currentTopic = response.nextContext;
                 }
             };
-
+            
             const showUserMessage = (message) => {
                 const userMessageElement = document.createElement('div');
                 userMessageElement.classList.add('chat-message', 'user-message');
@@ -2611,16 +2782,18 @@
                 messagesContainer.appendChild(userMessageElement);
                 scrollToBottom();
             };
-
+            
             const handleInput = (input) => {
                 showUserMessage(input);
                 conversationState.history.push(input.toLowerCase().trim());
                 inputField.value = '';
                 inputField.disabled = true;
+                
                 setTimeout(() => {
                     let response;
                     let responseKey = null;
                     const lowerCaseInput = input.toLowerCase().trim();
+                    
                     if (lastBotQuestionKey) {
                         if (affirmativeAnswers.includes(lowerCaseInput)) {
                             switch (lastBotQuestionKey) {
@@ -2635,6 +2808,7 @@
                             responseKey = "saludo";
                         }
                     }
+                    
                     if (!response) {
                         for (const intent in intents) {
                             if (intents[intent].some(kw => lowerCaseInput.includes(kw))) {
@@ -2650,6 +2824,7 @@
                             }
                         }
                     }
+                    
                     const history = conversationState.history;
                     if (!response && !responseKey && history.length > 2) {
                         const lastThree = history.slice(-3);
@@ -2659,14 +2834,17 @@
                             conversationState.history = [];
                         }
                     }
+                    
                     if (responseKey) {
                         response = knowledgeBase[responseKey];
                         misunderstandingCounter = 0;
                         conversationState.userFrustration = 0;
                     }
+                    
                     if (!response) {
                         misunderstandingCounter++;
                         conversationState.userFrustration++;
+                        
                         if (misunderstandingCounter >= 2 || conversationState.userFrustration >= 3) {
                             response = knowledgeBase['human_escalation'];
                             misunderstandingCounter = 0;
@@ -2676,6 +2854,7 @@
                                 defaultMessage += `¿Tu pregunta está relacionada con ${conversationState.currentTopic}? `;
                             }
                             defaultMessage += "Puedes intentar con otras palabras o elegir una de las opciones principales.";
+                            
                             response = {
                                 message: defaultMessage,
                                 options: [
@@ -2685,23 +2864,27 @@
                             };
                         }
                     }
+                    
                     const proactiveSuggestion = getProactiveSuggestion();
                     if (proactiveSuggestion && !response.options) {
                         response.message += `<br><br><div style="border-left: 3px solid #00d4ff; padding-left: 10px; margin-top: 10px; opacity: 0.9;"><em>Sugerencia: ${proactiveSuggestion}</em></div>`;
                     }
+                    
                     if (response) {
                         showBotMessage(response, responseKey);
                     }
+                    
                     inputField.disabled = false;
                     inputField.focus();
                 }, 800);
             };
-
+            
             const scrollToBottom = () => {
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
             };
-
+            
             chatbotToggle.addEventListener('click', toggleChatbot);
+            
             inputForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const userInput = inputField.value.trim();
@@ -2709,17 +2892,18 @@
                     handleInput(userInput);
                 }
             });
+            
             messagesContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('option-button')) {
                     const key = e.target.dataset.key;
                     const url = e.target.dataset.url;
                     const budget = e.target.dataset.budget;
                     const text = e.target.textContent;
-
+                    
                     showUserMessage(text);
                     conversationState.history.push(text.toLowerCase().trim());
                     inputField.disabled = true;
-
+                    
                     setTimeout(() => {
                         if (url) {
                             window.open(url, '_blank');
@@ -2730,12 +2914,14 @@
                         } else if (budget) {
                             conversationState.budgetRange = text;
                             let tailoredResponse = `¡Entendido! Con un presupuesto de ${text}, podemos explorar varias opciones. Para darte los detalles exactos, lo mejor es que hables con un experto. ¿Quieres que te dirija a WhatsApp para una cotización formal?`;
+                            
                             showBotMessage({
                                 message: tailoredResponse,
                                 options: [{ text: "Sí, llevar a WhatsApp", url: "https://wa.me/5620042412" }, {text: "No, gracias", key: "saludo"}],
                                 nextContext: 'whatsapp_redirect'
                             });
                         }
+                        
                         inputField.disabled = false;
                         inputField.focus();
                     }, 400);
