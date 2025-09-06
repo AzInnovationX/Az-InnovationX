@@ -1717,6 +1717,207 @@
         }
         
         /* Extra small devices */
+        /* Payment Section */
+        #pagos {
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            background-image: url('https://i.ibb.co/0jmSgqzc/PP-2021.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #pagos::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(10, 15, 30, 0.8); /* Dark overlay for readability */
+            z-index: 1;
+        }
+
+        #pagos .section-title,
+        #pagos .payment-card {
+            position: relative;
+            z-index: 2;
+        }
+
+        .payment-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .payment-card h3 {
+            color: #00d4ff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(0, 212, 255, 0.3);
+        }
+
+        .payment-card p {
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .payment-details {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #00d4ff;
+            opacity: 0.9;
+        }
+
+        .detail-value {
+            font-weight: 500;
+        }
+
+        .account-number {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .copy-btn {
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background: rgba(0, 212, 255, 0.3);
+            color: #fff;
+        }
+
+        .paypal-button-container {
+            margin-top: 1.5rem;
+        }
+
+        .paypal-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #0070ba; /* PayPal Blue */
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 112, 186, 0.4);
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .paypal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 112, 186, 0.6);
+            background: #005ea6;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10002; /* Above chatbot */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            margin: 10% auto;
+            padding: 2rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
+            position: relative;
+            animation: slideIn-modal 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes slideIn-modal {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .modal-content h4 {
+            color: #00d4ff;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .modal-content a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
         @media (max-width: 480px) {
             .hero h1 {
                 font-size: 1.6rem;
@@ -1823,6 +2024,7 @@
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#solicitudes">Solicitudes</a></li>
                 <li><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" target="_blank">Tienda Aplicaciones</a></li>
+                <li><a href="#pagos">Pagos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
             <div class="mobile-menu">
@@ -2039,6 +2241,36 @@
                       Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.
                   </div>
               </form>
+            </div>
+        </section>
+        <section id="pagos" class="container">
+            <h2 class="section-title">Sección de Pago</h2>
+            <div class="payment-card">
+                <h3>Instrucciones de Pago</h3>
+                <p>Para completar tu compra, por favor realiza una transferencia a la siguiente cuenta:</p>
+                <div class="payment-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Banco:</span>
+                        <span class="detail-value">Banco Azteca</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Nombre del Titular:</span>
+                        <span class="detail-value">Evaristo San Juan Azuara</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Número de Cuenta:</span>
+                        <div class="account-number">
+                            <span id="accountNumber">5165760435995088</span>
+                            <button class="copy-btn" onclick="copyAccountNumber()">Copiar</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="cta-button" onclick="showPaymentInstructions()">Ver Instrucciones Detalladas</button>
+                <div class="paypal-button-container">
+                    <a href="https://www.paypal.com/paypalme/my/settings?flow=cmV0dXJuVXJsPWh0dHBzOi8vd3d3LnBheXBhbC5jb20vbXlhY2NvdW50L3RyYW5zZmVyL2hvbWVwYWdlL3JlcXVlc3QmY2FuY2VsVXJsPWh0dHBzOi8vd3d3LnBheXBhbC5jb20vbXlhY2NvdW50L3RyYW5zZmVyL2hvbWVwYWdlL3JlcXVlc3Q=" target="_blank" class="paypal-btn">
+                        Pagar con PayPal
+                    </a>
+                </div>
             </div>
         </section>
     </main>
@@ -3170,6 +3402,65 @@
                 }
             });
         });
+
+        // --- Payment Section Logic ---
+        function showPaymentInstructions() {
+            const modal = document.getElementById('payment-modal');
+            if (modal) {
+                modal.style.display = 'block';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('payment-modal');
+            if (!modal) return;
+            const closeBtn = modal.querySelector('.close-button');
+            
+            if (closeBtn) {
+                closeBtn.onclick = function() {
+                    modal.style.display = "none";
+                }
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+
+        function copyAccountNumber() {
+            const accountNumberEl = document.getElementById('accountNumber');
+            if (!accountNumberEl) return;
+            const accountNumber = accountNumberEl.innerText;
+            navigator.clipboard.writeText(accountNumber).then(() => {
+                const copyBtn = document.querySelector('.copy-btn');
+                if(!copyBtn) return;
+                const originalText = copyBtn.innerText;
+                copyBtn.innerText = '¡Copiado!';
+                copyBtn.disabled = true;
+                setTimeout(() => {
+                    copyBtn.innerText = originalText;
+                    copyBtn.disabled = false;
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar el número de cuenta:', err);
+                alert('Error al copiar. Por favor, hazlo manualmente.');
+            });
+        }
     </script>
+    <!-- Payment Modal HTML Structure -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h4>Instrucciones Detalladas de Pago</h4>
+            <p>1. Abre la aplicación de tu banco.</p>
+            <p>2. Selecciona la opción para realizar una transferencia (SPEI).</p>
+            <p>3. Ingresa los datos proporcionados: Banco Azteca, el nombre del titular y el número de cuenta.</p>
+            <p>4. Ingresa el monto exacto a pagar.</p>
+            <p>5. Como concepto de pago, por favor ingresa tu nombre completo o número de pedido.</p>
+            <p>6. Una vez realizada la transferencia, envía una captura de pantalla del comprobante a nuestro <a href="https://wa.me/5620042412" target="_blank">WhatsApp</a> para confirmar y procesar tu pedido.</p>
+        </div>
+    </div>
 </body>
 </html>
