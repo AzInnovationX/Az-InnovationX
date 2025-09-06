@@ -3033,6 +3033,7 @@
                 greet: ['hola', 'buenos dias', 'buenas tardes'],
                 request_service_info: ['servicio', 'información', 'que haces', 'ayuda', 'productos'],
                 request_quote: ['precio', 'costo', 'cuánto', 'presupuesto', 'tarifa', 'cotización', 'cotizar'],
+                request_payment: ['pagar', 'pago', 'métodos de pago', 'cómo pago', 'cuenta bancaria', 'transferencia'],
                 request_contact: ['redes', 'social', 'síguelos', 'facebook', 'instagram', 'tiktok', 'seguir', 'contacto', 'llamar', 'email', 'correo'],
                 request_examples: ['ejemplos', 'portfolio', 'trabajos', 'proyectos anteriores', 'muestra'],
                 request_process: ['tiempo', 'cuándo', 'plazos', 'entrega', 'duración', 'proceso'],
@@ -3054,9 +3055,24 @@
                     message: "¡Qué padre que estás aquí! Soy AZ, tu asistente virtual de Az InnovationX. Estoy listo para ayudarte a convertir tu idea en una solución digital. ¿En qué te puedo ayudar?",
                     options: [
                         { text: "Nuestros Servicios", key: "servicios_menu" },
+                        { text: "Métodos de Pago", key: "payment_info" },
                         { text: "Preguntas Frecuentes (FAQ)", key: "faq_menu" },
                         { text: "Ver Ejemplos", key: "ejemplos" },
                         { text: "Contacto y Redes Sociales", key: "contacto" }
+                    ]
+                },
+                payment_info: {
+                    message: "¡Claro! Aquí tienes nuestras opciones de pago:<br><br>" +
+                             "<strong>Transferencia Bancaria:</strong><br>" +
+                             "<ul>" +
+                             "<li><strong>Banco:</strong> Banco Azteca</li>" +
+                             "<li><strong>Titular:</strong> Evaristo San Juan Azuara</li>" +
+                             "<li><strong>Cuenta:</strong> 5165760435995088</li>" +
+                             "</ul>" +
+                             "<p>Para pagar con PayPal, por favor usa el botón en nuestra sección de pagos.</p>",
+                    options: [
+                        { text: "Ir a la Sección de Pagos", key: "go_to_pagos" },
+                        { text: "Volver al inicio", key: "saludo" }
                     ]
                 },
                 servicios_menu: {
@@ -3287,6 +3303,7 @@
                         for (const intent in intents) {
                             if (intents[intent].some(kw => lowerCaseInput.includes(kw))) {
                                 switch (intent) {
+                                    case 'request_payment': responseKey = 'payment_info'; break;
                                     case 'request_quote': responseKey = 'presupuesto'; break;
                                     case 'request_contact': responseKey = 'contacto'; break;
                                     case 'request_examples': responseKey = 'ejemplos'; break;
@@ -3382,6 +3399,12 @@
                         if (url) {
                             window.open(url, '_blank');
                             handleInput(`He seleccionado: ${text}`);
+                        } else if (key === 'go_to_pagos') {
+                            const pagosSection = document.getElementById('pagos');
+                            if (pagosSection) {
+                                pagosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                            toggleChatbot(); // Close the chatbot window
                         } else if (key) {
                             const response = knowledgeBase[key];
                             if(response) showBotMessage(response, key);
