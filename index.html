@@ -1854,6 +1854,13 @@
             background: #005ea6;
         }
 
+        .transfer-btn-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
         /* Modal Styles */
         .modal {
             display: none;
@@ -2248,8 +2255,47 @@
             <h2 class="section-title">Sección de Pago</h2>
             <div class="payment-card">
                 <h3>Instrucciones de Pago</h3>
-                <p>Para completar tu compra, por favor realiza una transferencia a la siguiente cuenta:</p>
-                <div class="payment-details">
+                <p>Elige tu método de pago preferido. Puedes usar PayPal o realizar una transferencia bancaria.</p>
+
+                <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                    <div class="paypal-button-container" style="margin-top: 0;">
+                         <a href="https://paypal.me/EvaristoSan?locale.x=es_XC&country.x=MX" target="_blank" class="paypal-btn">
+                            <svg class="paypal-btn-icon" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 373.5096 450">
+                              <defs>
+                                <style>
+                                  .cls-1 {
+                                    fill: #008cff;
+                                  }
+                            
+                                  .cls-2 {
+                                    fill: #60cdff;
+                                  }
+                            
+                                  .cls-3 {
+                                    fill: #002991;
+                                  }
+                                </style>
+                              </defs>
+                              <g>
+                                <g id="Layer_1">
+                                  <g>
+                                    <path class="cls-3" d="M318.58,103.5c0,55.74-51.44,121.5-129.27,121.5h-74.97l-3.68,23.22-17.49,111.78H0L56.05,0h150.95c50.83,0,90.82,28.33,105.55,67.7,4.2482,11.4467,6.2941,23.5933,6.03,35.8Z"/>
+                                    <path class="cls-2" d="M372.28,207c-10.2713,62.4081-64.2924,108.1528-127.54,108h-52.06l-21.67,135h-92.67l14.83-90,17.5-111.78,3.67-23.22h74.97c77.73,0,129.27-65.76,129.27-121.5,38.25,19.74,60.55,59.63,53.7,103.5Z"/>
+                                    <path class="cls-1" d="M318.58,103.5c-16.04-8.39-35.49-13.5-56.66-13.5h-126.4l-21.18,135h74.97c77.73,0,129.27-65.76,129.27-121.5Z"/>
+                                  </g>
+                                </g>
+                              </g>
+                            </svg>
+                            Pagar con PayPal
+                        </a>
+                    </div>
+                    <button class="cta-button" id="transfer-btn" onclick="showTransferDetails()" style="margin-top: 0; border: none; display: inline-flex; align-items: center;">
+                        <img src="https://i.ibb.co/9H5TRxcF/money-transfer-banking-icon-bu.jpg" alt="Transferencia Icon" class="transfer-btn-icon">
+                        Transferencia
+                    </button>
+                </div>
+
+                <div class="payment-details" id="bank-details" style="display: none; margin-top: 1.5rem;">
                     <div class="detail-item">
                         <span class="detail-label">Banco:</span>
                         <span class="detail-value">Banco Azteca</span>
@@ -2265,38 +2311,7 @@
                             <button class="copy-btn" onclick="copyAccountNumber()">Copiar</button>
                         </div>
                     </div>
-                </div>
-                <button class="cta-button" onclick="showPaymentInstructions()">Ver Instrucciones Detalladas</button>
-                <div class="paypal-button-container">
-                    <a href="https://paypal.me/EvaristoSan?locale.x=es_XC&country.x=MX" target="_blank" class="paypal-btn">
-                        <svg class="paypal-btn-icon" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 373.5096 450">
-                          <defs>
-                            <style>
-                              .cls-1 {
-                                fill: #008cff;
-                              }
-                        
-                              .cls-2 {
-                                fill: #60cdff;
-                              }
-                        
-                              .cls-3 {
-                                fill: #002991;
-                              }
-                            </style>
-                          </defs>
-                          <g>
-                            <g id="Layer_1">
-                              <g>
-                                <path class="cls-3" d="M318.58,103.5c0,55.74-51.44,121.5-129.27,121.5h-74.97l-3.68,23.22-17.49,111.78H0L56.05,0h150.95c50.83,0,90.82,28.33,105.55,67.7,4.2482,11.4467,6.2941,23.5933,6.03,35.8Z"/>
-                                <path class="cls-2" d="M372.28,207c-10.2713,62.4081-64.2924,108.1528-127.54,108h-52.06l-21.67,135h-92.67l14.83-90,17.5-111.78,3.67-23.22h74.97c77.73,0,129.27-65.76,129.27-121.5,38.25,19.74,60.55,59.63,53.7,103.5Z"/>
-                                <path class="cls-1" d="M318.58,103.5c-16.04-8.39-35.49-13.5-56.66-13.5h-126.4l-21.18,135h74.97c77.73,0,129.27-65.76,129.27-121.5Z"/>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>
-                        Pagar con PayPal
-                    </a>
+                    <button class="cta-button" onclick="showPaymentInstructions()" style="margin-top: 1rem;">Ver Instrucciones Detalladas</button>
                 </div>
             </div>
         </section>
@@ -3497,6 +3512,17 @@
                 console.error('Error al copiar el número de cuenta:', err);
                 alert('Error al copiar. Por favor, hazlo manualmente.');
             });
+        }
+
+        function showTransferDetails() {
+            const transferDetails = document.getElementById('bank-details');
+            const transferButton = document.getElementById('transfer-btn');
+            if (transferDetails) {
+                transferDetails.style.display = 'block';
+            }
+            if (transferButton) {
+                transferButton.style.display = 'none';
+            }
         }
     </script>
     <!-- Payment Modal HTML Structure -->
