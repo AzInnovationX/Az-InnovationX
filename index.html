@@ -2398,10 +2398,10 @@
                                 </div>
                                 <div class="contact-item">
                                     <span class="contact-icon"><img src="https://i.ibb.co/84Gqk08v/original-3d4c8096fc3407c582fe2d051d3e5552.gif" alt="gmail-logo" width="32" height="32"></span>
-                                    <span><a href="mailto:soporteseguro98@gmail.com">Correo Electrónico</a></span>
+                                    <span><a href="mailto:soporteseguro98@gmail.com" id="email-link" data-email="soporteseguro98@gmail.com">Correo Electrónico</a></span>
                                 </div>
                                 <div class="contact-item">
-                                    <span class="contact-icon"><img src="https://i.ibb.co/Kz4Bv42/google-maps.gif" alt="google-maps-logo" width="32" height="32"></span>
+                                    <span class="contact-icon"><img src="https://i.ibb.co/20rk66Mb/original-4bb3252c384129a3c31eee02cd1dde24.gif" alt="ubicacion-logo" width="32" height="32"></span>
                                     <span><a href="https://share.google/4GM0Eyj3GSJh5uDoI" target="_blank">Ubicación</a></span>
                                 </div>
                             </div>
@@ -3664,5 +3664,30 @@
             <p>6. Una vez realizada la transferencia, envía una captura de pantalla del comprobante a nuestro <a href="https://wa.me/5620042412" target="_blank">WhatsApp</a> para confirmar y procesar tu pedido.</p>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const emailLink = document.getElementById('email-link');
+            if (emailLink) {
+                const originalText = emailLink.textContent;
+                emailLink.addEventListener('click', (event) => {
+                    // We only want to override the default mailto: behavior on non-touch devices (likely PCs)
+                    if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)) {
+                        event.preventDefault();
+                        const email = emailLink.dataset.email;
+                        navigator.clipboard.writeText(email).then(() => {
+                            emailLink.textContent = '¡Email Copiado!';
+                            setTimeout(() => {
+                                emailLink.textContent = originalText;
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('Error al copiar el email: ', err);
+                            // If it fails, let the mailto link proceed as a fallback
+                            window.location.href = `mailto:${email}`;
+                        });
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
