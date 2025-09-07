@@ -1228,9 +1228,9 @@
         
         #chatbot-window {
             width: 90vw;
-            max-width: 350px;
+            max-width: 400px;
             height: 70vh;
-            max-height: 600px;
+            max-height: 650px;
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -1720,9 +1720,9 @@
             
             #chatbot-window {
                 width: 95vw;
-                max-width: 320px;
+                max-width: 340px;
                 height: 80vh;
-                max-height: 500px;
+                max-height: 550px;
                 border-radius: 15px;
             }
             
@@ -3169,6 +3169,9 @@
                 request_process: ['tiempo', 'cuándo', 'plazos', 'entrega', 'duración', 'proceso'],
                 request_support: ['soporte', 'mantenimiento', 'garantía', 'actualizaciones'],
                 frustration: ['no funciona', 'no sirve', 'frustrado', 'agente', 'humano', 'persona', 'no entiendo'],
+                request_online_presence_info: ['presencia', 'internet', 'online', 'importancia de estar en linea', 'visibilidad'],
+                request_cybersecurity_info: ['ciberseguridad', 'seguridad', 'proteger', 'riesgos', 'hackers', 'virus'],
+                request_creator_info: ['quien te creo', 'quién te creó', 'creador', 'desarrollador', 'quien te hizo', 'quién te hizo', 'quien te programo', 'quién te programó'],
             };
             
             const chatbotToggle = document.getElementById('chatbot-toggle');
@@ -3185,11 +3188,43 @@
                     message: "¡Qué padre que estás aquí! Soy AZ, tu asistente virtual de Az InnovationX. Estoy listo para ayudarte a convertir tu idea en una solución digital. ¿En qué te puedo ayudar?",
                     options: [
                         { text: "Nuestros Servicios", key: "servicios_menu" },
+                        { text: "Presencia en Internet", key: "presencia_internet" },
+                        { text: "Tips de Ciberseguridad", key: "ciberseguridad" },
                         { text: "Métodos de Pago", key: "payment_info" },
                         { text: "Preguntas Frecuentes (FAQ)", key: "faq_menu" },
-                        { text: "Ver Ejemplos", key: "ejemplos" },
                         { text: "Contacto y Redes Sociales", key: "contacto" }
                     ]
+                },
+                presencia_internet: {
+                    message: "¡Excelente pregunta! Tener presencia en internet es fundamental hoy en día. Te permite llegar a más clientes, construir credibilidad y abrir nuevos canales de venta 24/7. Es como tener tu negocio abierto al mundo todo el tiempo. ¿Te gustaría que te contáramos cómo podemos ayudarte con eso?",
+                    options: [
+                        { text: "Sí, cuéntame más", key: "servicio_web" },
+                        { text: "No, gracias", key: "saludo" }
+                    ]
+                },
+                ciberseguridad: {
+                    message: "La ciberseguridad es súper importante. No se trata solo de tecnología, sino de proteger el corazón de tu negocio: tus datos y la confianza de tus clientes. Una buena estrategia de seguridad evita pérdidas económicas y de reputación. ¿Quieres algunos consejos básicos para empezar?",
+                    options: [
+                        { text: "Sí, dame consejos", key: "consejos_ciberseguridad" },
+                        { text: "Ver servicios de seguridad", key: "servicio_seguridad" },
+                        { text: "Volver al inicio", key: "saludo" }
+                    ]
+                },
+                consejos_ciberseguridad: {
+                    message: "¡Claro! Aquí van 3 consejos clave:<br>" +
+                             "<ul>" +
+                             "<li><strong>Contraseñas Fuertes:</strong> Usa combinaciones largas de letras, números y símbolos. ¡No uses '123456'!</li>" +
+                             "<li><strong>Autenticación de Dos Pasos (2FA):</strong> Actívala siempre que puedas. Es una capa extra de seguridad.</li>" +
+                             "<li><strong>Mantén todo actualizado:</strong> Tu software, antivirus y aplicaciones deben tener siempre la última versión para protegerte de vulnerabilidades.</li>" +
+                             "</ul>" +
+                             "<p>Proteger tu negocio es más fácil de lo que parece. ¿Te podemos ayudar con algo más?",
+                    options: [
+                        { text: "Ver servicios de seguridad", key: "servicio_seguridad" },
+                        { text: "Volver al inicio", key: "saludo" }
+                    ]
+                },
+                creator_info: {
+                    message: "Fui creado por Az InnovationX, desarrollado por Evaristo San Juan Azuara, un emprendedor y desarrollador apasionado por la innovación tecnológica y la creación de soluciones digitales inteligentes."
                 },
                 payment_info: {
                     message: "¡Claro! Aquí tienes nuestras opciones de pago:<br><br>" +
@@ -3440,6 +3475,9 @@
                                     case 'frustration': responseKey = 'human_escalation'; break;
                                     case 'request_service_info': responseKey = 'servicios_menu'; break;
                                     case 'greet': responseKey = 'saludo'; break;
+                                    case 'request_online_presence_info': responseKey = 'presencia_internet'; break;
+                                    case 'request_cybersecurity_info': responseKey = 'ciberseguridad'; break;
+                                    case 'request_creator_info': responseKey = 'creator_info'; break;
                                 }
                                 if (responseKey) break;
                             }
