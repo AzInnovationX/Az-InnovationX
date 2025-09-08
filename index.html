@@ -111,9 +111,28 @@
         }
         
         .nav-links {
-            display: flex;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(10, 15, 30, 0.98), rgba(26, 26, 46, 0.95));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1.5rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            gap: 0.8rem;
             list-style: none;
-            gap: 1.5rem;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+        
+        .nav-links.active li {
+            margin: 0;
+            text-align: center;
         }
         
         .nav-links a {
@@ -124,8 +143,8 @@
             font-weight: 500;
             letter-spacing: 0.03em;
             text-transform: uppercase;
-            font-size: 0.75rem;
-            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            padding: 0.8rem 0;
         }
         
         .nav-links a:hover {
@@ -148,7 +167,7 @@
         }
         
         .mobile-menu {
-            display: none;
+            display: flex;
             flex-direction: column;
             cursor: pointer;
             z-index: 1001;
@@ -1538,37 +1557,9 @@
                 font-size: 1.4rem;
             }
             
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: linear-gradient(180deg, rgba(10, 15, 30, 0.98), rgba(26, 26, 46, 0.95));
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                padding: 1.5rem 0;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-                gap: 0.8rem;
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
             .nav-links.active li {
                 margin: 0;
                 text-align: center;
-            }
-            
-            .nav-links a {
-                padding: 0.8rem 0;
-                font-size: 0.85rem;
-            }
-            
-            .mobile-menu {
-                display: flex;
             }
             
             .hero {
@@ -2188,7 +2179,7 @@
             </div>
         </section>
         <section id="servicios" class="container" style="background-image: url('https://i.ibb.co/WQVD0hq/gif-nuevo.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-            <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 80px; opacity: 0.3; filter: grayscale(20%); transition: all 0.3s ease; z-index: 0;">
+            <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" loading="lazy" style="position: absolute; top: 10px; right: 10px; width: 80px; opacity: 0.3; filter: grayscale(20%); transition: all 0.3s ease; z-index: 0;">
             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
             <div style="position: relative; z-index: 2;">
                 <h2 class="section-title">Nuestros Servicios</h2>
@@ -2198,7 +2189,7 @@
                             <div class="service-icon">🌐</div>
                             <h3>Páginas Web Profesionales</h3>
                             <p>Diseños modernos y adaptables para convertir visitantes en clientes.</p>
-                            <img src="https://i.ibb.co/kVStpRH6/for-blog-3.gif" alt="Páginas Web Profesionales" class="service-image">
+                            <img src="https://i.ibb.co/kVStpRH6/for-blog-3.gif" alt="Páginas Web Profesionales" loading="lazy" class="service-image">
                         </div>
                         <div class="service-preview">
                             <h4>Características Clave:</h4>
@@ -2210,7 +2201,7 @@
                             <div class="service-icon">📱</div>
                             <h3>Aplicaciones Móviles</h3>
                             <p>Apps Android y multiplataforma que conectan con tu audiencia.</p>
-                            <img src="https://i.ibb.co/7xy6NTnm/13.gif" alt="Aplicaciones Móviles" class="service-image">
+                            <img src="https://i.ibb.co/7xy6NTnm/13.gif" alt="Aplicaciones Móviles" loading="lazy" class="service-image">
                         </div>
                         <div class="service-preview">
                             <h4>Características Clave:</h4>
@@ -2222,7 +2213,7 @@
                             <div class="service-icon">🛒</div>
                             <h3>Tiendas Online</h3>
                             <p>Plataformas de e-commerce robustas y seguras para impulsar tus ventas.</p>
-                             <img src="https://i.ibb.co/Wv2kGCfL/app-online-store.gif" alt="Tiendas Online" class="service-image">
+                             <img src="https://i.ibb.co/Wv2kGCfL/app-online-store.gif" alt="Tiendas Online" loading="lazy" class="service-image">
                         </div>
                         <div class="service-preview">
                             <h4>Características Clave:</h4>
@@ -2234,7 +2225,7 @@
                             <div class="service-icon">🤖</div>
                             <h3>Chatbots Inteligentes</h3>
                             <p>Automatiza la atención al cliente con IA avanzada, 24/7.</p>
-                            <img src="https://i.ibb.co/zWJ5ZntM/ded0bbdd8485e424327257405a86a884.gif" alt="Chatbots Inteligentes" class="service-image">
+                            <img src="https://i.ibb.co/zWJ5ZntM/ded0bbdd8485e424327257405a86a884.gif" alt="Chatbots Inteligentes" loading="lazy" class="service-image">
                         </div>
                          <div class="service-preview">
                             <h4>Características Clave:</h4>
@@ -2246,7 +2237,7 @@
                             <div class="service-icon">🔒</div>
                             <h3>Seguridad Informática</h3>
                             <p>Protege tu negocio digital con auditorías y protocolos de ciberseguridad.</p>
-                            <img src="https://i.ibb.co/wr7MyB9L/giphy.gif" alt="Seguridad Informática" class="service-image">
+                            <img src="https://i.ibb.co/wr7MyB9L/giphy.gif" alt="Seguridad Informática" loading="lazy" class="service-image">
                         </div>
                         <div class="service-preview">
                             <h4>Características Clave:</h4>
@@ -2258,7 +2249,7 @@
                             <div class="service-icon">☁️</div>
                             <h3>Soluciones Cloud</h3>
                             <p>Migración y optimización en la nube para escalabilidad sin límites.</p>
-                            <img src="https://i.ibb.co/Pvth5B1V/nube-animada.gif" alt="Soluciones Cloud" class="service-image">
+                            <img src="https://i.ibb.co/Pvth5B1V/nube-animada.gif" alt="Soluciones Cloud" loading="lazy" class="service-image">
                         </div>
                         <div class="service-preview">
                             <h4>Características Clave:</h4>
@@ -2269,7 +2260,7 @@
             </div>
         </section>
         <section id="nosotros" class="container" style="background-image: url('https://i.ibb.co/wNZCGfc3/Hot-desking-trabajo-empresa-mesas-calientes-nueva-tendencia-vuelta-oficinas-empleo-app-sitios-1.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-            <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" style="position: absolute; top: 10px; right: 10px; width: 80px; opacity: 0.3; filter: grayscale(20%); transition: all 0.3s ease; z-index: 0;">
+            <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" loading="lazy" style="position: absolute; top: 10px; right: 10px; width: 80px; opacity: 0.3; filter: grayscale(20%); transition: all 0.3s ease; z-index: 0;">
             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
             <div style="position: relative; z-index: 2;">
                 <h2 class="section-title">¿Quiénes somos?</h2>
@@ -2409,7 +2400,7 @@
                         </a>
                     </div>
                     <button class="cta-button" id="transfer-btn" onclick="showTransferDetails()" style="margin-top: 0; border: none; display: inline-flex; align-items: center;">
-                        <img src="https://i.ibb.co/9H5TRxcF/money-transfer-banking-icon-bu.jpg" alt="Transferencia Icon" class="transfer-btn-icon">
+                        <img src="https://i.ibb.co/9H5TRxcF/money-transfer-banking-icon-bu.jpg" alt="Transferencia Icon" loading="lazy" class="transfer-btn-icon">
                         Transferencia
                     </button>
                 </div>
@@ -2441,15 +2432,15 @@
                 <h2 class="section-title">Redes Sociales</h2>
                 <div class="contact-info" style="max-width: 400px; margin: 2rem auto; display: grid; grid-template-columns: 1fr; gap: 1rem;">
                     <div class="contact-item">
-                        <span class="contact-icon"><img src="https://i.ibb.co/r2FCqXxN/facebook-fb.gif" alt="facebook-fb" border="0" width="32" height="32"></span>
+                        <span class="contact-icon"><img src="https://i.ibb.co/r2FCqXxN/facebook-fb.gif" alt="facebook-fb" loading="lazy" border="0" width="32" height="32"></span>
                         <span><a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank">Facebook</a></span>
                     </div>
                     <div class="contact-item">
-                        <span class="contact-icon"><img src="https://i.ibb.co/svGfRtTx/200.gif" alt="instagram-logo" width="32" height="32"></span>
+                        <span class="contact-icon"><img src="https://i.ibb.co/svGfRtTx/200.gif" alt="instagram-logo" loading="lazy" width="32" height="32"></span>
                         <span><a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank">Instagram</a></span>
                     </div>
                     <div class="contact-item">
-                        <span class="contact-icon"><img src="https://i.ibb.co/ynv3hw6X/tiktok-logo-logo.gif" alt="tiktok-logo" width="32" height="32"></span>
+                        <span class="contact-icon"><img src="https://i.ibb.co/ynv3hw6X/tiktok-logo-logo.gif" alt="tiktok-logo" loading="lazy" width="32" height="32"></span>
                         <span><a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank">TikTok</a></span>
                     </div>
                 </div>
@@ -2462,15 +2453,15 @@
                 <h2 class="section-title">Nuestros Sitios</h2>
                 <div class="contact-info" style="max-width: 400px; margin: 2rem auto; display: grid; grid-template-columns: 1fr; gap: 1rem;">
                     <div class="contact-item">
-                        <span class="contact-icon"><img src="https://i.ibb.co/99fRnNnD/15591405.gif" alt="tienda-apps-logo" width="32" height="32"></span>
+                        <span class="contact-icon"><img src="https://i.ibb.co/99fRnNnD/15591405.gif" alt="tienda-apps-logo" loading="lazy" width="32" height="32"></span>
                         <span><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" target="_blank">Tienda Aplicaciones</a></span>
                     </div>
                     <div class="contact-item">
-                        <span class="contact-icon"><img src="https://i.ibb.co/9DHGJrD/Blogger-Gif.gif" alt="Blogger-Gif" width="32" height="32"></span>
+                        <span class="contact-icon"><img src="https://i.ibb.co/9DHGJrD/Blogger-Gif.gif" alt="Blogger-Gif" loading="lazy" width="32" height="32"></span>
                         <span><a href="https://azinnovationx.blogspot.com/" target="_blank">Blog</a></span>
                     </div>
                     <div class="contact-item">
-                        <span class="contact-icon"><img src="https://i.ibb.co/4gVJbFRF/original-d1faf3ee68e5e5c6926473be89527188.gif" alt="suscribite-logo" width="32" height="32"></span>
+                        <span class="contact-icon"><img src="https://i.ibb.co/4gVJbFRF/original-d1faf3ee68e5e5c6926473be89527188.gif" alt="suscribite-logo" loading="lazy" width="32" height="32"></span>
                         <span><a href="https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header" target="_blank">Suscribite</a></span>
                     </div>
                 </div>
@@ -2482,15 +2473,15 @@
             <h2 class="section-title">Medios de Contacto</h2>
             <div class="contact-info" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
                 <div class="contact-item">
-                    <span class="contact-icon"><img src="https://i.ibb.co/SwgNWSq9/original-066b89ce2612739aebadd816e797b32a.gif" alt="whatsapp-logo" width="32" height="32"></span>
+                    <span class="contact-icon"><img src="https://i.ibb.co/SwgNWSq9/original-066b89ce2612739aebadd816e797b32a.gif" alt="whatsapp-logo" loading="lazy" width="32" height="32"></span>
                     <span><a href="https://wa.me/5620042412" target="_blank">WhatsApp</a></span>
                 </div>
                 <div class="contact-item">
-                    <span class="contact-icon"><img src="https://i.ibb.co/84Gqk08v/original-3d4c8096fc3407c582fe2d051d3e5552.gif" alt="gmail-logo" width="32" height="32"></span>
+                    <span class="contact-icon"><img src="https://i.ibb.co/84Gqk08v/original-3d4c8096fc3407c582fe2d051d3e5552.gif" alt="gmail-logo" loading="lazy" width="32" height="32"></span>
                     <span><a href="mailto:soporteseguro98@gmail.com" id="email-link" data-email="soporteseguro98@gmail.com">Correo Electrónico</a></span>
                 </div>
                 <div class="contact-item">
-                    <span class="contact-icon"><img src="https://i.ibb.co/20rk66Mb/original-4bb3252c384129a3c31eee02cd1dde24.gif" alt="ubicacion-logo" width="32" height="32"></span>
+                    <span class="contact-icon"><img src="https://i.ibb.co/20rk66Mb/original-4bb3252c384129a3c31eee02cd1dde24.gif" alt="ubicacion-logo" loading="lazy" width="32" height="32"></span>
                     <span><a href="https://share.google/4GM0Eyj3GSJh5uDoI" target="_blank">Ubicación</a></span>
                 </div>
             </div>
@@ -2502,7 +2493,7 @@
         <div id="chatbot-window">
             <div id="chatbot-header">
                 <div class="avatar">
-                    <img src="https://i.ibb.co/4gDHsgBS/hoang-le-loading.gif" alt="Asistente Virtual" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    <img src="https://i.ibb.co/4gDHsgBS/hoang-le-loading.gif" alt="Asistente Virtual" loading="lazy" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                 </div>
                 <div class="bot-info">
                     <h4>Asistente Virtual</h4>
@@ -3143,24 +3134,27 @@
             }
 
             // --- Staggered Entry Animation for Contact Cards ---
-            const contactSection = document.querySelector('#contacto');
-            const contactCards = document.querySelectorAll('.contact-item');
-            
-            if (contactCards.length > 0 && contactSection) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            contactCards.forEach((card, index) => {
-                                card.style.transitionDelay = `${index * 120}ms`;
-                                card.classList.add('visible');
-                            });
-                            observer.unobserve(contactSection); // Stop observing once animated
-                        }
-                    });
-                }, { threshold: 0.2 });
-                
-                observer.observe(contactSection);
-            }
+            document.querySelectorAll('.contact-section, #contacto').forEach(section => {
+                const contactItems = section.querySelectorAll('.contact-item');
+
+                if (contactItems.length > 0) {
+                    const observer = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                // Animate the items within the section that is now visible
+                                const items = entry.target.querySelectorAll('.contact-item');
+                                items.forEach((item, index) => {
+                                    item.style.transitionDelay = `${index * 120}ms`;
+                                    item.classList.add('visible');
+                                });
+                                observer.unobserve(entry.target); // Unobserve the section after animation
+                            }
+                        });
+                    }, { threshold: 0.2 });
+
+                    observer.observe(section);
+                }
+            });
             
             // --- 3D Interactive Tilt Effect for Contact Cards ---
             contactCards.forEach(card => {
