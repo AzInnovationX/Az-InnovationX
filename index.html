@@ -1236,10 +1236,30 @@
         
         /* Footer mejorado */
         footer {
-            background: linear-gradient(180deg, rgba(10, 15, 30, 0.98), rgba(5, 10, 20, 1));
+            background-image: url('https://i.ibb.co/S7xMZ77Y/animation-02b.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
             text-align: center;
             padding: 2.5rem 0;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(10, 15, 30, 0.7); /* Dark semi-transparent overlay */
+            z-index: 1;
+        }
+
+        footer .container {
+            position: relative;
+            z-index: 2;
         }
         
         footer p {
@@ -1962,6 +1982,89 @@
             vertical-align: middle;
         }
 
+        .payment-options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .payment-option-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .payment-option-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(0, 212, 255, 0.4);
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+
+        .payment-option-header .payment-icon {
+            max-height: 40px;
+            margin-bottom: 1rem;
+            filter: grayscale(30%) brightness(1.2);
+        }
+
+        .payment-option-card h4 {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-option-card p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .payment-cta {
+            width: 100%;
+            padding: 14px;
+        }
+
+        .payment-option-card .payment-details {
+            margin-top: 1.5rem;
+            text-align: left;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        
+        .cta-button-small {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0, 212, 255, 0.15);
+            color: #00d4ff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .cta-button-small:hover {
+            background: rgba(0, 212, 255, 0.3);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
         /* Modal Styles */
         .modal {
             display: none;
@@ -2362,66 +2465,48 @@
             </div>
         </section>
         <section id="pagos" class="container">
-            <h2 class="section-title">Sección de Pago</h2>
-            <div class="payment-card">
-                <h3>Instrucciones de Pago</h3>
-                <p>Elige tu método de pago preferido. Puedes usar PayPal o realizar una transferencia bancaria.</p>
-
-                <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
-                    <div class="paypal-button-container" style="margin-top: 0;">
-                         <a href="https://paypal.me/EvaristoSan?locale.x=es_XC&country.x=MX" target="_blank" class="paypal-btn">
-                            <svg class="paypal-btn-icon" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 373.5096 450">
-                              <defs>
-                                <style>
-                                  .cls-1 {
-                                    fill: #008cff;
-                                  }
-                            
-                                  .cls-2 {
-                                    fill: #60cdff;
-                                  }
-                            
-                                  .cls-3 {
-                                    fill: #002991;
-                                  }
-                                </style>
-                              </defs>
-                              <g>
-                                <g id="Layer_1">
-                                  <g>
-                                    <path class="cls-3" d="M318.58,103.5c0,55.74-51.44,121.5-129.27,121.5h-74.97l-3.68,23.22-17.49,111.78H0L56.05,0h150.95c50.83,0,90.82,28.33,105.55,67.7,4.2482,11.4467,6.2941,23.5933,6.03,35.8Z"/>
-                                    <path class="cls-2" d="M372.28,207c-10.2713,62.4081-64.2924,108.1528-127.54,108h-52.06l-21.67,135h-92.67l14.83-90,17.5-111.78,3.67-23.22h74.97c77.73,0,129.27-65.76,129.27-121.5,38.25,19.74,60.55,59.63,53.7,103.5Z"/>
-                                    <path class="cls-1" d="M318.58,103.5c-16.04-8.39-35.49-13.5-56.66-13.5h-126.4l-21.18,135h74.97c77.73,0,129.27-65.76,129.27-121.5Z"/>
-                                  </g>
-                                </g>
-                              </g>
-                            </svg>
-                            Pagar con PayPal
-                        </a>
+            <h2 class="section-title">Realiza tu Pago</h2>
+            <p class="section-subtitle" style="text-align:center; max-width: 600px; margin: -1.5rem auto 2.5rem; opacity: 0.9;">Elige tu método de pago preferido. Ofrecemos opciones seguras para tu comodidad.</p>
+            
+            <div class="payment-options-grid">
+                <!-- PayPal Option -->
+                <div class="payment-option-card">
+                    <div class="payment-option-header">
+                        <img src="https://i.ibb.co/B2fVb3hF/original-ba7850362f2416e8bfb8032c57a18ab7.gif" alt="PayPal Logo" class="payment-icon" loading="lazy" border="0">
+                        <h4>PayPal</h4>
+                        <p>Rápido, seguro y fácil.</p>
                     </div>
-                    <button class="cta-button" id="transfer-btn" onclick="showTransferDetails()" style="margin-top: 0; border: none; display: inline-flex; align-items: center;">
-                        <img src="https://i.ibb.co/9H5TRxcF/money-transfer-banking-icon-bu.jpg" alt="Transferencia Icon" loading="lazy" class="transfer-btn-icon">
-                        Transferencia
-                    </button>
+                    <a href="https://paypal.me/EvaristoSan?locale.x=es_XC&country.x=MX" target="_blank" class="cta-button payment-cta">Pagar con PayPal</a>
                 </div>
 
-                <div class="payment-details" id="bank-details" style="display: none; margin-top: 1.5rem;">
-                    <div class="detail-item">
-                        <span class="detail-label">Banco:</span>
-                        <span class="detail-value">Banco Azteca</span>
+                <!-- Bank Transfer Option -->
+                <div class="payment-option-card" id="transfer-card">
+                    <div class="payment-option-header">
+                         <img src="https://i.ibb.co/9H5TRxcF/money-transfer-banking-icon-bu.jpg" alt="Bank Transfer Icon" class="payment-icon" loading="lazy">
+                        <h4>Transferencia Bancaria</h4>
+                        <p>Realiza una transferencia directa desde tu banco.</p>
                     </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Nombre del Titular:</span>
-                        <span class="detail-value">Evaristo San Juan Azuara</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Número de Cuenta:</span>
-                        <div class="account-number">
-                            <span id="accountNumber">5165760435995088</span>
-                            <button class="copy-btn" onclick="copyAccountNumber()">Copiar</button>
+                    <button class="cta-button payment-cta" id="transfer-btn" onclick="toggleTransferDetails()">Mostrar Detalles</button>
+                    <div class="payment-details" id="bank-details" style="display: none;">
+                        <div class="detail-item">
+                            <span class="detail-label">Banco:</span>
+                            <span class="detail-value">Banco Azteca</span>
                         </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Titular:</span>
+                            <span class="detail-value">Evaristo San Juan Azuara</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Cuenta:</span>
+                            <div class="account-number">
+                                <span id="accountNumber">5165760435995088</span>
+                                <button class="copy-btn" onclick="copyAccountNumber()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="cta-button-small" onclick="showPaymentInstructions()">Ver Instrucciones</button>
                     </div>
-                    <button class="cta-button" onclick="showPaymentInstructions()" style="margin-top: 1rem;">Ver Instrucciones Detalladas</button>
                 </div>
             </div>
         </section>
@@ -3672,11 +3757,11 @@
             navigator.clipboard.writeText(accountNumber).then(() => {
                 const copyBtn = document.querySelector('.copy-btn');
                 if(!copyBtn) return;
-                const originalText = copyBtn.innerText;
-                copyBtn.innerText = '¡Copiado!';
+                const originalContent = copyBtn.innerHTML;
+                copyBtn.innerHTML = '¡Copiado!';
                 copyBtn.disabled = true;
                 setTimeout(() => {
-                    copyBtn.innerText = originalText;
+                    copyBtn.innerHTML = originalContent;
                     copyBtn.disabled = false;
                 }, 2000);
             }).catch(err => {
@@ -3685,14 +3770,22 @@
             });
         }
 
-        function showTransferDetails() {
+        function toggleTransferDetails() {
+            const transferCard = document.getElementById('transfer-card');
             const transferDetails = document.getElementById('bank-details');
             const transferButton = document.getElementById('transfer-btn');
-            if (transferDetails) {
-                transferDetails.style.display = 'block';
-            }
-            if (transferButton) {
-                transferButton.style.display = 'none';
+
+            if (transferDetails && transferCard) {
+                const isVisible = transferDetails.style.maxHeight;
+                transferCard.classList.toggle('active');
+
+                if (isVisible) {
+                    transferDetails.style.maxHeight = null;
+                    transferButton.textContent = 'Mostrar Detalles';
+                } else {
+                    transferDetails.style.maxHeight = transferDetails.scrollHeight + "px";
+                    transferButton.textContent = 'Ocultar Detalles';
+                }
             }
         }
     </script>
