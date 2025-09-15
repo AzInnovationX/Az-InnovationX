@@ -3321,6 +3321,8 @@
                     options: [
                         { text: "Nuestros Servicios", key: "servicios_menu" },
                         { text: "Presencia en Internet", key: "presencia_internet" },
+                        { text: "Suscríbete", key: "suscribete" },
+                        { text: "Nuestra Ubicación", key: "ubicacion" },
                         { text: "Tips de Ciberseguridad", key: "ciberseguridad" },
                         { text: "Métodos de Pago", key: "payment_info" },
                         { text: "Preguntas Frecuentes (FAQ)", key: "faq_menu" },
@@ -3328,8 +3330,9 @@
                     ]
                 },
                 presencia_internet: {
-                    message: "¡Excelente pregunta! Tener presencia en internet es fundamental hoy en día. Te permite llegar a más clientes, construir credibilidad y abrir nuevos canales de venta 24/7. Es como tener tu negocio abierto al mundo todo el tiempo. ¿Te gustaría que te contáramos cómo podemos ayudarte con eso?",
+                    message: "¡Excelente pregunta! Tener presencia en internet es clave. Te recomiendo ver el video que está al principio de nuestra página para que veas todo el potencial. Tener una buena presencia online te permite llegar a más clientes, construir credibilidad y abrir nuevos canales de venta 24/7. ¿Te gustaría que te contáramos cómo podemos ayudarte a lograrlo?",
                     options: [
+                        { text: "Ver el video ahora", key: "go_to_inicio" },
                         { text: "Sí, cuéntame más", key: "servicio_web" },
                         { text: "No, gracias", key: "saludo" }
                     ]
@@ -3357,6 +3360,20 @@
                 },
                 creator_info: {
                     message: "Fui creado por Az InnovationX, desarrollado por Evaristo San Juan Azuara, un emprendedor y desarrollador apasionado por la innovación tecnológica y la creación de soluciones digitales inteligentes."
+                },
+                suscribete: {
+                    message: "¡Qué bueno que te interesa! Suscríbete para no perderte ninguna de nuestras innovaciones, ofertas especiales y contenido exclusivo. ¡Es la mejor forma de estar al día con el futuro de la tecnología!",
+                    options: [
+                        { text: "¡Claro, me suscribo!", url: "https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header" },
+                        { text: "Volver al inicio", key: "saludo" }
+                    ]
+                },
+                ubicacion: {
+                    message: "Nos encontramos en Huejutla de Reyes, Hidalgo, México. ¡Nos encantaría que nos dejaras un comentario en nuestra ubicación de Google Maps! Tu feedback nos ayuda a mejorar.",
+                    options: [
+                        { text: "Dejar un comentario", url: "https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A" },
+                        { text: "Volver al inicio", key: "saludo" }
+                    ]
                 },
                 payment_info: {
                     message: "¡Claro! Aquí tienes nuestras opciones de pago:<br><br>" +
@@ -3705,6 +3722,12 @@
                                 pagosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                             }
                             toggleChatbot(); // Close the chatbot window
+                        } else if (key === 'go_to_inicio') {
+                            const inicioSection = document.getElementById('inicio');
+                            if (inicioSection) {
+                                inicioSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                            toggleChatbot();
                         } else if (key) {
                             const response = knowledgeBase[key];
                             if(response) showBotMessage(response, key);
