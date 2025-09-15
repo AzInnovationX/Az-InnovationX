@@ -1330,6 +1330,14 @@
             margin-bottom: 1rem;
             transform-origin: bottom right;
             animation: slideInUp-chat 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: width 0.3s ease, height 0.3s ease, max-width 0.3s ease, max-height 0.3s ease;
+        }
+
+        #chatbot-window.expanded {
+            width: 95vw;
+            height: 90vh;
+            max-width: 1200px;
+            max-height: 90vh;
         }
         
         #chatbot-window.active {
@@ -2580,12 +2588,15 @@
         <div id="chatbot-window">
             <div id="chatbot-header">
                 <div class="avatar">
-                    <img src="https://i.ibb.co/4gDHsgBS/hoang-le-loading.gif" alt="Asistente Virtual" loading="lazy" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    <img src="https://i.ibb.co/Pz0qm1sL/Imagen-de-Whats-App-2025-09-13-a-las-17-52-02-f32b3c10.jpg" alt="Az Asistente Virtual" loading="lazy" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                 </div>
                 <div class="bot-info">
-                    <h4>Asistente Virtual</h4>
+                    <h4>Az Asistente Virtual</h4>
                     <p>En línea</p>
                 </div>
+                <button id="chatbot-expand-toggle" title="Expandir/Minimizar" style="background:none; border:none; color:white; cursor:pointer; margin-left:auto; padding:5px; line-height: 1;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-expand"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+                </button>
             </div>
             <div id="chatbot-messages">
                 <!-- Messages will be appended here by JavaScript -->
@@ -3313,7 +3324,22 @@
             const messagesContainer = document.getElementById('chatbot-messages');
             const inputForm = document.getElementById('chatbot-input-form');
             const inputField = document.getElementById('chatbot-input');
+            const expandToggle = document.getElementById('chatbot-expand-toggle');
             let misunderstandingCounter = 0;
+
+            if (expandToggle && chatbotWindow) {
+                expandToggle.addEventListener('click', () => {
+                    chatbotWindow.classList.toggle('expanded');
+                    const icon = expandToggle.querySelector('svg');
+                    if (chatbotWindow.classList.contains('expanded')) {
+                        // Change to minimize icon
+                        icon.innerHTML = '<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>';
+                    } else {
+                        // Change back to expand icon
+                        icon.innerHTML = '<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>';
+                    }
+                });
+            }
             
             const knowledgeBase = {
                 saludo: {
@@ -3418,7 +3444,8 @@
                         { text: "Facebook", url: "https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" },
                         { text: "Instagram", url: "https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" },
                         { text: "TikTok", url: "https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" },
-                        { text: "Tienda de Aplicaciones", url: "https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" },
+                        { text: "Aplicaciones", url: "https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" },
+                        { text: "Blog", url: "https://azinnovationx.blogspot.com/" },
                         { text: "Email", url: "mailto:soporteseguro98@gmail.com" },
                         { text: "Volver al inicio", key: "saludo" }
                     ],
