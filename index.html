@@ -2489,35 +2489,16 @@
                     <a href="https://paypal.me/EvaristoSan?locale.x=es_XC&country.x=MX" target="_blank" class="cta-button payment-cta">Pagar con PayPal</a>
                 </div>
 
-                <!-- Bank Transfer Option -->
-                <div class="payment-option-card" id="transfer-card">
+                <!-- Clip - Card Payment Option -->
+                <div class="payment-option-card">
                     <div class="payment-option-header">
-                         <img src="https://i.ibb.co/9H5TRxcF/money-transfer-banking-icon-bu.jpg" alt="Bank Transfer Icon" class="payment-icon" loading="lazy">
-                        <h4>Transferencia Bancaria</h4>
-                        <p>Realiza una transferencia directa desde tu banco.</p>
+                        <img src="https://i.ibb.co/rRpM5NcV/D-NQ-NP-755794-MLM53356797658-012023-O-clip-plus-2-terminal-lector-cobro-con-tarjetas-vales.webp" alt="Clip Terminal" class="payment-icon" loading="lazy">
+                        <h4>Pago con Tarjeta de Débito o Crédito</h4>
+                        <p>Aceptamos todas las tarjetas. Transacción segura vía Clip.</p>
                     </div>
-                    <button class="cta-button payment-cta" id="transfer-btn" onclick="toggleTransferDetails()">Mostrar Detalles</button>
-                    <div class="payment-details" id="bank-details">
-                        <div class="detail-item">
-                            <span class="detail-label">Banco:</span>
-                            <span class="detail-value">Banco Azteca</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Titular:</span>
-                            <span class="detail-value">Evaristo San Juan Azuara</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Cuenta:</span>
-                            <div class="account-number">
-                                <span id="accountNumber">5165760435995088</span>
-                                <button class="copy-btn" onclick="copyAccountNumber()">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-                        <button class="cta-button-small" onclick="showPaymentInstructions()">Ver Instrucciones</button>
-                    </div>
+                    <a href="https://clip.mx/@azinnovationx" target="_blank" class="cta-button payment-cta">Pagar con Tarjeta</a>
                 </div>
+
             </div>
         </section>
 
@@ -3402,14 +3383,8 @@
                     ]
                 },
                 payment_info: {
-                    message: "¡Claro! Aquí tienes nuestras opciones de pago:<br><br>" +
-                             "<strong>Transferencia Bancaria:</strong><br>" +
-                             "<ul>" +
-                             "<li><strong>Banco:</strong> Banco Azteca</li>" +
-                             "<li><strong>Titular:</strong> Evaristo San Juan Azuara</li>" +
-                             "<li><strong>Cuenta:</strong> 5165760435995088</li>" +
-                             "</ul>" +
-                             "<p>Para pagar con PayPal, por favor usa el botón en nuestra sección de pagos.</p>",
+                    message: "¡Claro! Puedes realizar tu pago de forma segura a través de PayPal o con tu tarjeta de débito o crédito usando Clip.<br><br>" +
+                             "Ambas opciones están disponibles en nuestra sección de pagos. ¿Te gustaría ir ahora?",
                     options: [
                         { text: "Ir a la Sección de Pagos", key: "go_to_pagos" },
                         { text: "Volver al inicio", key: "saludo" }
