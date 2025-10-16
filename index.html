@@ -201,14 +201,15 @@
     }
 
     .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      background: linear-gradient(45deg, #FFD700, #FF6B35);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.02em;
-      text-shadow: 0 2px 8px rgba(255, 107, 53, 0.4);
+      display: flex;
+      align-items: center;
+      filter: drop-shadow(0 2px 8px rgba(255,107,53,0.3));
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 4px 12px rgba(255,107,53,0.5));
     }
 
     .nav-links {
@@ -1834,8 +1835,8 @@
         padding: 0 15px;
       }
 
-      .logo {
-        font-size: 1.4rem;
+      .logo img {
+        height: 35px;
       }
 
       .nav-links.active li {
@@ -2506,7 +2507,9 @@
   </div>
   <header>
     <nav class="container">
-      <div class="logo">Az InnovationX</div>
+      <a href="#inicio" class="logo">
+        <img src="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" alt="Az InnovationX Logo" loading="lazy" style="height: 45px; width: auto; object-fit: contain; vertical-align: middle;">
+      </a>
       <ul class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
