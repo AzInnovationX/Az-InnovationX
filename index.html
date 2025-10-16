@@ -9,51 +9,111 @@
 <link rel="icon" type="image/png" href="/favicon-512.png" sizes="512x512" />
 <link rel="apple-touch-icon" href="/favicon-512.png" />
     <style>
+        /* --- Welcome Modal: "Día de Muertos" Theme --- */
         .welcome-modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 15, 30, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 10005; /* High z-index to be on top */
-            display: none; /* Hidden by default */
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px) saturate(120%);
+            -webkit-backdrop-filter: blur(10px) saturate(120%);
+            z-index: 10005;
+            display: none;
             align-items: center;
             justify-content: center;
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn-dm 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .welcome-modal-content {
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(16, 21, 3e, 0.9));
-            padding: 2rem 3rem;
-            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #1a1a1a, #2c1d3e);
+            padding: 2.5rem 3.5rem;
+            border-radius: 25px;
             text-align: center;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            transform: scale(0.9);
-            animation: scaleIn 0.5s 0.2s ease-out forwards;
+            border: 1px solid #FF6B35;
+            position: relative;
+            overflow: hidden;
+            transform: scale(0.8);
+            opacity: 0;
+            animation: scaleIn-dm-bounce 0.6s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, pulsating-glow-dm 4s 1s ease-in-out infinite;
+        }
+        
+        .welcome-modal-content::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background-image:
+                radial-gradient(circle at 10px -5px, transparent 12px, #FF6B35 13px, #FF6B35 13px, transparent 14px),
+                radial-gradient(circle at 35px 15px, transparent 12px, #FFC107 13px, #FFC107 13px, transparent 14px),
+                radial-gradient(circle at 60px -5px, transparent 12px, #7B2CBF 13px, #7B2CBF 13px, transparent 14px),
+                radial-gradient(circle at 85px 15px, transparent 12px, #00d4ff 13px, #00d4ff 13px, transparent 14px);
+            background-size: 100px 30px;
+            background-repeat: repeat-x;
+            opacity: 0.9;
         }
 
         .welcome-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
             line-height: 1;
+            animation: icon-pulse-dm 4s ease-in-out infinite;
         }
 
         #welcome-greeting {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            background: linear-gradient(45deg, #ffffff, #00d4ff);
+            background: linear-gradient(45deg, #FFD700, #FF6B35, #F7931E);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
+            text-shadow: 0 0 8px rgba(255, 107, 53, 0.7), 0 0 20px rgba(255, 165, 0, 0.5);
+        }
+        
+        .welcome-modal-content p {
+            color: #ffffff;
+            opacity: 0.9;
+            font-weight: 500;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
-        @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes fadeIn-dm { 
+            from { opacity: 0; backdrop-filter: blur(0) saturate(100%); } 
+            to { opacity: 1; backdrop-filter: blur(10px) saturate(120%); } 
+        }
+
+        @keyframes fadeOut { 
+            from { opacity: 1; } 
+            to { opacity: 0; } 
+        }
+
+        @keyframes scaleIn-dm-bounce {
+            0% { transform: scale(0.8); opacity: 0; }
+            60% { transform: scale(1.05); opacity: 1; }
+            80% { transform: scale(0.95); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulsating-glow-dm {
+            0% { box-shadow: 0 0 25px rgba(255, 107, 53, 0.5), 0 0 50px rgba(93, 46, 140, 0.4), inset 0 0 15px rgba(255, 165, 0, 0.2); }
+            50% { box-shadow: 0 0 35px rgba(255, 107, 53, 0.8), 0 0 60px rgba(93, 46, 140, 0.6), inset 0 0 20px rgba(255, 165, 0, 0.4); }
+            100% { box-shadow: 0 0 25px rgba(255, 107, 53, 0.5), 0 0 50px rgba(93, 46, 140, 0.4), inset 0 0 15px rgba(255, 165, 0, 0.2); }
+        }
+        
+        @keyframes icon-pulse-dm {
+            0%, 100% { 
+                transform: scale(1); 
+                filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.8)); 
+            }
+            50% { 
+                transform: scale(1.1); 
+                filter: drop-shadow(0 0 18px rgba(255, 165, 0, 1)); 
+            }
+        }
         
         /* Importar fuente profesional */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -3851,13 +3911,13 @@
 
                 if (currentHour >= 5 && currentHour < 12) {
                     greeting = 'Buenos Días';
-                    icon = '☀️';
+                    icon = '🌺'; // Cempasúchil flower
                 } else if (currentHour >= 12 && currentHour < 20) {
                     greeting = 'Buenas Tardes';
-                    icon = '🌤️';
+                    icon = '🏵️'; // Decorative flower
                 } else {
                     greeting = 'Buenas Noches';
-                    icon = '🌙';
+                    icon = '💀'; // Stylized skull
                 }
 
                 greetingEl.textContent = greeting;
