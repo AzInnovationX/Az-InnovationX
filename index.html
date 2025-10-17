@@ -166,18 +166,23 @@
 
     body {
       font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
+      line-height: 1.7;
+      /* Mejorado para legibilidad */
       color: #ffffff;
       background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #2c1d3e 100%);
       overflow-x: hidden;
       letter-spacing: 0.01em;
       min-height: 100vh;
+      font-size: 16px;
+      /* Base para rem */
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1280px;
+      /* Estándar profesional */
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 2rem;
+      /* 32px */
     }
 
     /* Header mejorado */
@@ -203,13 +208,13 @@
     .logo {
       display: flex;
       align-items: center;
-      filter: drop-shadow(0 2px 8px rgba(255,107,53,0.3));
+      filter: drop-shadow(0 2px 8px rgba(255, 107, 53, 0.3));
       transition: transform 0.3s ease, filter 0.3s ease;
     }
 
     .logo:hover {
       transform: scale(1.05);
-      filter: drop-shadow(0 4px 12px rgba(255,107,53,0.5));
+      filter: drop-shadow(0 4px 12px rgba(255, 107, 53, 0.5));
     }
 
     .nav-links {
@@ -321,7 +326,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(135deg, rgba(10, 15, 30, 0.9) 0%, rgba(26, 26, 46, 0.8) 100%);
+      background: linear-gradient(135deg, rgba(10, 15, 30, 0.95) 0%, rgba(26, 26, 46, 0.85) 100%);
       animation: float 20s ease-in-out infinite;
     }
 
@@ -508,14 +513,17 @@
 
     /* Sections mejoradas */
     section {
-      padding: 4rem 0;
+      padding: 6rem 0;
+      /* 96px de espaciado vertical */
       position: relative;
     }
 
     .section-title {
       text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 2.5rem;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      /* Título fluido y más grande */
+      margin-bottom: 3rem;
+      /* 48px */
       font-weight: 800;
       letter-spacing: -0.02em;
       background: linear-gradient(45deg, #ffffff, #FFD700);
@@ -551,9 +559,11 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 107, 53, 0.3);
       border-radius: 20px;
-      padding: 1.5rem;
+      padding: 2rem;
+      /* Aumentado para más aire */
       text-align: center;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.3s ease;
+      /* Transición más suave */
       position: relative;
       overflow: hidden;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
@@ -566,49 +576,9 @@
       transform: translateY(0);
     }
 
-    .service-card-content {
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .service-preview {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: rgba(10, 20, 40, 0.8);
-      opacity: 0;
-      transform: translateY(100%);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      pointer-events: none;
-    }
-
-    .service-preview h4 {
-      color: #FF6B35;
-      margin-bottom: 0.8rem;
-      font-size: 1.1rem;
-    }
-
-    .service-preview ul {
-      list-style: none;
-      padding: 0;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
-    .service-preview ul li {
-      margin-bottom: 0.4rem;
-      opacity: 0.9;
-    }
-
     .service-card .service-icon {
       text-shadow: 0 0 10px rgba(255, 107, 53, 0.6);
-      transition: transform 0.4s ease;
+      transition: transform 0.3s ease;
       font-size: 2.5rem;
     }
 
@@ -618,33 +588,22 @@
       margin-top: 1rem;
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: transform 0.4s ease;
+      transition: transform 0.3s ease;
     }
 
-    /* Hover effects mejorados */
+    /* Hover effects mejorados y simplificados */
     .service-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 107, 53, 0.4);
-    }
-
-    .service-card:hover .service-card-content {
-      opacity: 0;
-      transform: translateY(-15px);
-    }
-
-    .service-card:hover .service-preview {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 107, 53, 0.3);
+      border-color: rgba(255, 107, 53, 0.6);
     }
 
     .service-card:hover .service-icon {
-      transform: scale(1.2) translateY(-10px);
-      filter: drop-shadow(0 0 12px rgba(255, 107, 53, 0.8));
+      transform: scale(1.1);
     }
 
     .service-card:hover .service-image {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
 
     @keyframes subtle-float {
@@ -1007,25 +966,29 @@
       }
     }
 
-    /* Contact Form Styles mejorado */
+    /* Contact Form Styles Re-Designed */
     .contact-form {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 20px;
-      padding: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: 24px;
+      /* Más suave */
+      padding: 3rem;
+      /* Más espaciado interno */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
     .form-row {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1rem;
+      gap: 1.5rem;
+      /* Aumentado */
     }
 
     .form-group {
-      margin-bottom: 1.2rem;
+      margin-bottom: 0;
+      /* Eliminado para usar gap */
     }
 
     .form-group label {
@@ -1040,12 +1003,15 @@
     .form-group textarea,
     .form-group select {
       width: 100%;
-      padding: 14px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 10px;
+      padding: 1rem;
+      /* 16px */
+      background: rgba(0, 0, 0, 0.2);
+      /* Fondo más oscuro */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      /* Más redondeado */
       color: white;
-      font-size: 0.95rem;
+      font-size: 1rem;
       transition: all 0.3s ease;
       -webkit-appearance: none;
       appearance: none;
@@ -1067,9 +1033,8 @@
     .form-group textarea:focus,
     .form-group select:focus {
       outline: none;
-      border-color: rgba(255, 107, 53, 0.6);
-      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
-      transform: translateY(-2px);
+      border-color: rgba(255, 107, 53, 0.8);
+      box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.2);
     }
 
     .form-group input::placeholder,
@@ -1085,42 +1050,22 @@
 
     .submit-btn {
       width: 100%;
-      padding: 16px;
+      padding: 1rem 2rem;
       background: linear-gradient(45deg, #FF6B35, #F7931E);
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(255, 107, 53, 0.5);
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
     }
 
     .submit-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 25px rgba(255, 107, 53, 0.7);
-    }
-
-    .submit-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
-      z-index: -1;
-    }
-
-    .submit-btn:hover::before {
-      left: 100%;
+      box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
     }
 
     .submit-btn:disabled {
@@ -1300,43 +1245,103 @@
       text-shadow: 0 0 8px rgba(255, 107, 53, 0.5);
     }
 
-    /* Footer Grid Layout */
-    .footer-contact-grid {
+    /* New Professional Footer Styles */
+    .site-footer {
+      background-color: #0a0a0a;
+      padding: 4rem 0;
+      border-top: 1px solid rgba(255, 107, 53, 0.2);
+    }
+
+    .footer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 2.5rem;
-      margin-top: 3rem;
-      padding: 0 1rem;
-      text-align: left;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-logo {
+      height: 40px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      line-height: 1.6;
     }
 
     .footer-column-title {
+      font-size: 1.1rem;
+      font-weight: 600;
       color: #FF6B35;
-      font-size: 1.4rem;
-      font-weight: 700;
       margin-bottom: 1.5rem;
-      position: relative;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(255, 107, 53, 0.2);
-      display: inline-block;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
-    .footer-column-title::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 40%;
-      height: 2px;
-      background: #FF6B35;
-      box-shadow: 0 0 8px rgba(255, 107, 53, 0.7);
-    }
-
-    .footer-column .contact-info {
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
       display: flex;
       flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #FF6B35;
+    }
+    
+    .social-icons {
+      display: flex;
       gap: 1rem;
-      margin-top: 0;
+    }
+
+    .social-icons a img {
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons a:hover img {
+      transform: scale(1.15);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .copyright {
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
+    .footer-contact-methods {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .contact-method-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-method-item:hover {
+      color: #FF6B35;
     }
 
     /* Keyframe Animations for Icons mejoradas */
@@ -1439,24 +1444,6 @@
       animation: swing-bag 0.5s ease-in-out;
     }
 
-    /* Contact Info in Footer mejorado */
-    .contact-info {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .contact-item-old {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1.2rem;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
     .contact-item:hover {
       transform: translateY(-5px);
       background: rgba(255, 107, 53, 0.1);
@@ -1477,43 +1464,6 @@
 
     .contact-item a:hover {
       color: #FF6B35;
-    }
-
-    /* Footer mejorado */
-    footer {
-      background-image: url('https://i.ibb.co/S7xMZ77Y/animation-02b.gif');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
-      text-align: center;
-      padding: 2.5rem 0;
-      border-top: 1px solid rgba(255, 107, 53, 0.2);
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(10, 15, 30, 0.7);
-      /* Dark semi-transparent overlay */
-      z-index: 1;
-    }
-
-    footer .container {
-      position: relative;
-      z-index: 2;
-    }
-
-    footer p {
-      opacity: 0.8;
-      font-size: 0.85rem;
-      letter-spacing: 0.03em;
-      margin-top: 1rem;
-      padding: 0 1rem;
     }
 
     /* Chatbot Styles mejorado */
@@ -1832,7 +1782,8 @@
       }
 
       .container {
-        padding: 0 15px;
+        padding: 0 1rem;
+        /* 16px */
       }
 
       .logo img {
@@ -1950,7 +1901,7 @@
       }
 
       .contact-form {
-        padding: 1.2rem;
+        padding: 1.5rem;
       }
 
       .form-group label {
@@ -1989,29 +1940,22 @@
         font-size: 0.9rem;
       }
 
-      .footer-contact-grid {
+      .footer-grid {
         grid-template-columns: 1fr;
-        gap: 3rem;
         text-align: center;
       }
 
-      .footer-column-title {
-        font-size: 1.3rem;
+      .about-column {
+        grid-row: 1;
       }
 
-      .footer-column-title::after {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      .footer-column .contact-info {
+      .footer-column {
         align-items: center;
       }
 
-      .contact-item {
-        justify-content: center;
-        width: 100%;
-        max-width: 320px;
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
       }
 
       footer {
@@ -2513,13 +2457,11 @@
       <ul class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#pasos">Presencia Digital</a></li>
+        <li><a href="#pasos">Proceso</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#solicitudes">Solicitudes</a></li>
-        <li><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" target="_blank">Tienda Aplicaciones</a></li>
+        <li><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" target="_blank">Tienda de Aplicaciones</a></li>
         <li><a href="#pagos">Pagos</a></li>
-        <li><a href="#redes-sociales">Redes Sociales</a></li>
-        <li><a href="#nuestros-sitios">Nuestros Sitios</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
       <div class="mobile-menu">
@@ -2563,14 +2505,6 @@
               <p>Diseños modernos y adaptables para convertir visitantes en clientes.</p>
               <img src="https://i.ibb.co/kVStpRH6/for-blog-3.gif" alt="Páginas Web Profesionales" loading="lazy" class="service-image">
             </div>
-            <div class="service-preview">
-              <h4>Características Clave:</h4>
-              <ul>
-                <li>SEO Optimizado</li>
-                <li>Integración de APIs</li>
-                <li>Formularios Personalizados</li>
-              </ul>
-            </div>
           </div>
           <div class="service-card">
             <div class="service-card-content">
@@ -2578,14 +2512,6 @@
               <h3>Aplicaciones Móviles</h3>
               <p>Apps Android y multiplataforma que conectan con tu audiencia.</p>
               <img src="https://i.ibb.co/7xy6NTnm/13.gif" alt="Aplicaciones Móviles" loading="lazy" class="service-image">
-            </div>
-            <div class="service-preview">
-              <h4>Características Clave:</h4>
-              <ul>
-                <li>Publicación Rápida</li>
-                <li>Notificaciones Push</li>
-                <li>Diseño Intuitivo</li>
-              </ul>
             </div>
           </div>
           <div class="service-card">
@@ -2595,14 +2521,6 @@
               <p>Plataformas de e-commerce robustas y seguras para impulsar tus ventas.</p>
               <img src="https://i.ibb.co/Wv2kGCfL/app-online-store.gif" alt="Tiendas Online" loading="lazy" class="service-image">
             </div>
-            <div class="service-preview">
-              <h4>Características Clave:</h4>
-              <ul>
-                <li>Pasarelas de Pago</li>
-                <li>Gestión de Inventario</li>
-                <li>Seguridad SSL</li>
-              </ul>
-            </div>
           </div>
           <div class="service-card">
             <div class="service-card-content">
@@ -2610,14 +2528,6 @@
               <h3>Chatbots Inteligentes</h3>
               <p>Automatiza la atención al cliente con IA avanzada, 24/7.</p>
               <img src="https://i.ibb.co/zWJ5ZntM/ded0bbdd8485e424327257405a86a884.gif" alt="Chatbots Inteligentes" loading="lazy" class="service-image">
-            </div>
-            <div class="service-preview">
-              <h4>Características Clave:</h4>
-              <ul>
-                <li>Respuestas Instantáneas</li>
-                <li>Aumento de Conversión</li>
-                <li>Personalización</li>
-              </ul>
             </div>
           </div>
           <div class="service-card">
@@ -2627,14 +2537,6 @@
               <p>Protege tu negocio digital con auditorías y protocolos de ciberseguridad.</p>
               <img src="https://i.ibb.co/wr7MyB9L/giphy.gif" alt="Seguridad Informática" loading="lazy" class="service-image">
             </div>
-            <div class="service-preview">
-              <h4>Características Clave:</h4>
-              <ul>
-                <li>Análisis de Vulnerabilidades</li>
-                <li>Formación de Personal</li>
-                <li>Respuesta a Incidentes</li>
-              </ul>
-            </div>
           </div>
           <div class="service-card">
             <div class="service-card-content">
@@ -2643,14 +2545,28 @@
               <p>Migración y optimización en la nube para escalabilidad sin límites.</p>
               <img src="https://i.ibb.co/Pvth5B1V/nube-animada.gif" alt="Soluciones Cloud" loading="lazy" class="service-image">
             </div>
-            <div class="service-preview">
-              <h4>Características Clave:</h4>
-              <ul>
-                <li>Alta Disponibilidad</li>
-                <li>Backups Automáticos</li>
-                <li>Acceso Global</li>
-              </ul>
-            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="pasos" class="steps-section">
+      <div class="container">
+        <h2 class="section-title">Nuestro Proceso Simplificado</h2>
+        <div class="steps-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Consulta y Estrategia</h3>
+            <p>Entendemos tu visión y tus metas. Definimos juntos el plan de acción, la tecnología a usar y el camino hacia el éxito de tu proyecto.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Diseño y Desarrollo</h3>
+            <p>Damos vida a tu idea. Creamos un diseño atractivo y funcional, y desarrollamos una solución robusta, escalable y a la medida.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Lanzamiento y Soporte</h3>
+            <p>Desplegamos tu proyecto al mundo. Te acompañamos en el lanzamiento y te ofrecemos soporte para asegurar su funcionamiento óptimo.</p>
           </div>
         </div>
       </div>
@@ -2694,7 +2610,6 @@
         </div>
       </div>
     </section>
-
     <section id="solicitudes" style="background-image: url('https://i.ibb.co/84ffsSxc/Power-BI-gif-header.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
       <div class="solicitudes-ambient-bg"></div>
       <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
@@ -2784,67 +2699,74 @@
 
       </div>
     </section>
-
-    <section id="redes-sociales" class="contact-section" style="background-image: url('https://i.ibb.co/h17KDvSb/redes-sociales-estrategia.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
-      <div class="container" style="position: relative; z-index: 2; background-color: rgba(10, 15, 30, 0.7); border-radius: 15px; padding: 1rem;">
-        <h2 class="section-title">Redes Sociales</h2>
-        <div class="contact-info" style="max-width: 400px; margin: 2rem auto; display: grid; grid-template-columns: 1fr; gap: 1rem;">
-          <div class="contact-item">
-            <span class="contact-icon"><img src="https://i.ibb.co/r2FCqXxN/facebook-fb.gif" alt="facebook-fb" loading="lazy" border="0" width="32" height="32"></span>
-            <span><a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank">Facebook</a></span>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon"><img src="https://i.ibb.co/svGfRtTx/200.gif" alt="instagram-logo" loading="lazy" width="32" height="32"></span>
-            <span><a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank">Instagram</a></span>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon"><img src="https://i.ibb.co/ynv3hw6X/tiktok-logo-logo.gif" alt="tiktok-logo" loading="lazy" width="32" height="32"></span>
-            <span><a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank">TikTok</a></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="nuestros-sitios" class="contact-section" style="background-image: url('https://i.ibb.co/wNZCGfc3/Hot-desking-trabajo-empresa-mesas-calientes-nueva-tendencia-vuelta-oficinas-empleo-app-sitios-1.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
-      <div class="container" style="position: relative; z-index: 2;">
-        <h2 class="section-title">Nuestros Sitios</h2>
-        <div class="contact-info" style="max-width: 400px; margin: 2rem auto; display: grid; grid-template-columns: 1fr; gap: 1rem;">
-          <div class="contact-item">
-            <span class="contact-icon"><img src="https://i.ibb.co/99fRnNnD/15591405.gif" alt="tienda-apps-logo" loading="lazy" width="32" height="32"></span>
-            <span><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" target="_blank">Aplicaciones</a></span>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon"><img src="https://i.ibb.co/9DHGJrD/Blogger-Gif.gif" alt="Blogger-Gif" loading="lazy" width="32" height="32"></span>
-            <span><a href="https://azinnovationx.blogspot.com/" target="_blank">Blog</a></span>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon"><img src="https://i.ibb.co/4gVJbFRF/original-d1faf3ee68e5e5c6926473be89527188.gif" alt="suscribite-logo" loading="lazy" width="32" height="32"></span>
-            <span><a href="https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header" target="_blank">Suscríbete</a></span>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
-  <footer>
-    <div class="container" id="contacto">
-      <h2 class="section-title">Medios de Contacto</h2>
-      <div class="contact-info" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <div class="contact-item">
-          <span class="contact-icon"><img src="https://i.ibb.co/SwgNWSq9/original-066b89ce2612739aebadd816e797b32a.gif" alt="whatsapp-logo" loading="lazy" width="32" height="32"></span>
-          <span><a href="https://wa.me/5620042412" target="_blank">WhatsApp</a></span>
+  <footer id="contacto" class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-column about-column">
+          <a href="#inicio" class="logo">
+            <img src="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" alt="Az InnovationX Logo" class="footer-logo">
+          </a>
+          <p class="footer-tagline">Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas.</p>
         </div>
-        <div class="contact-item">
-          <span class="contact-icon"><img src="https://i.ibb.co/84Gqk08v/original-3d4c8096fc3407c582fe2d051d3e5552.gif" alt="gmail-logo" loading="lazy" width="32" height="32"></span>
-          <span><a href="mailto:soporteseguro98@gmail.com" id="email-link" data-email="soporteseguro98@gmail.com">Correo Electrónico</a></span>
+
+        <div class="footer-column links-column">
+          <h4 class="footer-column-title">Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#pasos">Proceso</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#solicitudes">Solicitudes</a></li>
+            <li><a href="#pagos">Pagos</a></li>
+          </ul>
         </div>
-        <div class="contact-item">
-          <span class="contact-icon"><img src="https://i.ibb.co/20rk66Mb/original-4bb3252c384129a3c31eee02cd1dde24.gif" alt="ubicacion-logo" loading="lazy" width="32" height="32"></span>
-          <span><a href="https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A" target="_blank">Ubicación</a></span>
+
+        <div class="footer-column links-column">
+          <h4 class="footer-column-title">Nuestros Sitios</h4>
+          <ul class="footer-links">
+            <li><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" target="_blank">Tienda de Aplicaciones</a></li>
+            <li><a href="https://azinnovationx.blogspot.com/" target="_blank">Blog de Innovación</a></li>
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header" target="_blank">Suscríbete</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column social-column">
+          <h4 class="footer-column-title">Síguenos</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank" aria-label="Facebook">
+                <img src="https://i.ibb.co/r2FCqXxN/facebook-fb.gif" alt="Facebook" width="32" height="32">
+            </a>
+            <a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank" aria-label="Instagram">
+                <img src="https://i.ibb.co/svGfRtTx/200.gif" alt="Instagram" width="32" height="32">
+            </a>
+            <a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank" aria-label="TikTok">
+                <img src="https://i.ibb.co/ynv3hw6X/tiktok-logo-logo.gif" alt="TikTok" width="32" height="32">
+            </a>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="copyright">© 2025 Az InnovationX. Todos los derechos reservados.</p>
+        <div class="footer-contact-methods">
+            <a href="https://wa.me/5620042412" target="_blank" class="contact-method-item">
+              <img src="https://i.ibb.co/SwgNWSq9/original-066b89ce2612739aebadd816e797b32a.gif" alt="whatsapp-logo" width="24" height="24">
+              <span>WhatsApp</span>
+            </a>
+            <a href="mailto:soporteseguro98@gmail.com" id="email-link" data-email="soporteseguro98@gmail.com" class="contact-method-item">
+              <img src="https://i.ibb.co/84Gqk08v/original-3d4c8096fc3407c582fe2d051d3e5552.gif" alt="gmail-logo" width="24" height="24">
+              <span>Correo Electrónico</span>
+            </a>
+            <a href="https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A" target="_blank" class="contact-method-item">
+              <img src="https://i.ibb.co/20rk66Mb/original-4bb3252c384129a3c31eee02cd1dde24.gif" alt="ubicacion-logo" width="24" height="24">
+              <span>Ubicación</span>
+            </a>
         </div>
       </div>
-      <p>© 2025 Az InnovationX. Todos los derechos reservados. Impulsando ideas, construyendo futuro.</p>
+
     </div>
   </footer>
   <!-- Chatbot HTML Structure -->
@@ -3458,32 +3380,6 @@
           });
           observer.observe(section);
         }
-      });
-      // --- 3D Interactive Tilt Effect for Contact Cards ---
-      contactCards.forEach(card => {
-        const intensity = 15; // Max degrees of rotation
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          // Calculate mouse position relative to the card's center
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          const rotateX = (y / (rect.height / 2)) * -intensity;
-          const rotateY = (x / (rect.width / 2)) * intensity;
-          // Apply the transform for the interactive tilt. This overrides the CSS hover transform
-          // but creates a much more dynamic effect.
-          card.style.transform = `
-                        perspective(1500px)
-                        rotateX(${rotateX}deg) 
-                        rotateY(${rotateY}deg) 
-                        translateZ(50px) 
-                        scale(1.05)
-                    `;
-        });
-        card.addEventListener('mouseleave', () => {
-          // Reset the inline transform style, allowing CSS classes to take over again.
-          // This will smoothly return it to the ".visible" state.
-          card.style.transform = '';
-        });
       });
     });
   </script>
