@@ -312,7 +312,7 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-      background-image: url('https://i.ibb.co/VK5YfCT/881563d6444b370fa4ceea0c3183bb4c.gif');
+      background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -1247,9 +1247,26 @@
 
     /* New Professional Footer Styles */
     .site-footer {
+      background-image: url('https://i.ibb.co/84ffsSxc/Power-BI-gif-header.gif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
       background-color: #0a0a0a;
       padding: 4rem 0;
       border-top: 1px solid rgba(255, 107, 53, 0.2);
+      z-index: 1;
+    }
+
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(10, 15, 30, 0.8);
+      z-index: -1;
     }
 
     .footer-grid {
@@ -1471,7 +1488,7 @@
       position: fixed;
       bottom: 15px;
       right: 15px;
-      z-index: 10001;
+      z-index: 99999;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -1499,6 +1516,7 @@
     #chatbot-toggle .icon-open {
       font-size: 24px;
       color: white;
+      display: flex !important;
     }
 
     #chatbot-toggle .icon-close {
@@ -2049,7 +2067,7 @@
       padding: 4rem 0;
       text-align: center;
       position: relative;
-      background-image: url('https://i.ibb.co/0jmSgqzc/PP-2021.gif');
+      background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -2492,7 +2510,7 @@
         <a href="#servicios" class="cta-button">Conocer Más</a>
       </div>
     </section>
-    <section id="servicios" class="container" style="background-image: url('https://i.ibb.co/WQVD0hq/gif-nuevo.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+    <section id="servicios" class="container" style="background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
       <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" loading="lazy" style="position: absolute; top: 10px; right: 10px; width: 80px; opacity: 0.3; filter: grayscale(20%); transition: all 0.3s ease; z-index: 0;">
       <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
       <div style="position: relative; z-index: 2;">
@@ -2549,8 +2567,9 @@
         </div>
       </div>
     </section>
-    <section id="pasos" class="steps-section">
-      <div class="container">
+    <section id="pasos" class="steps-section" style="background-image: url('https://i.ibb.co/0jXB2q0N/original-6324df23375f93646b5c1504758f5572.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
+      <div class="container" style="position: relative; z-index: 2;">
         <h2 class="section-title">Nuestro Proceso Simplificado</h2>
         <div class="steps-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
           <div class="step-card">
