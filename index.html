@@ -2562,6 +2562,7 @@
         <li><a href="#solicitudes">Solicitudes</a></li>
         <li><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" target="_blank">Aplicaciones</a></li>
         <li><a href="#pagos">Pagos</a></li>
+        <li><a href="#precios">Precios</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
       <div class="mobile-menu">
@@ -2822,6 +2823,15 @@
       </div>
     </section>
   </main>
+    <section id="precios" class="container">
+      <h2 class="section-title">Planes y Precios</h2>
+      <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem; position: relative; z-index: 2;">
+        En Az InnovationX, creemos en la transparencia y en ofrecer soluciones que se adapten a tus necesidades y presupuesto. Nuestros planes están diseñados para proporcionar el máximo valor, combinando tecnología de punta con un enfoque estratégico para asegurar que tu inversión impulse tu crecimiento. Explora nuestras opciones o contáctanos para un paquete a tu medida.
+      </p>
+      <div style="text-align: center;">
+        <a href="https://precios1.netlify.app/" target="_blank" class="cta-button">Ver Paquetes Detallados</a>
+      </div>
+    </section>
   <footer id="contacto" class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -2843,6 +2853,7 @@
             <li><a href="#certificaciones">Certificaciones</a></li>
             <li><a href="#solicitudes">Solicitudes</a></li>
             <li><a href="#pagos">Pagos</a></li>
+            <li><a href="#precios">Precios</a></li>
           </ul>
         </div>
 
@@ -3525,7 +3536,7 @@
       const intents = {
         greet: ['hola', 'buenos dias', 'buenas tardes'],
         request_service_info: ['servicio', 'información', 'que haces', 'ayuda', 'productos'],
-        request_quote: ['precio', 'costo', 'cuánto', 'presupuesto', 'tarifa', 'cotización', 'cotizar'],
+        request_quote: ['precio', 'costo', 'cuánto', 'presupuesto', 'tarifa', 'cotización', 'cotizar', 'planes', 'paquetes', 'tienda online', 'chatbot'],
         request_payment: ['pagar', 'pago', 'métodos de pago', 'cómo pago', 'cuenta bancaria', 'transferencia'],
         request_contact: ['redes', 'social', 'síguelos', 'facebook', 'instagram', 'tiktok', 'seguir', 'contacto', 'llamar', 'email', 'correo'],
         request_examples: ['ejemplos', 'portfolio', 'trabajos', 'proyectos anteriores', 'muestra'],
@@ -3959,6 +3970,57 @@
             { text: "Ver certificaciones", url: "https://certificaciones1.netlify.app/" },
             { text: "Volver al inicio", key: "saludo" }
           ]
+        },
+        precios_menu: {
+            message: "¡Por supuesto! Para darte la información más precisa, por favor dime sobre qué servicio te gustaría saber el costo.",
+            options: [
+                { text: "Página Web One Page", key: "precio_web_one_page" },
+                { text: "Web Empresarial", key: "precio_web_empresarial" },
+                { text: "Tienda Online", key: "precio_tienda" },
+                { text: "App Web (PWA)", key: "precio_pwa" },
+                { text: "Chatbot Básico", key: "precio_chatbot_basico" },
+                { text: "Chatbot Avanzado", key: "precio_chatbot_avanzado" },
+                { text: "Seguridad Web", key: "precio_seguridad" },
+                { text: "Hosting y Mantenimiento", key: "precio_hosting" },
+                { text: "Paquetes Recomendados", key: "precios_paquetes" },
+                { text: "Volver al inicio", key: "saludo" }
+            ]
+        },
+        precio_web_one_page: {
+            message: "Una <strong>Página Web One Page Profesional</strong> tiene un costo de 💰 $2,000 a $3,000 MXN. Es ideal para emprendedores y marcas que buscan una presencia digital moderna y efectiva. Incluye diseño responsivo, secciones estratégicas, integración con redes sociales y formulario de contacto.",
+            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+        },
+        precio_web_empresarial: {
+            message: "Una <strong>Página Web Empresarial Premium</strong> cuesta entre 💰 $2,500 y $3,500 MXN. Es un sitio corporativo profesional enfocado en posicionamiento y ventas, con múltiples secciones, SEO básico y copywriting persuasivo.",
+            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+        },
+        precio_tienda: {
+            message: "Una <strong>Tienda Online Básica</strong> tiene un precio de 💰 $2,500 a $3,000 MXN. Es la solución perfecta para empezar a vender en línea, con catálogo de productos, carrito de compras, integración de pagos y WhatsApp.",
+            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+        },
+        precio_pwa: {
+            message: "Una <strong>App Web Android (PWA)</strong> tiene un costo de 💰 $2,800 a $3,700 MXN. Es una app instalable que ofrece acceso directo desde el celular, con carga rápida y funcionamiento sin conexión.",
+            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+        },
+        precio_chatbot_basico: {
+            message: "Un <strong>Chatbot Web Básico</strong> cuesta entre 💰 $500 y $800 MXN. Es ideal para automatizar respuestas a preguntas frecuentes con un flujo de conversación predefinido.",
+            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+        },
+        precio_chatbot_avanzado: {
+            message: "Un <strong>Chatbot Avanzado</strong> tiene un precio de 💰 $800 a $1,200 MXN. Incluye menús interactivos, múltiples flujos de conversación e integración con WhatsApp o correo electrónico.",
+            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+        },
+        precio_seguridad: {
+            message: "El servicio de <strong>Seguridad Web Básica</strong> cuesta entre 💰 $2,800 y $3,800 MXN. Incluye un diagnóstico de seguridad, un reporte de vulnerabilidades y la implementación de configuraciones esenciales para proteger tu sitio.",
+            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+        },
+        precio_hosting: {
+            message: "Nuestro servicio de <strong>Hosting y Mantenimiento</strong> tiene un costo de 💰 $1,200 a $2,000 MXN. Asegura que tu sitio esté siempre en línea, optimizado, seguro y con respaldos periódicos.",
+            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+        },
+        precios_paquetes: {
+            message: "¡Claro! Aquí tienes nuestros paquetes recomendados:<br><br><strong>📦 Web + Chatbot Básico:</strong> $3,000 - $3,800 MXN<br><strong>📦 Web + App + Chatbot:</strong> $5,300 - $7,500 MXN<br><br>Todos nuestros planes incluyen hosting y dominio gratis. ✅",
+            options: [{ text: "Ver precios individuales", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
         }
       };
       const getProactiveSuggestion = () => {
@@ -4075,7 +4137,7 @@
                     responseKey = 'payment_info';
                     break;
                   case 'request_quote':
-                    responseKey = 'presupuesto';
+                    responseKey = 'precios_menu';
                     break;
                   case 'request_contact':
                     responseKey = 'contacto';
@@ -4181,6 +4243,12 @@
             if (url) {
               window.open(url, '_blank');
               handleInput(`He seleccionado: ${text}`);
+            } else if (key === 'go_to_precios') {
+                const preciosSection = document.getElementById('precios');
+                if (preciosSection) {
+                    preciosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                toggleChatbot();
             } else if (key === 'go_to_pagos') {
               const pagosSection = document.getElementById('pagos');
               if (pagosSection) {
