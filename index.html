@@ -489,7 +489,6 @@
     .hero h1,
     .hero p {
       transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-      transform: translateY(120%);
     }
 
     .text-reveal-container.visible h1,
@@ -2900,7 +2899,7 @@
   </header>
       <h2 class="section-title">Planes y Precios</h2>
       <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem; position: relative; z-index: 2;">
-        En Az InnovationX, creemos en la transparencia y en ofrecer soluciones que se adapten a tus necesidades y presupuesto. Nuestros planes están diseñados para proporcionar el máximo valor, combinando tecnología de punta con un enfoque estratégico para asegurar que tu inversión impulse tu crecimiento. Explora nuestras opciones o contáctanos para un paquete a tu medida.
+        En Az InnovationX, diseñamos soluciones personalizadas que impulsan tu crecimiento. Contáctanos para el plan ideal.
       </p>
       <div style="text-align: center;">
         <a href="https://precios1.netlify.app/" target="_blank" class="cta-button">Ver Paquetes Detallados</a>
@@ -2916,7 +2915,7 @@
       <div class="floating-element" data-parallax-speed="1">💻</div>
       <div class="hero-content">
         <div class="text-reveal-container">
-          <h1 data-parallax-speed="2">Donde las Ideas Cobran Vida</h1>
+          <h1>Donde las Ideas Cobran Vida</h1>
         </div>
         <div class="text-reveal-container">
           <p data-parallax-speed="-1">Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas</p>
@@ -3403,14 +3402,6 @@
       }
       type();
     }
-    // Initialize typing effect after page load
-    window.addEventListener('load', () => {
-      const heroTitle = document.querySelector('.hero h1');
-      const originalText = heroTitle.textContent;
-      setTimeout(() => {
-        typeWriter(heroTitle, originalText, 100);
-      }, 1000);
-    });
     // Add floating animation to service icons
     document.querySelectorAll('.service-icon').forEach((icon, index) => {
       icon.style.animationDelay = `${index * 0.2}s`;
