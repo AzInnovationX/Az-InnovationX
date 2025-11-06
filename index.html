@@ -303,6 +303,35 @@
       transform: rotate(45deg) translate(-4px, -5px);
     }
 
+        /* Precios Section */
+    #precios {
+      position: relative;
+      background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      padding: 6rem 0;
+      text-align: center;
+    }
+
+    #precios::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(10, 15, 30, 0.95) 0%, rgba(26, 26, 46, 0.85) 100%);
+      animation: float 20s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    #precios .container {
+        position: relative;
+        z-index: 2;
+    }
+
     /* Hero Section mejorado */
     .hero {
       min-height: 100vh;
@@ -2897,16 +2926,7 @@
       </div>
     </nav>
   </header>
-      <h2 class="section-title">Planes y Precios</h2>
-      <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem; position: relative; z-index: 2;">
-        En Az InnovationX, diseñamos soluciones personalizadas que impulsan tu crecimiento. Contáctanos para el plan ideal.
-      </p>
-      <div style="text-align: center;">
-        <a href="https://precios1.netlify.app/" target="_blank" class="cta-button">Ver Paquetes Detallados</a>
-      </div>
-    </section>
 <main>
-  <main>
     <section id="inicio" class="hero">
       <canvas id="particle-canvas" style="position: absolute; top: 0; left: 0; z-index: 1;"></canvas>
       <div id="custom-cursor" class="custom-cursor"></div>
@@ -3094,7 +3114,17 @@
 
       </div>
     </section>
-    <section id="precios" class="container">
+        <section id="precios">
+      <div class="container">
+        <h2 class="section-title">Planes y Precios</h2>
+        <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem;">
+          En Az InnovationX, diseñamos soluciones personalizadas que impulsan tu crecimiento. Contáctanos para el plan ideal.
+        </p>
+        <div style="text-align: center;">
+          <a href="https://precios1.netlify.app/" target="_blank" class="cta-button">Ver Paquetes Detallados</a>
+        </div>
+      </div>
+    </section>
   
 </main>
 <div class="contact-map-section">
