@@ -2564,6 +2564,306 @@
       box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
     }
 
+/* Sección de Mapa y Contacto */
+.contact-map-section {
+  background: #0a0f1e;
+  position: relative;
+  padding: 5rem 0;
+  border-top: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.contact-map-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 15, 30, 0.92);
+  z-index: 1;
+}
+
+.map-contact-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.map-container {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.map-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(255, 107, 53, 0.3);
+}
+
+.map-overlay-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+.view-larger-map {
+  background: linear-gradient(45deg, #FF6B35, #F7931E);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+  transition: all 0.3s ease;
+}
+
+.view-larger-map:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+}
+
+.contact-info-corporate {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.contact-title {
+  color: #FF6B35;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 10px rgba(255, 107, 53, 0.4);
+}
+
+.contact-item-corporate {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-item-corporate:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.contact-icon-wrapper {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(45deg, #FF6B35, #F7931E);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.contact-icon-wrapper svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+.contact-details h4 {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.contact-details p {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+}
+
+.contact-details a {
+  color: #FF6B35;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+  color: #FFD700;
+  text-decoration: underline;
+}
+
+.badge-attention {
+  display: inline-block;
+  background: rgba(255, 107, 53, 0.2);
+  border: 1px solid #FF6B35;
+  color: #FF6B35;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .map-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .map-container iframe {
+    height: 300px;
+  }
+}
+
+/* Footer Corporativo Completo */
+.site-footer {
+  background: #0a0f1e;
+  position: relative;
+  padding: 4rem 0 2rem;
+  border-top: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 15, 30, 0.92);
+  z-index: 1;
+}
+
+.footer-main-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-column h4 {
+  color: #FF6B35;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-trust-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+}
+
+.trust-badge::before {
+  content: '✓';
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.footer-bottom-corporate {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 2rem;
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.footer-legal-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+
+.footer-legal-links a:hover {
+  color: #FF6B35;
+}
+
+.payment-methods-footer {
+  text-align: right;
+}
+
+.payment-methods-footer p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.5rem;
+}
+
+.payment-icons {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.payment-icons img {
+  height: 24px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.payment-icons img:hover {
+  opacity: 1;
+}
+
+@media (max-width: 1024px) {
+  .footer-main-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-main-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-bottom-corporate {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .payment-methods-footer {
+    text-align: center;
+  }
+
+  .payment-icons {
+    justify-content: center;
+  }
+}
 </style>
 </head>
 
@@ -2598,6 +2898,15 @@
       </div>
     </nav>
   </header>
+      <h2 class="section-title">Planes y Precios</h2>
+      <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem; position: relative; z-index: 2;">
+        En Az InnovationX, creemos en la transparencia y en ofrecer soluciones que se adapten a tus necesidades y presupuesto. Nuestros planes están diseñados para proporcionar el máximo valor, combinando tecnología de punta con un enfoque estratégico para asegurar que tu inversión impulse tu crecimiento. Explora nuestras opciones o contáctanos para un paquete a tu medida.
+      </p>
+      <div style="text-align: center;">
+        <a href="https://precios1.netlify.app/" target="_blank" class="cta-button">Ver Paquetes Detallados</a>
+      </div>
+    </section>
+<main>
   <main>
     <section id="inicio" class="hero">
       <canvas id="particle-canvas" style="position: absolute; top: 0; left: 0; z-index: 1;"></canvas>
@@ -2786,86 +3095,168 @@
 
       </div>
     </section>
-  </main>
     <section id="precios" class="container">
-      <h2 class="section-title">Planes y Precios</h2>
-      <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem; position: relative; z-index: 2;">
-        En Az InnovationX, creemos en la transparencia y en ofrecer soluciones que se adapten a tus necesidades y presupuesto. Nuestros planes están diseñados para proporcionar el máximo valor, combinando tecnología de punta con un enfoque estratégico para asegurar que tu inversión impulse tu crecimiento. Explora nuestras opciones o contáctanos para un paquete a tu medida.
-      </p>
-      <div style="text-align: center;">
-        <a href="https://precios1.netlify.app/" target="_blank" class="cta-button">Ver Paquetes Detallados</a>
-      </div>
-    </section>
-  <footer id="contacto" class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        
-        <div class="footer-column about-column">
-          <a href="#inicio" class="logo">
-            <img src="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" alt="Az InnovationX Logo" class="footer-logo">
+
+</main>
+<div class="contact-map-section">
+  <div class="container">
+    <div class="map-contact-grid">
+      <!-- Mapa -->
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.8!2d-99.2844!3d19.3849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x25dc95805110aacf%3A0xe76147925d075a85!2sAz%20InnovationX!5e0!3m2!1ses!2smx!4v1234567890!5m2!1ses!2smx"
+          width="100%"
+          height="400"
+          style="border:0; border-radius: 20px;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación de Az InnovationX">
+        </iframe>
+        <div class="map-overlay-badge">
+          <a href="https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A" target="_blank" class="view-larger-map">
+            📍 Ver en Google Maps
           </a>
-          <p class="footer-tagline">Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas.</p>
         </div>
+      </div>
 
-        <div class="footer-column links-column">
-          <h4 class="footer-column-title">Navegación</h4>
-          <ul class="footer-links">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#pasos">Proceso</a></li>
-            <li><a href="#nosotros">Nosotros</a></li>
-            <li><a href="#certificaciones">Certificaciones</a></li>
-            <li><a href="#pagos">Pagos</a></li>
-            <li><a href="#precios">Precios</a></li>
-          </ul>
-        </div>
+      <!-- Información de Contacto -->
+      <div class="contact-info-corporate">
+        <h3 class="contact-title">Información de Contacto</h3>
 
-        <div class="footer-column links-column">
-          <h4 class="footer-column-title">Nuestros Sitios</h4>
-          <ul class="footer-links">
-            <li><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" target="_blank">Aplicaciones</a></li>
-            <li><a href="https://azinnovationx.blogspot.com/" target="_blank">Blog de Innovación</a></li>
-            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header" target="_blank">Suscríbete</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-column social-column">
-          <h4 class="footer-column-title">Síguenos</h4>
-          <div class="social-icons">
-            <a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank" aria-label="Facebook">
-                <img src="https://i.ibb.co/r2FCqXxN/facebook-fb.gif" alt="Facebook" width="32" height="32">
-            </a>
-            <a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank" aria-label="Instagram">
-                <img src="https://i.ibb.co/svGfRtTx/200.gif" alt="Instagram" width="32" height="32">
-            </a>
-            <a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank" aria-label="TikTok">
-                <img src="https://i.ibb.co/ynv3hw6X/tiktok-logo-logo.gif" alt="TikTok" width="32" height="32">
+        <div class="contact-item-corporate">
+          <div class="contact-icon-wrapper" style="font-size: 24px;">
+            📍
+          </div>
+          <div class="contact-details">
+            <h4>Ubicación</h4>
+            <p>Az InnovationX</p>
+            <p>Estado de México, Huixquilucan</p>
+            <a href="https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A" target="_blank">
+              ¡Déjanos un comentario! ⭐
             </a>
           </div>
         </div>
 
-      </div>
-      
-      <div class="footer-bottom">
-        <p class="copyright">© 2025 Az InnovationX. Todos los derechos reservados.</p>
-        <div class="footer-contact-methods">
-            <a href="https://wa.me/5620042412" target="_blank" class="contact-method-item">
-              <img src="https://i.ibb.co/SwgNWSq9/original-066b89ce2612739aebadd816e797b32a.gif" alt="whatsapp-logo" width="24" height="24">
-              <span>WhatsApp</span>
-            </a>
-            <a href="mailto:soporteseguro98@gmail.com" id="email-link" data-email="soporteseguro98@gmail.com" class="contact-method-item">
-              <img src="https://i.ibb.co/84Gqk08v/original-3d4c8096fc3407c582fe2d051d3e5552.gif" alt="gmail-logo" width="24" height="24">
-              <span>Correo Electrónico</span>
-            </a>
-            <a href="https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A" target="_blank" class="contact-method-item">
-              <img src="https://i.ibb.co/20rk66Mb/original-4bb3252c384129a3c31eee02cd1dde24.gif" alt="ubicacion-logo" width="24" height="24">
-              <span>Ubicación</span>
-            </a>
+        <div class="contact-item-corporate">
+          <div class="contact-icon-wrapper" style="font-size: 24px;">
+            📱
+          </div>
+          <div class="contact-details">
+            <h4>WhatsApp</h4>
+            <a href="https://wa.me/5620042412">+52 56 2004 2412</a>
+            <p>¡Escríbenos ahora!</p>
+          </div>
+        </div>
+
+        <div class="contact-item-corporate">
+          <div class="contact-icon-wrapper" style="font-size: 24px;">
+            📧
+          </div>
+          <div class="contact-details">
+            <h4>Email</h4>
+            <a href="mailto:soporteseguro98@gmail.com">soporteseguro98@gmail.com</a>
+            <p>Respuesta en 24 horas</p>
+          </div>
+        </div>
+
+        <div class="contact-item-corporate">
+          <div class="contact-icon-wrapper" style="font-size: 24px;">
+            🕒
+          </div>
+          <div class="contact-details">
+            <h4>Horario de Atención</h4>
+            <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+            <p>Sábados: 10:00 AM - 2:00 PM</p>
+            <span class="badge-attention">Atención Personalizada</span>
+          </div>
         </div>
       </div>
-
     </div>
-  </footer>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main-grid">
+      <!-- Columna 1: Acerca de Az InnovationX -->
+      <div class="footer-column">
+        <img src="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" alt="Az InnovationX Logo" style="height: 50px;">
+        <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Innovación tecnológica que impulsa tu crecimiento digital. Soluciones empresariales con calidad certificada y soporte garantizado.</p>
+        <div class="footer-trust-badges">
+          <div class="trust-badge">✓ +50 Proyectos Completados</div>
+          <div class="trust-badge">✓ Certificaciones Verificadas</div>
+          <div class="trust-badge">✓ Soporte 24/7</div>
+        </div>
+      </div>
+      <!-- Columna 2: Navegación Rápida -->
+      <div class="footer-column">
+        <h4>Navegación</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li style="margin-bottom: 0.8rem;"><a href="#inicio" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Inicio</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#servicios" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Servicios</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#pasos" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Proceso</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#nosotros" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Nosotros</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#certificaciones" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Certificaciones</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Solicitudes</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#pagos" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Pagos</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#precios" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Precios</a></li>
+        </ul>
+      </div>
+      <!-- Columna 3: Recursos y Herramientas -->
+      <div class="footer-column">
+        <h4>Recursos</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li style="margin-bottom: 0.8rem;"><a href="#" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">📱 Aplicaciones</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">📝 Blog de Innovación</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">📧 Suscríbete al Newsletter</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">🎓 Certificaciones</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">❓ Preguntas Frecuentes (FAQ)</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">💼 Casos de Éxito</a></li>
+        </ul>
+      </div>
+      <!-- Columna 4: Comunidad y Redes -->
+      <div class="footer-column">
+        <h4>Síguenos</h4>
+        <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Únete a nuestra comunidad digital</p>
+        <div class="social-icons" style="display: flex; gap: 1rem; margin-top: 1rem;">
+          <a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank"><img src="https://i.ibb.co/r2FCqXxN/facebook-fb.gif" alt="Facebook" style="width: 32px; height: 32px;"/></a>
+          <a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank"><img src="https://i.ibb.co/svGfRtTx/200.gif" alt="Instagram" style="width: 32px; height: 32px;"/></a>
+          <a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank"><img src="https://i.ibb.co/ynv3hw6X/tiktok-logo-logo.gif" alt="TikTok" style="width: 32px; height: 32px;"/></a>
+        </div>
+        <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Más de 1,000 seguidores nos respaldan</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom-corporate">
+      <!-- Lado Izquierdo -->
+      <div style="text-align: left;">
+        <p style="margin: 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.7);">© 2025 Az InnovationX. Todos los derechos reservados.</p>
+        <p style="margin: 0.3rem 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.7);">Soluciones Tecnológicas Empresariales</p>
+        <span style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">Empresa Mexicana 🇲🇽</span>
+      </div>
+      <!-- Centro -->
+      <div class="footer-legal-links">
+        <a href="#">Términos y Condiciones</a>
+        <span>&nbsp;|&nbsp;</span>
+        <a href="#">Política de Privacidad</a>
+        <span>&nbsp;|&nbsp;</span>
+        <a href="#">Aviso Legal</a>
+      </div>
+      <!-- Lado Derecho -->
+      <div class="payment-methods-footer">
+        <p>Métodos de pago seguros</p>
+        <div class="payment-icons">
+          <img src="https://i.ibb.co/QfCby2V/paypal-logo-white.png" alt="PayPal" style="height: 24px;">
+          <img src="https://i.ibb.co/28S4nqD/clip-logo-white.png" alt="Clip" style="height: 24px;">
+          <img src="https://i.ibb.co/wRj5P0v/visa-logo-white.png" alt="Visa" style="height: 24px;">
+          <img src="https://i.ibb.co/2Kjx9tY/mastercard-logo-white.png" alt="Mastercard" style="height: 24px;">
+        </div>
+        <span style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">🔒 Pagos Certificados</span>
+      </div>
+    </div>
+  </div>
+</footer>
   <!-- Chatbot HTML Structure -->
   <div id="chatbot-container">
     <div id="chatbot-window">
