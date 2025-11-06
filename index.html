@@ -155,7 +155,7 @@
     }
 
     /* Importar fuente profesional */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');display=swap'); */
 
     * {
       margin: 0;
@@ -1550,6 +1550,33 @@
       color: white;
     }
 
+    #contact-button {
+      width: 55px;
+      height: 55px;
+      background: linear-gradient(45deg, #FF6B35, #F7931E);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+      transition: all 0.3s ease;
+      border: none;
+      animation: pulse-animation 2s infinite;
+      margin-bottom: 15px; /* Spacing between buttons */
+      text-decoration: none; /* Remove underline from link */
+    }
+
+    #contact-button:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 8px 25px rgba(255, 107, 53, 0.8);
+    }
+
+    #contact-button .icon-contact {
+      font-size: 24px;
+      color: white;
+    }
+
     #chatbot-window {
       width: 90vw;
       max-width: 400px;
@@ -2933,6 +2960,9 @@
         </button>
       </form>
     </div>
+    <a href="https://contactosoli.netlify.app/" target="_blank" id="contact-button" class="floating-button">
+      <span class="icon-contact">✉️</span>
+    </a>
     <button id="chatbot-toggle">
       <span class="icon-open">🤖</span>
       <span class="icon-close">✕</span>
