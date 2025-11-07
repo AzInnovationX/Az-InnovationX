@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" href="/favicon-512.png" sizes="512x512" />
   <link rel="apple-touch-icon" href="/favicon-512.png" />
   <style>
-    /* --- Welcome Modal: "Día de Muertos" Theme --- */
+    /* --- Welcome Modal: "Buen Fin" Theme --- */
     .welcome-modal-overlay {
       position: fixed;
       top: 0;
@@ -60,27 +60,60 @@
     }
 
     .welcome-icon {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
       font-size: 3.5rem;
       margin-bottom: 1rem;
       line-height: 1;
       animation: icon-pulse-dm 4s ease-in-out infinite;
     }
+    
+    .welcome-svg-icon {
+      width: 48px;
+      height: 48px;
+      stroke: #FF6B35;
+    }
 
     #welcome-greeting {
       font-size: 2.2rem;
       font-weight: 800;
-      background: linear-gradient(45deg, #FFD700, #FF6B35, #F7931E);
+      background: linear-gradient(45deg, #e0e0e0, #ffffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 0.5rem;
-      text-shadow: 0 0 8px rgba(255, 107, 53, 0.7), 0 0 20px rgba(255, 165, 0, 0.5);
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
     }
-
+    
     .welcome-modal-content p {
       color: #ffffff;
       opacity: 0.9;
       font-weight: 500;
+    }
+    
+    .buen-fin-promo {
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      animation: pulse-promo-dm 2s infinite;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    @keyframes pulse-promo-dm {
+      0% {
+        transform: scale(1);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+      }
+      50% {
+        transform: scale(1.03);
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+      }
+      100% {
+        transform: scale(1);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+      }
     }
 
     @keyframes fadeIn-dm {
@@ -2900,6 +2933,7 @@
     <div class="welcome-modal-content">
       <div id="welcome-icon" class="welcome-icon"></div>
       <h2 id="welcome-greeting"></h2>
+      <p class="buen-fin-promo">¡Aprovecha el Buen Fin del 13 al 17 de noviembre! Disfruta un 15 % de descuento en todos nuestros servicios.</p>
       <p>Bienvenido a Az InnovationX</p>
     </div>
   </div>
@@ -4737,21 +4771,23 @@
       const greetingEl = document.getElementById('welcome-greeting');
       const iconEl = document.getElementById('welcome-icon');
       if (modal && greetingEl && iconEl) {
-        const currentHour = new Date().getHours();
-        let greeting = '';
-        let icon = '';
-        if (currentHour >= 5 && currentHour < 12) {
+        const hour = new Date().getHours();
+        let greeting = 'Bienvenido a la Innovación';
+        if (hour < 12) {
           greeting = 'Buenos Días';
-          icon = '🌺'; // Cempasúchil
-        } else if (currentHour >= 12 && currentHour < 20) {
+        } else if (hour < 19) {
           greeting = 'Buenas Tardes';
-          icon = '🏵️'; // Flor decorativa
         } else {
           greeting = 'Buenas Noches';
-          icon = '💀'; // Calavera
         }
         greetingEl.textContent = greeting;
-        iconEl.textContent = icon;
+
+        iconEl.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="welcome-svg-icon"><rect width="18" height="18" x="3" y="3" rx="2" /><path d="M11 9h4a2 2 0 0 0 2-2V3" /><circle cx="9" cy="9" r="2" /><path d="M7 21v-4a2 2 0 0 1 2-2h4" /><circle cx="15" cy="15" r="2" /></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="welcome-svg-icon"><path d="M12 20v2" /><path d="M12 2v2" /><path d="M17 20v2" /><path d="M17 2v2" /><path d="M2 12h2" /><path d="M2 17h2" /><path d="M2 7h2" /><path d="M20 12h2" /><path d="M20 17h2" /><path d="M20 7h2" /><path d="M7 20v2" /><path d="M7 2v2" /><rect x="4" y="4" width="16" height="16" rx="2" /><rect x="8" y="8" width="8" height="8" rx="1" /></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="welcome-svg-icon"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" /><path d="M9 13a4.5 4.5 0 0 0 3-4" /><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5" /><path d="M3.477 10.896a4 4 0 0 1 .585-.396" /><path d="M6 18a4 4 0 0 1-1.967-.516" /><path d="M12 13h4" /><path d="M12 18h6a2 2 0 0 1 2 2v1" /><path d="M12 8h8" /><path d="M16 8V5a2 2 0 0 1 2-2" /><circle cx="16" cy="13" r=".5" /><circle cx="18" cy="3" r=".5" /><circle cx="20" cy="21" r=".5" /><circle cx="20" cy="8" r=".5" /></svg>
+        `;
+
         modal.style.display = 'flex';
         setTimeout(() => {
           modal.style.animation = 'fadeOut 0.5s ease-out forwards';
