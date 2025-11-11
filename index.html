@@ -1,4813 +1,1557 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
+
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="google-site-verification" content="google10ce5c892887ce34.html" />
+
   <meta name="google-site-verification" content="dgEYbDRoIIdq6e_mAuLH1Ml50FbCnmeBexSEbU4Tu04" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
   <title>Az InnovationX - Donde las Ideas Cobran Vida</title>
+
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+
   <link rel="icon" type="image/png" href="/favicon-512.png" sizes="512x512" />
+
   <link rel="apple-touch-icon" href="/favicon-512.png" />
+
   <style>
+
     /* --- Welcome Modal: "Buen Fin" Theme --- */
+
     .welcome-modal-overlay {
+
       position: fixed;
+
       top: 0;
+
       left: 0;
+
       width: 100%;
+
       height: 100%;
+
       background: rgba(10, 10, 10, 0.7);
+
       backdrop-filter: blur(10px) saturate(120%);
+
       -webkit-backdrop-filter: blur(10px) saturate(120%);
+
       z-index: 10005;
+
       display: none;
+
       align-items: center;
+
       justify-content: center;
+
       animation: fadeIn-dm 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+
     }
+
+
 
     .welcome-modal-content {
+
       font-family: 'Inter', sans-serif;
+
       background: linear-gradient(145deg, #1a1a1a, #2c1d3e);
+
       padding: 2.5rem 3.5rem;
+
       border-radius: 25px;
+
       text-align: center;
+
       border: 1px solid #FF6B35;
+
       position: relative;
+
       overflow: hidden;
+
       transform: scale(0.8);
+
       opacity: 0;
+
       animation: scaleIn-dm-bounce 0.6s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, pulsating-glow-dm 4s 1s ease-in-out infinite;
+
     }
+
+
 
     .welcome-modal-content::before {
+
       content: '';
+
       position: absolute;
+
       top: -1px;
+
       left: 0;
+
       width: 100%;
+
       height: 20px;
+
       background-image:
+
         radial-gradient(circle at 10px -5px, transparent 12px, #FF6B35 13px, #FF6B35 13px, transparent 14px),
+
         radial-gradient(circle at 35px 15px, transparent 12px, #FFC107 13px, #FFC107 13px, transparent 14px),
+
         radial-gradient(circle at 60px -5px, transparent 12px, #7B2CBF 13px, #7B2CBF 13px, transparent 14px),
+
         radial-gradient(circle at 85px 15px, transparent 12px, #FF6B35 13px, #FF6B35 13px, transparent 14px);
+
       background-size: 100px 30px;
+
       background-repeat: repeat-x;
+
       opacity: 0.9;
+
     }
+
+
 
     .welcome-icon {
+
       display: flex;
+
       justify-content: center;
+
       gap: 1rem;
+
       font-size: 3.5rem;
+
       margin-bottom: 1rem;
+
       line-height: 1;
+
       animation: icon-pulse-dm 4s ease-in-out infinite;
+
     }
+
     
+
     .welcome-svg-icon {
+
       width: 48px;
+
       height: 48px;
+
       stroke: #FF6B35;
+
     }
+
+
 
     #welcome-greeting {
+
       font-size: 2.2rem;
+
       font-weight: 800;
+
       background: linear-gradient(45deg, #e0e0e0, #ffffff);
+
       -webkit-background-clip: text;
+
       -webkit-text-fill-color: transparent;
+
       background-clip: text;
+
       margin-bottom: 0.5rem;
+
       text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+
     }
+
     
+
     .welcome-modal-content p {
+
       color: #ffffff;
+
       opacity: 0.9;
+
       font-weight: 500;
+
     }
+
     
+
     .buen-fin-promo {
+
       color: #ffffff;
+
       font-weight: 800;
+
       font-size: 1.1rem;
+
       margin-bottom: 1rem;
+
       animation: pulse-promo-dm 2s infinite;
+
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+
     }
+
+
 
     @keyframes pulse-promo-dm {
+
       0% {
+
         transform: scale(1);
+
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+
       }
+
       50% {
+
         transform: scale(1.03);
+
         text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+
       }
+
       100% {
+
         transform: scale(1);
+
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+
       }
+
     }
+
+
 
     @keyframes fadeIn-dm {
+
       from {
+
         opacity: 0;
+
         backdrop-filter: blur(0) saturate(100%);
+
       }
 
+
+
       to {
+
         opacity: 1;
+
         backdrop-filter: blur(10px) saturate(120%);
+
       }
+
     }
+
+
 
     @keyframes fadeOut {
+
       from {
+
         opacity: 1;
+
       }
+
+
 
       to {
+
         opacity: 0;
+
       }
+
     }
+
+
 
     @keyframes scaleIn-dm-bounce {
+
       0% {
+
         transform: scale(0.8);
+
         opacity: 0;
+
       }
+
+
 
       60% {
+
         transform: scale(1.05);
+
         opacity: 1;
+
       }
+
+
 
       80% {
+
         transform: scale(0.95);
+
       }
 
+
+
       100% {
+
         transform: scale(1);
+
         opacity: 1;
+
       }
+
     }
+
+
 
     @keyframes pulsating-glow-dm {
+
       0% {
+
         box-shadow: 0 0 25px rgba(255, 107, 53, 0.5), 0 0 50px rgba(93, 46, 140, 0.4), inset 0 0 15px rgba(255, 165, 0, 0.2);
+
       }
+
+
 
       50% {
+
         box-shadow: 0 0 35px rgba(255, 107, 53, 0.8), 0 0 60px rgba(93, 46, 140, 0.6), inset 0 0 20px rgba(255, 165, 0, 0.4);
+
       }
 
+
+
       100% {
+
         box-shadow: 0 0 25px rgba(255, 107, 53, 0.5), 0 0 50px rgba(93, 46, 140, 0.4), inset 0 0 15px rgba(255, 165, 0, 0.2);
+
       }
+
     }
+
+
 
     @keyframes icon-pulse-dm {
 
+
+
       0%,
+
       100% {
+
         transform: scale(1);
+
         filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.8));
+
       }
+
+
 
       50% {
+
         transform: scale(1.1);
+
         filter: drop-shadow(0 0 18px rgba(255, 165, 0, 1));
+
       }
+
     }
+
+
 
     /* Importar fuente profesional */
+
     /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');display=swap'); */
 
+
+
     * {
+
       margin: 0;
+
       padding: 0;
+
       box-sizing: border-box;
+
       -webkit-tap-highlight-color: transparent;
+
     }
+
+
 
     body {
+
       font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
       line-height: 1.7;
+
       /* Mejorado para legibilidad */
+
       color: #ffffff;
+
       background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #2c1d3e 100%);
+
       overflow-x: hidden;
+
       letter-spacing: 0.01em;
+
       min-height: 100vh;
+
       font-size: 16px;
+
       /* Base para rem */
+
     }
+
+
 
     .container {
+
       max-width: 1280px;
+
       /* Estándar profesional */
+
       margin: 0 auto;
+
       padding: 0 2rem;
+
       /* 32px */
+
     }
+
+
 
     /* Header mejorado */
+
     header {
+
       background: rgba(10, 15, 30, 0.98);
+
       backdrop-filter: blur(10px);
+
       position: fixed;
+
       width: 100%;
+
       top: 0;
+
       z-index: 1000;
+
       transition: all 0.3s ease;
+
       border-bottom: 1px solid rgba(255, 107, 53, 0.3);
+
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
     }
+
+
 
     nav {
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       padding: 1rem 0;
+
     }
+
+
 
     .logo {
+
       display: flex;
+
       align-items: center;
+
       filter: drop-shadow(0 2px 8px rgba(255, 107, 53, 0.3));
+
       transition: transform 0.3s ease, filter 0.3s ease;
+
     }
+
+
 
     .logo:hover {
+
       transform: scale(1.05);
+
       filter: drop-shadow(0 4px 12px rgba(255, 107, 53, 0.5));
+
     }
+
+
 
     .nav-links {
+
       display: none;
+
       /* Hidden by default */
+
       flex-direction: column;
+
       position: absolute;
+
       top: 100%;
+
       left: 0;
+
       width: 100%;
+
       background: linear-gradient(180deg, rgba(10, 15, 30, 0.98), rgba(26, 26, 46, 0.95));
+
       backdrop-filter: blur(20px);
+
       -webkit-backdrop-filter: blur(20px);
+
       padding: 1.5rem 0;
+
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
       gap: 0.8rem;
+
       list-style: none;
+
     }
+
+
 
     .nav-links.active {
+
       display: flex;
+
     }
+
+
 
     .nav-links.active li {
+
       margin: 0;
+
       text-align: center;
+
     }
+
+
 
     .nav-links a {
+
       color: #ffffff;
+
       text-decoration: none;
+
       transition: all 0.3s ease;
+
       position: relative;
+
       font-weight: 500;
+
       letter-spacing: 0.03em;
+
       text-transform: uppercase;
+
       font-size: 0.85rem;
+
       padding: 0.8rem 0;
+
     }
+
+
 
     .nav-links a:hover {
+
       color: #FF6B35;
+
     }
+
+
 
     .nav-links a::after {
+
       content: '';
+
       position: absolute;
+
       width: 0;
+
       height: 2px;
+
       bottom: -2px;
+
       left: 0;
+
       background: linear-gradient(45deg, #FFD700, #FF6B35);
+
       transition: width 0.3s ease;
+
     }
+
+
 
     .nav-links a:hover::after {
+
       width: 100%;
+
     }
+
+
 
     .mobile-menu {
+
       display: flex;
+
       flex-direction: column;
+
       cursor: pointer;
+
       z-index: 1001;
+
       padding: 5px;
+
     }
+
+
 
     .mobile-menu span {
+
       width: 24px;
+
       height: 3px;
+
       background: #ffffff;
+
       margin: 3px 0;
+
       transition: 0.3s;
+
       border-radius: 2px;
+
     }
+
+
 
     .mobile-menu.active span:nth-child(1) {
+
       transform: rotate(-45deg) translate(-4px, 5px);
+
     }
+
+
 
     .mobile-menu.active span:nth-child(2) {
+
       opacity: 0;
+
     }
+
+
 
     .mobile-menu.active span:nth-child(3) {
+
       transform: rotate(45deg) translate(-4px, -5px);
+
     }
+
+
 
         /* Precios Section */
+
     #precios {
+
       position: relative;
+
       background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png');
+
       background-size: cover;
+
       background-position: center;
+
       background-repeat: no-repeat;
+
       background-attachment: scroll;
+
       padding: 6rem 0;
+
       text-align: center;
+
     }
+
+
 
     #precios::before {
+
       content: '';
+
       position: absolute;
+
       top: 0;
+
       left: 0;
+
       right: 0;
+
       bottom: 0;
+
       background: linear-gradient(135deg, rgba(10, 15, 30, 0.95) 0%, rgba(26, 26, 46, 0.85) 100%);
+
       animation: float 20s ease-in-out infinite;
+
       z-index: 1;
+
     }
+
+
 
     #precios .container {
+
         position: relative;
+
         z-index: 2;
+
     }
+
+
 
     /* Hero Section mejorado */
+
     .hero {
+
       min-height: 100vh;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       text-align: center;
+
       position: relative;
+
       overflow: hidden;
+
       background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png');
+
       background-size: cover;
+
       background-position: center;
+
       background-repeat: no-repeat;
+
       background-attachment: scroll;
+
     }
 
+
+
     .hero::before {
+
       content: '';
+
       position: absolute;
+
       top: 0;
+
       left: 0;
+
       right: 0;
+
       bottom: 0;
+
       background: linear-gradient(135deg, rgba(10, 15, 30, 0.95) 0%, rgba(26, 26, 46, 0.85) 100%);
+
       animation: float 20s ease-in-out infinite;
+
     }
+
+
 
     @keyframes float {
 
+
+
       0%,
+
       100% {
+
         transform: translateY(0px) translateX(0px);
+
       }
+
+
 
       25% {
+
         transform: translateY(-15px) translateX(10px);
+
       }
 
+
+
       50% {
+
         transform: translateY(0px) translateX(-10px);
+
       }
+
+
 
       75% {
+
         transform: translateY(15px) translateX(5px);
+
       }
+
     }
+
+
 
     .hero-content {
+
       position: relative;
+
       z-index: 2;
+
       padding: 2rem 1rem;
+
     }
+
+
 
     .hero h1 {
+
       font-size: clamp(2rem, 8vw, 3.5rem);
+
       margin-bottom: 1rem;
+
       background: linear-gradient(45deg, #ffffff, #FFD700);
+
       -webkit-background-clip: text;
+
       -webkit-text-fill-color: transparent;
+
       background-clip: text;
+
       text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
       font-weight: 800;
+
       letter-spacing: -0.02em;
+
       line-height: 1.2;
+
     }
 
+
+
     .hero p {
+
       font-size: 1.1rem;
+
       margin-bottom: 2rem;
+
       opacity: 0.9;
+
       line-height: 1.5;
+
       padding: 0 1rem;
+
     }
+
+
 
     .video-container {
+
       position: relative;
+
       overflow: hidden;
+
       width: 100%;
+
       max-width: 560px;
+
       margin: 2rem auto 0;
+
       border-radius: 15px;
+
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
       transition: transform 0.4s ease;
+
       animation: pulse-glow-video-dm 3s ease-in-out infinite;
+
       border: 2px solid rgba(255, 107, 53, 0.4);
+
     }
+
+
 
     .video-container:hover {
+
       transform: scale(1.02);
+
     }
+
+
 
     .video-container::after {
+
       content: '';
+
       display: block;
+
       padding-bottom: 56.25%;
+
       /* 16:9 aspect ratio */
+
     }
+
+
 
     .video-container iframe {
+
       position: absolute;
+
       top: 0;
+
       left: 0;
+
       width: 100%;
+
       height: 100%;
+
       border-radius: 13px;
+
     }
+
+
 
     .cta-button {
+
       display: inline-block;
+
       padding: 14px 28px;
+
       background: linear-gradient(45deg, #FF6B35, #F7931E);
+
       color: white;
+
       text-decoration: none;
+
       border-radius: 50px;
+
       font-weight: 700;
+
       transition: all 0.3s ease;
+
       box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+
       animation: slideInUp 1s ease-out 0.6s both;
+
       position: relative;
+
       overflow: hidden;
+
       z-index: 1;
+
       letter-spacing: 0.04em;
+
       text-transform: uppercase;
+
       font-size: 0.85rem;
+
       margin-top: 2rem;
+
     }
+
+
 
     .cta-button:hover {
+
       transform: translateY(-3px);
+
       box-shadow: 0 12px 30px rgba(255, 107, 53, 0.7);
+
     }
+
+
 
     .cta-button::before {
+
       content: '';
+
       position: absolute;
+
       top: 0;
+
       left: -100%;
+
       width: 100%;
+
       height: 100%;
+
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+
       transition: left 0.5s;
+
       z-index: -1;
+
     }
+
+
 
     .cta-button:hover::before {
+
       left: 100%;
+
     }
+
+
 
     @keyframes slideInUp {
+
       from {
+
         opacity: 0;
+
         transform: translateY(40px);
+
       }
+
+
 
       to {
+
         opacity: 1;
+
         transform: translateY(0);
+
       }
+
     }
+
+
 
     .custom-cursor {
+
       width: 20px;
+
       height: 20px;
+
       border: 2px solid rgba(255, 107, 53, 0.8);
+
       background: rgba(255, 107, 53, 0.1);
+
       border-radius: 50%;
+
       position: fixed;
+
       transform: translate(-50%, -50%);
+
       pointer-events: none;
+
       z-index: 9999;
+
       transition: transform 0.1s ease-out, background-color 0.2s ease, width 0.2s ease, height 0.2s ease;
+
       box-shadow: 0 0 15px rgba(255, 107, 53, 0.6);
+
     }
+
+
 
     .custom-cursor.hover {
+
       transform: translate(-50%, -50%) scale(1.5);
+
       background: rgba(255, 107, 53, 0.3);
+
     }
+
+
 
     .text-reveal-container {
+
       overflow: hidden;
+
     }
+
+
 
     .hero h1,
+
     .hero p {
+
       transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+
     }
+
+
 
     .text-reveal-container.visible h1,
+
     .text-reveal-container.visible p {
+
       transform: translateY(0);
+
     }
+
+
 
     @keyframes pulse-glow-video-dm {
+
       0% {
+
         box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+
       }
+
+
 
       50% {
+
         box-shadow: 0 0 40px rgba(255, 107, 53, 0.7);
+
       }
+
+
 
       100% {
+
         box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+
       }
+
     }
+
+
 
     /* Sections mejoradas */
+
     section {
+
       padding: 6rem 0;
+
       /* 96px de espaciado vertical */
+
       position: relative;
+
     }
+
+
 
     .section-title {
+
       text-align: center;
+
       font-size: clamp(2rem, 4vw, 2.75rem);
+
       /* Título fluido y más grande */
+
       margin-bottom: 3rem;
+
       /* 48px */
+
       font-weight: 800;
+
       letter-spacing: -0.02em;
+
       background: linear-gradient(45deg, #ffffff, #FFD700);
+
       -webkit-background-clip: text;
+
       -webkit-text-fill-color: transparent;
+
       background-clip: text;
+
       text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
       position: relative;
+
       z-index: 2;
+
       padding: 0 1rem;
+
     }
+
+
 
     #pagos .section-subtitle {
+
       position: relative;
+
       z-index: 2;
+
       color: #ffffff;
+
       text-align: center;
+
       max-width: 600px;
+
       margin: -1.5rem auto 2.5rem;
+
     }
+
+
 
     /* Services mejorados */
+
     .services-grid {
+
       display: grid;
+
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
       gap: 1.5rem;
+
       margin-top: 2rem;
+
     }
+
+
 
     .service-card {
+
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+
       backdrop-filter: blur(20px);
+
       -webkit-backdrop-filter: blur(20px);
+
       border: 1px solid rgba(255, 107, 53, 0.3);
+
       border-radius: 20px;
+
       padding: 2rem;
+
       /* Aumentado para más aire */
+
       text-align: center;
+
       transition: all 0.3s ease;
+
       /* Transición más suave */
+
       position: relative;
+
       overflow: hidden;
+
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+
       opacity: 0;
+
       transform: translateY(30px);
+
     }
+
+
 
     .service-card.visible {
+
       opacity: 1;
+
       transform: translateY(0);
+
     }
+
+
 
     .service-card .service-icon {
+
       text-shadow: 0 0 10px rgba(255, 107, 53, 0.6);
+
       transition: transform 0.3s ease;
+
       font-size: 2.5rem;
+
     }
+
+
 
     .service-card .service-image {
+
       max-width: 90%;
+
       height: auto;
+
       margin-top: 1rem;
+
       border-radius: 8px;
+
       border: 1px solid rgba(255, 255, 255, 0.1);
+
       transition: transform 0.3s ease;
+
     }
+
+
 
     /* Hover effects mejorados y simplificados */
+
     .service-card:hover {
+
       transform: translateY(-8px);
+
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 107, 53, 0.3);
+
       border-color: rgba(255, 107, 53, 0.6);
+
     }
+
+
 
     .service-card:hover .service-icon {
+
       transform: scale(1.1);
+
     }
 
+
+
     .service-card:hover .service-image {
+
       transform: scale(1.03);
+
     }
+
+
 
     @keyframes subtle-float {
 
+
+
       0%,
+
       100% {
+
         transform: translateY(0);
+
       }
 
+
+
       50% {
+
         transform: translateY(-6px);
+
       }
+
     }
+
+
 
     .service-icon {
+
       animation: subtle-float 6s ease-in-out infinite;
+
     }
+
+
 
     .service-card h3 {
+
       font-size: 1.2rem;
+
       font-weight: 700;
+
       letter-spacing: -0.01em;
+
       margin-bottom: 0.8rem;
+
       color: #FF6B35;
+
       text-shadow: 0 2px 8px rgba(255, 107, 53, 0.4);
+
     }
+
+
 
     .service-card p {
+
       font-size: 0.95rem;
+
       line-height: 1.5;
+
       opacity: 0.9;
+
       margin-bottom: 1rem;
+
     }
 
+
+
     @media (max-width: 768px) {
+
       .service-card .service-card-content {
+
         display: flex;
+
         flex-direction: column;
+
         align-items: center;
+
         height: 100%;
+
       }
+
     }
+
+
 
     /* Steps Section mejorado */
+
     .steps-section {
+
       background: linear-gradient(135deg, rgba(10, 15, 30, 0.8), rgba(26, 26, 46, 0.7));
+
       border-top: 1px solid rgba(255, 107, 53, 0.2);
+
       border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+
     }
+
+
 
     .steps-grid {
+
       display: grid;
+
       grid-template-columns: 1fr;
+
       gap: 1.5rem;
+
       margin-top: 2rem;
+
     }
+
+
 
     .step-card {
+
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+
       backdrop-filter: blur(15px);
+
       -webkit-backdrop-filter: blur(15px);
+
       border: 1px solid rgba(255, 107, 53, 0.3);
+
       border-radius: 15px;
+
       padding: 1.5rem;
+
       transition: all 0.3s ease;
+
       position: relative;
+
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
     }
+
+
 
     .step-card:hover {
+
       transform: translateY(-5px);
+
       border-color: rgba(255, 107, 53, 0.6);
+
       box-shadow: 0 12px 25px rgba(255, 107, 53, 0.3);
+
     }
+
+
 
     .step-number {
+
       position: absolute;
+
       top: -12px;
+
       left: 15px;
+
       width: 36px;
+
       height: 36px;
+
       background: linear-gradient(45deg, #FF6B35, #F7931E);
+
       border-radius: 50%;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       font-weight: bold;
+
       color: white;
+
       font-size: 1rem;
+
       box-shadow: 0 4px 12px rgba(255, 107, 53, 0.5);
+
       transition: all 0.3s ease;
+
     }
+
+
 
     .step-card:hover .step-number {
+
       transform: scale(1.1);
+
       box-shadow: 0 6px 15px rgba(255, 107, 53, 0.7);
+
     }
+
+
 
     .step-card h3 {
+
       margin-top: 1rem;
+
       margin-bottom: 0.8rem;
+
       color: #FF6B35;
+
       font-size: 1.2rem;
+
       font-weight: 700;
+
       letter-spacing: -0.01em;
+
       text-shadow: 0 2px 8px rgba(255, 107, 53, 0.4);
+
     }
+
+
 
     /* About Us - Bento Box Layout mejorado */
+
     .bento-grid {
+
       display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
 
-    #nosotros .section-title {
-      background: linear-gradient(90deg, #FFD700, #ffffff, #FF6B35);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 5s linear infinite;
-    }
-
-    @keyframes shimmer {
-      to {
-        background-position: 200% center;
-      }
-    }
-
-    .bento-box {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    .bento-box.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .bento-box:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 107, 53, 0.4);
-      border-color: rgba(255, 107, 53, 0.5);
-    }
-
-    .bento-box h3 {
-      color: #FF6B35;
-      margin-bottom: 0.8rem;
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      text-shadow: 0 2px 8px rgba(255, 107, 53, 0.4);
-    }
-
-    .bento-box p {
-      line-height: 1.6;
-      opacity: 0.9;
-      font-size: 0.95rem;
-    }
-
-    .bento-icon {
-      font-size: 2rem;
-      position: absolute;
-      top: 1.2rem;
-      right: 1.2rem;
-      opacity: 0.7;
-      filter: drop-shadow(0 0 8px rgba(255, 107, 53, 0.5));
-    }
-
-    /* Bento Box Grid Areas */
-    .box-1 {
-      grid-column: span 1;
-    }
-
-    .box-2 {
-      grid-column: span 1;
-    }
-
-    .box-3 {
-      grid-column: span 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 1.1rem;
-      font-weight: 600;
-      padding: 2rem 1rem;
-    }
-
-    .box-4 {
-      grid-column: span 1;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 2rem 1rem;
-    }
-
-    .box-5 {
-      grid-column: span 1;
-    }
-
-    .stat {
-      text-align: center;
-      padding: 1rem;
-      border-radius: 12px;
-      background: rgba(255, 107, 53, 0.1);
-      border: 1px solid rgba(255, 107, 53, 0.2);
-      transition: all 0.3s ease;
-      min-width: 120px;
-    }
-
-    .stat:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      background: rgba(255, 107, 53, 0.2);
-    }
-
-    .stat-number {
-      font-size: 1.8rem;
-      font-weight: 800;
-      background: linear-gradient(45deg, #FFD700, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 2px 8px rgba(255, 165, 0, 0.4);
-      display: block;
-    }
-
-    .stat-label {
-      font-size: 0.85rem;
-      opacity: 0.8;
-    }
-
-    .deco-shape {
-      position: absolute;
-      background: linear-gradient(45deg, rgba(255, 107, 53, 0.2), rgba(140, 76, 158, 0.2));
-      border-radius: 50%;
-      filter: blur(20px);
-      z-index: -1;
-    }
-
-    .shape-1 {
-      width: 100px;
-      height: 100px;
-      top: -30px;
-      left: -30px;
-    }
-
-    .shape-2 {
-      width: 80px;
-      height: 80px;
-      bottom: -30px;
-      right: -30px;
-    }
-
-    .shape-3 {
-      width: 60px;
-      height: 60px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    /* About Us mejorado */
-    .about-content {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      align-items: center;
-      margin-top: 1.5rem;
-    }
-
-    .about-text {
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
-
-    .stat-card {
-      background: rgba(255, 107, 53, 0.1);
-      border-radius: 10px;
-      padding: 1.2rem;
-      text-align: center;
-      border: 1px solid rgba(255, 107, 53, 0.2);
-    }
-
-    .stat-number {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #FF6B35;
-    }
-
-    #solicitudes .section-title {
-      position: relative;
-      z-index: 3;
-      background: linear-gradient(90deg, #FFD700, #ffffff, #FF6B35, #ffffff, #FFD700);
-      background-size: 400% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: title-shimmer 8s linear infinite;
-    }
-
-    @keyframes title-shimmer {
-      from {
-        background-position: 0% 0%;
-      }
-
-      to {
-        background-position: -200% 0%;
-      }
-    }
-
-    /* Solicitudes Section Ambient Effects mejorado */
-    .solicitudes-ambient-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 107, 53, 0.15), transparent 40%);
-      z-index: 1;
-      transition: background 0.2s ease-out;
-    }
-
-    .form-frame {
-      position: absolute;
-      top: -15px;
-      left: -15px;
-      right: -15px;
-      bottom: -15px;
-      border: 2px solid rgba(255, 107, 53, 0.4);
-      border-radius: 25px;
-      pointer-events: none;
-      animation: pulse-border-dm 5s ease-in-out infinite;
-    }
-
-    @keyframes pulse-border-dm {
-
-      0%,
-      100% {
-        border-color: rgba(255, 107, 53, 0.4);
-        box-shadow: 0 0 25px rgba(255, 107, 53, 0.2);
-      }
-
-      50% {
-        border-color: rgba(255, 107, 53, 0.7);
-        box-shadow: 0 0 35px rgba(255, 107, 53, 0.4);
-      }
-    }
-
-    /* Contact Form Styles Re-Designed */
-    .contact-form {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border-radius: 24px;
-      /* Más suave */
-      padding: 3rem;
-      /* Más espaciado interno */
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      /* Aumentado */
-    }
-
-    .form-group {
-      margin-bottom: 0;
-      /* Eliminado para usar gap */
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: #FF6B35;
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 1rem;
-      /* 16px */
-      background: rgba(0, 0, 0, 0.2);
-      /* Fondo más oscuro */
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      /* Más redondeado */
-      color: white;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-
-    .form-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff' d='M6 8L0 2h12z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      padding-right: 40px;
-    }
-
-    .form-group select option {
-      background: #1a1a2e;
-      color: white;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: rgba(255, 107, 53, 0.8);
-      box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.2);
-    }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.9rem;
-    }
-
-    .form-group textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 1rem 2rem;
-      background: linear-gradient(45deg, #FF6B35, #F7931E);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
-    }
-
-    .submit-btn:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .success-message {
-      display: none;
-      background: rgba(34, 197, 94, 0.15);
-      border: 1px solid rgba(34, 197, 94, 0.4);
-      color: #22c55e;
-      padding: 16px;
-      border-radius: 12px;
-      margin-top: 1.2rem;
-      text-align: center;
-      animation: slideIn 0.5s ease;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      box-shadow: 0 5px 15px rgba(34, 197, 94, 0.2);
-      font-size: 0.9rem;
-    }
-
-    .error-message {
-      display: none;
-      background: rgba(239, 68, 68, 0.15);
-      border: 1px solid rgba(239, 68, 68, 0.4);
-      color: #ef4444;
-      padding: 16px;
-      border-radius: 12px;
-      margin-top: 1.2rem;
-      text-align: center;
-      animation: slideIn 0.5s ease;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      box-shadow: 0 5px 15px rgba(239, 68, 68, 0.2);
-      font-size: 0.9rem;
-    }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .loading {
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: #ffffff;
-      animation: spin 1s ease-in-out infinite;
-      margin-right: 8px;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* Validation styles mejorados */
-    .form-group input.valid,
-    .form-group select.valid,
-    .form-group textarea.valid {
-      border-color: #22c55e;
-    }
-
-    .form-group input.invalid,
-    .form-group select.invalid,
-    .form-group textarea.invalid {
-      border-color: #ef4444;
-    }
-
-    /* Contact Info in Footer mejorado */
-    #contacto .section-title {
-      text-shadow: 0 0 15px rgba(255, 107, 53, 0.7), 0 0 8px rgba(255, 107, 53, 0.5);
-      font-weight: 800;
-      letter-spacing: -0.01em;
-    }
-
-    .contact-section {
-      background-image: url('https://i.ibb.co/8D12BWNX/45405a22b539b3cbfe5fe96846324dc1.gif');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
-      background-attachment: scroll;
-      padding: 4rem 0;
-    }
-
-    .contact-info {
-      perspective: 1000px;
-    }
-
-    .contact-item {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      padding: 1.5rem;
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      transform-style: preserve-3d;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 0 5px rgba(255, 107, 53, 0.3);
-      position: relative;
-      opacity: 0;
-      transform: translateY(30px);
-      margin-bottom: 1rem;
-    }
-
-    .contact-item.visible {
-      opacity: 1;
-      transform: translateY(0px) rotateY(-5deg) rotateX(3deg);
-    }
-
-    .contact-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 15px;
-      background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), transparent);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .contact-item:hover {
-      transform: translateY(0px) rotateY(0) rotateX(0) translateZ(20px) scale(1.03);
-      border-color: rgba(255, 107, 53, 0.5);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 107, 53, 0.6);
-    }
-
-    .contact-item:hover::before {
-      opacity: 1;
-    }
-
-    .contact-icon {
-      filter: drop-shadow(0 0 6px rgba(255, 107, 53, 0.5));
-      transition: transform 0.3s ease;
-      font-size: 1.8rem;
-      margin-right: 1rem;
-      color: #FF6B35;
-    }
-
-    .contact-item:hover .contact-icon {
-      transform: scale(1.15);
-      filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.7));
-    }
-
-    .contact-item a {
-      z-index: 2;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      letter-spacing: 0.01em;
-      font-size: 0.95rem;
-    }
-
-    .contact-item a:hover {
-      color: #FF6B35;
-      text-shadow: 0 0 8px rgba(255, 107, 53, 0.5);
-    }
-
-    /* New Professional Footer Styles */
-    .site-footer {
-      background-image: url('https://i.ibb.co/84ffsSxc/Power-BI-gif-header.gif');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
-      background-color: #0a0a0a;
-      padding: 4rem 0;
-      border-top: 1px solid rgba(255, 107, 53, 0.2);
-      z-index: 1;
-    }
-
-    .site-footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(10, 15, 30, 0.8);
-      z-index: -1;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2.5rem;
-      margin-bottom: 3rem;
-    }
-    
-    .footer-logo {
-      height: 40px;
-      margin-bottom: 1rem;
-    }
-
-    .footer-tagline {
-      font-size: 0.9rem;
-      opacity: 0.7;
-      line-height: 1.6;
-    }
-
-    .footer-column-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #FF6B35;
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .footer-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .footer-links a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: #FF6B35;
-    }
-    
-    .social-icons {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .social-icons a img {
-      transition: transform 0.3s ease;
-    }
-
-    .social-icons a:hover img {
-      transform: scale(1.15);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .copyright {
-      font-size: 0.85rem;
-      opacity: 0.6;
-    }
-
-    .footer-contact-methods {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .contact-method-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .contact-method-item:hover {
-      color: #FF6B35;
-    }
-
-    /* Keyframe Animations for Icons mejoradas */
-    @keyframes shake {
-
-      0%,
-      100% {
-        transform: rotate(0deg) scale(1.1);
-      }
-
-      25% {
-        transform: rotate(6deg) scale(1.1);
-      }
-
-      75% {
-        transform: rotate(-6deg) scale(1.1);
-      }
-    }
-
-    @keyframes wiggle {
-
-      0%,
-      100% {
-        transform: skewX(0) scale(1.1);
-      }
-
-      50% {
-        transform: skewX(-12deg) scale(1.1);
-      }
-    }
-
-    @keyframes pulse-glow-dm {
-
-      0%,
-      100% {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 6px rgba(255, 107, 53, 0.5));
-      }
-
-      50% {
-        transform: scale(1.15);
-        filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.8));
-      }
-    }
-
-    @keyframes jiggle {
-
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1.1);
-      }
-
-      25% {
-        transform: translate(1px, -1px) scale(1.1);
-      }
-
-      50% {
-        transform: translate(-1px, 1px) scale(1.1);
-      }
-
-      75% {
-        transform: translate(1px, 1px) scale(1.1);
-      }
-    }
-
-    @keyframes swing-bag {
-
-      0%,
-      100% {
-        transform: rotate(0deg) scale(1.1);
-      }
-
-      50% {
-        transform: rotate(8deg) scale(1.1);
-      }
-    }
-
-    /* Applying animations to specific icons on hover */
-    .contact-item:nth-child(1):hover .contact-icon {
-      animation: shake 0.4s ease-in-out;
-    }
-
-    .contact-item:nth-child(2):hover .contact-icon {
-      animation: wiggle 0.5s ease-in-out;
-    }
-
-    .contact-item:nth-child(3):hover .contact-icon {
-      animation: pulse-glow-dm 0.6s ease-in-out;
-    }
-
-    .contact-item:nth-child(4):hover .contact-icon {
-      animation: jiggle 0.3s linear infinite;
-    }
-
-    .contact-item:nth-child(5):hover .contact-icon {
-      animation: pulse-glow-dm 0.6s ease-in-out;
-    }
-
-    .contact-item:nth-child(6):hover .contact-icon {
-      animation: swing-bag 0.5s ease-in-out;
-    }
-
-    .contact-item:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 107, 53, 0.1);
-      border-color: #FF6B35;
-    }
-
-    .contact-icon {
-      font-size: 1.8rem;
-      margin-right: 1rem;
-      color: #FF6B35;
-    }
-
-    .contact-item a {
-      color: #ffffff;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .contact-item a:hover {
-      color: #FF6B35;
-    }
-
-    /* Chatbot Styles mejorado */
-    #chatbot-container {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      z-index: 99999;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-
-    #chatbot-toggle {
-      width: 55px;
-      height: 55px;
-      background: linear-gradient(45deg, #FF6B35, #F7931E);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
-      transition: all 0.3s ease;
-      border: none;
-      animation: pulse-animation 2s infinite;
-    }
-
-    @keyframes pulse-animation {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
-      }
-      50% {
-        transform: scale(1.05);
-        box-shadow: 0 8px 30px rgba(255, 107, 53, 0.8);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
-      }
-    }
-
-    #chatbot-toggle:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 8px 25px rgba(255, 107, 53, 0.8);
-    }
-
-    #chatbot-toggle .icon-open {
-      font-size: 24px;
-      color: white;
-      display: flex !important;
-    }
-
-    #chatbot-toggle .icon-close {
-      display: none;
-      font-size: 24px;
-      color: white;
-    }
-
-    #contact-button {
-      width: 55px;
-      height: 55px;
-      background: linear-gradient(45deg, #FF6B35, #F7931E);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
-      transition: all 0.3s ease;
-      border: none;
-      animation: pulse-animation 2s infinite;
-      margin-bottom: 15px; /* Spacing between buttons */
-      text-decoration: none; /* Remove underline from link */
-    }
-
-    #contact-button:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 8px 25px rgba(255, 107, 53, 0.8);
-    }
-
-    #contact-button .icon-contact {
-      font-size: 24px;
-      color: white;
-    }
-
-    #chatbot-window {
-      width: 90vw;
-      max-width: 400px;
-      height: 70vh;
-      max-height: 650px;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 107, 53, 0.3);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-      margin-bottom: 1rem;
-      transform-origin: bottom right;
-      animation: slideInUp-chat 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      transition: width 0.3s ease, height 0.3s ease, max-width 0.3s ease, max-height 0.3s ease;
-    }
-
-    #chatbot-window.expanded {
-      width: 95vw;
-      height: 90vh;
-      max-width: 1200px;
-      max-height: 90vh;
-    }
-
-    #chatbot-window.active {
-      display: flex;
-    }
-
-    @keyframes slideInUp-chat {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    #chatbot-header {
-      padding: 1rem;
-      background: rgba(255, 107, 53, 0.1);
-      border-bottom: 1px solid rgba(255, 107, 53, 0.2);
-      display: flex;
-      align-items: center;
-    }
-
-    #chatbot-header .avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, #FF6B35, #F7931E);
-      margin-right: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      overflow: hidden;
-      border: 2px solid rgba(255, 107, 53, 0.4);
-      transition: all 0.3s ease;
-    }
-
-    #chatbot-header .avatar:hover {
-      border-color: rgba(255, 107, 53, 0.7);
-      transform: scale(1.05);
-    }
-
-    #chatbot-header .avatar img {
-      transition: transform 0.3s ease;
-    }
-
-    #chatbot-header .avatar:hover img {
-      transform: scale(1.1);
-    }
-
-    #chatbot-header .bot-info h4 {
-      margin: 0;
-      color: #ffffff;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      font-size: 1rem;
-    }
-
-    #chatbot-header .bot-info p {
-      margin: 0;
-      font-size: 0.8rem;
-      color: #FFBE0B;
-      opacity: 0.9;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-    }
-
-    #chatbot-messages {
-      flex-grow: 1;
-      padding: 1rem;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-      margin: 0.6rem;
-      margin-bottom: 0;
-    }
-
-    /* Custom scrollbar for chat mejorado */
-    #chatbot-messages::-webkit-scrollbar {
-      width: 5px;
-    }
-
-    #chatbot-messages::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    #chatbot-messages::-webkit-scrollbar-thumb {
-      background-color: rgba(255, 107, 53, 0.5);
-      border-radius: 10px;
-    }
-
-    .chat-message {
-      padding: 10px 14px;
-      border-radius: 15px;
-      max-width: 85%;
-      line-height: 1.4;
-      animation: fadeIn 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      font-size: 0.9rem;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .bot-message {
-      background: rgba(255, 107, 53, 0.15);
-      align-self: flex-start;
-      border-bottom-left-radius: 3px;
-      border: 1px solid rgba(255, 107, 53, 0.2);
-    }
-
-    .user-message {
-      background: rgba(255, 255, 255, 0.15);
-      align-self: flex-end;
-      border-bottom-right-radius: 3px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .chat-message .options {
-      margin-top: 8px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .chat-message .option-button {
-      background: rgba(255, 107, 53, 0.2);
-      border: 1px solid rgba(255, 107, 53, 0.4);
-      color: white;
-      padding: 8px 12px;
-      border-radius: 15px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-    }
-
-    .chat-message .option-button:hover {
-      background: rgba(255, 107, 53, 0.4);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
-    }
-
-    #chatbot-input-form {
-      display: flex;
-      padding: 0.8rem;
-      border-top: 1px solid rgba(255, 107, 53, 0.2);
-    }
-
-    #chatbot-input {
-      flex-grow: 1;
-      padding: 10px 16px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      color: white;
-      font-size: 0.9rem;
-      transition: border-color 0.3s ease;
-      margin-right: 8px;
-    }
-
-    #chatbot-input:focus {
-      outline: none;
-      border-color: rgba(255, 107, 53, 0.5);
-      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
-    }
-
-    #chatbot-send {
-      width: 42px;
-      height: 42px;
-      border: none;
-      background: linear-gradient(45deg, #FF6B35, #F7931E);
-      border-radius: 50%;
-      color: white;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
-    }
-
-    #chatbot-send:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 6px 15px rgba(255, 107, 53, 0.6);
-    }
-
-    /* Animaciones mejoradas */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Floating Elements mejorados */
-    .floating-element {
-      position: absolute;
-      opacity: 0.1;
-      animation: float 15s ease-in-out infinite;
-      font-size: 1.5rem;
-    }
-
-    .floating-element:nth-child(1) {
-      top: 20%;
-      left: 10%;
-      animation-delay: 0s;
-    }
-
-    .floating-element:nth-child(2) {
-      top: 60%;
-      right: 10%;
-      animation-delay: 5s;
-    }
-
-    .floating-element:nth-child(3) {
-      bottom: 20%;
-      left: 15%;
-      animation-delay: 10s;
-    }
-
-    /* Mobile Responsive mejorado */
-    @media (max-width: 768px) {
-      body {
-        font-size: 16px;
-      }
-
-      .container {
-        padding: 0 1rem;
-        /* 16px */
-      }
-
-      .logo img {
-        height: 35px;
-      }
-
-      .nav-links.active li {
-        margin: 0;
-        text-align: center;
-      }
-
-      .hero {
-        min-height: 90vh;
-        padding: 2rem 0;
-      }
-
-      .hero h1 {
-        font-size: clamp(1.8rem, 6vw, 2.5rem);
-        line-height: 1.2;
-      }
-
-      .hero p {
-        font-size: 1rem;
-        padding: 0 1rem;
-      }
-
-      .section-title {
-        font-size: clamp(1.8rem, 5vw, 2.2rem);
-        margin-bottom: 2rem;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-      }
-
-      .service-card {
-        padding: 1.2rem;
-      }
-
-      .service-card h3 {
-        font-size: 1.1rem;
-      }
-
-      .service-card p {
-        font-size: 0.9rem;
-      }
-
-      .service-icon {
-        font-size: 2rem;
-      }
-
-      .steps-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-      }
-
-      .step-card {
-        padding: 1.2rem;
-      }
-
-      .step-card h3 {
-        font-size: 1.1rem;
-      }
-
-      .bento-grid {
-        grid-template-columns: 1fr;
-        gap: 0.8rem;
-      }
-
-      .bento-box {
-        padding: 1.2rem;
-      }
-
-      .bento-box h3 {
-        font-size: 1.1rem;
-      }
-
-      .bento-box p {
-        font-size: 0.9rem;
-      }
-
-      .bento-icon {
-        font-size: 1.6rem;
-        top: 0.8rem;
-        right: 0.8rem;
-      }
-
-      .box-3 {
-        font-size: 1rem;
-        padding: 1.5rem 0.8rem;
-      }
-
-      .box-4 {
-        padding: 1.5rem 0.8rem;
-      }
-
-      .stat {
-        min-width: 100px;
-        padding: 0.8rem;
-      }
-
-      .stat-number {
-        font-size: 1.5rem;
-      }
-
-      .stat-label {
-        font-size: 0.8rem;
-      }
-
-      .contact-info {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .contact-form {
-        padding: 1.5rem;
-      }
-
-      .form-group label {
-        font-size: 0.85rem;
-      }
-
-      .form-group input,
-      .form-group textarea,
-      .form-group select {
-        padding: 12px;
-        font-size: 0.9rem;
-      }
-
-      .submit-btn {
-        padding: 14px;
-        font-size: 0.9rem;
-      }
-
-      .success-message,
-      .error-message {
-        padding: 14px;
-        font-size: 0.85rem;
-      }
-
-      .contact-item {
-        padding: 1.2rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .contact-icon {
-        font-size: 1.5rem;
-        margin-right: 0.8rem;
-      }
-
-      .contact-item a {
-        font-size: 0.9rem;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .about-column {
-        grid-row: 1;
-      }
-
-      .footer-column {
-        align-items: center;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      footer {
-        padding: 2rem 0;
-      }
-
-      footer p {
-        font-size: 0.8rem;
-      }
-
-      #chatbot-container {
-        bottom: 10px;
-        right: 10px;
-      }
-
-      #chatbot-toggle {
-        width: 50px;
-        height: 50px;
-      }
-
-      #chatbot-toggle .icon-open,
-      #chatbot-toggle .icon-close {
-        font-size: 22px;
-      }
-
-      #chatbot-window {
-        width: 95vw;
-        max-width: 340px;
-        height: 80vh;
-        max-height: 550px;
-        border-radius: 15px;
-      }
-
-      #chatbot-header .avatar {
-        width: 32px;
-        height: 32px;
-      }
-
-      #chatbot-header .bot-info h4 {
-        font-size: 0.9rem;
-      }
-
-      #chatbot-header .bot-info p {
-        font-size: 0.75rem;
-      }
-
-      .chat-message {
-        font-size: 0.85rem;
-        padding: 8px 12px;
-      }
-
-      .chat-message .option-button {
-        font-size: 0.8rem;
-        padding: 6px 10px;
-      }
-
-      #chatbot-input {
-        font-size: 0.85rem;
-        padding: 8px 14px;
-      }
-
-      #chatbot-send {
-        width: 38px;
-        height: 38px;
-        font-size: 1rem;
-      }
-
-      .custom-cursor {
-        display: none !important;
-      }
-
-      .video-container {
-        margin: 1.5rem auto 0;
-        border-radius: 12px;
-      }
-
-      .video-container iframe {
-        border-radius: 10px;
-      }
-
-      .cta-button {
-        padding: 12px 24px;
-        font-size: 0.8rem;
-        margin-top: 1.5rem;
-      }
-    }
-
-    /* Extra small devices */
-    /* Payment Section */
-    #pagos {
-      padding: 4rem 0;
-      text-align: center;
-      position: relative;
-      background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    #pagos::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(10, 15, 30, 0.8);
-      /* Dark overlay for readability */
-      z-index: 1;
-    }
-
-    #pagos .section-title,
-    #pagos .payment-card {
-      position: relative;
-      z-index: 2;
-    }
-
-    .payment-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 107, 53, 0.3);
-      border-radius: 20px;
-      padding: 2.5rem;
-      max-width: 600px;
-      margin: 0 auto;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .payment-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 107, 53, 0.4);
-    }
-
-    .payment-card h3 {
-      color: #FF6B35;
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 2px 8px rgba(255, 107, 53, 0.4);
-    }
-
-    .payment-card p {
-      opacity: 0.9;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-
-    .payment-details {
-      text-align: left;
-      margin-bottom: 2rem;
-    }
-
-    .detail-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .detail-item:last-child {
-      border-bottom: none;
-    }
-
-    .detail-label {
-      font-weight: 600;
-      color: #FF6B35;
-      opacity: 0.9;
-    }
-
-    .detail-value {
-      font-weight: 500;
-    }
-
-    .account-number {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .copy-btn {
-      background: rgba(255, 107, 53, 0.15);
-      border: 1px solid rgba(255, 107, 53, 0.3);
-      color: #FF6B35;
-      padding: 6px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .copy-btn:hover {
-      background: rgba(255, 107, 53, 0.3);
-      color: #fff;
-    }
-
-    .paypal-button-container {
-      margin-top: 1.5rem;
-    }
-
-    .paypal-btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 12px 24px;
-      background: linear-gradient(45deg, #0070ba, #009cde);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 25px rgba(0, 112, 186, 0.4);
-      border: none;
-      cursor: pointer;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-    }
-
-    .paypal-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0, 112, 186, 0.6);
-      background: #005ea6;
-    }
-
-    .transfer-btn-icon {
-      width: 24px;
-      height: 24px;
-      margin-right: 8px;
-      vertical-align: middle;
-    }
-
-    .payment-options-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .payment-option-card {
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .payment-option-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 107, 53, 0.4);
-      border-color: rgba(255, 107, 53, 0.5);
-    }
-
-    .payment-option-header .payment-icon {
-      max-height: 40px;
-      margin-bottom: 1rem;
-      filter: grayscale(30%) brightness(1.2);
-    }
-
-    .payment-option-card h4 {
-      font-size: 1.5rem;
-      color: #FF6B35;
-      margin-bottom: 0.5rem;
-    }
-
-    .payment-option-card p {
-      opacity: 0.8;
-      margin-bottom: 1.5rem;
-      flex-grow: 1;
-    }
-
-    .payment-cta {
-      width: 100%;
-      padding: 14px;
-    }
-
-    .payment-option-card .payment-details {
-      margin-top: 1.5rem;
-      text-align: left;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 1.5rem;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease-in-out;
-    }
-
-    .cta-button-small {
-      display: inline-block;
-      padding: 8px 16px;
-      background: rgba(255, 107, 53, 0.15);
-      color: #FF6B35;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 107, 53, 0.3);
-      margin-top: 1rem;
-      width: 100%;
-    }
-
-    .cta-button-small:hover {
-      background: rgba(255, 107, 53, 0.3);
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10002;
-      /* Above chatbot */
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(5px);
-    }
-
-    .modal-content {
-      background: linear-gradient(135deg, #1a1a2e, #16213e);
-      margin: 10% auto;
-      padding: 2rem;
-      border: 1px solid rgba(255, 107, 53, 0.3);
-      border-radius: 20px;
-      width: 90%;
-      max-width: 500px;
-      box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
-      position: relative;
-      animation: slideIn-modal 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    @keyframes slideIn-modal {
-      from {
-        transform: translateY(-50px);
-        opacity: 0;
-      }
-
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .close-button {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    .close-button:hover,
-    .close-button:focus {
-      color: #FF6B35;
-      text-decoration: none;
-    }
-
-    .modal-content h4 {
-      color: #FF6B35;
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-    }
-
-    .modal-content p {
-      margin-bottom: 1rem;
-      line-height: 1.6;
-      opacity: 0.9;
-    }
-
-    .modal-content a {
-      color: #FF6B35;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 1.6rem;
-      }
-
-      .hero p {
-        font-size: 0.95rem;
-      }
-
-      .section-title {
-        font-size: 1.6rem;
-      }
-
-      .service-card {
-        padding: 1rem;
-      }
-
-      .service-card h3 {
-        font-size: 1rem;
-      }
-
-      .service-card p {
-        font-size: 0.85rem;
-      }
-
-      .bento-box {
-        padding: 1rem;
-      }
-
-      .bento-box h3 {
-        font-size: 1rem;
-      }
-
-      .bento-box p {
-        font-size: 0.85rem;
-      }
-
-      .contact-form {
-        padding: 1rem;
-      }
-
-      .form-group input,
-      .form-group textarea,
-      .form-group select {
-        padding: 10px;
-        font-size: 0.85rem;
-      }
-
-      .submit-btn {
-        padding: 12px;
-        font-size: 0.85rem;
-      }
-
-      .contact-item {
-        padding: 1rem;
-      }
-
-      .contact-icon {
-        font-size: 1.3rem;
-        margin-right: 0.6rem;
-      }
-
-      .contact-item a {
-        font-size: 0.85rem;
-      }
-
-      #chatbot-window {
-        width: 98vw;
-        max-width: 300px;
-        height: 85vh;
-        max-height: 450px;
-      }
-
-      .chat-message {
-        font-size: 0.8rem;
-      }
-
-      .chat-message .option-button {
-        font-size: 0.75rem;
-        padding: 5px 8px;
-      }
-
-      #chatbot-input {
-        font-size: 0.8rem;
-        padding: 6px 12px;
-      }
-
-      #chatbot-send {
-        width: 36px;
-        height: 36px;
-        font-size: 0.9rem;
-      }
-    }
-
-    #certificaciones {
-      position: relative;
-      background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: scroll;
-      border-top: 1px solid rgba(255, 107, 53, 0.2);
-      border-bottom: 1px solid rgba(255, 107, 53, 0.2);
-    }
-
-    #certificaciones::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(10, 15, 30, 0.85);
-      z-index: 1;
-    }
-
-    #certificaciones .container {
-      position: relative;
-      z-index: 2;
-    }
-
-    #certificaciones .section-title {
-        background: linear-gradient(45deg, #ffffff, #FFD700);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-  
-    .service-card-button {
-      display: inline-block;
-      padding: 10px 20px;
-      margin-top: 1rem;
-      background: linear-gradient(45deg, #FF6B35, #F7931E);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
-      border: none;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    .service-card-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
-    }
-
-/* Sección de Mapa y Contacto */
-.contact-map-section {
-  background: #0a0f1e;
-  position: relative;
-  padding: 5rem 0;
-  border-top: 1px solid rgba(255, 107, 53, 0.3);
-}
-
-.contact-map-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(10, 15, 30, 0.92);
-  z-index: 1;
-}
-
-.map-contact-grid {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
-}
-
-.map-container {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease;
-}
-
-.map-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 50px rgba(255, 107, 53, 0.3);
-}
-
-.map-overlay-badge {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  z-index: 10;
-}
-
-.view-larger-map {
-  background: linear-gradient(45deg, #FF6B35, #F7931E);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
-  transition: all 0.3s ease;
-}
-
-.view-larger-map:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
-}
-
-.contact-info-corporate {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 107, 53, 0.3);
-  border-radius: 20px;
-  padding: 2.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.contact-title {
-  color: #FF6B35;
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  text-shadow: 0 2px 10px rgba(255, 107, 53, 0.4);
-}
-
-.contact-item-corporate {
-  display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.contact-item-corporate:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-}
-
-.contact-icon-wrapper {
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(45deg, #FF6B35, #F7931E);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-}
-
-.contact-icon-wrapper svg {
-  width: 24px;
-  height: 24px;
-  fill: white;
-}
-
-.contact-details h4 {
-  color: #ffffff;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-}
-
-.contact-details p {
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0.3rem 0;
-  font-size: 0.95rem;
-}
-
-.contact-details a {
-  color: #FF6B35;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.contact-details a:hover {
-  color: #FFD700;
-  text-decoration: underline;
-}
-
-.badge-attention {
-  display: inline-block;
-  background: rgba(255, 107, 53, 0.2);
-  border: 1px solid #FF6B35;
-  color: #FF6B35;
-  padding: 4px 12px;
-  border-radius: 15px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  margin-top: 0.5rem;
-}
-
-/* Responsive */
-@media (max-width: 968px) {
-  .map-contact-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  
-  .map-container iframe {
-    height: 300px;
-  }
-}
-
-/* Footer Corporativo Completo */
-.site-footer {
-  background: #0a0f1e;
-  position: relative;
-  padding: 4rem 0 2rem;
-  border-top: 1px solid rgba(255, 107, 53, 0.3);
-}
-
-.site-footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(10, 15, 30, 0.92);
-  z-index: 1;
-}
-
-.footer-main-grid {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-column h4 {
-  color: #FF6B35;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.footer-trust-badges {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  margin-top: 1rem;
-}
-
-.trust-badge {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.85rem;
-}
-
-.trust-badge::before {
-  content: '✓';
-  color: #22c55e;
-  font-weight: bold;
-}
-
-.footer-bottom-corporate {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 2rem;
-  padding-top: 2rem;
-}
-
-.footer-legal-links {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-.footer-legal-links a {
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  font-size: 0.85rem;
-  transition: color 0.3s ease;
-}
-
-.footer-legal-links a:hover {
-  color: #FF6B35;
-}
-
-.payment-methods-footer {
-  text-align: right;
-}
-
-.payment-methods-footer p {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 0.5rem;
-}
-
-.payment-icons {
-  display: flex;
-  gap: 0.8rem;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.payment-icons img {
-  height: 24px;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-.payment-icons img:hover {
-  opacity: 1;
-}
-
-@media (max-width: 1024px) {
-  .footer-main-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer-main-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  
-  .footer-bottom-corporate {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  
-  .payment-methods-footer {
-    text-align: center;
-  }
-  
-  .payment-icons {
-    justify-content: center;
-  }
-}
-</style>
-</head>
-
-<body>
-  <div id="welcome-modal" class="welcome-modal-overlay">
-    <div class="welcome-modal-content">
-      <div id="welcome-icon" class="welcome-icon"></div>
-      <h2 id="welcome-greeting"></h2>
-      <p class="buen-fin-promo">¡Aprovecha el Buen Fin del 13 al 17 de noviembre! Disfruta un 15 % de descuento en todos nuestros servicios.</p>
-      <p>Bienvenido a Az InnovationX</p>
-    </div>
-  </div>
-  <header>
-    <nav class="container">
-      <a href="#inicio" class="logo">
-        <img src="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" alt="Az InnovationX Logo" loading="lazy" style="height: 45px; width: auto; object-fit: contain; vertical-align: middle;">
-      </a>
-      <ul class="nav-links">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#pasos">Proceso</a></li>
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#certificaciones">Certificaciones</a></li>
-        <li><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" target="_blank">Aplicaciones</a></li>
-        <li><a href="#pagos">Pagos</a></li>
-        <li><a href="#precios">Precios</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-      <div class="mobile-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </nav>
-  </header>
-<main>
-    <section id="inicio" class="hero">
-      <canvas id="particle-canvas" style="position: absolute; top: 0; left: 0; z-index: 1;"></canvas>
-      <div id="custom-cursor" class="custom-cursor"></div>
-      <div class="floating-element" data-parallax-speed="3">⚡</div>
-      <div class="floating-element" data-parallax-speed="-2">🚀</div>
-      <div class="floating-element" data-parallax-speed="1">💻</div>
-      <div class="hero-content">
-        <div class="text-reveal-container">
-          <h1>Donde las Ideas Cobran Vida</h1>
-        </div>
-        <div class="text-reveal-container">
-          <p data-parallax-speed="-1">Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas</p>
-        </div>
-        <div class="video-container" data-parallax-speed="-1.5">
-          <iframe src="https://www.youtube.com/embed/yufJwl8WxEs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy">
-          </iframe>
-        </div>
-        <a href="#servicios" class="cta-button">Conocer Más</a>
-      </div>
-    </section>
-    <section id="servicios" class="container" style="background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-      <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" loading="lazy" style="position: absolute; top: 10px; right: 10px; width: 80px; opacity: 0.3; filter: grayscale(20%); transition: all 0.3s ease; z-index: 0;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
-      <div style="position: relative; z-index: 2;">
-        <h2 class="section-title">Nuestros Servicios</h2>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-card-content">
-              <div class="service-icon">🌐</div>
-              <h3>Páginas Web Profesionales</h3>
-              <p>Diseños modernos y adaptables para convertir visitantes en clientes.</p>
-              <img src="https://i.ibb.co/kVStpRH6/for-blog-3.gif" alt="Páginas Web Profesionales" loading="lazy" class="service-image">
-              <a href="https://ejemplosdepaginasweb.netlify.app/" target="_blank" class="cta-button service-card-button">Ver mas</a>
-            </div>
-          </div>
-          <div class="service-card">
-            <div class="service-card-content">
-              <div class="service-icon">📱</div>
-              <h3>Aplicaciones Móviles</h3>
-              <p>Apps Android y multiplataforma que conectan con tu audiencia.</p>
-              <img src="https://i.ibb.co/7xy6NTnm/13.gif" alt="Aplicaciones Móviles" loading="lazy" class="service-image">
-              <a href="https://paginawebaplicaciones.netlify.app/" target="_blank" class="cta-button service-card-button">Ver mas</a>
-            </div>
-          </div>
-          <div class="service-card">
-            <div class="service-card-content">
-              <div class="service-icon">🛒</div>
-              <h3>Tiendas Online</h3>
-              <p>Plataformas de e-commerce robustas y seguras para impulsar tus ventas.</p>
-              <img src="https://i.ibb.co/Wv2kGCfL/app-online-store.gif" alt="Tiendas Online" loading="lazy" class="service-image">
-              <a href="https://paginawebdetiendaonline.netlify.app/" target="_blank" class="cta-button service-card-button">Ver mas</a>
-            </div>
-          </div>
-          <div class="service-card">
-            <div class="service-card-content">
-              <div class="service-icon">🤖</div>
-              <h3>Chatbots Inteligentes</h3>
-              <p>Automatiza la atención al cliente con IA avanzada, 24/7.</p>
-              <img src="https://i.ibb.co/zWJ5ZntM/ded0bbdd8485e424327257405a86a884.gif" alt="Chatbots Inteligentes" loading="lazy" class="service-image">
-              <a href="https://chatbotsaz.netlify.app/" target="_blank" class="cta-button service-card-button">Ver mas</a>
-            </div>
-          </div>
-          <div class="service-card">
-            <div class="service-card-content">
-              <div class="service-icon">🔒</div>
-              <h3>Seguridad Informática</h3>
-              <p>Protege tu negocio digital con auditorías y protocolos de ciberseguridad.</p>
-              <img src="https://i.ibb.co/wr7MyB9L/giphy.gif" alt="Seguridad Informática" loading="lazy" class="service-image">
-              <a href="https://paginawebseguridadinformatica.netlify.app/" target="_blank" class="cta-button service-card-button">Ver mas</a>
-            </div>
-          </div>
-          <div class="service-card">
-            <div class="service-card-content">
-              <div class="service-icon">☁️</div>
-              <h3>Soluciones Cloud</h3>
-              <p>Migración y optimización en la nube para escalabilidad sin límites.</p>
-              <img src="https://i.ibb.co/Pvth5B1V/nube-animada.gif" alt="Soluciones Cloud" loading="lazy" class="service-image">
-              <a href="https://paginawebsolucionescloud.netlify.app/" target="_blank" class="cta-button service-card-button">Ver mas</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <section id="pasos" class="steps-section" style="background-image: url('https://i.ibb.co/0jXB2q0N/original-6324df23375f93646b5c1504758f5572.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
-      <div class="container" style="position: relative; z-index: 2;">
-        <h2 class="section-title">Nuestro Proceso Simplificado</h2>
-        <div class="steps-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <h3>Consulta y Estrategia</h3>
-            <p>Entendemos tu visión y tus metas. Definimos juntos el plan de acción, la tecnología a usar y el camino hacia el éxito de tu proyecto.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <h3>Diseño y Desarrollo</h3>
-            <p>Damos vida a tu idea. Creamos un diseño atractivo y funcional, y desarrollamos una solución robusta, escalable y a la medida.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <h3>Lanzamiento y Soporte</h3>
-            <p>Desplegamos tu proyecto al mundo. Te acompañamos en el lanzamiento y te ofrecemos soporte para asegurar su funcionamiento óptimo.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="nosotros" class="container" style="background-image: url('https://i.ibb.co/wNZCGfc3/Hot-desking-trabajo-empresa-mesas-calientes-nueva-tendencia-vuelta-oficinas-empleo-app-sitios-1.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-      <img src="https://i.ibb.co/B2Nbx0Zd/Whats-App-Image-2025-07-24-at-3-51-53-PM.jpg" alt="marca de agua" loading="lazy" style="position: absolute; top: 10px; right: 10px; width: 80px; opacity: 0.3; filter: grayscale(20%); transition: all 0.3s ease; z-index: 0;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
-      <div style="position: relative; z-index: 2;">
-        <h2 class="section-title">¿Quiénes somos?</h2>
-        <div class="bento-grid">
-          <div class="bento-box box-1">
-            <span class="bento-icon">🚀</span>
-            <h3>Nuestra Misión</h3>
-            <p>Convertimos ideas en soluciones digitales con impacto real, ayudando a emprendedores a resolver desafíos tecnológicos con innovación y agilidad.</p>
-            <span class="deco-shape shape-1"></span>
-          </div>
-          <div class="bento-box box-2">
-            <h3>Mentalidad Emprendedora</h3>
-            <p>Entendemos lo que significa empezar desde cero. Diseñamos plataformas escalables, eficientes y listas para el futuro.</p>
-            <span class="deco-shape shape-2"></span>
-          </div>
-          <div class="bento-box box-3">
-            <p class="typewriter-text">No vendemos promesas. Creamos soluciones.</p>
-          </div>
-          <div class="bento-box box-4">
-            <div class="stat">
-              <span class="stat-number" data-target="50">+50</span>
-              <span class="stat-label">Proyectos Completados</span>
-            </div>
-            <div class="stat">
-              <span class="stat-number" data-target="100">100%</span>
-              <span class="stat-label">Compromiso</span>
-            </div>
-            <span class="deco-shape shape-3"></span>
-          </div>
-          <div class="bento-box box-5">
-            <span class="bento-icon">💡</span>
-            <h3>Ingenio y Visión</h3>
-            <p>Nos apasiona automatizar, optimizar y dar vida a ideas que transforman. En cada proyecto ponemos nuestro máximo ingenio.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="certificaciones">
-      <div class="container">
-        <h2 class="section-title">Certificaciones que avalan nuestra excelencia</h2>
-        <p class="section-subtitle" style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem;">
-          En Az InnovationX contamos con certificaciones que avalan nuestra seguridad, calidad y excelencia. Son prueba de nuestro compromiso con la innovación y los más altos estándares del sector.
-          <br><br>
-          Elige un aliado tecnológico con respaldo y confianza.
-        </p>
-        <div style="text-align: center;">
-          <a href="https://certificaciones1.netlify.app/" target="_blank" class="cta-button">Ver nuestras certificaciones</a>
-        </div>
-      </div>
-    </section>
-    <section id="pagos" class="container">
-      <h2 class="section-title">Realiza tu Pago</h2>
-      <p class="section-subtitle">Elige tu método de pago preferido. Ofrecemos opciones seguras para tu comodidad.</p>
-
-      <div class="payment-options-grid">
-        <!-- PayPal Option -->
-        <div class="payment-option-card">
-          <div class="payment-option-header">
-            <img src="https://i.ibb.co/B2fVb3hF/original-ba7850362f2416e8bfb8032c57a18ab7.gif" alt="PayPal Logo" class="payment-icon" loading="lazy" border="0">
-            <h4>PayPal</h4>
-            <p>Rápido, seguro y fácil.</p>
-          </div>
-          <a href="https://paypal.me/EvaristoSan?locale.x=es_XC&country.x=MX" target="_blank" class="cta-button payment-cta">Pagar con PayPal</a>
-        </div>
-
-        <!-- Clip - Card Payment Option -->
-        <div class="payment-option-card">
-          <div class="payment-option-header">
-            <img src="https://i.ibb.co/rRpM5NcV/D-NQ-NP-755794-MLM53356797658-012023-O-clip-plus-2-terminal-lector-cobro-con-tarjetas-vales.webp" alt="Clip Terminal" class="payment-icon" loading="lazy">
-            <h4>Pago con Tarjeta o Métodos Digitales</h4>
-            <p>Aceptamos tarjetas de débito y crédito, pagos con Apple Pay, Google Pay, Mercado Pago y transferencias. Compra fácil, rápida y segura.</p>
-          </div>
-          <a href="https://clip.mx/@azinnovationx" target="_blank" class="cta-button payment-cta">Pagar con Tarjeta</a>
-        </div>
-
-      </div>
-    </section>
-        <section id="precios">
-      <div class="container">
-        <h2 class="section-title">Planes y Precios</h2>
-        <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem;">
-          En Az InnovationX, diseñamos soluciones personalizadas que impulsan tu crecimiento. Contáctanos para el plan ideal.
-        </p>
-        <div style="text-align: center;">
-          <a href="https://precios1.netlify.app/" target="_blank" class="cta-button">Ver Paquetes Detallados</a>
-        </div>
-      </div>
-    </section>
-  
-</main>
-<div class="contact-map-section">
-  <div class="container">
-    <div class="map-contact-grid">
-      <!-- Mapa -->
-      <div class="map-container">
-        <img src="https://i.ibb.co/s9j7h5wc/Generated-Image-November-07-2025-8-39-AM.png"
-alt="Ubicación Az InnovationX"
-loading="lazy"
-style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border: 0;">
-      </div>
-
-      <!-- Información de Contacto -->
-      <div class="contact-info-corporate">
-        <h3 class="contact-title">Información de Contacto</h3>
-        
-        <div class="contact-item-corporate">
-          <div class="contact-icon-wrapper" style="font-size: 24px;">
-            📍
-          </div>
-          <div class="contact-details">
-            <h4>Ubicación</h4>
-            <p>Az InnovationX</p>
-            <p>Estado de México, Huixquilucan</p>
-            <a href="https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A" target="_blank">
-              ¡Déjanos un comentario! ⭐
-            </a>
-          </div>
-        </div>
-
-        <div class="contact-item-corporate">
-          <div class="contact-icon-wrapper" style="font-size: 24px;">
-             <img src="https://i.ibb.co/C191K35/images-2.png" alt="WhatsApp Icon" style="width: 24px; height: 24px;">
-          </div>
-          <div class="contact-details">
-            <h4>WhatsApp</h4>
-            <a href="https://wa.me/5620042412">+52 56 2004 2412</a>
-            <p>¡Escríbenos ahora!</p>
-          </div>
-        </div>
-
-        <div class="contact-item-corporate">
-          <div class="contact-icon-wrapper" style="font-size: 24px;">
-            <img src="https://i.ibb.co/rf5DCSyX/images.png" alt="images" border="0" style="width: 24px; height: 24px;">
-          </div>
-          <div class="contact-details">
-            <h4>Gmail</h4>
-            <a href="mailto:soporteseguro98@gmail.com">soporteseguro98@gmail.com</a>
-            <p>Respuesta en 24 horas</p>
-          </div>
-        </div>
-
-        <div class="contact-item-corporate">
-          <div class="contact-icon-wrapper" style="font-size: 24px;">
-            🕒
-          </div>
-          <div class="contact-details">
-            <h4>Horario de Atención</h4>
-            <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
-            <p>Sábados: 10:00 AM - 2:00 PM</p>
-            <span class="badge-attention">Atención Personalizada</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-main-grid">
-      <!-- Columna 1: Acerca de Az InnovationX -->
-      <div class="footer-column">
-        <img src="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" alt="Az InnovationX Logo" style="height: 50px;">
-        <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Innovación tecnológica que impulsa tu crecimiento digital. Soluciones empresariales con calidad certificada y soporte garantizado.</p>
-        <div class="footer-trust-badges">
-          <div class="trust-badge">✓ +50 Proyectos Completados</div>
-          <div class="trust-badge">✓ Certificaciones Verificadas</div>
-          <div class="trust-badge">✓ Soporte 24/7</div>
-        </div>
-      </div>
-      <!-- Columna 2: Navegación Rápida -->
-      <div class="footer-column">
-        <h4>Navegación</h4>
-        <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.8rem;"><a href="#inicio" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Inicio</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="#servicios" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Servicios</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="#pasos" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Proceso</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="#nosotros" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Nosotros</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="#certificaciones" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Certificaciones</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Solicitudes</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="#pagos" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Pagos</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="#precios" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Precios</a></li>
-        </ul>
-      </div>
-      <!-- Columna 3: Recursos y Herramientas -->
-      <div class="footer-column">
-        <h4>Recursos</h4>
-        <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.8rem;"><a href="https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"> <img src="https://i.ibb.co/C191K35/images-2.png" alt="WhatsApp Icon" style="width: 24px; height: 24px;"> Aplicaciones</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://azinnovationx.blogspot.com/" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">📝 Blog de Innovación</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">📧 Suscríbete al Newsletter</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://certificaciones1.netlify.app/" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">🎓 Certificaciones</a></li>
-        </ul>
-      </div>
-      <!-- Columna 4: Comunidad y Redes -->
-      <div class="footer-column">
-        <h4>Síguenos</h4>
-        <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Únete a nuestra comunidad digital</p>
-        <div class="social-icons" style="display: flex; gap: 1rem; margin-top: 1rem;">
-          <a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank"><img src="https://i.ibb.co/r2FCqXxN/facebook-fb.gif" alt="Facebook" style="width: 32px; height: 32px;"/></a>
-          <a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank"><img src="https://i.ibb.co/svGfRtTx/200.gif" alt="Instagram" style="width: 32px; height: 32px;"/></a>
-          <a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank"><img src="https://i.ibb.co/ynv3hw6X/tiktok-logo-logo.gif" alt="TikTok" style="width: 32px; height: 32px;"/></a>
-        </div>
-        <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Más de 1,000 seguidores nos respaldan</p>
-      </div>
-    </div>
-
-    <div class="footer-bottom-corporate">
-      <!-- Lado Izquierdo -->
-      <div style="text-align: left;">
-        <p style="margin: 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.7);">© 2025 Az InnovationX. Todos los derechos reservados.</p>
-        <p style="margin: 0.3rem 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.7);">Soluciones Tecnológicas Empresariales</p>
-        <span style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">Empresa Mexicana 🇲🇽</span>
-      </div>
-      <!-- Centro -->
-      <div class="footer-legal-links">
-        <a href="#">Términos y Condiciones</a>
-        <span>&nbsp;|&nbsp;</span>
-        <a href="#">Política de Privacidad</a>
-        <span>&nbsp;|&nbsp;</span>
-        <a href="#">Aviso Legal</a>
-      </div>
-      <!-- Lado Derecho -->
-      <div></div>
-    </div>
-  </div>
-</footer>
-  <!-- Chatbot HTML Structure -->
-  <div id="chatbot-container">
-    <div id="chatbot-window">
-      <div id="chatbot-header">
-        <div class="avatar">
-          <img src="https://i.ibb.co/Pz0qm1sL/Imagen-de-Whats-App-2025-09-13-a-las-17-52-02-f32b3c10.jpg" alt="Az Asistente Virtual" loading="lazy" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-        </div>
-        <div class="bot-info">
-          <h4>Az Asistente Virtual</h4>
-          <p>En línea</p>
-        </div>
-        <button id="chatbot-expand-toggle" title="Expandir/Minimizar" style="background:none; border:none; color:white; cursor:pointer; margin-left:auto; padding:5px; line-height: 1;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-expand">
-            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
-          </svg>
-        </button>
-      </div>
-      <div id="chatbot-messages">
-        <!-- Messages will be appended here by JavaScript -->
-      </div>
-      <form id="chatbot-input-form">
-        <input type="text" id="chatbot-input" placeholder="Escribe un mensaje..." autocomplete="off">
-        <button type="submit" id="chatbot-send">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send">
-            <line x1="22" y1="2" x2="11" y2="13"></line>
-            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-          </svg>
-        </button>
-      </form>
-    </div>
-    <a href="https://contactosoli.netlify.app/" target="_blank" id="contact-button" class="floating-button">
-      <span class="icon-contact">✉️</span>
-    </a>
-    <button id="chatbot-toggle">
-      <span class="icon-open">🤖</span>
-      <span class="icon-close">✕</span>
-    </button>
-  </div>
-  <!-- General Page Scripts -->
-  <script>
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-    // Fade in animation on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-    document.querySelectorAll('.fade-in').forEach(el => {
-      observer.observe(el);
-    });
-    // Header background on scroll
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('header');
-      if (window.scrollY > 100) {
-        header.style.background = 'rgba(10, 15, 30, 0.98)';
-      } else {
-        header.style.background = 'rgba(10, 15, 30, 0.95)';
-      }
-    });
-    // Mobile menu toggle
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-    mobileMenu.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-      navLinks.classList.toggle('active');
-    });
-    // Close menu when a link is clicked
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (navLinks.classList.contains('active')) {
-          mobileMenu.classList.remove('active');
-          navLinks.classList.remove('active');
-        }
-      });
-    });
-    // Add hover effects to service cards
-    document.querySelectorAll('.service-card').forEach(card => {
-      card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px) scale(1.02)';
-      });
-      card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-      });
-    });
-    // Parallax effect for hero section
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const hero = document.querySelector('.hero');
-      const heroContent = document.querySelector('.hero-content');
-      if (hero && heroContent) {
-        heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
-      }
-    });
-    // Counter animation for stats
-    function animateCounter(element, target) {
-      let count = 0;
-      const increment = target / 100;
-      const timer = setInterval(() => {
-        count += increment;
-        if (count >= target) {
-          count = target;
-          clearInterval(timer);
-        }
-        element.textContent = Math.floor(count) + (target === 95 ? '%' : target === 200 ? '+' : target.toString().includes('+') ? '+' : target === 24 ? '/7' : '');
-      }, 20);
-    }
-    // Animate counters when visible
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const statNumber = entry.target.querySelector('.stat-number');
-          const text = statNumber.textContent;
-          let target = parseInt(text);
-          if (text.includes('%')) target = 95;
-          else if (text.includes('+')) target = 200;
-          else if (text.includes('/')) target = 24;
-          else target = parseInt(text);
-          animateCounter(statNumber, target);
-          statsObserver.unobserve(entry.target);
-        }
-      });
-    });
-    document.querySelectorAll('.stat-card').forEach(card => {
-      statsObserver.observe(card);
-    });
-    // Add typing effect to hero title
-    function typeWriter(element, text, speed = 50) {
-      let i = 0;
-      element.innerHTML = '';
-
-      function type() {
-        if (i < text.length) {
-          element.innerHTML += text.charAt(i);
-          i++;
-          setTimeout(type, speed);
-        }
-      }
-      type();
-    }
-    // Add floating animation to service icons
-    document.querySelectorAll('.service-icon').forEach((icon, index) => {
-      icon.style.animationDelay = `${index * 0.2}s`;
-      icon.style.animation = 'float 6s ease-in-out infinite';
-    });
-    // Smooth reveal animation for steps
-    document.querySelectorAll('.step-card').forEach((card, index) => {
-      card.style.animationDelay = `${index * 0.1}s`;
-    });
-  </script>
-
-  <!-- Firebase and Form Submission Script -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-  <script>
-    // Firebase Configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyDyk6XjQ72k73oza9fkkUxup9GQvDsFT5o",
-      authDomain: "weatherwise-aywzg.firebaseapp.com",
-      projectId: "weatherwise-aywzg",
-      storageBucket: "weatherwise-aywzg.firebasestorage.app",
-      messagingSenderId: "699516071771",
-      appId: "1:699516071771:web:5a84dcf771b1ee5c38b47e"
-    };
-    // Initialize Firebase
-    let db;
-    try {
-      firebase.initializeApp(firebaseConfig);
-      db = firebase.firestore();
-      console.log('Firebase inicializado correctamente');
-    } catch (error) {
-      console.error('Error al inicializar Firebase:', error);
-    }
-    // Form validation
-    function validateForm() {
-      const requiredFields = ['nombre', 'email', 'servicio', 'mensaje'];
-      let isValid = true;
-      requiredFields.forEach(fieldName => {
-        const field = document.getElementById(fieldName);
-        const value = field.value.trim();
-        if (!value) {
-          field.classList.add('invalid');
-          field.classList.remove('valid');
-          isValid = false;
-        } else {
-          field.classList.remove('invalid');
-          field.classList.add('valid');
-        }
-      });
-      // Email validation
-      const emailField = document.getElementById('email');
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (emailField.value && !emailRegex.test(emailField.value)) {
-        emailField.classList.add('invalid');
-        emailField.classList.remove('valid');
-        isValid = false;
-      }
-      return isValid;
-    }
-    // Real-time validation
-    document.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
-      field.addEventListener('blur', function() {
-        const value = this.value.trim();
-        if (value) {
-          this.classList.remove('invalid');
-          this.classList.add('valid');
-        } else {
-          this.classList.add('invalid');
-          this.classList.remove('valid');
-        }
-      });
-      field.addEventListener('input', function() {
-        if (this.classList.contains('invalid') && this.value.trim()) {
-          this.classList.remove('invalid');
-          this.classList.add('valid');
-        }
-      });
-    });
-    // Form submission
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const submitBtn = document.getElementById('submitBtn');
-      const successMessage = document.getElementById('successMessage');
-      const errorMessage = document.getElementById('errorMessage');
-      // Hide previous messages
-      successMessage.style.display = 'none';
-      errorMessage.style.display = 'none';
-      // Validate form
-      if (!validateForm()) {
-        errorMessage.textContent = 'Por favor, completa todos los campos obligatorios correctamente.';
-        errorMessage.style.display = 'block';
-        return;
-      }
-      // Show loading state
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<span class="loading"></span>Enviando...';
-      submitBtn.disabled = true;
-      try {
-        // Get form data
-        const formData = new FormData(this);
-        const formObj = {};
-        formData.forEach((value, key) => {
-          formObj[key] = value;
-        });
-        // Prepare data for Firebase
-        const contactData = {
-          nombre: formObj.nombre || '',
-          email: formObj.email || '',
-          telefono: formObj.telefono || '',
-          empresa: formObj.empresa || '',
-          servicio: formObj.servicio || '',
-          presupuesto: formObj.presupuesto || '',
-          mensaje: formObj.mensaje || '',
-          fechaEnvio: firebase.firestore.Timestamp.now(),
-          estado: 'nuevo',
-          userAgent: navigator.userAgent,
-          timestamp: new Date().toISOString()
-        };
-        console.log('Enviando datos:', contactData);
-        // Save to Firebase
-        if (db) {
-          await db.collection('contactos').add(contactData);
-          console.log('Datos guardados en Firebase');
-          // Show success message
-          successMessage.style.display = 'block';
-          // Reset form
-          this.reset();
-          // Remove validation classes
-          document.querySelectorAll('.valid, .invalid').forEach(field => {
-            field.classList.remove('valid', 'invalid');
-          });
-          // Hide success message after 5 seconds
-          setTimeout(() => {
-            successMessage.style.display = 'none';
-          }, 5000);
-        } else {
-          throw new Error('Base de datos no disponible');
-        }
-      } catch (error) {
-        console.error('Error al enviar formulario:', error);
-        errorMessage.textContent = 'Error al enviar el formulario: ' + error.message;
-        errorMessage.style.display = 'block';
-      } finally {
-        // Restore button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-      }
-    });
-    // Test Firebase connection on page load
-    window.addEventListener('load', async () => {
-      if (db) {
-        try {
-          await db.collection('contactos').limit(1).get();
-          console.log('Conexión a Firebase exitosa');
-        } catch (error) {
-          console.error('Error de conexión a Firebase:', error);
-        }
-      }
-    });
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // --- Hero Section: Interactive Particle System ---
-      const canvas = document.getElementById('particle-canvas');
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      let particlesArray;
-      const mouse = {
-        x: null,
-        y: null,
-        radius: 150
-      };
-      window.addEventListener('mousemove', (event) => {
-        mouse.x = event.x;
-        mouse.y = event.y;
-      });
-      window.addEventListener('mouseout', () => {
-        mouse.x = null;
-        mouse.y = null;
-      });
-      class Particle {
-        constructor(x, y, directionX, directionY, size, color) {
-          this.x = x;
-          this.y = y;
-          this.directionX = directionX;
-          this.directionY = directionY;
-          this.size = size;
-          this.color = color;
-        }
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-          ctx.fillStyle = this.color;
-          ctx.fill();
-        }
-        update() {
-          if (this.x > canvas.width || this.x < 0) {
-            this.directionX = -this.directionX;
-          }
-          if (this.y > canvas.height || this.y < 0) {
-            this.directionY = -this.directionY;
-          }
-          // Mouse interaction
-          let dx = mouse.x - this.x;
-          let dy = mouse.y - this.y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < mouse.radius + this.size) {
-            if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-              this.x += 5;
-            }
-            if (mouse.x > this.x && this.x > this.size * 10) {
-              this.x -= 5;
-            }
-            if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-              this.y += 5;
-            }
-            if (mouse.y > this.y && this.y > this.size * 10) {
-              this.y -= 5;
-            }
-          }
-          this.x += this.directionX;
-          this.y += this.directionY;
-          this.draw();
-        }
-      }
-
-      function initParticles() {
-        particlesArray = [];
-        let numberOfParticles = (canvas.height * canvas.width) / 9000;
-        for (let i = 0; i < numberOfParticles; i++) {
-          let size = (Math.random() * 2) + 1;
-          let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-          let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-          let directionX = (Math.random() * .4) - .2;
-          let directionY = (Math.random() * .4) - .2;
-          let color = 'rgba(0, 212, 255, 0.6)';
-          particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-        }
-      }
-
-      function connectParticles() {
-        let opacityValue = 1;
-        for (let a = 0; a < particlesArray.length; a++) {
-          for (let b = a; b < particlesArray.length; b++) {
-            let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
-              ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-            if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-              opacityValue = 1 - (distance / 20000);
-              ctx.strokeStyle = `rgba(0, 212, 255, ${opacityValue})`;
-              ctx.lineWidth = 1;
-              ctx.beginPath();
-              ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-              ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-              ctx.stroke();
-            }
-          }
-        }
-      }
-
-      function animateParticles() {
-        requestAnimationFrame(animateParticles);
-        ctx.clearRect(0, 0, innerWidth, innerHeight);
-        for (let i = 0; i < particlesArray.length; i++) {
-          particlesArray[i].update();
-        }
-        connectParticles();
-      }
-      window.addEventListener('resize', () => {
-        canvas.width = innerWidth;
-        canvas.height = innerHeight;
-        initParticles();
-      });
-      if (canvas) {
-        initParticles();
-        animateParticles();
-      }
-      // --- Hero Section: Animations & Mouse Effects ---
-      const heroTextContainers = document.querySelectorAll('.hero .text-reveal-container');
-      const customCursor = document.getElementById('custom-cursor');
-      const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
-      // 1. Cinematic Text Reveal
-      window.addEventListener('load', () => {
-        heroTextContainers.forEach((container, index) => {
-          setTimeout(() => {
-            container.classList.add('visible');
-          }, 500 + (index * 250)); // Staggered delay
-        });
-      });
-      // 2. Custom Cursor and Parallax Mouse-follow
-      window.addEventListener('mousemove', (e) => {
-        const {
-          clientX,
-          clientY
-        } = e;
-        // Update custom cursor position
-        if (customCursor) {
-          customCursor.style.transform = `translate(${clientX - 10}px, ${clientY - 10}px)`;
-        }
-        // Update parallax elements
-        const x = (clientX - window.innerWidth / 2) / window.innerWidth * -1;
-        const y = (clientY - window.innerHeight / 2) / window.innerHeight * -1;
-        parallaxElements.forEach(el => {
-          const speed = el.getAttribute('data-parallax-speed');
-          const xOffset = x * speed * 20;
-          const yOffset = y * speed * 20;
-          el.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
-        });
-      });
-      // --- Services Section Interactivity ---
-      const servicesSection = document.querySelector('#servicios');
-      const serviceCards = document.querySelectorAll('.service-card');
-      const servicesObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            serviceCards.forEach((card, index) => {
-              card.style.transitionDelay = `${index * 100}ms`;
-              card.classList.add('visible');
-            });
-            servicesObserver.unobserve(servicesSection);
-          }
-        });
-      }, {
-        threshold: 0.1
-      });
-      if (servicesSection) {
-        servicesObserver.observe(servicesSection);
-      }
-      serviceCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          const rotateX = (y / rect.height) * -12;
-          const rotateY = (x / rect.width) * 12;
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = ''; // Reset to CSS state
-        });
-      });
-      // --- Solicitudes Section Interactivity ---
-      const solicitudesSection = document.querySelector('#solicitudes');
-      const ambientBg = document.querySelector('.solicitudes-ambient-bg');
-      if (solicitudesSection && ambientBg) {
-        solicitudesSection.addEventListener('mousemove', (e) => {
-          const rect = solicitudesSection.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          ambientBg.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
-          ambientBg.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
-        });
-      }
-      // --- "Quiénes Somos" Section Interactivity ---
-      const nosotrosSection = document.querySelector('#nosotros');
-      const bentoBoxes = document.querySelectorAll('.bento-box');
-      const typewriterElement = document.querySelector('.typewriter-text');
-      const stats = document.querySelectorAll('.stat-number');
-      const nosotrosObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Animate bento boxes
-            bentoBoxes.forEach((box, index) => {
-              box.style.transitionDelay = `${index * 150}ms`;
-              box.classList.add('visible');
-            });
-            // Animate stats
-            stats.forEach(stat => {
-              const target = +stat.getAttribute('data-target');
-              animateCounter(stat, target);
-            });
-            // Animate typewriter
-            if (typewriterElement) {
-              const text = typewriterElement.textContent;
-              typewriterElement.textContent = '';
-              setTimeout(() => typeWriter(typewriterElement, text), bentoBoxes.length * 150);
-            }
-            nosotrosObserver.unobserve(nosotrosSection); // Stop observing
-          }
-        });
-      }, {
-        threshold: 0.2
-      });
-      if (nosotrosSection) {
-        nosotrosObserver.observe(nosotrosSection);
-      }
-      // 3D tilt effect for bento boxes
-      bentoBoxes.forEach(box => {
-        box.addEventListener('mousemove', (e) => {
-          const rect = box.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          const rotateX = (y / rect.height) * -20;
-          const rotateY = (x / rect.width) * 20;
-          box.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05) translateZ(30px)`;
-        });
-        box.addEventListener('mouseleave', () => {
-          box.style.transform = ''; // Reset to CSS state
-        });
-      });
-      // Re-usable counter and typewriter functions (adapted from existing code)
-      function animateCounter(element, target) {
-        let count = 0;
-        const increment = target / 100;
-        const timer = setInterval(() => {
-          count += increment;
-          if (count >= target) {
-            count = target;
-            clearInterval(timer);
-          }
-          // Keep the "+" sign if it exists in the original text
-          element.textContent = Math.ceil(count) + (element.textContent.includes('+') ? '+' : '');
-        }, 20);
-      }
-
-      function typeWriter(element, text, speed = 60) {
-        let i = 0;
-        element.style.opacity = 1;
-
-        function type() {
-          if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-          }
-        }
-        type();
-      }
-      // --- Staggered Entry Animation for Contact Cards ---
-      document.querySelectorAll('.contact-section, #contacto').forEach(section => {
-        const contactItems = section.querySelectorAll('.contact-item');
-        if (contactItems.length > 0) {
-          const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                // Animate the items within the section that is now visible
-                const items = entry.target.querySelectorAll('.contact-item');
-                items.forEach((item, index) => {
-                  item.style.transitionDelay = `${index * 120}ms`;
-                  item.classList.add('visible');
-                });
-                observer.unobserve(entry.target); // Unobserve the section after animation
-              }
-            });
-          }, {
-            threshold: 0.2
-          });
-          observer.observe(section);
-        }
-      });
-    });
-  </script>
-  <!-- Chatbot Logic Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      let lastBotQuestionKey = null;
-      const affirmativeAnswers = ['si', 'sí', 'yes', 'claro', 'ok', 'está bien', 'esta bien', 'dale', 'va', 'por supuesto', 'acepto', 'afirmativo', 'de acuerdo'];
-      const negativeAnswers = ['no', 'no gracias', 'cancelar', 'ahora no'];
-      const conversationState = {
-        currentTopic: null,
-        mentionedServices: [],
-        budgetRange: null,
-        userFrustration: 0,
-        history: [],
-        suggestedQuote: false,
-        suggestedWebAppAndEcomm: false,
-        suggestedPortfolio: false,
-      };
-      const intents = {
-        greet: ['hola', 'buenos dias', 'buenas tardes'],
-        request_service_info: ['servicio', 'información', 'que haces', 'ayuda', 'productos'],
-        request_quote: ['precio', 'costo', 'cuánto', 'presupuesto', 'tarifa', 'cotización', 'cotizar', 'planes', 'paquetes', 'tienda online', 'chatbot'],
-        request_payment: ['pagar', 'pago', 'métodos de pago', 'cómo pago', 'cuenta bancaria', 'transferencia'],
-        request_contact: ['redes', 'social', 'síguelos', 'facebook', 'instagram', 'tiktok', 'seguir', 'contacto', 'llamar', 'email', 'correo'],
-        request_examples: ['ejemplos', 'portfolio', 'trabajos', 'proyectos anteriores', 'muestra'],
-        request_process: ['tiempo', 'cuándo', 'plazos', 'entrega', 'duración', 'proceso'],
-        request_support: ['soporte', 'mantenimiento', 'garantía', 'actualizaciones'],
-        frustration: ['no funciona', 'no sirve', 'frustrado', 'agente', 'humano', 'persona', 'no entiendo'],
-        request_online_presence_info: ['presencia', 'internet', 'online', 'importancia de estar en linea', 'visibilidad'],
-        request_cybersecurity_info: ['ciberseguridad', 'seguridad', 'proteger', 'riesgos', 'hackers', 'virus'],
-        request_creator_info: ['quien te creo', 'quién te creó', 'creador', 'desarrollador', 'quien te hizo', 'quién te hizo', 'quien te programo', 'quién te programó'],
-      };
-      const chatbotToggle = document.getElementById('chatbot-toggle');
-      const chatbotWindow = document.getElementById('chatbot-window');
-      const iconOpen = chatbotToggle.querySelector('.icon-open');
-      const iconClose = chatbotToggle.querySelector('.icon-close');
-      const messagesContainer = document.getElementById('chatbot-messages');
-      const inputForm = document.getElementById('chatbot-input-form');
-      const inputField = document.getElementById('chatbot-input');
-      const expandToggle = document.getElementById('chatbot-expand-toggle');
-      let misunderstandingCounter = 0;
-      if (expandToggle && chatbotWindow) {
-        expandToggle.addEventListener('click', () => {
-          chatbotWindow.classList.toggle('expanded');
-          const icon = expandToggle.querySelector('svg');
-          if (chatbotWindow.classList.contains('expanded')) {
-            // Change to minimize icon
-            icon.innerHTML = '<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>';
-          } else {
-            // Change back to expand icon
-            icon.innerHTML = '<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>';
-          }
-        });
-      }
-      const knowledgeBase = {
-        saludo: {
-          message: "¡Qué padre que estás aquí! Soy AZ, tu asistente virtual de Az InnovationX. Estoy listo para ayudarte a convertir tu idea en una solución digital. ¿En qué te puedo ayudar?",
-          options: [{
-              text: "Nuestros Servicios",
-              key: "servicios_menu"
-            },
-            {
-              text: "Presencia en Internet",
-              key: "presencia_internet"
-            },
-            {
-              text: "Suscríbete",
-              key: "suscribete"
-            },
-            {
-              text: "Nuestra Ubicación",
-              key: "ubicacion"
-            },
-            {
-              text: "Tips de Ciberseguridad",
-              key: "ciberseguridad"
-            },
-            {
-              text: "Métodos de Pago",
-              key: "payment_info"
-            },
-            {
-              text: "Nuestras Certificaciones",
-              key: "certificaciones"
-            },
-            {
-              text: "Preguntas Frecuentes (FAQ)",
-              key: "faq_menu"
-            },
-            {
-              text: "Contacto y Redes Sociales",
-              key: "contacto"
-            }
-          ]
-        },
-        presencia_internet: {
-          message: "¡Excelente pregunta! Tener presencia en internet es clave. Te recomiendo ver el video que está al principio de nuestra página para que veas todo el potencial. Tener una buena presencia online te permite llegar a más clientes, construir credibilidad y abrir nuevos canales de venta 24/7. ¿Te gustaría que te contáramos cómo podemos ayudarte a lograrlo?",
-          options: [{
-              text: "Ver el video ahora",
-              key: "go_to_inicio"
-            },
-            {
-              text: "Sí, cuéntame más",
-              key: "servicio_web"
-            },
-            {
-              text: "No, gracias",
-              key: "saludo"
-            }
-          ]
-        },
-        ciberseguridad: {
-          message: "La ciberseguridad es súper importante. No se trata solo de tecnología, sino de proteger el corazón de tu negocio: tus datos y la confianza de tus clientes. Una buena estrategia de seguridad evita pérdidas económicas y de reputación. ¿Quieres algunos consejos básicos para empezar?",
-          options: [{
-              text: "Sí, dame consejos",
-              key: "consejos_ciberseguridad"
-            },
-            {
-              text: "Ver servicios de seguridad",
-              key: "servicio_seguridad"
-            },
-            {
-              text: "Volver al inicio",
-              key: "saludo"
-            }
-          ]
-        },
-        consejos_ciberseguridad: {
-          message: "¡Claro! Aquí van 3 consejos clave:<br>" +
-            "<ul>" +
-            "<li><strong>Contraseñas Fuertes:</strong> Usa combinaciones largas de letras, números y símbolos. ¡No uses '123456'!</li>" +
-            "<li><strong>Autenticación de Dos Pasos (2FA):</strong> Actívala siempre que puedas. Es una capa extra de seguridad.</li>" +
-            "<li><strong>Mantén todo actualizado:</strong> Tu software, antivirus y aplicaciones deben tener siempre la última versión para protegerte de vulnerabilidades.</li>" +
-            "</ul>" +
-            "<p>Proteger tu negocio es más fácil de lo que parece. ¿Te podemos ayudar con algo más?",
-          options: [{
-              text: "Ver servicios de seguridad",
-              key: "servicio_seguridad"
-            },
-            {
-              text: "Volver al inicio",
-              key: "saludo"
-            }
-          ]
-        },
-        creator_info: {
-          message: "Fui creado por Az InnovationX, desarrollado por Evaristo San Juan Azuara, un emprendedor y desarrollador apasionado por la innovación tecnológica y la creación de soluciones digitales inteligentes."
-        },
-        suscribete: {
-          message: "¡Qué bueno que te interesa! Suscríbete para no perderte ninguna de nuestras innovaciones, ofertas especiales y contenido exclusivo. ¡Es la mejor forma de estar al día con el futuro de la tecnología!",
-          options: [{
-              text: "¡Claro, me suscribo!",
-              url: "https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header"
-            },
-            {
-              text: "Volver al inicio",
-              key: "saludo"
-            }
-          ]
-        },
-        ubicacion: {
-          message: "Nos encontramos en Estado de Mexico Huixquilucan. ¡Nos encantaría que nos dejaras un comentario en nuestra ubicación de Google Maps! Tu feedback nos ayuda a mejorar.",
-          options: [{
-              text: "Dejar un comentario",
-              url: "https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A"
-            },
-            {
-              text: "Volver al inicio",
-              key: "saludo"
-            }
-          ]
-        },
-        payment_info: {
-          message: "¡Claro! Puedes realizar tu pago de forma segura a través de PayPal o con tu tarjeta de débito o crédito usando Clip.<br><br>" +
-            "Ambas opciones están disponibles en nuestra sección de pagos. ¿Te gustaría ir ahora?",
-          options: [{
-              text: "Ir a la Sección de Pagos",
-              key: "go_to_pagos"
-            },
-            {
-              text: "Volver al inicio",
-              key: "saludo"
-            }
-          ]
-        },
-        servicios_menu: {
-          message: "¡Súper! Ofrecemos varias soluciones de alta tecnología. ¿Cuál te interesa para contarte más?",
-          options: [{
-              text: "Páginas Web Profesionales",
-              key: "servicio_web"
-            },
-            {
-              text: "Aplicaciones Móviles",
-              key: "servicio_app"
-            },
-            {
-              text: "Tiendas Online",
-              key: "servicio_ecommerce"
-            },
-            {
-              text: "Chatbots Inteligentes",
-              key: "servicio_chatbot"
-            },
-            {
-              text: "Seguridad Informática",
-              key: "servicio_seguridad"
-            },
-            {
-              text: "Soluciones Cloud",
-              key: "servicio_cloud"
-            },
-            {
-              text: "Volver al inicio",
-              key: "saludo"
-            }
-          ],
-        },
-        faq_menu: {
-          message: "¡Excelente! Aquí tienes los temas de nuestras preguntas más comunes. ¿Sobre qué te gustaría saber?",
-          options: [{
-              text: "Sobre el Proceso",
-              key: "faq_proceso_menu"
-            },
-            {
-              text: "Sobre Tecnología",
-              key: "faq_tecnologia_menu"
-            },
-            {
-              text: "Soporte Post-Venta",
-              key: "faq_soporte_menu"
-            },
-            {
-              text: "Volver al inicio",
-              key: "saludo"
-            }
-          ]
-        },
-        contacto: {
-          message: "¡Claro! Aquí tienes todas nuestras redes y formas de contacto. ¡Nos encantará saber de ti!",
-          options: [{
-              text: "WhatsApp",
-              url: "https://wa.me/5620042412"
-            },
-            {
-              text: "Facebook",
-              url: "https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL"
-            },
-            {
-              text: "Instagram",
-              url: "https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA=="
-            },
-            {
-              text: "TikTok",
-              url: "https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1"
-            },
-            {
-              text: "Aplicaciones",
-              url: "https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones"
-            },
-            {
-              text: "Blog",
-              url: "https://azinnovationx.blogspot.com/"
-            },
-            {
-              text: "Email",
-              url: "mailto:soporteseguro98@gmail.com"
-            },
-            {
-              text: "Volver al inicio",
-              key: "saludo"
-            }
-          ],
-        },
-        ejemplos: {
-          message: "¡Claro! Puedes ver algunos de nuestros trabajos en nuestra sección de aplicaciones.",
-          options: [{
-              text: "Ir a la sección de Aplicaciones",
-              url: "https://sites.google.com/view/tienda-de-aplicaciones/aplicaciones"
-            },
-            {
-              text: "Volver al inicio",
-              key: "saludo"
-            }
-          ]
-        },
-        servicio_web: {
-          message: "Creamos páginas web profesionales con diseños modernos, SEO optimizado e integración de APIs. ¡Perfectas para convertir visitantes en clientes!",
-          options: [
-            { text: "Ver más", url: "https://ejemplosdepaginasweb.netlify.app/" },
-            { text: "Volver a servicios", key: "servicios_menu" }
-          ],
-          nextContext: 'Páginas Web'
-        },
-        servicio_app: {
-          message: "Desarrollamos apps para Android y multiplataforma con notificaciones push y un diseño intuitivo para conectar con tu audiencia.",
-          options: [
-            { text: "Ver más", url: "https://paginawebaplicaciones.netlify.app/" },
-            { text: "Volver a servicios", key: "servicios_menu" }
-          ],
-          nextContext: 'Aplicaciones Móviles'
-        },
-        servicio_ecommerce: {
-          message: "Construimos plataformas de e-commerce robustas con pasarelas de pago seguras y gestión de inventario para que vendas sin parar.",
-          options: [
-            { text: "Ver más", url: "https://paginawebdetiendaonline.netlify.app/" },
-            { text: "Volver a servicios", key: "servicios_menu" }
-          ],
-          nextContext: 'Tiendas Online'
-        },
-        servicio_chatbot: {
-          message: "Automatizamos la atención al cliente 24/7 con IA. ¡Respuestas al instante para no perder ni un cliente!",
-          options: [
-            { text: "Ver más", url: "https://chatbotsaz.netlify.app/" },
-            { text: "Volver a servicios", key: "servicios_menu" }
-          ],
-          nextContext: 'Chatbots Inteligentes'
-        },
-        servicio_seguridad: {
-          message: "Protegemos tu negocio digital con auditorías y protocolos de ciberseguridad. ¡Tu tranquilidad es nuestra prioridad!",
-          options: [
-            { text: "Ver más", url: "https://paginawebseguridadinformatica.netlify.app/" },
-            { text: "Volver a servicios", key: "servicios_menu" }
-          ],
-          nextContext: 'Seguridad Informática'
-        },
-        servicio_cloud: {
-          message: "Migramos y optimizamos tu infraestructura en la nube para darte escalabilidad, alta disponibilidad y backups automáticos.",
-          options: [
-            { text: "Ver más", url: "https://paginawebsolucionescloud.netlify.app/" },
-            { text: "Volver a servicios", key: "servicios_menu" }
-          ],
-          nextContext: 'Soluciones Cloud'
-        },
-        faq_proceso_menu: {
-          message: "¡Perfecto! Nuestro proceso es súper ágil. ¿Qué te gustaría saber?",
-          options: [{
-              text: "¿Cómo empezamos?",
-              key: "faq_proceso_inicio"
-            },
-            {
-              text: "¿Qué necesitan de mí?",
-              key: "faq_proceso_requisitos"
-            },
-            {
-              text: "¿Puedo ver el progreso?",
-              key: "faq_proceso_progreso"
-            },
-            {
-              text: "Volver a FAQ",
-              key: "faq_menu"
-            }
-          ]
-        },
-        faq_tecnologia_menu: {
-          message: "¡Nos encanta la tecnología! Usamos lo más moderno y eficiente. ¿Qué quieres saber?",
-          options: [{
-              text: "¿Qué tecnologías usan?",
-              key: "faq_tech_stack"
-            },
-            {
-              text: "¿Mis datos están seguros?",
-              key: "faq_tech_seguridad"
-            },
-            {
-              text: "Volver a FAQ",
-              key: "faq_menu"
-            }
-          ]
-        },
-        faq_soporte_menu: {
-          message: "¡Claro! Nuestro compromiso no termina con la entrega. ¿Qué duda tienes sobre el soporte?",
-          options: [{
-              text: "¿Ofrecen capacitación?",
-              key: "faq_soporte_capacitacion"
-            },
-            {
-              text: "¿Qué incluye el soporte?",
-              key: "faq_soporte_incluye"
-            },
-            {
-              text: "¿Tienen garantía?",
-              key: "faq_soporte_garantia"
-            },
-            {
-              text: "Volver a FAQ",
-              key: "faq_menu"
-            }
-          ]
-        },
-        faq_proceso_inicio: {
-          message: "¡Súper fácil! 1) Nos cuentas tu idea, 2) Te damos presupuesto, 3) Firmamos contrato, 4) ¡Empezamos a crear!"
-        },
-        faq_proceso_requisitos: {
-          message: "Solo necesitamos que nos cuentes tu visión, compartas contenido (textos, imágenes) y que tengas comunicación fluida con nosotros."
-        },
-        faq_proceso_progreso: {
-          message: "¡Por supuesto! Te enviamos actualizaciones semanales con capturas y avances. Siempre estarás al tanto."
-        },
-        faq_tech_stack: {
-          message: "Usamos tecnologías modernas: HTML5, CSS3, JavaScript, React, Node.js, Firebase. Siempre lo más actual y eficiente."
-        },
-        faq_tech_seguridad: {
-          message: "¡Totalmente! Implementamos protocolos de seguridad SSL, encriptación y cumplimos con estándares internacionales de protección de datos."
-        },
-        faq_soporte_capacitacion: {
-          message: "¡Sí! Incluimos sesión de capacitación para que sepas manejar tu plataforma como un experto."
-        },
-        faq_soporte_incluye: {
-          message: "Soporte técnico por 30 días, corrección de bugs, y asesoría para dudas básicas sin costo adicional."
-        },
-        faq_soporte_garantia: {
-          message: "¡Por supuesto! 30 días de garantía total contra defectos de funcionamiento y bugs."
-        },
-        presupuesto: {
-          message: "¡Excelente! Para darte una cotización más precisa, ¿podrías indicarme tu presupuesto aproximado para este proyecto?",
-          options: [{
-              text: "Menos de $2,000 MXN",
-              budget: "0-2000"
-            },
-            {
-              text: "$2,000 - $4,000 MXN",
-              budget: "2000-4000"
-            },
-            {
-              text: "$4,000 - $6,000 MXN",
-              budget: "4000-6000"
-            },
-            {
-              text: "Más de $6,000 MXN",
-              budget: "6000+"
-            },
-            {
-              text: "Prefiero no decirlo",
-              budget: "nda"
-            }
-          ],
-          nextContext: 'capture_budget'
-        },
-        human_escalation: {
-          message: "Entiendo. Para darte una atención más personalizada, te recomiendo hablar directamente con nuestro equipo técnico vía WhatsApp. ¿Quieres que te redirija?",
-          options: [{
-            text: "Sí, llevar a WhatsApp",
-            url: "https://wa.me/5620042412"
-          }, {
-            text: "No, gracias",
-            key: "saludo"
-          }],
-          nextContext: 'whatsapp_redirect'
-        },
-        certificaciones: {
-          message: "Contamos con certificaciones que avalan nuestra seguridad, calidad y excelencia. Son prueba de nuestro compromiso con la innovación y los más altos estándares del sector. ¿Te gustaría verlas?",
-          options: [
-            { text: "Ver certificaciones", url: "https://certificaciones1.netlify.app/" },
-            { text: "Volver al inicio", key: "saludo" }
-          ]
-        },
-        precios_menu: {
-            message: "¡Por supuesto! Para darte la información más precisa, por favor dime sobre qué servicio te gustaría saber el costo.",
-            options: [
-                { text: "Página Web One Page", key: "precio_web_one_page" },
-                { text: "Web Empresarial", key: "precio_web_empresarial" },
-                { text: "Tienda Online", key: "precio_tienda" },
-                { text: "App Web (PWA)", key: "precio_pwa" },
-                { text: "Chatbot Básico", key: "precio_chatbot_basico" },
-                { text: "Chatbot Avanzado", key: "precio_chatbot_avanzado" },
-                { text: "Seguridad Web", key: "precio_seguridad" },
-                { text: "Hosting y Mantenimiento", key: "precio_hosting" },
-                { text: "Paquetes Recomendados", key: "precios_paquetes" },
-                { text: "Volver al inicio", key: "saludo" }
-            ]
-        },
-        precio_web_one_page: {
-            message: "Una <strong>Página Web One Page Profesional</strong> tiene un costo de 💰 $2,000 a $3,000 MXN. Es ideal para emprendedores y marcas que buscan una presencia digital moderna y efectiva. Incluye diseño responsivo, secciones estratégicas, integración con redes sociales y formulario de contacto.",
-            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
-        },
-        precio_web_empresarial: {
-            message: "Una <strong>Página Web Empresarial Premium</strong> cuesta entre 💰 $2,500 y $3,500 MXN. Es un sitio corporativo profesional enfocado en posicionamiento y ventas, con múltiples secciones, SEO básico y copywriting persuasivo.",
-            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
-        },
-        precio_tienda: {
-            message: "Una <strong>Tienda Online Básica</strong> tiene un precio de 💰 $2,500 a $3,000 MXN. Es la solución perfecta para empezar a vender en línea, con catálogo de productos, carrito de compras, integración de pagos y WhatsApp.",
-            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
-        },
-        precio_pwa: {
-            message: "Una <strong>App Web Android (PWA)</strong> tiene un costo de 💰 $2,800 a $3,700 MXN. Es una app instalable que ofrece acceso directo desde el celular, con carga rápida y funcionamiento sin conexión.",
-            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
-        },
-        precio_chatbot_basico: {
-            message: "Un <strong>Chatbot Web Básico</strong> cuesta entre 💰 $500 y $800 MXN. Es ideal para automatizar respuestas a preguntas frecuentes con un flujo de conversación predefinido.",
-            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
-        },
-        precio_chatbot_avanzado: {
-            message: "Un <strong>Chatbot Avanzado</strong> tiene un precio de 💰 $800 a $1,200 MXN. Incluye menús interactivos, múltiples flujos de conversación e integración con WhatsApp o correo electrónico.",
-            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
-        },
-        precio_seguridad: {
-            message: "El servicio de <strong>Seguridad Web Básica</strong> cuesta entre 💰 $2,800 y $3,800 MXN. Incluye un diagnóstico de seguridad, un reporte de vulnerabilidades y la implementación de configuraciones esenciales para proteger tu sitio.",
-            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
-        },
-        precio_hosting: {
-            message: "Nuestro servicio de <strong>Hosting y Mantenimiento</strong> tiene un costo de 💰 $1,200 a $2,000 MXN. Asegura que tu sitio esté siempre en línea, optimizado, seguro y con respaldos periódicos.",
-            options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
-        },
-        precios_paquetes: {
-            message: "¡Claro! Aquí tienes nuestros paquetes recomendados:<br><br><strong>📦 Web + Chatbot Básico:</strong> $3,000 - $3,800 MXN<br><strong>📦 Web + App + Chatbot:</strong> $5,300 - $7,500 MXN<br><br>Todos nuestros planes incluyen hosting y dominio gratis. ✅",
-            options: [{ text: "Ver precios individuales", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
-        }
-      };
-      const getProactiveSuggestion = () => {
-        const {
-          currentTopic,
-          mentionedServices,
-          history,
-          suggestedQuote,
-          suggestedWebAppAndEcomm,
-          suggestedPortfolio
-        } = conversationState;
-        if (!suggestedWebAppAndEcomm && mentionedServices.includes('Páginas Web') && mentionedServices.includes('Tiendas Online')) {
-          conversationState.suggestedWebAppAndEcomm = true;
-          return "Veo que te interesan tanto las páginas web como las tiendas online. ¿Sabías que nuestras tiendas online son sitios web completos con todo lo que necesitas para vender?";
-        }
-        const askedAboutPrice = history.some(input => intents.request_quote.some(kw => input.includes(kw)));
-        if (!suggestedQuote && currentTopic && askedAboutPrice) {
-          conversationState.suggestedQuote = true;
-          return `Si quieres, podemos hacer una cotización más detallada para tu proyecto de ${currentTopic} sin ningún compromiso. Solo di "cotizar".`;
-        }
-        if (currentTopic && history.filter(i => i.toLowerCase().includes(currentTopic.toLowerCase().split(' ')[0])).length > 1) {
-          if (!suggestedPortfolio) {
-            conversationState.suggestedPortfolio = true;
-            return `Parece que te interesa mucho ${currentTopic}. ¿Te gustaría ver algunos ejemplos de nuestros trabajos en esa área?`;
-          }
-        }
-        return null;
-      };
-      const toggleChatbot = () => {
-        const isActive = chatbotWindow.classList.toggle('active');
-        iconOpen.style.display = isActive ? 'none' : 'block';
-        iconClose.style.display = isActive ? 'block' : 'none';
-        if (isActive && messagesContainer.children.length === 0) {
-          showBotMessage(knowledgeBase.saludo, 'saludo');
-        }
-      };
-      const showBotMessage = (response, key = null) => {
-        const botMessageElement = document.createElement('div');
-        botMessageElement.classList.add('chat-message', 'bot-message');
-        let message = response.message;
-        if (key && key !== 'saludo' && !response.options && !message.includes('?')) {
-          let followUp = "¿Hay algo más en lo que pueda ayudarte?";
-          if (conversationState.currentTopic) {
-            followUp = `¿Tienes alguna otra pregunta sobre ${conversationState.currentTopic}, o te gustaría explorar otro servicio?`;
-          }
-          message += `<br><br><em>${followUp}</em>`;
-        }
-        const messageText = document.createElement('p');
-        messageText.innerHTML = message;
-        botMessageElement.appendChild(messageText);
-        if (response.options) {
-          const optionsContainer = document.createElement('div');
-          optionsContainer.classList.add('options');
-          response.options.forEach(option => {
-            const button = document.createElement('button');
-            button.classList.add('option-button');
-            button.textContent = option.text;
-            if (option.key) button.dataset.key = option.key;
-            if (option.url) button.dataset.url = option.url;
-            if (option.budget) button.dataset.budget = option.budget;
-            optionsContainer.appendChild(button);
-          });
-          botMessageElement.appendChild(optionsContainer);
-        }
-        messagesContainer.appendChild(botMessageElement);
-        scrollToBottom();
-        lastBotQuestionKey = response.nextContext || key;
-        if (response.nextContext && !conversationState.mentionedServices.includes(response.nextContext)) {
-          conversationState.mentionedServices.push(response.nextContext);
-          conversationState.currentTopic = response.nextContext;
-        }
-      };
-      const showUserMessage = (message) => {
-        const userMessageElement = document.createElement('div');
-        userMessageElement.classList.add('chat-message', 'user-message');
-        userMessageElement.textContent = message;
-        messagesContainer.appendChild(userMessageElement);
-        scrollToBottom();
-      };
-      const handleInput = (input) => {
-        showUserMessage(input);
-        conversationState.history.push(input.toLowerCase().trim());
-        inputField.value = '';
-        inputField.disabled = true;
-        setTimeout(() => {
-          let response;
-          let responseKey = null;
-          const lowerCaseInput = input.toLowerCase().trim();
-          if (lastBotQuestionKey) {
-            if (affirmativeAnswers.includes(lowerCaseInput)) {
-              switch (lastBotQuestionKey) {
-                case 'presupuesto_offer':
-                  responseKey = 'presupuesto';
-                  break;
-                case 'contact_offer':
-                  responseKey = 'contacto';
-                  break;
-                case 'whatsapp_redirect':
-                  window.open("https://wa.me/5620042412", '_blank');
-                  response = {
-                    message: "¡Perfecto! Te estoy redirigiendo a WhatsApp. Si no se abre la ventana, puedes hacer clic aquí: <a href='https://wa.me/5620042412' target='_blank'>Abrir WhatsApp</a>"
-                  };
-                  break;
-              }
-            } else if (negativeAnswers.includes(lowerCaseInput)) {
-              responseKey = "saludo";
-            }
-          }
-          if (!response) {
-            for (const intent in intents) {
-              if (intents[intent].some(kw => lowerCaseInput.includes(kw))) {
-                switch (intent) {
-                  case 'request_payment':
-                    responseKey = 'payment_info';
-                    break;
-                  case 'request_quote':
-                    responseKey = 'precios_menu';
-                    break;
-                  case 'request_contact':
-                    responseKey = 'contacto';
-                    break;
-                  case 'request_examples':
-                    responseKey = 'ejemplos';
-                    break;
-                  case 'frustration':
-                    responseKey = 'human_escalation';
-                    break;
-                  case 'request_service_info':
-                    responseKey = 'servicios_menu';
-                    break;
-                  case 'greet':
-                    responseKey = 'saludo';
-                    break;
-                  case 'request_online_presence_info':
-                    responseKey = 'presencia_internet';
-                    break;
-                  case 'request_cybersecurity_info':
-                    responseKey = 'ciberseguridad';
-                    break;
-                  case 'request_creator_info':
-                    responseKey = 'creator_info';
-                    break;
-                }
-                if (responseKey) break;
-              }
-            }
-          }
-          const history = conversationState.history;
-          if (!response && !responseKey && history.length > 2) {
-            const lastThree = history.slice(-3);
-            if (lastThree[0] === lastThree[1] && lastThree[1] === lastThree[2]) {
-              response = JSON.parse(JSON.stringify(knowledgeBase['human_escalation']));
-              response.message = "Parece que no nos estamos entendiendo. " + response.message;
-              conversationState.history = [];
-            }
-          }
-          if (responseKey) {
-            response = knowledgeBase[responseKey];
-            misunderstandingCounter = 0;
-            conversationState.userFrustration = 0;
-          }
-          if (!response) {
-            misunderstandingCounter++;
-            conversationState.userFrustration++;
-            if (misunderstandingCounter >= 2 || conversationState.userFrustration >= 3) {
-              response = knowledgeBase['human_escalation'];
-              misunderstandingCounter = 0;
-            } else {
-              let defaultMessage = "No he entendido muy bien. ";
-              if (conversationState.currentTopic) {
-                defaultMessage += `¿Tu pregunta está relacionada con ${conversationState.currentTopic}? `;
-              }
-              defaultMessage += "Puedes intentar con otras palabras o elegir una de las opciones principales.";
-              response = {
-                message: defaultMessage,
-                options: [{
-                    text: "Nuestros Servicios",
-                    key: "servicios_menu"
-                  },
-                  {
-                    text: "Preguntas Frecuentes",
-                    key: "faq_menu"
-                  },
-                ]
-              };
-            }
-          }
-          const proactiveSuggestion = getProactiveSuggestion();
-          if (proactiveSuggestion && !response.options) {
-            response.message += `<br><br><div style="border-left: 3px solid #00d4ff; padding-left: 10px; margin-top: 10px; opacity: 0.9;"><em>Sugerencia: ${proactiveSuggestion}</em></div>`;
-          }
-          if (response) {
-            showBotMessage(response, responseKey);
-          }
-          inputField.disabled = false;
-          inputField.focus();
-        }, 800);
-      };
-      const scrollToBottom = () => {
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-      };
-      chatbotToggle.addEventListener('click', toggleChatbot);
-      inputForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const userInput = inputField.value.trim();
-        if (userInput) {
-          handleInput(userInput);
-        }
-      });
-      messagesContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('option-button')) {
-          const key = e.target.dataset.key;
-          const url = e.target.dataset.url;
-          const budget = e.target.dataset.budget;
-          const text = e.target.textContent;
-          showUserMessage(text);
-          conversationState.history.push(text.toLowerCase().trim());
-          inputField.disabled = true;
-          setTimeout(() => {
-            if (url) {
-              window.open(url, '_blank');
-              handleInput(`He seleccionado: ${text}`);
-            } else if (key === 'go_to_precios') {
-                const preciosSection = document.getElementById('precios');
-                if (preciosSection) {
-                    preciosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-                toggleChatbot();
-            } else if (key === 'go_to_pagos') {
-              const pagosSection = document.getElementById('pagos');
-              if (pagosSection) {
-                pagosSection.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }
-              toggleChatbot(); // Close the chatbot window
-            } else if (key === 'go_to_inicio') {
-              const inicioSection = document.getElementById('inicio');
-              if (inicioSection) {
-                inicioSection.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }
-              toggleChatbot();
-            } else if (key) {
-              const response = knowledgeBase[key];
-              if (response) showBotMessage(response, key);
-            } else if (budget) {
-              conversationState.budgetRange = text;
-              let tailoredResponse = `¡Entendido! Con un presupuesto de ${text}, podemos explorar varias opciones. Para darte los detalles exactos, lo mejor es que hables con un experto. ¿Quieres que te dirija a WhatsApp para una cotización formal?`;
-              showBotMessage({
-                message: tailoredResponse,
-                options: [{
-                  text: "Sí, llevar a WhatsApp",
-                  url: "https://wa.me/5620042412"
-                }, {
-                  text: "No, gracias",
-                  key: "saludo"
-                }],
-                nextContext: 'whatsapp_redirect'
-              });
-            }
-            inputField.disabled = false;
-            inputField.focus();
-          }, 400);
-        }
-      });
-    });
-    // --- Payment Section Logic ---
-    function showPaymentInstructions() {
-      const modal = document.getElementById('payment-modal');
-      if (modal) {
-        modal.style.display = 'block';
-      }
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      const modal = document.getElementById('payment-modal');
-      if (!modal) return;
-      const closeBtn = modal.querySelector('.close-button');
-      if (closeBtn) {
-        closeBtn.onclick = function() {
-          modal.style.display = "none";
-        }
-      }
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
-    });
-
-    function copyAccountNumber() {
-      const accountNumberEl = document.getElementById('accountNumber');
-      if (!accountNumberEl) return;
-      const accountNumber = accountNumberEl.innerText;
-      navigator.clipboard.writeText(accountNumber).then(() => {
-        const copyBtn = document.querySelector('.copy-btn');
-        if (!copyBtn) return;
-        const originalContent = copyBtn.innerHTML;
-        copyBtn.innerHTML = '¡Copiado!';
-        copyBtn.disabled = true;
-        setTimeout(() => {
-          copyBtn.innerHTML = originalContent;
-          copyBtn.disabled = false;
-        }, 2000);
-      }).catch(err => {
-        console.error('Error al copiar el número de cuenta:', err);
-        alert('Error al copiar. Por favor, hazlo manualmente.');
-      });
-    }
-
-    function toggleTransferDetails() {
-      const transferCard = document.getElementById('transfer-card');
-      const transferDetails = document.getElementById('bank-details');
-      const transferButton = document.getElementById('transfer-btn');
-      if (transferDetails && transferCard) {
-        const isVisible = transferDetails.style.maxHeight;
-        transferCard.classList.toggle('active');
-        if (isVisible) {
-          transferDetails.style.maxHeight = null;
-          transferButton.textContent = 'Mostrar Detalles';
-        } else {
-          transferDetails.style.maxHeight = transferDetails.scrollHeight + "px";
-          transferButton.textContent = 'Ocultar Detalles';
-        }
-      }
-    }
-  </script>
-  <!-- Payment Modal HTML Structure -->
-  <div id="payment-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h4>Instrucciones Detalladas de Pago</h4>
-      <p>1. Abre la aplicación de tu banco.</p>
-      <p>2. Selecciona la opción para realizar una transferencia (SPEI).</p>
-      <p>3. Ingresa los datos proporcionados: Banco Azteca, el nombre del titular y el número de cuenta.</p>
-      <p>4. Ingresa el monto exacto a pagar.</p>
-      <p>5. Como concepto de pago, por favor ingresa tu nombre completo o número de pedido.</p>
-      <p>6. Una vez realizada la transferencia, envía una captura de pantalla del comprobante a nuestro <a href="https://wa.me/5620042412" target="_blank">WhatsApp</a> para confirmar y procesar tu pedido.</p>
-    </div>
-  </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const modal = document.getElementById('welcome-modal');
-      const greetingEl = document.getElementById('welcome-greeting');
-      const iconEl = document.getElementById('welcome-icon');
-      if (modal && greetingEl && iconEl) {
-        const hour = new Date().getHours();
-        let greeting = 'Bienvenido a la Innovación';
-        if (hour < 12) {
-          greeting = 'Buenos Días';
-        } else if (hour < 19) {
-          greeting = 'Buenas Tardes';
-        } else {
-          greeting = 'Buenas Noches';
-        }
-        greetingEl.textContent = greeting;
-
-        iconEl.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="welcome-svg-icon"><rect width="18" height="18" x="3" y="3" rx="2" /><path d="M11 9h4a2 2 0 0 0 2-2V3" /><circle cx="9" cy="9" r="2" /><path d="M7 21v-4a2 2 0 0 1 2-2h4" /><circle cx="15" cy="15" r="2" /></svg>
-          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="welcome-svg-icon"><path d="M12 20v2" /><path d="M12 2v2" /><path d="M17 20v2" /><path d="M17 2v2" /><path d="M2 12h2" /><path d="M2 17h2" /><path d="M2 7h2" /><path d="M20 12h2" /><path d="M20 17h2" /><path d="M20 7h2" /><path d="M7 20v2" /><path d="M7 2v2" /><rect x="4" y="4" width="16" height="16" rx="2" /><rect x="8" y="8" width="8" height="8" rx="1" /></svg>
-          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="welcome-svg-icon"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" /><path d="M9 13a4.5 4.5 0 0 0 3-4" /><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5" /><path d="M3.477 10.896a4 4 0 0 1 .585-.396" /><path d="M6 18a4 4 0 0 1-1.967-.516" /><path d="M12 13h4" /><path d="M12 18h6a2 2 0 0 1 2 2v1" /><path d="M12 8h8" /><path d="M16 8V5a2 2 0 0 1 2-2" /><circle cx="16" cy="13" r=".5" /><circle cx="18" cy="3" r=".5" /><circle cx="20" cy="21" r=".5" /><circle cx="20" cy="8" r=".5" /></svg>
-        `;
-
-        modal.style.display = 'flex';
-        setTimeout(() => {
-          modal.style.animation = 'fadeOut 0.5s ease-out forwards';
-          setTimeout(() => {
-            modal.style.display = 'none';
-          }, 500);
-        }, 4000);
-      }
-      const emailLink = document.getElementById('email-link');
-      if (emailLink) {
-        const originalText = emailLink.textContent;
-        emailLink.addEventListener('click', (event) => {
-          // We only want to override the default mailto: behavior on non-touch devices (likely PCs)
-          if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)) {
-            event.preventDefault();
-            const email = emailLink.dataset.email;
-            navigator.clipboard.writeText(email).then(() => {
-              emailLink.textContent = '¡Email Copiado!';
-              setTimeout(() => {
-                emailLink.textContent = originalText;
-              }, 2000);
-            }).catch(err => {
-              console.error('Error al copiar el email: ', err);
-              // If it fails, let the mailto link proceed as a fallback
-              window.location.href = `mailto:${email}`;
-            });
-          }
-        });
-      }
-    });
-  </script>
-</body>
-
-</html>
+      grid-tem
