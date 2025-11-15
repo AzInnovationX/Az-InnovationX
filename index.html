@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" href="/favicon-512.png" sizes="512x512" />
   <link rel="apple-touch-icon" href="/favicon-512.png" />
   <style>
-    /* --- Welcome Modal: "Buen Fin" Theme --- */
+        /* --- Welcome Modal: "Buen Fin" Theme --- */
     .welcome-modal-overlay {
       position: fixed;
       top: 0;
@@ -2966,7 +2966,7 @@
     justify-content: center;
   }
 }
-</style>
+  </style>
 </head>
 
 <body>
@@ -3172,7 +3172,7 @@
         </div>
       </div>
     </section>
-  
+
     <section id="pagos-seguros" class="fade-in">
       <div class="container">
         <h2 class="section-title">Realiza tu Pago</h2>
@@ -3197,7 +3197,7 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
       <!-- Información de Contacto -->
       <div class="contact-info-corporate">
         <h3 class="contact-title">Información de Contacto</h3>
-        
+
         <div class="contact-item-corporate">
           <div class="contact-icon-wrapper" style="font-size: 24px;">
             📍
@@ -3357,7 +3357,10 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
     </button>
   </div>
   <!-- General Page Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script>
+
     // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
@@ -3484,12 +3487,8 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
     document.querySelectorAll('.step-card').forEach((card, index) => {
       card.style.animationDelay = `${index * 0.1}s`;
     });
-  </script>
 
-  <!-- Firebase and Form Submission Script -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-  <script>
+
     // Firebase Configuration
     const firebaseConfig = {
       apiKey: "AIzaSyDyk6XjQ72k73oza9fkkUxup9GQvDsFT5o",
@@ -3634,8 +3633,8 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
         }
       }
     });
-  </script>
-  <script>
+
+
     document.addEventListener('DOMContentLoaded', () => {
       // --- Hero Section: Interactive Particle System ---
       const canvas = document.getElementById('particle-canvas');
@@ -3926,9 +3925,8 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
         }
       });
     });
-  </script>
-  <!-- Chatbot Logic Script -->
-  <script>
+
+
     document.addEventListener('DOMContentLoaded', () => {
       let lastBotQuestionKey = null;
       const affirmativeAnswers = ['si', 'sí', 'yes', 'claro', 'ok', 'está bien', 'esta bien', 'dale', 'va', 'por supuesto', 'acepto', 'afirmativo', 'de acuerdo'];
@@ -4766,21 +4764,8 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
         }
       }
     }
-  </script>
-  <!-- Payment Modal HTML Structure -->
-  <div id="payment-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h4>Instrucciones Detalladas de Pago</h4>
-      <p>1. Abre la aplicación de tu banco.</p>
-      <p>2. Selecciona la opción para realizar una transferencia (SPEI).</p>
-      <p>3. Ingresa los datos proporcionados: Banco Azteca, el nombre del titular y el número de cuenta.</p>
-      <p>4. Ingresa el monto exacto a pagar.</p>
-      <p>5. Como concepto de pago, por favor ingresa tu nombre completo o número de pedido.</p>
-      <p>6. Una vez realizada la transferencia, envía una captura de pantalla del comprobante a nuestro <a href="https://wa.me/5620042412" target="_blank">WhatsApp</a> para confirmar y procesar tu pedido.</p>
-    </div>
-  </div>
-  <script>
+
+
     document.addEventListener('DOMContentLoaded', () => {
       const modal = document.getElementById('welcome-modal');
       const greetingEl = document.getElementById('welcome-greeting');
@@ -4833,7 +4818,21 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
         });
       }
     });
+
   </script>
+  <!-- Payment Modal HTML Structure -->
+  <div id="payment-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h4>Instrucciones Detalladas de Pago</h4>
+      <p>1. Abre la aplicación de tu banco.</p>
+      <p>2. Selecciona la opción para realizar una transferencia (SPEI).</p>
+      <p>3. Ingresa los datos proporcionados: Banco Azteca, el nombre del titular y el número de cuenta.</p>
+      <p>4. Ingresa el monto exacto a pagar.</p>
+      <p>5. Como concepto de pago, por favor ingresa tu nombre completo o número de pedido.</p>
+      <p>6. Una vez realizada la transferencia, envía una captura de pantalla del comprobante a nuestro <a href="https://wa.me/5620042412" target="_blank">WhatsApp</a> para confirmar y procesar tu pedido.</p>
+    </div>
+  </div>
 </body>
 
 </html>
