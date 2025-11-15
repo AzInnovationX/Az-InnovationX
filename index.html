@@ -2625,6 +2625,33 @@
       box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
     }
 
+    #pagos-seguros {
+      position: relative;
+      background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      padding: 6rem 0;
+      text-align: center;
+    }
+
+    #pagos-seguros::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(10, 15, 30, 0.95) 0%, rgba(26, 26, 46, 0.85) 100%);
+      z-index: 1;
+    }
+
+    #pagos-seguros .container {
+      position: relative;
+      z-index: 2;
+    }
+
 /* Sección de Mapa y Contacto */
 .contact-map-section {
   background: #0a0f1e;
@@ -3132,6 +3159,7 @@
       </div>
     </section>
   
+<section id="pagos-seguros" class="fade-in">\n      <div class="container">\n        <h2 class="section-title">Realiza tu Pago</h2>\n        <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem;">\n          Elige tu método de pago preferido. Ofrecemos opciones seguras para tu comodidad.\n        </p>\n        <div style="text-align: center;">\n          <a href="https://pagosseguros.netlify.app/" target="_blank" class="cta-button">Realizar Pago</a>\n        </div>\n      </div>\n    </section>
 </main>
 <div class="contact-map-section">
   <div class="container">
