@@ -2572,7 +2572,7 @@
 
     #certificaciones {
       position: relative;
-      background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png');
+      background-image: url('https://i.ibb.co/1HNVGcn/comunidad-motion-gif-1.gif');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -2623,6 +2623,44 @@
     .service-card-button:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
+    }
+
+    #pagos-seguros {
+      position: relative;
+      background-image: url('https://i.ibb.co/0jmSgqzc/PP-2021.gif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      padding: 6rem 0;
+      text-align: center;
+    }
+
+    #pagos-seguros::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(10, 15, 30, 0.95) 0%, rgba(26, 26, 46, 0.85) 100%);
+      z-index: 1;
+    }
+
+    #pagos-seguros .container {
+      position: relative;
+      z-index: 2;
+      color: #ffffff;
+    }
+
+    #pagos-seguros .payment-description {
+      text-align: center;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      line-height: 1.6;
     }
 
 /* Sección de Mapa y Contacto */
@@ -3132,6 +3170,15 @@
       </div>
     </section>
   
+    <section id="pagos-seguros" class="fade-in">
+      <div class="container">
+        <h2 class="section-title">Realiza tu Pago</h2>
+        <p class="payment-description">Elige tu método de pago preferido. Ofrecemos opciones seguras para tu comodidad.</p>
+        <div style="text-align: center;">
+          <a href="https://pagosseguros.netlify.app/" target="_blank" class="cta-button">Realizar Pago</a>
+        </div>
+      </div>
+    </section>
 </main>
 <div class="contact-map-section">
   <div class="container">
@@ -4049,11 +4096,10 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
           ]
         },
         payment_info: {
-          message: "¡Claro! Puedes realizar tu pago de forma segura a través de PayPal o con tu tarjeta de débito o crédito usando Clip.<br><br>" +
-            "Ambas opciones están disponibles en nuestra sección de pagos. ¿Te gustaría ir ahora?",
+          message: "¡Claro! Para realizar tu pago, hemos habilitado una sección segura donde puedes elegir tu método preferido. ¿Te gustaría ir ahora?",
           options: [{
-              text: "Ir a la Sección de Pagos",
-              key: "go_to_pagos"
+              text: "Sí, llevar a Pagos Seguros",
+              key: "go_to_pagos_seguros"
             },
             {
               text: "Volver al inicio",
@@ -4616,8 +4662,8 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
                     preciosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
                 toggleChatbot();
-            } else if (key === 'go_to_pagos') {
-              const pagosSection = document.getElementById('pagos');
+            } else if (key === 'go_to_pagos_seguros') {
+              const pagosSection = document.getElementById('pagos-seguros');
               if (pagosSection) {
                 pagosSection.scrollIntoView({
                   behavior: 'smooth',
