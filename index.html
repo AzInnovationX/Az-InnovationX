@@ -1682,6 +1682,23 @@
       box-shadow: 0 8px 25px rgba(220, 20, 60, 0.8);
     }
 
+    #chatbot-toggle::before,
+    #contact-button::before {
+      content: '🎅';
+      position: absolute;
+      top: -15px;
+      left: -5px;
+      font-size: 28px;
+      transform: rotate(-15deg);
+      animation: hat-shake 2s infinite ease-in-out;
+      z-index: 100000;
+    }
+
+    @keyframes hat-shake {
+      0%, 100% { transform: rotate(-15deg); }
+      50% { transform: rotate(5deg) translateX(2px); }
+    }
+
     #chatbot-toggle .icon-open {
       font-size: 24px;
       color: white;
@@ -3281,7 +3298,7 @@
     <div class="map-contact-grid">
       <!-- Mapa -->
       <div class="map-container">
-        <img src="https://i.ibb.co/s9j7h5wc/Generated-Image-November-07-2025-8-39-AM.png"
+        <img src="https://i.ibb.co/rPrgyfr/Generated-Image-November-15-2025-3-25-PM.png"
 alt="Ubicación Az InnovationX"
 loading="lazy"
 style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border: 0;">
