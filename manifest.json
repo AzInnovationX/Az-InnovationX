@@ -1,0 +1,17 @@
+{
+  "name": "Az InnovationX - Donde las Ideas Cobran Vida",
+  "short_name": "Az InnovationX",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#c41e3a",
+  "description": "Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas.",
+  "icons": [
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
