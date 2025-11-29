@@ -18,6 +18,72 @@
   <!-- Precarga de recursos críticos -->
   <!-- OPTIMIZACIÓN: Precarga de recursos críticos para acelerar el LCP -->
   <link rel="preload" href="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" as="image">
+  <!-- ADDED: SEO Meta Tags Adicionales para mejorar el posicionamiento y la apariencia en redes sociales -->
+  <meta name="description" content="Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas. Páginas web, apps, tiendas online y más.">
+  <link rel="canonical" href="https://www.azinnovationx.com">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.azinnovationx.com">
+  <meta property="og:title" content="Az InnovationX - Donde las Ideas Cobran Vida">
+  <meta property="og:description" content="Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas.">
+  <meta property="og:image" content="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://www.azinnovationx.com">
+  <meta property="twitter:title" content="Az InnovationX - Donde las Ideas Cobran Vida">
+  <meta property="twitter:description" content="Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas.">
+  <meta property="twitter:image" content="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg">
+  <!-- ADDED: PWA Manifest and Theme Color -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#c41e3a">
+
+  <!-- ADDED: Structured Data (Schema.org) para mejorar la comprensión de los motores de búsqueda -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.azinnovationx.com/#organization",
+        "name": "Az InnovationX",
+        "url": "https://www.azinnovationx.com",
+        "logo": "https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+52-56-2004-2412",
+          "contactType": "Customer Service",
+          "areaServed": "MX",
+          "availableLanguage": "es"
+        },
+        "sameAs": [
+          "https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL",
+          "https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==",
+          "https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.azinnovationx.com/#website",
+        "url": "https://www.azinnovationx.com",
+        "name": "Az InnovationX",
+        "description": "Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas.",
+        "publisher": {
+          "@id": "https://www.azinnovationx.com/#organization"
+        },
+        "potentialAction": [
+          {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.azinnovationx.com/?s={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 <style>
 .christmas-lights-container{text-align:center;white-space:nowrap;overflow:hidden;position:absolute;bottom:-14px;left:0;width:100%;z-index:1001;pointer-events:none}ul.lightrope{padding:0;margin:0;list-style:none;display:inline-block}ul.lightrope li{position:relative;display:inline-block;width:16px;height:24px;border-radius:50%;margin:0 8px;animation:flash 1.5s infinite}ul.lightrope li:before{content:"";position:absolute;background:#3a3a3a;width:8px;height:8px;border-radius:4px;top:-4px;left:4px}@keyframes flash{0%,100%{background:rgba(255,255,255,0.2);box-shadow:none}50%{background:var(--light-color);box-shadow:0 2px 10px var(--light-color),0 0 15px var(--light-color),0 0 20px var(--light-color)}}ul.lightrope li:nth-child(4n+1){--light-color:#c41e3a;animation-delay:0s}ul.lightrope li:nth-child(4n+2){--light-color:#165b33;animation-delay:.5s}ul.lightrope li:nth-child(4n+3){--light-color:#ffd700;animation-delay:1.0s}ul.lightrope li:nth-child(4n+4){--light-color:#007bff;animation-delay:.25s}/* Welcome Modal Navideño */
 .welcome-modal-overlay {
@@ -372,9 +438,9 @@
             Recursos <span class="arrow">▼</span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="https://appsstoreaz.netlify.app/" target="_blank">Aplicaciones</a></li>
-            <li><a href="https://azinnovationx.blogspot.com/" target="_blank">Blog</a></li>
-            <li><a href="https://afiliadosaz.netlify.app/" target="_blank">Afíliate</a></li>
+            <li><a href="https://appsstoreaz.netlify.app/" target="_blank" rel="noopener noreferrer">Aplicaciones</a></li>
+            <li><a href="https://azinnovationx.blogspot.com/" target="_blank" rel="noopener noreferrer">Blog</a></li>
+            <li><a href="https://afiliadosaz.netlify.app/" target="_blank" rel="noopener noreferrer">Afíliate</a></li>
           </ul>
         </li>
         
@@ -395,11 +461,11 @@
         <li><a href="#pasos">Proceso</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#certificaciones">Certificaciones</a></li>
-        <li><a href="https://appsstoreaz.netlify.app/" target="_blank">Aplicaciones</a></li>
+        <li><a href="https://appsstoreaz.netlify.app/" target="_blank" rel="noopener noreferrer">Aplicaciones</a></li>
         <li><a href="#precios">Precios</a></li>
         <li><a href="#pagos-seguros">Realiza tu pago</a></li>
-        <li><a href="https://azinnovationx.blogspot.com/" target="_blank">BLOG</a></li>
-        <li><a href="https://afiliadosaz.netlify.app/" target="_blank">Afiliate</a></li>
+        <li><a href="https://azinnovationx.blogspot.com/" target="_blank" rel="noopener noreferrer">BLOG</a></li>
+        <li><a href="https://afiliadosaz.netlify.app/" target="_blank" rel="noopener noreferrer">Afiliate</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -446,7 +512,7 @@
               <h3>Páginas Web Profesionales</h3>
               <p>Diseños modernos y adaptables para convertir visitantes en clientes.</p>
               <img src="https://i.ibb.co/kVStpRH6/for-blog-3.gif" alt="Páginas Web Profesionales" loading="lazy" class="service-image">
-              <a href="https://ejemplosdepaginasweb.netlify.app/" target="_blank" class="cta-button service-card-button">Ver mas</a>
+              <a href="https://ejemplosdepaginasweb.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button service-card-button">Ver mas</a>
             </div>
           </div>
           <div class="service-card">
@@ -455,7 +521,7 @@
               <h3>Aplicaciones Móviles</h3>
               <p>Apps Android y multiplataforma que conectan con tu audiencia.</p>
               <img src="https://i.ibb.co/7xy6NTnm/13.gif" alt="Aplicaciones Móviles" loading="lazy" class="service-image">
-              <a href="https://paginawebaplicaciones.netlify.app/" target="_blank" class="cta-button service-card-button">Ver mas</a>
+              <a href="https://paginawebaplicaciones.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button service-card-button">Ver mas</a>
             </div>
           </div>
           <div class="service-card">
@@ -464,7 +530,7 @@
               <h3>Tiendas Online</h3>
               <p>Plataformas de e-commerce robustas y seguras para impulsar tus ventas.</p>
               <img src="https://i.ibb.co/Wv2kGCfL/app-online-store.gif" alt="Tiendas Online" loading="lazy" class="service-image">
-              <a href="https://paginawebdetiendaonline.netlify.app/" target="_blank" class="cta-button service-card-button">Ver mas</a>
+              <a href="https://paginawebdetiendaonline.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button service-card-button">Ver mas</a>
             </div>
           </div>
           <div class="service-card">
@@ -473,7 +539,7 @@
               <h3>Chatbots Inteligentes</h3>
               <p>Automatiza la atención al cliente las 24 horas del día con asistentes inteligentes totalmente integrados en tu sitio web o blog.</p>
               <img src="https://i.ibb.co/zWJ5ZntM/ded0bbdd8485e424327257405a86a884.gif" alt="Chatbots Inteligentes" loading="lazy" class="service-image">
-              <a href="https://chatbotsaz.netlify.app/" target="_blank" class="cta-button service-card-button">Ver mas</a>
+              <a href="https://chatbotsaz.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button service-card-button">Ver mas</a>
             </div>
           </div>
           <div class="service-card">
@@ -482,7 +548,7 @@
               <h3>Seguridad Informática</h3>
               <p>Protege tu negocio digital con auditorías y protocolos de ciberseguridad.</p>
               <img src="https://i.ibb.co/wr7MyB9L/giphy.gif" alt="Seguridad Informática" loading="lazy" class="service-image">
-              <a href="https://paginawebseguridadinformatica.netlify.app/" target="_blank" class="cta-button service-card-button">Ver mas</a>
+              <a href="https://paginawebseguridadinformatica.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button service-card-button">Ver mas</a>
             </div>
           </div>
           <div class="service-card">
@@ -491,7 +557,7 @@
               <h3>Soluciones Cloud</h3>
               <p>Migración y optimización en la nube para escalabilidad sin límites.</p>
               <img src="https://i.ibb.co/Pvth5B1V/nube-animada.gif" alt="Soluciones Cloud" loading="lazy" class="service-image">
-              <a href="https://paginawebsolucionescloud.netlify.app/" target="_blank" class="cta-button service-card-button">Ver mas</a>
+              <a href="https://paginawebsolucionescloud.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button service-card-button">Ver mas</a>
             </div>
           </div>
         </div>
@@ -569,7 +635,7 @@
           Elige un aliado tecnológico con respaldo y confianza.
         </p>
         <div style="text-align: center;">
-          <a href="https://certificaciones1.netlify.app/" target="_blank" class="cta-button">Ver nuestras certificaciones</a>
+          <a href="https://certificaciones1.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ver nuestras certificaciones</a>
         </div>
       </div>
     </section>
@@ -580,7 +646,7 @@
           En Az InnovationX, diseñamos soluciones personalizadas que impulsan tu crecimiento. Contáctanos para el plan ideal.
         </p>
         <div style="text-align: center;">
-          <a href="https://precios1.netlify.app/" target="_blank" class="cta-button">Ver Paquetes Detallados</a>
+          <a href="https://precios1.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ver Paquetes Detallados</a>
         </div>
       </div>
     </section>
@@ -590,7 +656,7 @@
         <h2 class="section-title">Realiza tu Pago</h2>
         <p class="payment-description">Elige tu método de pago preferido. Ofrecemos opciones seguras para tu comodidad.</p>
         <div style="text-align: center;">
-          <a href="https://pagosseguros.netlify.app/" target="_blank" class="cta-button">Realizar Pago</a>
+          <a href="https://pagosseguros.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Realizar Pago</a>
         </div>
       </div>
     </section>
@@ -601,7 +667,7 @@
       <!-- Mapa -->
       <div class="map-container">
         <img loading="lazy" src="https://i.ibb.co/rPrgyfr/Generated-Image-November-15-2025-3-25-PM.png"
-alt="Ubicación Az InnovationX"
+alt="Mapa de ubicación de Az InnovationX en Huixquilucan, Estado de México."
 style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border: 0;">
       </div>
 
@@ -617,7 +683,7 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
             <h4>Ubicación</h4>
             <p>Az InnovationX</p>
             <p>Estado de México, Huixquilucan</p>
-            <a href="https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A" target="_blank">
+            <a href="https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A" target="_blank" rel="noopener noreferrer">
               ¡Déjanos un comentario! ⭐
             </a>
           </div>
@@ -690,11 +756,11 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
       <div class="footer-column">
         <h4>Recursos</h4>
         <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.8rem;"><a href="https://appsstoreaz.netlify.app/" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"> <img loading="lazy" src="https://i.ibb.co/7xy6NTnm/13.gif" alt="13" border="0" style="width: 24px; height: 24px;"> Aplicaciones</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://azinnovationx.blogspot.com/" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"> <img loading="lazy" src="https://i.ibb.co/9DHGJrD/Blogger-Gif.gif" alt="Blogger-Gif" style="width: 24px; height: 24px;"> Blog de Innovación</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">📧 Suscríbete al Newsletter</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://certificaciones1.netlify.app/" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">🎓 Certificaciones</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://afiliadosaz.netlify.app/" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">🤝 Afiliate</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="https://appsstoreaz.netlify.app/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"> <img loading="lazy" src="https://i.ibb.co/7xy6NTnm/13.gif" alt="13" border="0" style="width: 24px; height: 24px;"> Aplicaciones</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="https://azinnovationx.blogspot.com/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"> <img loading="lazy" src="https://i.ibb.co/9DHGJrD/Blogger-Gif.gif" alt="Blogger-Gif" style="width: 24px; height: 24px;"> Blog de Innovación</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">📧 Suscríbete al Newsletter</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="https://certificaciones1.netlify.app/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">🎓 Certificaciones</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="https://afiliadosaz.netlify.app/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">🤝 Afiliate</a></li>
         </ul>
       </div>
       <!-- Columna 4: Comunidad y Redes -->
@@ -702,9 +768,9 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
         <h4>Síguenos</h4>
         <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Únete a nuestra comunidad digital</p>
         <div class="social-icons" style="display: flex; gap: 1rem; margin-top: 1rem;">
-          <a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank"><img loading="lazy" src="https://i.ibb.co/r2FCqXxN/facebook-fb.gif" alt="Facebook" style="width: 32px; height: 32px;"/></a>
-          <a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank"><img loading="lazy" src="https://i.ibb.co/svGfRtTx/200.gif" alt="Instagram" style="width: 32px; height: 32px;"/></a>
-          <a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank"><img loading="lazy" src="https://i.ibb.co/ynv3hw6X/tiktok-logo-logo.gif" alt="TikTok" style="width: 32px; height: 32px;"/></a>
+          <a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="https://i.ibb.co/r2FCqXxN/facebook-fb.gif" alt="Facebook" style="width: 32px; height: 32px;"/></a>
+          <a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="https://i.ibb.co/svGfRtTx/200.gif" alt="Instagram" style="width: 32px; height: 32px;"/></a>
+          <a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="https://i.ibb.co/ynv3hw6X/tiktok-logo-logo.gif" alt="TikTok" style="width: 32px; height: 32px;"/></a>
         </div>
         <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Más de 1,000 seguidores nos respaldan</p>
       </div>
@@ -768,7 +834,7 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
         </button>
       </form>
     </div>
-    <a href="https://contactosoli.netlify.app/" target="_blank" id="contact-button" class="floating-button">
+    <a href="https://contactosoli.netlify.app/" target="_blank" rel="noopener noreferrer" id="contact-button" class="floating-button">
       <span class="icon-contact">✉️</span>
     </a>
     <button id="chatbot-toggle">
@@ -791,7 +857,7 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
       <p>3. Ingresa los datos proporcionados: Banco Azteca, el nombre del titular y el número de cuenta.</p>
       <p>4. Ingresa el monto exacto a pagar.</p>
       <p>5. Como concepto de pago, por favor ingresa tu nombre completo o número de pedido.</p>
-      <p>6. Una vez realizada la transferencia, envía una captura de pantalla del comprobante a nuestro <a href="https://wa.me/5620042412" target="_blank">WhatsApp</a> para confirmar y procesar tu pedido.</p>
+      <p>6. Una vez realizada la transferencia, envía una captura de pantalla del comprobante a nuestro <a href="https://wa.me/5620042412" target="_blank" rel="noopener noreferrer">WhatsApp</a> para confirmar y procesar tu pedido.</p>
     </div>
   </div>
   <!-- Firebase and Form Submission Script -->
@@ -2187,6 +2253,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
+<script>
+  // ADDED: PWA Service Worker Registration
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('Service Worker registrado con éxito:', registration.scope);
+        })
+        .catch(error => {
+          console.log('Error al registrar el Service Worker:', error);
+        });
+    });
+  }
+</script>
+
 </body>
 
 </html>
