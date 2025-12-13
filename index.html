@@ -401,6 +401,218 @@
     display: flex !important; /* Mostrar menú móvil cuando activo */
   }
 }
+
+#servicios {
+    --glow-color-1: #c41e3a;
+    --glow-color-2: #ffd700;
+    padding: 6rem 0;
+    position: relative;
+    background: #0a0a1a;
+    overflow: hidden;
+}
+#servicios::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 15% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(196, 30, 58, 0.1) 0%, transparent 30%);
+    opacity: 0.7;
+    z-index: 1;
+    animation: background-pan 30s linear infinite;
+}
+@keyframes background-pan {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 200%; }
+}
+#servicios .section-title {
+    background: linear-gradient(90deg, #ffd700, #fff, #c41e3a);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 5s linear infinite;
+    position: relative;
+    z-index: 3;
+}
+#servicios .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--glow-color-2), var(--glow-color-1), transparent);
+    border-radius: 2px;
+}
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 2;
+}
+.service-card {
+    background: rgba(26, 26, 46, 0.5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    z-index: 1;
+    border: 1px solid transparent;
+}
+.service-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: conic-gradient(from var(--angle), transparent 20%, var(--glow-color-1), var(--glow-color-2), transparent 80%);
+    z-index: -1;
+    border-radius: inherit;
+    animation: rotate 6s linear infinite;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes rotate {
+  to { --angle: 360deg; }
+}
+.service-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 30px rgba(196, 30, 58, 0.3);
+}
+.service-card:hover::before {
+    opacity: 1;
+}
+.service-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+.service-icon-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--glow-color-1), var(--glow-color-2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), 0 0 15px rgba(196, 30, 58, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover .service-icon-container {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), 0 0 20px rgba(196, 30, 58, 0.6);
+}
+.service-icon {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+.service-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.service-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+.service-image-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 60%; /* Aspect ratio 5:3 */
+    margin: 1rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform 0.4s ease;
+}
+.service-card:hover .service-image-container {
+    transform: scale(1.05);
+}
+.service-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.4s ease;
+}
+.service-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 50%, rgba(196, 30, 58, 0.5));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.service-card:hover .service-image-container::after {
+    opacity: 1;
+}
+.service-card-button {
+    display: inline-block;
+    padding: 12px 28px;
+    margin-top: auto;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.service-card-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0%;
+    padding-bottom: 0%;
+    background: linear-gradient(45deg, var(--glow-color-1), var(--glow-color-2));
+    border-radius: 50%;
+    transition: width 0.4s ease, padding-bottom 0.4s ease;
+    z-index: -1;
+}
+.service-card-button:hover {
+    color: #1a1a2e;
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+.service-card-button:hover::before {
+    width: 250%;
+    padding-bottom: 250%;
+}
 </style>
 </head>
 
@@ -501,67 +713,94 @@
         <a href="#servicios" class="cta-button">Conocer Más</a>
       </div>
     </section>
-    <section id="servicios" class="container" style="background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
-      <div style="position: relative; z-index: 2;">
+    <section id="servicios" class="container">
         <h2 class="section-title">Nuestros Servicios</h2>
         <div class="services-grid">
+          <!-- Tarjeta de Servicio 1: Páginas Web -->
           <div class="service-card">
             <div class="service-card-content">
-              <div class="service-icon">🌐</div>
+              <div class="service-icon-container">
+                <span class="service-icon">🌐</span>
+              </div>
               <h3>Páginas Web Profesionales</h3>
               <p>Diseños modernos y adaptables para convertir visitantes en clientes.</p>
-              <img src="https://i.ibb.co/kVStpRH6/for-blog-3.gif" alt="Páginas Web Profesionales" loading="lazy" class="service-image">
-              <a href="https://ejemplosdepaginasweb.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button service-card-button">Ver mas</a>
+              <div class="service-image-container">
+                  <img src="https://i.ibb.co/kVStpRH6/for-blog-3.gif" alt="Páginas Web Profesionales" loading="lazy" class="service-image">
+              </div>
+              <a href="https://ejemplosdepaginasweb.netlify.app/" target="_blank" rel="noopener noreferrer" class="service-card-button">Ver más</a>
             </div>
           </div>
+          <!-- Tarjeta de Servicio 2: Aplicaciones Móviles -->
           <div class="service-card">
             <div class="service-card-content">
-              <div class="service-icon">📱</div>
+              <div class="service-icon-container">
+                <span class="service-icon">📱</span>
+              </div>
               <h3>Aplicaciones Móviles</h3>
               <p>Apps Android y multiplataforma que conectan con tu audiencia.</p>
-              <img src="https://i.ibb.co/7xy6NTnm/13.gif" alt="Aplicaciones Móviles" loading="lazy" class="service-image">
-              <a href="https://paginawebaplicaciones.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button service-card-button">Ver mas</a>
+              <div class="service-image-container">
+                  <img src="https://i.ibb.co/7xy6NTnm/13.gif" alt="Aplicaciones Móviles" loading="lazy" class="service-image">
+              </div>
+              <a href="https://paginawebaplicaciones.netlify.app/" target="_blank" rel="noopener noreferrer" class="service-card-button">Ver más</a>
             </div>
           </div>
+          <!-- Tarjeta de Servicio 3: Tiendas Online -->
           <div class="service-card">
             <div class="service-card-content">
-              <div class="service-icon">🛒</div>
+              <div class="service-icon-container">
+                <span class="service-icon">🛒</span>
+              </div>
               <h3>Tiendas Online</h3>
               <p>Plataformas de e-commerce robustas y seguras para impulsar tus ventas.</p>
-              <img src="https://i.ibb.co/Wv2kGCfL/app-online-store.gif" alt="Tiendas Online" loading="lazy" class="service-image">
-              <a href="https://paginawebdetiendaonline.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button service-card-button">Ver mas</a>
+              <div class="service-image-container">
+                  <img src="https://i.ibb.co/Wv2kGCfL/app-online-store.gif" alt="Tiendas Online" loading="lazy" class="service-image">
+              </div>
+              <a href="https://paginawebdetiendaonline.netlify.app/" target="_blank" rel="noopener noreferrer" class="service-card-button">Ver más</a>
             </div>
           </div>
+          <!-- Tarjeta de Servicio 4: Chatbots Inteligentes -->
           <div class="service-card">
             <div class="service-card-content">
-              <div class="service-icon">🤖</div>
+              <div class="service-icon-container">
+                <span class="service-icon">🤖</span>
+              </div>
               <h3>Chatbots Inteligentes</h3>
-              <p>Automatiza la atención al cliente las 24 horas del día con asistentes inteligentes totalmente integrados en tu sitio web o blog.</p>
-              <img src="https://i.ibb.co/zWJ5ZntM/ded0bbdd8485e424327257405a86a884.gif" alt="Chatbots Inteligentes" loading="lazy" class="service-image">
-              <a href="https://chatbotsaz.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button service-card-button">Ver mas</a>
+              <p>Automatiza la atención al cliente 24/7 con asistentes inteligentes.</p>
+              <div class="service-image-container">
+                  <img src="https://i.ibb.co/zWJ5ZntM/ded0bbdd8485e424327257405a86a884.gif" alt="Chatbots Inteligentes" loading="lazy" class="service-image">
+              </div>
+              <a href="https://chatbotsaz.netlify.app/" target="_blank" rel="noopener noreferrer" class="service-card-button">Ver más</a>
             </div>
           </div>
+          <!-- Tarjeta de Servicio 5: Seguridad Informática -->
           <div class="service-card">
             <div class="service-card-content">
-              <div class="service-icon">🔒</div>
+              <div class="service-icon-container">
+                <span class="service-icon">🔒</span>
+              </div>
               <h3>Seguridad Informática</h3>
               <p>Protege tu negocio digital con auditorías y protocolos de ciberseguridad.</p>
-              <img src="https://i.ibb.co/wr7MyB9L/giphy.gif" alt="Seguridad Informática" loading="lazy" class="service-image">
-              <a href="https://paginawebseguridadinformatica.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button service-card-button">Ver mas</a>
+              <div class="service-image-container">
+                  <img src="https://i.ibb.co/wr7MyB9L/giphy.gif" alt="Seguridad Informática" loading="lazy" class="service-image">
+              </div>
+              <a href="https://paginawebseguridadinformatica.netlify.app/" target="_blank" rel="noopener noreferrer" class="service-card-button">Ver más</a>
             </div>
           </div>
+          <!-- Tarjeta de Servicio 6: Soluciones Cloud -->
           <div class="service-card">
             <div class="service-card-content">
-              <div class="service-icon">☁️</div>
+              <div class="service-icon-container">
+                <span class="service-icon">☁️</span>
+              </div>
               <h3>Soluciones Cloud</h3>
               <p>Migración y optimización en la nube para escalabilidad sin límites.</p>
-              <img src="https://i.ibb.co/Pvth5B1V/nube-animada.gif" alt="Soluciones Cloud" loading="lazy" class="service-image">
-              <a href="https://paginawebsolucionescloud.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button service-card-button">Ver mas</a>
+              <div class="service-image-container">
+                  <img src="https://i.ibb.co/Pvth5B1V/nube-animada.gif" alt="Soluciones Cloud" loading="lazy" class="service-image">
+              </div>
+              <a href="https://paginawebsolucionescloud.netlify.app/" target="_blank" rel="noopener noreferrer" class="service-card-button">Ver más</a>
             </div>
           </div>
         </div>
-      </div>
     </section>
 
 
