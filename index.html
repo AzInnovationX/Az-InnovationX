@@ -1332,6 +1332,8 @@ document.addEventListener('DOMContentLoaded', () => {
     request_cybersecurity_info: ['ciberseguridad', 'seguridad', 'proteger', 'riesgos', 'hackers', 'virus'],
     request_creator_info: ['quien te creo', 'quién te creó', 'creador', 'desarrollador', 'quien te hizo', 'quién te hizo', 'quien te programo', 'quién te programó'],
     request_hours: ['horario', 'atienden', 'abren', 'cierran', 'horas', 'horarios de atencion'],
+    request_articles: ['artículos', 'blog', 'posts', 'contenido', 'educativo'],
+    request_affiliates: ['afiliados', 'afíliate', 'colaboraciones', 'partnerships', 'programa de afiliados'],
   };
 
 const chatbotToggle = document.getElementById('chatbot-toggle');
@@ -1402,6 +1404,14 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
         {
           text: "Preguntas Frecuentes (FAQ)",
           key: "faq_menu"
+        },
+        {
+          text: "Artículos AZINNX",
+          key: "articles_info"
+        },
+        {
+          text: "Programa de Afiliados",
+          key: "affiliate_info"
         },
         {
           text: "Contacto y Redes Sociales",
@@ -1525,6 +1535,14 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
           key: "servicio_cloud"
         },
         {
+          text: "Artículos AZINNX",
+          key: "articles_info"
+        },
+        {
+          text: "Programa de Afiliados",
+          key: "affiliate_info"
+        },
+        {
           text: "Volver al inicio",
           key: "saludo"
         }
@@ -1575,6 +1593,14 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
         {
           text: "Blog",
           url: "https://azinnovationx.blogspot.com/"
+        },
+        {
+          text: "Artículos AZINNX",
+          url: "https://articulos-azinnx.vercel.app/"
+        },
+        {
+          text: "Programa de Afiliados",
+          url: "https://afiliadosaz.netlify.app/"
         },
         {
           text: "Email",
@@ -1822,6 +1848,20 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
     },
     request_hours: {
         message: "¡Claro! Nuestro horario de atención es:<br><strong>Lunes a Sábado:</strong> 09:00 – 22:00 hrs (hora de México)<br><strong>Domingo:</strong> 09:00 – 14:00 hrs (hora de México)"
+    },
+    articles_info: {
+      message: "¡Qué bien que te interese nuestro contenido! En 'Artículos AZINNX' encontrarás guías, tutoriales y novedades sobre tecnología para potenciar tu negocio. ¿Quieres echarle un vistazo?",
+      options: [
+        { text: "Sí, llévame a los artículos", url: "https://articulos-azinnx.vercel.app/" },
+        { text: "Volver al inicio", key: "saludo" }
+      ]
+    },
+    affiliate_info: {
+      message: "¡Genial! Nuestro programa de 'Afiliados' es una oportunidad increíble para colaborar. Gana comisiones mientras ayudas a otros a crecer con nuestras soluciones tecnológicas. ¿Te gustaría saber más?",
+      options: [
+        { text: "Sí, quiero ser afiliado", url: "https://afiliadosaz.netlify.app/" },
+        { text: "Volver al inicio", key: "saludo" }
+      ]
     }
   };
 
