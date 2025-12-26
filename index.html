@@ -483,6 +483,19 @@
 .video-container#video-facade:hover .play-button::after {
     border-color: transparent transparent transparent #fff;
 }
+
+/* --- Estilos para Desktop --- */
+@media (min-width: 769px) {
+    .video-container {
+        max-width: 800px; /* Ancho máximo para el video en desktop */
+        border-radius: 20px; /* Bordes más suaves */
+        box-shadow: 0 15px 40px rgba(0,0,0,0.5); /* Sombra más pronunciada */
+    }
+
+    .video-container::after {
+        padding-bottom: 56.25%; /* Aspect Ratio 16:9 para desktop */
+    }
+}
 </style>
 </head>
 
