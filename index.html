@@ -400,6 +400,70 @@
     display: flex !important; /* Mostrar menú móvil cuando activo */
   }
 }
+
+/* --- Estilos para la Fachada de Video --- */
+.video-container#video-facade {
+    position: relative;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-container#video-facade::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+.video-container#video-facade:hover::before {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.play-button {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.play-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 15px 26px;
+    border-color: transparent transparent transparent rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+.video-container#video-facade:hover .play-button {
+    transform: scale(1.1);
+    background: rgba(220, 20, 60, 0.5);
+    border-color: #ffd700;
+}
+
+.video-container#video-facade:hover .play-button::after {
+    border-color: transparent transparent transparent #fff;
+}
 </style>
 </head>
 
@@ -470,8 +534,8 @@
         <div class="text-reveal-container">
           <p data-parallax-speed="-1">Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras y personalizadas</p>
         </div>
-        <div class="video-container" data-parallax-speed="-1.5">
-          <iframe src="https://player.vimeo.com/video/1149380360?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" title="Servicios Az InnovationX"></iframe>
+        <div class="video-container" id="video-facade" data-src="https://player.vimeo.com/video/1149380360?badge=0&amp;autoplay=1&amp;quality=auto&amp;dnt=1&amp;autopause=1" style="background-image: url('https://i.vimeocdn.com/video/1149380360_1280x720.jpg');">
+          <button class="play-button" aria-label="Reproducir video"></button>
         </div>
         <a href="#servicios" class="cta-button">Conocer Más</a>
       </div>
@@ -2269,6 +2333,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
+
+<!-- OPTIMIZACIÓN: Script para Carga Diferida del Video de Vimeo -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const videoFacade = document.getElementById('video-facade');
+    if (videoFacade) {
+        videoFacade.addEventListener('click', () => {
+            const videoUrl = videoFacade.getAttribute('data-src');
+            if (videoUrl) {
+                const iframe = document.createElement('iframe');
+                iframe.setAttribute('src', videoUrl);
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
+                iframe.setAttribute('title', 'Servicios Az InnovationX');
+
+                // Limpiar el contenido de la fachada y agregar el iframe
+                videoFacade.innerHTML = '';
+                videoFacade.appendChild(iframe);
+            }
+        }, { once: true }); // El evento se ejecuta solo una vez
+    }
+});
+</script>
+
 <script>
   // ADDED: PWA Service Worker Registration
   if ('serviceWorker' in navigator) {
