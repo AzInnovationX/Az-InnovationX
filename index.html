@@ -496,7 +496,12 @@
         padding-bottom: 56.25%; /* Aspect Ratio 16:9 para desktop */
     }
 }
-@media (max-width: 768px) { #video-facade { background-position: center 60% !important; } }
+/* SOLUCIÓN RESPONSIVE: Ajuste de background-position para móviles. 
+   - Se cambia el valor de 'center 60%' a 'center 30%'.
+   - '60%' empujaba la imagen hacia arriba, cortando la parte inferior (el pingüino y el eslogan).
+   - '30%' baja la imagen, asegurando que el título, el pingüino y el eslogan "Donde las Ideas Cobran Vida" permanezcan visibles en pantallas estrechas, resolviendo el problema de recorte.
+*/
+@media (max-width: 768px) { #video-facade { background-position: center 30% !important; } }
 </style>
 </head>
 
