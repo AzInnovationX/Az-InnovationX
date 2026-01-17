@@ -1,0 +1,49 @@
+<div id="chatbot-container">
+    <div id="chatbot-window">
+      <div id="chatbot-header">
+        <div class="avatar">
+          <img src="https://i.ibb.co/cSCSjsyS/11184177.gif" alt="11184177" loading="lazy" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+        </div>
+        <div class="bot-info">
+          <h4>Az Asistente Virtual</h4>
+          <p>En línea</p>
+        </div>
+        <div class="header-buttons">
+            <button id="chatbot-theme-toggle" title="Cambiar Tema" aria-label="Cambiar Tema">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sun">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+            <button id="chatbot-expand-toggle" title="Expandir/Minimizar" aria-label="Expandir o minimizar el chat">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-expand">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                </svg>
+            </button>
+        </div>
+      </div>
+      <div id="chatbot-messages" role="log" aria-live="polite">
+        <!-- Messages will be appended here by JavaScript -->
+      </div>
+      <form id="chatbot-input-form" aria-label="Formulario de entrada de chat">
+        <input type="text" id="chatbot-input" placeholder="Escribe un mensaje..." autocomplete="off" aria-label="Mensaje de entrada">
+        <button type="submit" id="chatbot-send" aria-label="Enviar mensaje">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+    </div>
+    <button id="chatbot-toggle">
+      <span class="icon-open">🤖</span>
+      <span class="icon-close">✕</span>
+    </button>
+  </div>
