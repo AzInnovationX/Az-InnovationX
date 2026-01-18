@@ -874,6 +874,51 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
     </div>
   </div>
 </footer>
+  <!-- Chatbot HTML Structure -->
+  <div id="chatbot-container">
+    <div id="chatbot-window">
+      <div id="chatbot-header">
+        <div class="avatar">
+          <img src="https://i.ibb.co/cSCSjsyS/11184177.gif" alt="Az Asistente Virtual" loading="lazy" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+        </div>
+        <div class="bot-info">
+          <h4>Az Asistente Virtual</h4>
+          <p>En línea</p>
+        </div>
+        <div class="header-controls">
+          <button id="chatbot-expand-toggle" title="Expandir/Minimizar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-expand">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+            </svg>
+          </button>
+          <button id="chatbot-close-btn" title="Cerrar Chat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="chatbot-messages">
+        <!-- Messages will be appended here by JavaScript -->
+      </div>
+      <form id="chatbot-input-form">
+        <input type="text" id="chatbot-input" placeholder="Escribe un mensaje..." autocomplete="off">
+        <button type="submit" id="chatbot-send">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+    </div>
+    <a href="https://contactosoli.netlify.app/" target="_blank" rel="noopener noreferrer" id="contact-button" class="floating-button">
+      <span class="icon-contact">✉️</span>
+    </a>
+    <button id="chatbot-toggle">
+      <span class="icon-open">🤖</span>
+    </button>
+  </div>
   <!-- General Page Scripts -->
 
   <!-- Firebase and Form Submission Script -->
