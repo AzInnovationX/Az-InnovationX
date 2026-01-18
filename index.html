@@ -1446,499 +1446,200 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
   chatbotToggle.addEventListener('click', openChatbot);
   chatbotCloseBtn.addEventListener('click', closeChatbot);
   const knowledgeBase = {
+    // 1. SALUDO INTELIGENTE (Paso 1)
     saludo: {
-      message: "¡Qué padre que estás aquí! Soy AZ, tu asistente virtual de Az InnovationX. Estoy listo para ayudarte a convertir tu idea en una solución digital. ¿En qué te puedo ayudar?",
-      options: [{
-          text: "Nuestros Servicios",
-          key: "servicios_menu"
-        },
-        {
-          text: "Presencia en Internet",
-          key: "presencia_internet"
-        },
-        {
-          text: "Suscríbete",
-          key: "suscribete"
-        },
-        {
-          text: "Nuestra Ubicación",
-          key: "ubicacion"
-        },
-        {
-          text: "Tips de Ciberseguridad",
-          key: "ciberseguridad"
-        },
-        {
-          text: "Métodos de Pago",
-          key: "payment_info"
-        },
-        {
-          text: "Nuestras Certificaciones",
-          key: "certificaciones"
-        },
-        {
-          text: "Preguntas Frecuentes (FAQ)",
-          key: "faq_menu"
-        },
-        {
-          text: "Artículos AZINNX",
-          key: "articles_info"
-        },
-        {
-          text: "Programa de Afiliados",
-          key: "affiliate_info"
-        },
-        {
-          text: "Contacto y Redes Sociales",
-          key: "contacto"
-        }
-      ]
-    },
-    presencia_internet: {
-      message: "¡Excelente pregunta! Tener presencia en internet es clave. Te recomiendo ver el video que está al principio de nuestra página para que veas todo el potencial. Tener una buena presencia online te permite llegar a más clientes, construir credibilidad y abrir nuevos canales de venta 24/7. ¿Te gustaría que te contáramos cómo podemos ayudarte a lograrlo?",
-      options: [{
-          text: "Ver el video ahora",
-          key: "go_to_inicio"
-        },
-        {
-          text: "Sí, cuéntame más",
-          key: "servicio_web"
-        },
-        {
-          text: "No, gracias",
-          key: "saludo"
-        }
-      ]
-    },
-    ciberseguridad: {
-      message: "La ciberseguridad es súper importante. No se trata solo de tecnología, sino de proteger el corazón de tu negocio: tus datos y la confianza de tus clientes. Una buena estrategia de seguridad evita pérdidas económicas y de reputación. ¿Quieres algunos consejos básicos para empezar?",
-      options: [{
-          text: "Sí, dame consejos",
-          key: "consejos_ciberseguridad"
-        },
-        {
-          text: "Ver servicios de seguridad",
-          key: "servicio_seguridad"
-        },
-        {
-          text: "Volver al inicio",
-          key: "saludo"
-        }
-      ]
-    },
-    consejos_ciberseguridad: {
-      message: "¡Claro! Aquí van 3 consejos clave:<br>" +
-        "<ul>" +
-        "<li><strong>Contraseñas Fuertes:</strong> Usa combinaciones largas de letras, números y símbolos. ¡No uses '123456'!</li>" +
-        "<li><strong>Autenticación de Dos Pasos (2FA):</strong> Actívala siempre que puedas. Es una capa extra de seguridad.</li>" +
-        "<li><strong>Mantén todo actualizado:</strong> Tu software, antivirus y aplicaciones deben tener siempre la última versión para protegerte de vulnerabilidades.</li>" +
-        "</ul>" +
-        "<p>Proteger tu negocio es más fácil de lo que parece. ¿Te podemos ayudar con algo más?",
-      options: [{
-          text: "Ver servicios de seguridad",
-          key: "servicio_seguridad"
-        },
-        {
-          text: "Volver al inicio",
-          key: "saludo"
-        }
-      ]
-    },
-    creator_info: {
-      message: "Fui creado por Az InnovationX, desarrollado por Evaristo San Juan Azuara, un emprendedor y desarrollador apasionado por la innovación tecnológica y la creación de soluciones digitales inteligentes."
-    },
-    suscribete: {
-      message: "¡Qué bueno que te interesa! Suscríbete para no perderte ninguna de nuestras innovaciones, ofertas especiales y contenido exclusivo. ¡Es la mejor forma de estar al día con el futuro de la tecnología!",
-      options: [{
-          text: "¡Claro, me suscribo!",
-          url: "https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header"
-        },
-        {
-          text: "Volver al inicio",
-          key: "saludo"
-        }
-      ]
-    },
-    ubicacion: {
-      message: "Nos encontramos en Estado de Mexico Huixquilucan. ¡Nos encantaría que nos dejaras un comentario en nuestra ubicación de Google Maps! Tu feedback nos ayuda a mejorar.",
-      options: [{
-          text: "Dejar un comentario",
-          url: "https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A"
-        },
-        {
-          text: "Volver al inicio",
-          key: "saludo"
-        }
-      ]
-    },
-    payment_info: {
-      message: "¡Claro! Para realizar tu pago, hemos habilitado una sección segura donde puedes elegir tu método preferido. ¿Te gustaría ir ahora?",
-      options: [{
-          text: "Sí, llevar a Pagos Seguros",
-          key: "go_to_pagos_seguros"
-        },
-        {
-          text: "Volver al inicio",
-          key: "saludo"
-        }
-      ]
-    },
-    servicios_menu: {
-      message: "¡Súper! Ofrecemos varias soluciones de alta tecnología. ¿Cuál te interesa para contarte más?",
-      options: [{
-          text: "Páginas Web Profesionales",
-          key: "servicio_web"
-        },
-        {
-          text: "Aplicaciones Móviles",
-          key: "servicio_app"
-        },
-        {
-          text: "Tiendas Online",
-          key: "servicio_ecommerce"
-        },
-        {
-          text: "Chatbots Inteligentes",
-          key: "servicio_chatbot"
-        },
-        {
-          text: "Seguridad Informática",
-          key: "servicio_seguridad"
-        },
-        {
-          text: "Soluciones Cloud",
-          key: "servicio_cloud"
-        },
-        {
-          text: "Artículos AZINNX",
-          key: "articles_info"
-        },
-        {
-          text: "Programa de Afiliados",
-          key: "affiliate_info"
-        },
-        {
-          text: "Volver al inicio",
-          key: "saludo"
-        }
-      ],
-    },
-    faq_menu: {
-      message: "¡Excelente! Aquí tienes los temas de nuestras preguntas más comunes. ¿Sobre qué te gustaría saber?",
-      options: [{
-          text: "Sobre el Proceso",
-          key: "faq_proceso_menu"
-        },
-        {
-          text: "Sobre Tecnología",
-          key: "faq_tecnologia_menu"
-        },
-        {
-          text: "Soporte Post-Venta",
-          key: "faq_soporte_menu"
-        },
-        {
-          text: "Volver al inicio",
-          key: "saludo"
-        }
-      ]
-    },
-    contacto: {
-      message: "¡Claro! Aquí tienes todas nuestras redes y formas de contacto. ¡Nos encantará saber de ti!",
-      options: [{
-          text: "WhatsApp",
-          url: "https://wa.me/5620042412"
-        },
-        {
-          text: "Facebook",
-          url: "https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL"
-        },
-        {
-          text: "Instagram",
-          url: "https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA=="
-        },
-        {
-          text: "TikTok",
-          url: "https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1"
-        },
-        {
-          text: "Aplicaciones",
-          url: "https://appsstoreaz.netlify.app/"
-        },
-        {
-          text: "Blog",
-          url: "https://azinnovationx.blogspot.com/"
-        },
-        {
-          text: "Artículos AZINNX",
-          url: "https://articulos-azinnx.vercel.app/"
-        },
-        {
-          text: "Programa de Afiliados",
-          url: "https://afiliadosaz.netlify.app/"
-        },
-        {
-          text: "Email",
-          url: "mailto:soporteseguro98@gmail.com"
-        },
-        {
-          text: "Volver al inicio",
-          key: "saludo"
-        }
-      ],
-    },
-    ejemplos: {
-      message: "¡Claro! Puedes ver algunos de nuestros trabajos en nuestra sección de aplicaciones.",
-      options: [{
-          text: "Ir a la sección de Aplicaciones",
-          url: "https://appsstoreaz.netlify.app/"
-        },
-        {
-          text: "Volver al inicio",
-          key: "saludo"
-        }
-      ]
-    },
-    servicio_web: {
-      message: "Creamos páginas web profesionales con diseños modernos, SEO optimizado e integración de APIs. ¡Perfectas para convertir visitantes en clientes!",
-      options: [
-        { text: "Ver más", url: "https://ejemplosdepaginasweb.netlify.app/" },
-        { text: "Volver a servicios", key: "servicios_menu" }
-      ],
-      nextContext: 'Páginas Web'
-    },
-    servicio_app: {
-      message: "Desarrollamos apps para Android y multiplataforma con notificaciones push y un diseño intuitivo para conectar con tu audiencia.",
-      options: [
-        { text: "Ver más", url: "https://paginawebaplicaciones.netlify.app/" },
-        { text: "Volver a servicios", key: "servicios_menu" }
-      ],
-      nextContext: 'Aplicaciones Móviles'
-    },
-    servicio_ecommerce: {
-      message: "Construimos plataformas de e-commerce robustas con pasarelas de pago seguras y gestión de inventario para que vendas sin parar.",
-      options: [
-        { text: "Ver más", url: "https://paginawebdetiendaonline.netlify.app/" },
-        { text: "Volver a servicios", key: "servicios_menu" }
-      ],
-      nextContext: 'Tiendas Online'
-    },
-    servicio_chatbot: {
-      message: "Automatizamos la atención al cliente 24/7 con IA. ¡Respuestas al instante para no perder ni un cliente!",
-      options: [
-        { text: "Ver más", url: "https://chatbotsaz.netlify.app/" },
-        { text: "Volver a servicios", key: "servicios_menu" }
-      ],
-      nextContext: 'Chatbots Inteligentes'
-    },
-    servicio_seguridad: {
-      message: "Protegemos tu negocio digital con auditorías y protocolos de ciberseguridad. ¡Tu tranquilidad es nuestra prioridad!",
-      options: [
-        { text: "Ver más", url: "https://paginawebseguridadinformatica.netlify.app/" },
-        { text: "Volver a servicios", key: "servicios_menu" }
-      ],
-      nextContext: 'Seguridad Informática'
-    },
-    servicio_cloud: {
-      message: "Migramos y optimizamos tu infraestructura en la nube para darte escalabilidad, alta disponibilidad y backups automáticos.",
-      options: [
-        { text: "Ver más", url: "https://paginawebsolucionescloud.netlify.app/" },
-        { text: "Volver a servicios", key: "servicios_menu" }
-      ],
-      nextContext: 'Soluciones Cloud'
-    },
-    faq_proceso_menu: {
-      message: "¡Perfecto! Nuestro proceso es súper ágil. ¿Qué te gustaría saber?",
-      options: [{
-          text: "¿Cómo empezamos?",
-          key: "faq_proceso_inicio"
-        },
-        {
-          text: "¿Qué necesitan de mí?",
-          key: "faq_proceso_requisitos"
-        },
-        {
-          text: "¿Puedo ver el progreso?",
-          key: "faq_proceso_progreso"
-        },
-        {
-          text: "Volver a FAQ",
-          key: "faq_menu"
-        }
-      ]
-    },
-    faq_tecnologia_menu: {
-      message: "¡Nos encanta la tecnología! Usamos lo más moderno y eficiente. ¿Qué quieres saber?",
-      options: [{
-          text: "¿Qué tecnologías usan?",
-          key: "faq_tech_stack"
-        },
-        {
-          text: "¿Mis datos están seguros?",
-          key: "faq_tech_seguridad"
-        },
-        {
-          text: "Volver a FAQ",
-          key: "faq_menu"
-        }
-      ]
-    },
-    faq_soporte_menu: {
-      message: "¡Claro! Nuestro compromiso no termina con la entrega. ¿Qué duda tienes sobre el soporte?",
-      options: [{
-          text: "¿Ofrecen capacitación?",
-          key: "faq_soporte_capacitacion"
-        },
-        {
-          text: "¿Qué incluye el soporte?",
-          key: "faq_soporte_incluye"
-        },
-        {
-          text: "¿Tienen garantía?",
-          key: "faq_soporte_garantia"
-        },
-        {
-          text: "Volver a FAQ",
-          key: "faq_menu"
-        }
-      ]
-    },
-    faq_proceso_inicio: {
-      message: "¡Súper fácil! 1) Nos cuentas tu idea, 2) Te damos presupuesto, 3) Firmamos contrato, 4) ¡Empezamos a crear!"
-    },
-    faq_proceso_requisitos: {
-      message: "Solo necesitamos que nos cuentes tu visión, compartas contenido (textos, imágenes) y que tengas comunicación fluida con nosotros."
-    },
-    faq_proceso_progreso: {
-      message: "¡Por supuesto! Te enviamos actualizaciones semanales con capturas y avances. Siempre estarás al tanto."
-    },
-    faq_tech_stack: {
-      message: "Usamos tecnologías modernas: HTML5, CSS3, JavaScript, React, Node.js, Firebase. Siempre lo más actual y eficiente."
-    },
-    faq_tech_seguridad: {
-      message: "¡Totalmente! Implementamos protocolos de seguridad SSL, encriptación y cumplimos con estándares internacionales de protección de datos."
-    },
-    faq_soporte_capacitacion: {
-      message: "¡Sí! Incluimos sesión de capacitación para que sepas manejar tu plataforma como un experto."
-    },
-    faq_soporte_incluye: {
-      message: "Soporte técnico por 30 días, corrección de bugs, y asesoría para dudas básicas sin costo adicional."
-    },
-    faq_soporte_garantia: {
-      message: "¡Por supuesto! 30 días de garantía total contra defectos de funcionamiento y bugs."
-    },
-    presupuesto: {
-      message: "¡Excelente! Para darte una cotización más precisa, ¿podrías indicarme tu presupuesto aproximado para este proyecto?",
-      options: [{
-          text: "Menos de $2,000 MXN",
-          budget: "0-2000"
-        },
-        {
-          text: "$2,000 - $4,000 MXN",
-          budget: "2000-4000"
-        },
-        {
-          text: "$4,000 - $6,000 MXN",
-          budget: "4000-6000"
-        },
-        {
-          text: "Más de $6,000 MXN",
-          budget: "6000+"
-        },
-        {
-          text: "Prefiero no decirlo",
-          budget: "nda"
-        }
-      ],
-      nextContext: 'capture_budget'
-    },
-    human_escalation: {
-      message: "Entiendo. Para darte una atención más personalizada, te recomiendo hablar directamente con nuestro equipo técnico vía WhatsApp. ¿Quieres que te redirija?",
-      options: [{
-        text: "Sí, llevar a WhatsApp",
-        url: "https://wa.me/5620042412"
-      }, {
-        text: "No, gracias",
-        key: "saludo"
-      }],
-      nextContext: 'whatsapp_redirect'
-    },
-    certificaciones: {
-      message: "Contamos con certificaciones que avalan nuestra seguridad, calidad y excelencia. Son prueba de nuestro compromiso con la innovación y los más altos estándares del sector. ¿Te gustaría verlas?",
-      options: [
-        { text: "Ver certificaciones", url: "https://certificaciones1.netlify.app/" },
-        { text: "Volver al inicio", key: "saludo" }
-      ]
-    },
-    precios_menu: {
-        message: "¡Por supuesto! Para darte la información más precisa, por favor dime sobre qué servicio te gustaría saber el costo.",
+        message: "¡Qué padre que estás aquí! 👋 Soy AZ, tu asistente virtual. Estoy listo para ayudarte a darle vida a tu proyecto digital. ¿Cómo empezamos?",
         options: [
-            { text: "Página Web One Page", key: "precio_web_one_page" },
-            { text: "Web Empresarial", key: "precio_web_empresarial" },
-            { text: "Tienda Online", key: "precio_tienda" },
-            { text: "App Web (PWA)", key: "precio_pwa" },
-            { text: "Chatbot Básico", key: "precio_chatbot_basico" },
-            { text: "Chatbot Avanzado", key: "precio_chatbot_avanzado" },
-            { text: "Seguridad Web", key: "precio_seguridad" },
-            { text: "Hosting y Mantenimiento", key: "precio_hosting" },
-            { text: "Paquetes Recomendados", key: "precios_paquetes" },
+            { text: "Cotizar un Servicio 💰", key: "cotizar_inicio" },
+            { text: "Explorar Soluciones 🚀", key: "explorar_inicio" },
+            { text: "Tengo otra pregunta ❓", key: "faq_inicio" },
+            { text: "Contacto Directo 🧑‍💻", key: "contacto_directo" }
+        ]
+    },
+
+    // 2. FLUJO DE COTIZACIÓN RÁPIDA (Flujo 1)
+    cotizar_inicio: {
+        message: "¡Excelente! Me encanta hablar de proyectos. Para darte una idea más clara, ¿qué tienes en mente?",
+        options: [
+            { text: "Página Web", key: "cotizar_tipo_pagina" },
+            { text: "Tienda Online", key: "cotizar_tipo_tienda" },
+            { text: "Aplicación Móvil", key: "cotizar_tipo_app" },
+            { text: "Otro proyecto", key: "contacto_directo_proyecto" }
+        ]
+    },
+    cotizar_tipo_pagina: {
+        message: "¡Súper! Las páginas web son nuestra especialidad. ¿Qué tipo de página necesitas para tu proyecto?",
+        options: [
+            { text: "Landing Page (1 sección)", key: "cotizar_presupuesto", context: { service: "Landing Page", range: "$2,000 - $3,000 MXN" } },
+            { text: "Sitio Web Empresarial", key: "cotizar_presupuesto", context: { service: "Sitio Web Empresarial", range: "$2,500 - $3,500 MXN" } },
+            { text: "No estoy seguro", key: "contacto_directo_asesoria" }
+        ]
+    },
+    cotizar_tipo_tienda: {
+        message: "¡Genial! Una tienda online es un cohete para las ventas. Para darte un rango de precios, ¿qué tamaño de catálogo tienes pensado?",
+        options: [
+            { text: "Básico (hasta 20 productos)", key: "cotizar_presupuesto", context: { service: "Tienda Online Básica", range: "$2,500 - $3,000 MXN" } },
+            { text: "Avanzado (+20 productos)", key: "cotizar_presupuesto", context: { service: "Tienda Online Avanzada", range: "$3,500 - $5,000 MXN" } },
+            { text: "Necesito asesoría", key: "contacto_directo_asesoria" }
+        ]
+    },
+     cotizar_tipo_app: {
+        message: "¡Wow, una App! Eso es pensar en grande. Las Apps Web (PWA) son una opción increíble. ¿Tu proyecto es para clientes o para uso interno?",
+        options: [
+            { text: "Para Clientes", key: "cotizar_presupuesto", context: { service: "App Web (PWA)", range: "$2,800 - $3,700 MXN" } },
+            { text: "Uso Interno (Negocio)", key: "contacto_directo_asesoria" }
+        ]
+    },
+    cotizar_presupuesto: {
+        message: "Perfecto. Para un proyecto de <strong>{service}</strong>, el rango de inversión aproximado es de <strong>{range}</strong>. Este es un estimado inicial, ¡pero nos ajustamos a tus necesidades!",
+        message_logic: (context) => `Perfecto. Para un proyecto de <strong>${context.service}</strong>, el rango de inversión aproximado es de <strong>${context.range}</strong>. Este es un estimado inicial, ¡pero nos ajustamos a tus necesidades!`,
+        options: [
+            { text: "¡Suena bien! Cotizar por WhatsApp", url: "https://wa.me/5620042412?text=Hola%2C%20me%20interesa%20una%20cotizaci%C3%B3n%20para%20un%20proyecto%20de%20{service}." },
+            { text: "Ver otros servicios", key: "servicios_menu" },
             { text: "Volver al inicio", key: "saludo" }
         ]
     },
-    precio_web_one_page: {
-        message: "Una <strong>Página Web One Page Profesional</strong> tiene un costo de 💰 $2,000 a $3,000 MXN. Es ideal para emprendedores y marcas que buscan una presencia digital moderna y efectiva. Incluye diseño responsivo, secciones estratégicas, integración con redes sociales y formulario de contacto.",
-        options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+
+    // 3. FLUJO EXPLORATORIO (Flujo 2)
+    explorar_inicio: {
+        message: "¡Claro que sí! Para recomendarte la mejor solución, cuéntame, ¿cuál es el principal objetivo que buscas alcanzar?",
+        options: [
+            { text: "Vender más por internet", key: "recomendar_ventas" },
+            { text: "Mejorar la imagen de mi negocio", key: "recomendar_imagen" },
+            { text: "Automatizar la atención al cliente", key: "recomendar_automatizacion" }
+        ]
     },
-    precio_web_empresarial: {
-        message: "Una <strong>Página Web Empresarial Premium</strong> cuesta entre 💰 $2,500 y $3,500 MXN. Es un sitio corporativo profesional enfocado en posicionamiento y ventas, con múltiples secciones, SEO básico y copywriting persuasivo.",
-        options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+    recomendar_ventas: {
+        message: "Para impulsar tus ventas, una <strong>Tienda Online</strong> es tu mejor aliada. 🛒<br><br><em>Caso de Éxito:</em> Un cliente de moda aumentó sus ventas en un 200% en los primeros 3 meses tras lanzar su e-commerce con nosotros.",
+        options: [
+            { text: "Ver precios de Tiendas Online", key: "cotizar_tipo_tienda" },
+            { text: "Hablar con un experto", key: "contacto_directo" }
+        ]
     },
-    precio_tienda: {
-        message: "Una <strong>Tienda Online Básica</strong> tiene un precio de 💰 $2,500 a $3,000 MXN. Es la solución perfecta para empezar a vender en línea, con catálogo de productos, carrito de compras, integración de pagos y WhatsApp.",
-        options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+    recomendar_imagen: {
+        message: "Para proyectar una imagen profesional y confiable, una <strong>Página Web Empresarial</strong> es fundamental. 🌐<br><br><em>Caso de Éxito:</em> Una firma de consultoría consiguió 3 clientes corporativos en su primer mes gracias a la credibilidad que proyectaba su nuevo sitio web.",
+        options: [
+            { text: "Ver precios de Páginas Web", key: "cotizar_tipo_pagina" },
+            { text: "Hablar con un experto", key: "contacto_directo" }
+        ]
     },
-    precio_pwa: {
-        message: "Una <strong>App Web Android (PWA)</strong> tiene un costo de 💰 $2,800 a $3,700 MXN. Es una app instalable que ofrece acceso directo desde el celular, con carga rápida y funcionamiento sin conexión.",
-        options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+    recomendar_automatizacion: {
+        message: "Para optimizar tu tiempo y no perder ningún cliente, un <strong>Chatbot Inteligente</strong> como yo es la solución perfecta. 🤖<br><br><em>Caso de Éxito:</em> Implementamos un chatbot para un blog de tecnología que ahora captura un 40% más de leads fuera del horario de oficina.",
+        options: [
+            { text: "Me interesa un Chatbot", key: "cotizar_presupuesto", context: { service: "Chatbot Avanzado", range: "$800 - $1,200 MXN" } },
+            { text: "Hablar con un experto", key: "contacto_directo" }
+        ]
     },
-    precio_chatbot_basico: {
-        message: "Un <strong>Chatbot Web Básico</strong> cuesta entre 💰 $500 y $800 MXN. Es ideal para automatizar respuestas a preguntas frecuentes con un flujo de conversación predefinido.",
-        options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+
+    // 4. PREGUNTAS FRECUENTES Y OTROS
+    faq_inicio: {
+        message: "¡Con gusto resuelvo tus dudas! ¿Sobre qué tema te gustaría saber más?",
+        options: [
+            { text: "Proceso de Trabajo", key: "faq_proceso" },
+            { text: "Tiempos de Entrega", key: "faq_tiempos" },
+            { text: "Garantía y Soporte", key: "faq_soporte" },
+            { text: "Volver al inicio", key: "saludo" }
+        ]
     },
-    precio_chatbot_avanzado: {
-        message: "Un <strong>Chatbot Avanzado</strong> tiene un precio de 💰 $800 a $1,200 MXN. Incluye menús interactivos, múltiples flujos de conversación e integración con WhatsApp o correo electrónico.",
-        options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+    faq_proceso: {
+        message: "Nuestro proceso es súper transparente: 1. Consulta y Estrategia, 2. Diseño y Desarrollo, 3. Lanzamiento y Soporte. ¡Siempre estarás al tanto de cada avance!",
+        options: [
+            { text: "Tengo otra pregunta", key: "faq_inicio" },
+            { text: "Volver al inicio", key: "saludo" }
+        ]
     },
-    precio_seguridad: {
-        message: "El servicio de <strong>Seguridad Web Básica</strong> cuesta entre 💰 $2,800 y $3,800 MXN. Incluye un diagnóstico de seguridad, un reporte de vulnerabilidades y la implementación de configuraciones esenciales para proteger tu sitio.",
-        options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+    faq_tiempos: {
+        message: "Depende del proyecto, pero somos muy ágiles. Una Landing Page puede estar lista en 3-5 días, mientras que una Tienda Online puede tomar de 1 a 2 semanas. ¡La calidad es nuestra prioridad!",
+         options: [
+            { text: "Tengo otra pregunta", key: "faq_inicio" },
+            { text: "Volver al inicio", key: "saludo" }
+        ]
     },
-    precio_hosting: {
-        message: "Nuestro servicio de <strong>Hosting y Mantenimiento</strong> tiene un costo de 💰 $1,200 a $2,000 MXN. Asegura que tu sitio esté siempre en línea, optimizado, seguro y con respaldos periódicos.",
-        options: [{ text: "Ver otros precios", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
+    faq_soporte: {
+        message: "¡Tu tranquilidad es clave! Todos nuestros proyectos incluyen 30 días de garantía y soporte técnico sin costo para resolver cualquier detalle. Después, ofrecemos planes de mantenimiento.",
+         options: [
+            { text: "Tengo otra pregunta", key: "faq_inicio" },
+            { text: "Volver al inicio", key: "saludo" }
+        ]
     },
-    precios_paquetes: {
-        message: "¡Claro! Aquí tienes nuestros paquetes recomendados:<br><br><strong>📦 Web + Chatbot Básico:</strong> $3,000 - $3,800 MXN<br><strong>📦 Web + App + Chatbot:</strong> $5,300 - $7,500 MXN<br><br>Todos nuestros planes incluyen hosting y dominio gratis. ✅",
-        options: [{ text: "Ver precios individuales", key: "precios_menu" }, { text: "Volver al inicio", key: "saludo" }]
-    },
-    request_hours: {
-        message: "¡Claro! Nuestro horario de atención es:<br><strong>Lunes a Sábado:</strong> 09:00 – 22:00 hrs (hora de México)<br><strong>Domingo:</strong> 09:00 – 14:00 hrs (hora de México)"
-    },
-    articles_info: {
-      message: "Artículos AZINNX es una tienda de artículos tecnológicos diseñados por Az InnovationX. Moda y accesorios con estilo tech: sudaderas, termos, gorras, llaveros, mochilas y más. Tecnología que se viste.",
+
+    // 5. CONTACTO Y ESCALACIÓN
+    contacto_directo: {
+      message: "¡Claro! Hablar con nuestro equipo es la mejor forma de aclarar todas tus dudas. ¿Cómo prefieres que te contactemos?",
       options: [
-        { text: "Sí, llévame a los artículos", url: "https://articulos-azinnx.vercel.app/" },
+          { text: "WhatsApp (Más rápido)", url: "https://wa.me/5620042412?text=Hola%2C%20vengo%20del%20chatbot%20y%20necesito%20asesor%C3%ADa." },
+          { text: "Ver otras redes sociales", key: "contacto_redes" },
+          { text: "Volver al inicio", key: "saludo" }
+      ]
+    },
+    contacto_directo_asesoria: {
+        message: "Entendido. Para darte la mejor asesoría, lo ideal es que hables directamente con un especialista. ¿Te parece bien si te redirijo a nuestro WhatsApp?",
+        options: [
+            { text: "Sí, vamos a WhatsApp", url: "https://wa.me/5620042412?text=Hola%2C%20vengo%20del%20chatbot%20y%20necesito%20asesor%C3%ADa%20sobre%20mi%20proyecto." },
+            { text: "No, gracias", key: "saludo" }
+        ]
+    },
+    contacto_directo_proyecto: {
+        message: "¡Qué emoción, un nuevo reto! Cuéntanos tu idea por WhatsApp para explorarla juntos y darte una solución a la medida.",
+        options: [
+            { text: "Contar mi idea por WhatsApp", url: "https://wa.me/5620042412?text=Hola%2C%20tengo%20un%20proyecto%20especial%20y%20quisiera%20cotizarlo." },
+            { text: "Volver al inicio", key: "saludo" }
+        ]
+    },
+
+    // 6. MANEJO DE OBJECIONES (Flujo 3)
+    objecion_caro: {
+        message: "Entiendo tu punto. Más que un gasto, nos vemos como una inversión en tu crecimiento. Nuestras soluciones están diseñadas para generar un retorno real. Además, ofrecemos opciones de pago flexibles para que no sea una barrera. ¿Te gustaría conocerlas?",
+        options: [
+            { text: "Sí, ver opciones de pago", key: "payment_info_redirect" },
+            { text: "No, gracias", key: "saludo" }
+        ]
+    },
+    objecion_duda: {
+        message: "Es normal tener dudas. Para tu tranquilidad, ofrecemos 30 días de garantía en todos nuestros desarrollos. Además, puedes ver los testimonios de otros clientes o agendar una consultoría gratuita de 15 minutos sin compromiso para resolver todas tus preguntas.",
+        options: [
+            { text: "Agendar consultoría gratis", url: "https://wa.me/5620042412?text=Hola%2C%20quisiera%20agendar%20una%20consultor%C3%ADa%20gratuita%20de%2015%20minutos." },
+            { text: "Ver certificaciones", key: "certificaciones_redirect" }
+        ]
+    },
+
+    // MENÚS SECUNDARIOS Y OTROS (Reutilizados del original pero simplificados)
+    servicios_menu: {
+      message: "Ofrecemos varias soluciones de alta tecnología. ¿Cuál te interesa para contarte más?",
+      options: [
+        { text: "Páginas Web", key: "cotizar_tipo_pagina" },
+        { text: "Tiendas Online", key: "cotizar_tipo_tienda" },
+        { text: "Chatbots", key: "recomendar_automatizacion" },
         { text: "Volver al inicio", key: "saludo" }
       ]
     },
-    affiliate_info: {
-      message: "¡Genial! Nuestro programa de 'Afiliados' es una oportunidad increíble para colaborar. Gana comisiones mientras ayudas a otros a crecer con nuestras soluciones tecnológicas. ¿Te gustaría saber más?",
+    contacto_redes: {
+      message: "¡Síguenos y mantente al día con todas nuestras innovaciones!",
       options: [
-        { text: "Sí, quiero ser afiliado", url: "https://afiliadosaz.netlify.app/" },
-        { text: "Volver al inicio", key: "saludo" }
+          { text: "Facebook", url: "https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" },
+          { text: "Instagram", url: "https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" },
+          { text: "TikTok", url: "https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" },
+          { text: "Volver al inicio", key: "saludo" }
+      ]
+    },
+    payment_info_redirect: {
+        message: "¡Claro! Te llevo a nuestra sección de pagos seguros donde puedes ver todas las opciones disponibles.",
+        options: [ { text: "Ir a Pagos Seguros", key: "go_to_pagos_seguros" }]
+    },
+    certificaciones_redirect: {
+        message: "Nuestras certificaciones demuestran nuestro compromiso con la calidad. ¡Puedes verlas aquí!",
+        options: [ { text: "Ver certificaciones", url: "https://certificaciones1.netlify.app/" } ]
+    },
+
+    // MENSAJE DE ESCALACIÓN POR DEFECTO
+    human_escalation: {
+      message: "Parece que no estoy entendiendo bien tu consulta. Para darte una atención más personalizada, te recomiendo hablar directamente con un experto de nuestro equipo vía WhatsApp. ¿Te parece bien?",
+      options: [
+        { text: "Sí, hablar con un humano", url: "https://wa.me/5620042412?text=Hola%2C%20necesito%20ayuda%20de%20un%20experto." },
+        { text: "No, gracias", key: "saludo" }
       ]
     }
-  };
+};
 
   const getProactiveSuggestion = () => {
     const {
