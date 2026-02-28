@@ -1344,3 +1344,70 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 });
+
+// Formspree Contact Form Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    const submitBtn = contactForm.querySelector('#submitBtn');
+    const successMessage = contactForm.querySelector('#successMessage');
+    const errorMessage = contactForm.querySelector('#errorMessage');
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Basic Validation
+      const formData = new FormData(contactForm);
+      const data = Object.fromEntries(formData.entries());
+
+      if (!data.name || !data.email || !data.subject || !data.message) {
+        alert('Por favor, completa todos los campos requeridos.');
+        return;
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        alert('Por favor, ingresa un correo electrónico válido.');
+        return;
+      }
+
+      // UI State: Loading
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="loading"></span> Enviando...';
+      }
+      if (successMessage) successMessage.style.display = 'none';
+      if (errorMessage) errorMessage.style.display = 'none';
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: contactForm.method,
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          if (successMessage) successMessage.style.display = 'block';
+          contactForm.reset();
+        } else {
+          const result = await response.json();
+          if (Object.hasOwn(result, 'errors')) {
+            alert(result.errors.map(error => error.message).join(", "));
+          } else {
+            if (errorMessage) errorMessage.style.display = 'block';
+          }
+        }
+      } catch (error) {
+        if (errorMessage) errorMessage.style.display = 'block';
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Enviar Mensaje';
+        }
+      }
+    });
+  }
+});
