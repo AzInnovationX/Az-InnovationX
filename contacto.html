@@ -144,69 +144,81 @@
   </header>
 
   <main>
-        <section id="solicitudes" style="background-image: url('https://i.ibb.co/84ffsSxc/Power-BI-gif-header.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-      <div class="solicitudes-ambient-bg"></div>
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
+    <section id="contacto" class="contact-section" style="background-image: url('https://i.ibb.co/84ffsSxc/Power-BI-gif-header.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(10, 15, 30, 0.9); z-index: 1;"></div>
       <div class="container" style="position: relative; z-index: 2;">
-        <div class="form-frame"></div>
-        <h2 class="section-title">Solicitudes</h2>
-        <form class="contact-form" id="contactForm">
-          <div class="form-group">
-            <label for="nombre">Nombre Completo *</label>
-            <input type="text" id="nombre" name="nombre" required>
+        <h2 class="section-title">Contáctanos</h2>
+
+        <div class="map-contact-grid">
+          <!-- Columna Izquierda: Información de Contacto -->
+          <div class="contact-info-corporate">
+            <h3 class="contact-title">Información de Contacto</h3>
+
+            <div class="contact-item-corporate">
+              <div class="contact-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z" fill="currentColor"/></svg>
+              </div>
+              <div class="contact-details">
+                <h4>Email</h4>
+                <p><a href="mailto:soporteseguro98@gmail.com">soporteseguro98@gmail.com</a></p>
+                <span class="badge-attention">Atención 24/7</span>
+              </div>
+            </div>
+
+            <div class="contact-item-corporate">
+              <div class="contact-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.94C17.55 15.31 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.24 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" fill="currentColor"/></svg>
+              </div>
+              <div class="contact-details">
+                <h4>Teléfono / WhatsApp</h4>
+                <p><a href="https://wa.me/5653915739">+52 56 5391 5739</a></p>
+                <p>Lunes a Sábado: 09:00 - 22:00 hrs</p>
+              </div>
+            </div>
+
+            <div class="contact-item-corporate">
+              <div class="contact-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM7 9C7 6.24 9.24 4 12 4C14.76 4 17 6.24 17 9C17 11.88 14.12 16.19 12 18.88C9.88 16.19 7 11.88 7 9ZM12 11.5C13.3807 11.5 14.5 10.3807 14.5 9C14.5 7.61929 13.3807 6.5 12 6.5C10.6193 6.5 9.5 7.61929 9.5 9C9.5 10.3807 10.6193 11.5 12 11.5Z" fill="currentColor"/></svg>
+              </div>
+              <div class="contact-details">
+                <h4>Ubicación</h4>
+                <p>Huixquilucan, Estado de México</p>
+                <p>México 🇲🇽</p>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="email">Correo Electrónico *</label>
-            <input type="email" id="email" name="email" required>
+
+          <!-- Columna Derecha: Formulario -->
+          <div class="contact-form-container">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/TU_ID_AQUI" method="POST">
+              <div class="form-group">
+                <label for="nombre">Nombre Completo *</label>
+                <input type="text" id="nombre" name="name" placeholder="Escribe tu nombre" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Correo Electrónico *</label>
+                <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+              </div>
+              <div class="form-group">
+                <label for="asunto">Asunto *</label>
+                <input type="text" id="asunto" name="subject" placeholder="¿En qué podemos ayudarte?" required>
+              </div>
+              <div class="form-group">
+                <label for="mensaje">Mensaje *</label>
+                <textarea id="mensaje" name="message" placeholder="Describe tu proyecto o consulta con detalle..." required></textarea>
+              </div>
+              <button type="submit" class="submit-btn" id="submitBtn">Enviar Mensaje</button>
+              <div class="success-message" id="successMessage">
+                ¡Gracias por contactarnos! Hemos recibido tu mensaje y nos pondremos en contacto contigo pronto.
+              </div>
+              <div class="error-message" id="errorMessage">
+                Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.
+              </div>
+            </form>
           </div>
-          <div class="form-group">
-            <label for="telefono">Teléfono</label>
-            <input type="tel" id="telefono" name="telefono">
-          </div>
-          <div class="form-group">
-            <label for="empresa">Empresa/Organización</label>
-            <input type="text" id="empresa" name="empresa">
-          </div>
-          <div class="form-group">
-            <label for="servicio">Servicio de Interés *</label>
-            <select id="servicio" name="servicio" required>
-              <option value="">Selecciona un servicio</option>
-              <option value="aplicaciones-android">Desarrollo de Aplicaciones Android</option>
-              <option value="paginas-web">Páginas Web</option>
-              <option value="tiendas-online">Tiendas Online</option>
-              <option value="chatbots">Chatbots Inteligentes</option>
-              <option value="seguridad">Consultoría en Seguridad Informática</option>
-              <option value="multiple">Múltiples Servicios</option>
-              <option value="otro">Otro</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="presupuesto">Presupuesto Estimado</label>
-            <select id="presupuesto" name="presupuesto">
-              <option value="">Selecciona un rango</option>
-              <option value="menos-2000">Menos de $2,000 MXN</option>
-              <option value="2000-4000">$2,000 - $4,000 MXN</option>
-              <option value="4000-6000">$4,000 - $6,000 MXN</option>
-              <option value="6000-10000">$6,000 - $10,000 MXN</option>
-              <option value="10000-14000">$10,000 - $14,000 MXN</option>
-              <option value="14000-18000">$14,000 - $18,000 MXN</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="mensaje">Cuéntanos sobre tu proyecto *</label>
-            <textarea id="mensaje" name="mensaje" placeholder="Describe tu idea, objetivos, funcionalidades deseadas, timeline, etc. Mientras más detalles compartas, mejor podremos ayudarte." required></textarea>
-          </div>
-          <button type="submit" class="submit-btn" id="submitBtn">Enviar Solicitud</button>
-          <div class="success-message" id="successMessage">
-            ¡Gracias por contactarnos! Hemos recibido tu mensaje y nos pondremos en contacto contigo en las próximas 24 horas.
-          </div>
-          <div class="error-message" id="errorMessage">
-            Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.
-          </div>
-        </form>
+        </div>
       </div>
     </section>
-
   </main>
     <div id="chatbot-container">
     <div id="chatbot-window">
@@ -265,31 +277,6 @@
           <div class="trust-badge">✓ Certificaciones Verificadas</div>
           <div class="trust-badge">✓ Soporte 24/7</div>
         </div>
-      </div>
-      <!-- Columna 2: Navegación Rápida -->
-      <div class="footer-column">
-        <h4>Navegación</h4>
-        <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.8rem;"><a href="index.html" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Inicio</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="servicios.html" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Servicios</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="proceso.html" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Proceso</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="nosotros.html" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Nosotros</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="certificaciones.html" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Certificaciones</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://appsstoreaz.netlify.app/" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Solicitudes</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="precios.html" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Precios</a></li>
-        </ul>
-      </div>
-      <!-- Columna 3: Recursos y Herramientas -->
-      <div class="footer-column">
-        <h4>Recursos</h4>
-        <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.8rem;"><a href="https://appsstoreaz.netlify.app/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"> <img loading="lazy" src="https://i.ibb.co/7xy6NTnm/13.gif" alt="13" border="0" style="width: 24px; height: 24px;"> Aplicaciones</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://articulos-azinnx.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"> <img loading="lazy" src="https://uxwing.com/wp-content/themes/uxwing/download/seo-marketing/articles-icon.png" alt="Articulos Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px;"> Articulos AZINNX</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://azinnovationx.blogspot.com/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"> <img loading="lazy" src="https://i.ibb.co/9DHGJrD/Blogger-Gif.gif" alt="Blogger-Gif" style="width: 24px; height: 24px;"> Blog de Innovación</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">📧 Suscríbete al Newsletter</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="certificaciones.html" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">🎓 Certificaciones</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://afiliadosaz.netlify.app/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">🤝 Afiliate</a></li>
-        </ul>
       </div>
       <!-- Columna 4: Comunidad y Redes -->
       <div class="footer-column">
