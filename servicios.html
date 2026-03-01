@@ -120,13 +120,13 @@
         <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
       </ul>
 
-      <div class="mobile-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
 
-      <ul class="nav-links">
+      <ul class="nav-links" id="mobile-menu">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="servicios.html">Servicios</a></li>
         <li><a href="proceso.html">Proceso</a></li>
@@ -310,6 +310,12 @@
 
   <!-- Chatbot HTML Structure -->
   <div id="cb-container">
+    <div class="chatbot-bubble" id="chatbot-bubble">
+      <button class="chatbot-bubble-close" id="chatbot-bubble-close" aria-label="Cerrar mensaje">✕</button>
+      <p>👋 ¡Hola! ¿Necesitas ayuda?<br>
+         <strong>¡Estoy aquí para ti!</strong></p>
+      <div class="bubble-tail"></div>
+    </div>
     <div id="cb-window">
       <div id="cb-header">
         <div class="cb-avatar">
@@ -358,6 +364,6 @@
   </div>
   <link rel="stylesheet" href="css/chatbot-new.css">
   <script src="js/chatbot-new.js" defer></script>
-
+  <script src="js/hamburger-menu.js" defer></script>
 </body>
 </html>

@@ -120,13 +120,13 @@
         <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
       </ul>
 
-      <div class="mobile-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
 
-      <ul class="nav-links">
+      <ul class="nav-links" id="mobile-menu">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="servicios.html">Servicios</a></li>
         <li><a href="proceso.html">Proceso</a></li>
@@ -198,26 +198,9 @@
         </div>
       </div>
 
-      <div class="impacto-section fade-in">
-        <div style="text-align: center; margin-bottom: 3rem;">
-          <h2 class="section-title">📊 Nuestro Impacto</h2>
-        </div>
-        <div class="impacto-grid">
-          <div class="impacto-item">
-            <h3 class="stat-number" data-target="50">0</h3>
-            <p>Proyectos Completados</p>
-          </div>
-          <div class="impacto-item">
-            <h3 class="stat-number" data-target="100">0</h3>
-            <p>Compromiso en cada desarrollo</p>
-          </div>
-        </div>
       </div>
     </section>
-
   </main>
-
-
 
   <footer class="site-footer">
   <div class="container">
@@ -273,8 +256,6 @@
   </div>
 </footer>
 
-    <!-- General Page Scripts -->
-
   <!-- Firebase and Form Submission Script -->
   <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
@@ -282,27 +263,6 @@
 
   <!-- Main Logic Script -->
   <script defer src="js/main.js"></script>
-
-  <!-- Vimeo Lazy Load -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const videoFacade = document.getElementById('video-facade');
-        if (videoFacade) {
-            videoFacade.addEventListener('click', () => {
-                const videoUrl = videoFacade.getAttribute('data-src');
-                if (videoUrl) {
-                    const iframe = document.createElement('iframe');
-                    iframe.setAttribute('src', videoUrl);
-                    iframe.setAttribute('frameborder', '0');
-                    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
-                    iframe.setAttribute('title', 'Servicios Az InnovationX');
-                    videoFacade.innerHTML = '';
-                    videoFacade.appendChild(iframe);
-                }
-            }, { once: true });
-        }
-    });
-  </script>
 
   <!-- PWA Service Worker -->
   <script>
@@ -317,6 +277,12 @@
 
   <!-- Chatbot HTML Structure -->
   <div id="cb-container">
+    <div class="chatbot-bubble" id="chatbot-bubble">
+      <button class="chatbot-bubble-close" id="chatbot-bubble-close" aria-label="Cerrar mensaje">✕</button>
+      <p>👋 ¡Hola! ¿Necesitas ayuda?<br>
+         <strong>¡Estoy aquí para ti!</strong></p>
+      <div class="bubble-tail"></div>
+    </div>
     <div id="cb-window">
       <div id="cb-header">
         <div class="cb-avatar">
@@ -365,6 +331,6 @@
   </div>
   <link rel="stylesheet" href="css/chatbot-new.css">
   <script src="js/chatbot-new.js" defer></script>
-
+<script src="js/hamburger-menu.js"></script>
 </body>
 </html>

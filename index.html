@@ -121,13 +121,13 @@
         <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
       </ul>
 
-      <div class="mobile-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
 
-      <ul class="nav-links">
+      <ul class="nav-links" id="mobile-menu">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="servicios.html">Servicios</a></li>
         <li><a href="proceso.html">Proceso</a></li>
@@ -146,9 +146,17 @@
   <main>
     <section id="inicio" class="hero-corporate">
       <!-- Background Video -->
-      <div class="hero-video-bg">
-        <iframe src="https://player.vimeo.com/video/1149380360?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-      </div>
+<div class="hero-video-wrapper">
+  <iframe
+    src="https://player.vimeo.com/video/1149380360"
+    title="Az InnovationX - Donde las Ideas Cobran Vida"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+    picture-in-picture; web-share"
+    allowfullscreen
+    loading="lazy">
+  </iframe>
+</div>
 
       <!-- Overlay -->
       <div class="hero-overlay"></div>
@@ -158,10 +166,6 @@
 
       <div class="container hero-container">
         <div class="hero-content-new">
-          <!-- Badge -->
-          <div class="hero-badge animate-fadeInDown">
-            <span>🚀 Soluciones Tecnológicas · México 2026</span>
-          </div>
 
           <!-- Title -->
           <h1 class="hero-title">
@@ -182,25 +186,6 @@
         </div>
       </div>
 
-      <!-- Metrics Bar -->
-      <div class="hero-metrics animate-fadeIn-delay">
-        <div class="container metrics-container">
-          <div class="metric-item">
-            <h3 class="stat-number" data-target="50" data-suffix="+">0</h3>
-            <p>Proyectos Completados</p>
-          </div>
-          <div class="metric-item">
-            <h3 class="stat-number" data-target="100" data-suffix="%">0</h3>
-            <p>Compromiso Garantizado</p>
-          </div>
-          <div class="metric-item">
-            <h3 class="stat-number" data-target="24" data-suffix="/7">0</h3>
-            <p>Soporte Disponible</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Scroll Indicator -->
       <div class="hero-scroll-indicator">
         <div class="mouse">
           <div class="wheel"></div>
@@ -214,9 +199,6 @@
       <div class="hero-decorative-line"></div>
     </section>
   </main>
-
-
-
 
   <footer class="site-footer">
   <div class="container">
@@ -272,8 +254,6 @@
   </div>
 </footer>
 
-    <!-- General Page Scripts -->
-
   <!-- Firebase and Form Submission Script -->
   <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
@@ -295,6 +275,12 @@
 
   <!-- Chatbot HTML Structure -->
   <div id="cb-container">
+    <div class="chatbot-bubble" id="chatbot-bubble">
+      <button class="chatbot-bubble-close" id="chatbot-bubble-close" aria-label="Cerrar mensaje">✕</button>
+      <p>👋 ¡Hola! ¿Necesitas ayuda?<br>
+         <strong>¡Estoy aquí para ti!</strong></p>
+      <div class="bubble-tail"></div>
+    </div>
     <div id="cb-window">
       <div id="cb-header">
         <div class="cb-avatar">
@@ -343,6 +329,6 @@
   </div>
   <link rel="stylesheet" href="css/chatbot-new.css">
   <script src="js/chatbot-new.js" defer></script>
-
+<script src="js/hamburger-menu.js" defer></script>
 </body>
 </html>
