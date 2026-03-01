@@ -85,15 +85,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // Parallax effect for hero section
   window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    const heroContent = document.querySelector('.hero-content');
+    const hero = document.querySelector('.hero-corporate');
+    const heroContent = document.querySelector('.hero-content-new');
     if (hero && heroContent) {
       heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+    }
+
+    // Hide scroll indicator
+    const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+    if (scrollIndicator) {
+      if (scrolled > 50) {
+        scrollIndicator.classList.add('hidden');
+      } else {
+        scrollIndicator.classList.remove('hidden');
+      }
     }
   });
 
   // Counter animation for stats
   function animateCounter(element, target) {
+    const suffix = element.getAttribute('data-suffix') || '';
     let count = 0;
     const increment = target / 100;
     const timer = setInterval(() => {
@@ -102,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         count = target;
         clearInterval(timer);
       }
-      element.textContent = Math.floor(count) + (target === 95 ? '%' : target === 200 ? '+' : target.toString().includes('+') ? '+' : target === 24 ? '/7' : '');
+      element.textContent = Math.floor(count) + suffix;
     }, 20);
   }
 
@@ -125,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelectorAll('.stat-card, .impacto-section').forEach(el => {
+  document.querySelectorAll('.stat-card, .impacto-section, .hero-metrics').forEach(el => {
     statsObserver.observe(el);
   });
 
@@ -205,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initParticles() {
       particlesArray = [];
-      let numberOfParticles = (canvas.height * canvas.width) / 9000;
+      let numberOfParticles = window.innerWidth <= 480 ? 8 : 20;
       for (let i = 0; i < numberOfParticles; i++) {
         let size = (Math.random() * 2) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
@@ -256,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Hero Section: Animations & Mouse Effects ---
-  const heroTextContainers = document.querySelectorAll('.hero .text-reveal-container');
+  const heroTextContainers = document.querySelectorAll('.hero-corporate .text-reveal-container');
   const customCursor = document.getElementById('custom-cursor');
   const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
 
@@ -560,6 +571,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Mobile Chatbot Optimization ---
+  const handleViewportResize = () => {
+    if (window.innerWidth <= 768 && chatbotWindow.classList.contains('active')) {
+      const viewport = window.visualViewport;
+      if (viewport) {
+        // Adjust chat height based on visual viewport to account for virtual keyboard
+        const height = viewport.height - 20; // 10px padding top/bottom
+        chatbotWindow.style.height = `${height}px`;
+        chatbotWindow.style.maxHeight = `${height}px`;
+        chatbotWindow.style.bottom = `${window.innerHeight - viewport.height + 10}px`;
+
+        // Scroll to bottom when keyboard appears
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    } else {
+      // Reset styles for desktop or when inactive
+      chatbotWindow.style.height = '';
+      chatbotWindow.style.maxHeight = '';
+      chatbotWindow.style.bottom = '';
+    }
+  };
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', handleViewportResize);
+    window.visualViewport.addEventListener('scroll', handleViewportResize);
+  }
+
+  // Ensure scroll on open
+  const originalOpenChatbot = openChatbot;
+  window.openChatbot = () => {
+    originalOpenChatbot();
+    setTimeout(() => {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        handleViewportResize();
+    }, 300);
+  };
+
+  if (chatbotToggle) {
+    chatbotToggle.removeEventListener('click', openChatbot);
+    chatbotToggle.addEventListener('click', window.openChatbot);
+  }
+  if (chatbotBubble) {
+    chatbotBubble.removeEventListener('click', openChatbot);
+    chatbotBubble.addEventListener('click', window.openChatbot);
+  }
 
 });
 
