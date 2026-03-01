@@ -1321,31 +1321,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Welcome Modal Logic
-document.addEventListener('DOMContentLoaded', () => {
-    const welcomeModal = document.getElementById('welcome-modal');
-    if (welcomeModal) {
-        const greetingEl = document.getElementById('welcome-greeting');
-        const hour = new Date().getHours();
-        let greeting = '¡Bienvenido!';
-
-        if (hour >= 5 && hour < 12) greeting = '¡Buen día!';
-        else if (hour >= 12 && hour < 19) greeting = '¡Buenas tardes!';
-        else greeting = '¡Buenas noches!';
-
-        if (greetingEl) greetingEl.textContent = greeting;
-        welcomeModal.style.display = 'flex';
-
-        setTimeout(() => {
-            welcomeModal.style.opacity = '0';
-            setTimeout(() => {
-                welcomeModal.style.display = 'none';
-            }, 500);
-        }, 3000);
-    }
-});
-
-// Formspree Contact Form Logic
+// Contact / Solicitudes Form Logic
 document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
@@ -1353,26 +1329,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const successMessage = contactForm.querySelector('#successMessage');
     const errorMessage = contactForm.querySelector('#errorMessage');
 
+    // Real-time validation
+    const validateField = (field) => {
+      const value = field.value.trim();
+      if (field.hasAttribute('required')) {
+        if (!value) {
+          field.classList.add('invalid');
+          field.classList.remove('valid');
+          return false;
+        } else if (field.type === 'email') {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(value)) {
+            field.classList.add('invalid');
+            field.classList.remove('valid');
+            return false;
+          }
+        }
+      }
+      field.classList.remove('invalid');
+      field.classList.add('valid');
+      return true;
+    };
+
+    contactForm.querySelectorAll('input, select, textarea').forEach(field => {
+      field.addEventListener('blur', () => validateField(field));
+      field.addEventListener('input', () => {
+        if (field.classList.contains('invalid')) validateField(field);
+      });
+    });
+
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Basic Validation
-      const formData = new FormData(contactForm);
-      const data = Object.fromEntries(formData.entries());
+      let isFormValid = true;
+      contactForm.querySelectorAll('[required]').forEach(field => {
+        if (!validateField(field)) isFormValid = false;
+      });
 
-      if (!data.name || !data.email || !data.subject || !data.message) {
-        alert('Por favor, completa todos los campos requeridos.');
-        return;
-      }
-
-      // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(data.email)) {
-        alert('Por favor, ingresa un correo electrónico válido.');
+      if (!isFormValid) {
+        if (errorMessage) {
+          errorMessage.textContent = 'Por favor, completa todos los campos obligatorios correctamente.';
+          errorMessage.style.display = 'block';
+        }
         return;
       }
 
       // UI State: Loading
+      const originalBtnText = submitBtn.innerHTML;
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span class="loading"></span> Enviando...';
@@ -1381,31 +1384,37 @@ document.addEventListener('DOMContentLoaded', () => {
       if (errorMessage) errorMessage.style.display = 'none';
 
       try {
-        const response = await fetch(contactForm.action, {
-          method: contactForm.method,
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
+        const formData = new FormData(contactForm);
+        const formObj = Object.fromEntries(formData.entries());
 
-        if (response.ok) {
+        // Prepare data for Firestore
+        const contactData = {
+          ...formObj,
+          fechaEnvio: firebase.firestore.Timestamp.now(),
+          estado: 'nuevo',
+          userAgent: navigator.userAgent,
+          timestamp: new Date().toISOString()
+        };
+
+        if (window.db) {
+          await window.db.collection('contactos').add(contactData);
           if (successMessage) successMessage.style.display = 'block';
           contactForm.reset();
+          contactForm.querySelectorAll('.valid, .invalid').forEach(f => f.classList.remove('valid', 'invalid'));
+          setTimeout(() => { if (successMessage) successMessage.style.display = 'none'; }, 5000);
         } else {
-          const result = await response.json();
-          if (Object.hasOwn(result, 'errors')) {
-            alert(result.errors.map(error => error.message).join(", "));
-          } else {
-            if (errorMessage) errorMessage.style.display = 'block';
-          }
+          throw new Error('Database not initialized');
         }
       } catch (error) {
-        if (errorMessage) errorMessage.style.display = 'block';
+        console.error('Error al enviar formulario:', error);
+        if (errorMessage) {
+          errorMessage.textContent = 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.';
+          errorMessage.style.display = 'block';
+        }
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = 'Enviar Mensaje';
+          submitBtn.innerHTML = originalBtnText;
         }
       }
     });

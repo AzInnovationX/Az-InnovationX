@@ -18,199 +18,6 @@
 }
 
 
-.welcome-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 10, 20, 0.75);
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(150%);
-    z-index: 10005;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn-dm .6s cubic-bezier(0.25, 1, 0.5, 1);
-    transform-style: preserve-3d;
-}
-
-
-.welcome-modal-content {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(145deg, #2c1e3a, #1a1a1a);
-    padding: 2.5rem 3.5rem;
-    border-radius: 25px;
-    text-align: center;
-    border: 2px solid transparent;
-    position: relative;
-    overflow: hidden;
-    transform: scale(0.8) rotateY(-15deg);
-    opacity: 0;
-    animation: scaleIn-dm-bounce .6s .2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-    width: 90%;
-    max-width: 450px;
-}
-
-
-/* Borde animado de luces */
-.welcome-modal-content::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 25px;
-    border: 2px solid transparent;
-    background: linear-gradient(45deg, var(--primary-electric-blue), var(--accent-gold), #165b33, #007bff) border-box;
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    animation: animated-border 3s linear infinite;
-}
-
-
-@keyframes animated-border {
-    to {
-        transform: rotate(360deg);
-    }
-
-}
-
-
-
-#welcome-greeting {
-    font-size: 2.2rem;
-    font-weight: 800;
-    background: linear-gradient(45deg, var(--accent-gold), #fff, var(--primary-electric-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: .5rem;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    animation: text-shimmer 4s infinite;
-}
-
-
-@keyframes text-shimmer {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-}
-
-
-.welcome-modal-content p {
-    color: #e0e0e0;
-    opacity: .9;
-    font-weight: 500;
-    font-size: 1.05rem;
-}
-
-
-/* Icono y animación */
-.welcome-icon {
-    margin-bottom: 1.5rem;
-    animation: icon-float 5s ease-in-out infinite;
-    transform-style: preserve-3d;
-}
-
-
-.welcome-icon svg {
-    width: 64px;
-    height: 64px;
-    filter: drop-shadow(0 0 15px var(--accent-gold));
-    transition: transform 0.3s ease;
-}
-
-
-@keyframes icon-float {
-    0%, 100% {
-        transform: translateY(0) rotateY(0deg);
-    }
-
-    50% {
-        transform: translateY(-15px) rotateY(15deg);
-    }
-
-}
-
-
-/* Efecto nieve */
-.snow-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-}
-
-
-.snowflake {
-    position: absolute;
-    top: -10px;
-    background: #fff;
-    border-radius: 50%;
-    opacity: 0;
-    animation: fall linear forwards;
-}
-
-
-@keyframes fall {
-    0% {
-        opacity: 0.8;
-        transform: translate(var(--initial-x), 0) rotate(0deg);
-    }
-
-    100% {
-        opacity: 0;
-        transform: translate(calc(var(--initial-x) + var(--wind)), 110vh) rotate(720deg);
-    }
-
-}
-
-
-
-/* Animaciones de entrada/salida */
-@keyframes fadeIn-dm {
-    from {
-        opacity: 0;
-        backdrop-filter: blur(0) saturate(100%);
-    }
-
-    to {
-        opacity: 1;
-        backdrop-filter: blur(12px) saturate(150%);
-    }
-
-}
-
-
-@keyframes fadeOut {
-    from { opacity: 1; transform: scale(1); }
-
-    to { opacity: 0; transform: scale(0.9); }
-
-}
-
-
-@keyframes scaleIn-dm-bounce {
-    0% { transform: scale(0.8) rotateY(-15deg); opacity: 0; }
-
-    60% { transform: scale(1.05) rotateY(5deg); opacity: 1; }
-
-    80% { transform: scale(0.98) rotateY(-2deg); }
-
-    100% { transform: scale(1) rotateY(0deg); opacity: 1; }
-
-}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body {
   font-family: 'Inter', sans-serif;
@@ -440,9 +247,21 @@ section{padding:6rem 0;position:relative}
 .about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
 .stat-card{background:rgba(255,107,53,0.1);border-radius:10px;padding:1.2rem;text-align:center;border:1px solid rgba(255,107,53,0.2)}
 .stat-number{font-size:1.8rem;font-weight:bold;color:var(--primary-electric-blue)}
-#solicitudes .section-title{position:relative;z-index:3;background:linear-gradient(90deg,var(--accent-gold),#fff,var(--primary-electric-blue),#fff,var(--accent-gold));background-size:400% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:title-shimmer 8s linear infinite}
-@keyframes title-shimmer{from{background-position:0 0}
-to{background-position:-200% 0}
+.contact-section .section-title {
+  position: relative;
+  z-index: 3;
+  background: linear-gradient(90deg, var(--accent-gold), #fff, var(--primary-electric-blue), #fff, var(--accent-gold));
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: title-shimmer 8s linear infinite;
+  text-shadow: none !important;
+}
+
+@keyframes title-shimmer {
+  from { background-position: 0 0; }
+  to { background-position: -200% 0; }
 }
 .solicitudes-ambient-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(255,107,53,0.15),transparent 40%);z-index:1;transition:background .2s ease-out}
 .form-frame{position:absolute;top:-15px;left:-15px;right:-15px;bottom:-15px;border:2px solid rgba(62, 146, 204,0.4);border-radius:25px;pointer-events:none;animation:pulse-border-dm 5s ease-in-out infinite}
@@ -450,7 +269,12 @@ to{background-position:-200% 0}
 50%{border-color:rgba(62, 146, 204,0.7);box-shadow:0 0 35px rgba(62, 146, 204,0.4)}
 }
 .contact-form{background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);border-radius:24px;padding:3rem;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 40px rgba(0,0,0,0.3)}
-.form-row{display:grid;grid-template-columns:1fr;gap:1.5rem}
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
 .form-group{margin-bottom:0}
 .form-group label{display:block;margin-bottom:.5rem;color:var(--primary-electric-blue);font-weight:500;font-size:.9rem}
 .form-group input,.form-group textarea,.form-group select{width:100%;padding:1rem;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:white;font-size:1rem;transition:all .3s ease;-webkit-appearance:none;appearance:none}
@@ -535,15 +359,32 @@ to{opacity:1;transform:translateY(0)}
 100%{transform:scale(1);box-shadow:0 6px 20px rgba(62, 146, 204,0.6)}
 }
 #chatbot-toggle:hover{transform:scale(1.1) rotate(10deg);box-shadow:0 8px 25px rgba(62, 146, 204,0.8)}
-#chatbot-toggle::before,#contact-button::before{position:absolute;top:-15px;left:-5px;font-size:28px;transform:rotate(-15deg);animation:hat-shake 2s infinite ease-in-out;z-index:100000}
-@keyframes hat-shake{0%,100%{transform:rotate(-15deg)}
-50%{transform:rotate(5deg) translateX(2px)}
+#chatbot-toggle::before {
+  position: absolute;
+  top: -15px;
+  left: -5px;
+  font-size: 28px;
+  transform: rotate(-15deg);
+  animation: hat-shake 2s infinite ease-in-out;
+  z-index: 100000;
 }
-#chatbot-toggle .icon-open{font-size:24px;color:white;display:flex !important}
-#chatbot-toggle .icon-close{display:none;font-size:24px;color:white}
-#contact-button{width:55px;height:55px;background:linear-gradient(45deg,var(--primary-electric-blue),var(--accent-gold));border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 20px rgba(62, 146, 204,0.6);transition:all .3s ease;border:0;animation:pulse-animation 2s infinite;margin-bottom:15px;text-decoration:none}
-#contact-button:hover{transform:scale(1.1) rotate(10deg);box-shadow:0 8px 25px rgba(62, 146, 204,0.8)}
-#contact-button .icon-contact{font-size:24px;color:white}
+
+@keyframes hat-shake {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(5deg) translateX(2px); }
+}
+
+#chatbot-toggle .icon-open {
+  font-size: 24px;
+  color: white;
+  display: flex !important;
+}
+
+#chatbot-toggle .icon-close {
+  display: none;
+  font-size: 24px;
+  color: white;
+}
 #chatbot-window {
   width: 90vw;
   max-width: 420px;
