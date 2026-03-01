@@ -18,6 +18,9 @@
   right: 25px;
   z-index: 9999;
   font-family: 'Inter', 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 #cb-toggle {
@@ -298,5 +301,89 @@
   #cb-toggle {
     width: 55px;
     height: 55px;
+  }
+}
+
+/* ── CHATBOT FLOATING BUBBLE ── */
+.chatbot-bubble {
+  position: relative;
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 107, 53, 0.4);
+  border-radius: 16px 16px 4px 16px;
+  padding: 14px 36px 14px 16px;
+  margin-bottom: 12px;
+  max-width: 220px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  animation: bubble-entrance 0.6s cubic-bezier(0.25, 1, 0.5, 1) both,
+             bubble-float 3s ease-in-out 0.6s infinite;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.88rem;
+  color: #F8F9FA;
+  line-height: 1.5;
+  cursor: default;
+  align-self: flex-end;
+  display: none; /* Hidden by default, shown via JS */
+}
+
+.chatbot-bubble strong {
+  color: #FF6B35;
+}
+
+.chatbot-bubble-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 0.75rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 50%;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.chatbot-bubble-close:hover {
+  color: #FF6B35;
+  background: rgba(255, 107, 53, 0.1);
+}
+
+.bubble-tail {
+  position: absolute;
+  bottom: -10px;
+  right: 18px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 0px solid transparent;
+  border-top: 10px solid rgba(255, 107, 53, 0.4);
+}
+
+.chatbot-bubble.hidden {
+  display: none !important;
+}
+
+@keyframes bubble-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bubble-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+@media (max-width: 480px) {
+  .chatbot-bubble {
+    font-size: 0.82rem;
+    max-width: 180px;
+    padding: 12px 32px 12px 14px;
   }
 }

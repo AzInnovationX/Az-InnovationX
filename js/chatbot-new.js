@@ -1,6 +1,6 @@
 /**
  * Chatbot: Az Asistente Virtual - Professional Logic (2026)
- * Features: Intent Engine, Persistence, Theme Control, Mobile Optimization
+ * Features: Intent Engine, Persistence, Theme Control, Mobile Optimization, Floating Bubble
  */
 
 (function() {
@@ -9,14 +9,16 @@
     const TYPING_DELAY = [600, 1000]; // min/max ms
 
     const elements = {
-        container: document.getElementById('cb-container'),
-        window: document.getElementById('cb-window'),
-        toggle: document.getElementById('cb-toggle'),
-        messages: document.getElementById('cb-messages'),
-        form: document.getElementById('cb-input-form'),
-        input: document.getElementById('cb-input'),
-        themeToggle: document.getElementById('cb-theme-toggle'),
-        expandToggle: document.getElementById('cb-expand-toggle')
+        container: document.getElementById("cb-container"),
+        window: document.getElementById("cb-window"),
+        toggle: document.getElementById("cb-toggle"),
+        messages: document.getElementById("cb-messages"),
+        form: document.getElementById("cb-input-form"),
+        input: document.getElementById("cb-input"),
+        themeToggle: document.getElementById("cb-theme-toggle"),
+        expandToggle: document.getElementById("cb-expand-toggle"),
+        bubble: document.getElementById("chatbot-bubble"),
+        closeBubble: document.getElementById("chatbot-bubble-close")
     };
 
     let state = {
@@ -30,21 +32,23 @@
     function init() {
         loadState();
         setupEventListeners();
+        initFloatingBubble();
 
-        // Auto-greet after 3 seconds if never opened
-        if (!localStorage.getItem('cb_greeted')) {
+        // Initial Greeting logic (if never greeted in this localStorage session)
+        if (!localStorage.getItem("cb_greeted")) {
             setTimeout(() => {
                 if (!state.isOpen) {
                     addBotMessage("¡Hola! Soy Az, tu asistente virtual. ¿En qué puedo apoyarte con tu proyecto tecnológico hoy?");
-                    localStorage.setItem('cb_greeted', 'true');
+                    localStorage.setItem("cb_greeted", "true");
                 }
             }, 3000);
         }
 
         // Viewport height fix for mobile
         if (window.visualViewport) {
-            window.visualViewport.addEventListener('resize', adjustMobileHeight);
+            window.visualViewport.addEventListener("resize", adjustMobileHeight);
         }
+        adjustMobileHeight();
     }
 
     // --- State Management ---
@@ -67,12 +71,43 @@
         }));
     }
 
+    // --- Floating Bubble Logic ---
+    function initFloatingBubble() {
+        if (!elements.bubble) return;
+
+        // Show after 2 seconds if not closed and chat is not open
+        setTimeout(() => {
+            if (!state.isOpen && sessionStorage.getItem('chatbubble-closed') !== 'true') {
+                elements.bubble.style.display = 'block';
+            }
+        }, 2000);
+
+        if (sessionStorage.getItem('chatbubble-closed') === 'true') {
+            elements.bubble.classList.add('hidden');
+        }
+    }
+
     // --- UI Interactions ---
     function setupEventListeners() {
+        // Chat Toggle
         elements.toggle.addEventListener('click', toggleChat);
+
+        // Bubble Close
+        if (elements.closeBubble) {
+            elements.closeBubble.addEventListener("click", (e) => {
+                e.stopPropagation();
+                elements.bubble.classList.add("hidden");
+                sessionStorage.setItem("chatbubble-closed", "true");
+            });
+        }
+
+        // Theme Toggle
         elements.themeToggle.addEventListener('click', toggleTheme);
+
+        // Expand Toggle
         elements.expandToggle.addEventListener('click', toggleExpand);
 
+        // Form Submit
         elements.form.addEventListener('submit', (e) => {
             e.preventDefault();
             handleUserInput();
@@ -86,7 +121,13 @@
 
     function toggleChat() {
         state.isOpen = !state.isOpen;
-        elements.container.classList.toggle('cb-open', state.isOpen);
+        elements.container.classList.toggle("cb-open", state.isOpen);
+
+        // Hide bubble when opening chat
+        if (state.isOpen && elements.bubble) {
+            elements.bubble.classList.add("hidden");
+        }
+
         if (state.isOpen) {
             elements.input.focus();
             scrollToBottom();
@@ -106,9 +147,11 @@
     }
 
     function adjustMobileHeight() {
-        if (window.innerWidth <= 768) {
-            const vh = window.visualViewport.height;
+        if (window.innerWidth <= 768 && elements.window) {
+            const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
             elements.window.style.height = `${vh - 100}px`;
+        } else if (elements.window) {
+            elements.window.style.height = ''; // Reset for desktop
         }
     }
 
@@ -178,10 +221,6 @@
         indicator.id = 'cb-typing';
         indicator.className = 'cb-msg cb-bot';
         indicator.innerHTML = '<span class="cb-dot"></span><span class="cb-dot"></span><span class="cb-dot"></span>';
-        // Add specific CSS for typing dots if not in main CSS
-        indicator.style.display = 'flex';
-        indicator.style.gap = '4px';
-        indicator.style.padding = '10px 15px';
         elements.messages.appendChild(indicator);
         scrollToBottom();
     }
@@ -266,17 +305,22 @@
     }
 
     function scrollToBottom() {
-        elements.messages.scrollTop = elements.messages.scrollHeight;
+        if (elements.messages) {
+            elements.messages.scrollTop = elements.messages.scrollHeight;
+        }
     }
 
     function addStyles() {
-        // Adding dynamic styles for typing indicator
+        // Adding dynamic styles for typing indicator and dots
+        if (document.getElementById('cb-dynamic-styles')) return;
         const style = document.createElement('style');
+        style.id = 'cb-dynamic-styles';
         style.textContent = `
-            .cb-dot { width: 6px; height: 6px; background: #888; border-radius: 50%; animation: cb-bounce 1.4s infinite ease-in-out; }
+            .cb-dot { width: 6px; height: 6px; background: #888; border-radius: 50%; animation: cb-bounce 1.4s infinite ease-in-out; display: inline-block; margin: 0 2px; }
             .cb-dot:nth-child(1) { animation-delay: -0.32s; }
             .cb-dot:nth-child(2) { animation-delay: -0.16s; }
             @keyframes cb-bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
+            #cb-typing { display: flex; align-items: center; justify-content: flex-start; min-height: 30px; width: fit-content; }
         `;
         document.head.appendChild(style);
     }

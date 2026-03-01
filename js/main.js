@@ -26,18 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        if (entry.target.classList.contains('impacto-section')) {
-            const stats = entry.target.querySelectorAll('.stat-number');
-            stats.forEach(stat => {
-                const target = +stat.getAttribute('data-target');
-                animateCounter(stat, target);
-            });
-        }
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll('.fade-in, .timeline-step, .impacto-section, .founder-card, .filosofia-card').forEach(el => {
+  document.querySelectorAll('.fade-in, .timeline-step, .founder-card, .filosofia-card').forEach(el => {
     scrollObserver.observe(el);
   });
 
@@ -100,44 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollIndicator.classList.remove('hidden');
       }
     }
-  });
-
-  // Counter animation for stats
-  function animateCounter(element, target) {
-    const suffix = element.getAttribute('data-suffix') || '';
-    let count = 0;
-    const increment = target / 100;
-    const timer = setInterval(() => {
-      count += increment;
-      if (count >= target) {
-        count = target;
-        clearInterval(timer);
-      }
-      element.textContent = Math.floor(count) + suffix;
-    }, 20);
-  }
-
-  // Animate counters when visible
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const statNumber = entry.target.querySelector('.stat-number');
-        if (statNumber) {
-            const text = statNumber.textContent;
-            let target = parseInt(text);
-            if (text.includes('%')) target = 95;
-            else if (text.includes('+')) target = 200;
-            else if (text.includes('/')) target = 24;
-            else target = parseInt(text);
-            animateCounter(statNumber, target);
-        }
-        statsObserver.unobserve(entry.target);
-      }
-    });
-  });
-
-  document.querySelectorAll('.stat-card, .impacto-section, .hero-metrics').forEach(el => {
-    statsObserver.observe(el);
   });
 
   // --- Hero Section: Interactive Particle System ---
