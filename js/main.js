@@ -16,22 +16,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Fade in animation on scroll
+  // Fade in animation on scroll (General Observer)
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
   };
 
-  const observer = new IntersectionObserver((entries) => {
+  const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        if (entry.target.classList.contains('impacto-section')) {
+            const stats = entry.target.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = +stat.getAttribute('data-target');
+                animateCounter(stat, target);
+            });
+        }
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll('.fade-in').forEach(el => {
-    observer.observe(el);
+  document.querySelectorAll('.fade-in, .timeline-step, .impacto-section, .founder-card, .filosofia-card').forEach(el => {
+    scrollObserver.observe(el);
   });
 
   // Header background on scroll
@@ -118,8 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelectorAll('.stat-card').forEach(card => {
-    statsObserver.observe(card);
+  document.querySelectorAll('.stat-card, .impacto-section').forEach(el => {
+    statsObserver.observe(el);
   });
 
   // --- Hero Section: Interactive Particle System ---
@@ -327,44 +334,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- "Quiénes Somos" Section Interactivity ---
-  const nosotrosSection = document.querySelector('#nosotros');
-  const bentoBoxes = document.querySelectorAll('.bento-box');
-  const stats = document.querySelectorAll('.stat-number');
-
-  const nosotrosObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        bentoBoxes.forEach((box, index) => {
-          box.style.transitionDelay = `${index * 150}ms`;
-          box.classList.add('visible');
-        });
-        stats.forEach(stat => {
-          const target = +stat.getAttribute('data-target');
-          animateCounter(stat, target);
-        });
-        nosotrosObserver.unobserve(nosotrosSection);
-      }
-    });
-  }, {
-    threshold: 0.2
-  });
-
-  if (nosotrosSection) {
-    nosotrosObserver.observe(nosotrosSection);
-  }
-
-  bentoBoxes.forEach(box => {
-    box.addEventListener('mousemove', (e) => {
-      const rect = box.getBoundingClientRect();
+  // Mouse hover effects for cards (General)
+  document.querySelectorAll('.service-card, .step-content, .filosofia-card, .founder-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      const rotateX = (y / rect.height) * -20;
-      const rotateY = (x / rect.width) * 20;
-      box.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05) translateZ(30px)`;
+      const rotateX = (y / rect.height) * -12;
+      const rotateY = (x / rect.width) * 12;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
     });
-    box.addEventListener('mouseleave', () => {
-      box.style.transform = '';
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
     });
   });
 
