@@ -1,0 +1,28 @@
+:root {
+  /* Core Palette - Professional 2026 */
+  --color-deep-blue: #0A2463;
+  --color-electric-blue: #3E92CC;
+  --color-bright-cyan: #00F5FF;
+  --color-gold: #D4AF37;
+  --color-dark-bg: #050a18;
+  --color-white: #ffffff;
+  --color-glass: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+
+  /* Semantic Variables */
+  --primary-electric-blue: var(--color-electric-blue);
+  --accent-gold: var(--color-gold);
+  --accent-cyan: var(--color-bright-cyan);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-deep-blue), var(--color-electric-blue));
+  --gradient-accent: linear-gradient(135deg, var(--color-electric-blue), var(--color-bright-cyan));
+  --gradient-gold: linear-gradient(45deg, var(--color-electric-blue), var(--color-gold));
+  --gradient-dark: linear-gradient(180deg, #0a1128 0%, #050a18 100%);
+
+  /* Effects */
+  --shadow-glow: 0 0 20px rgba(0, 245, 255, 0.3);
+  --blur-sutil: blur(10px);
+  --blur-deep: blur(25px);
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}

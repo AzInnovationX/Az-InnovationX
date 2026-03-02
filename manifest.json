@@ -1,0 +1,16 @@
+{
+  "name": "Az InnovationX",
+  "short_name": "AzInnX",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#050a18",
+  "theme_color": "#3E92CC",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

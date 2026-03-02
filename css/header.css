@@ -1,0 +1,122 @@
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(5, 10, 24, 0.7);
+  backdrop-filter: var(--blur-sutil);
+  border-bottom: 1px solid var(--color-glass-border);
+  transition: var(--transition-smooth);
+}
+
+header.scrolled {
+  background: rgba(5, 10, 24, 0.95);
+  padding: 0.5rem 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0;
+}
+
+.logo img {
+  height: 40px;
+  transition: var(--transition-smooth);
+}
+
+.nav-menu-horizontal {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-menu-horizontal a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+.nav-menu-horizontal a:hover {
+  color: var(--color-bright-cyan);
+}
+
+.nav-menu-horizontal a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background: var(--color-bright-cyan);
+  transition: var(--transition-smooth);
+}
+
+.nav-menu-horizontal a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  background: var(--gradient-accent);
+  color: var(--color-dark-bg) !important;
+  padding: 0.6rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 700 !important;
+}
+
+.nav-cta::after { display: none; }
+
+.mobile-menu {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mobile-menu span {
+  width: 25px;
+  height: 2px;
+  background-color: #fff;
+  transition: var(--transition-smooth);
+}
+
+.nav-links { display: none; }
+
+@media (max-width: 1024px) {
+  .nav-menu-horizontal { display: none; }
+  .mobile-menu { display: flex; }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--color-dark-bg);
+    padding: 2rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--color-glass-border);
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-smooth);
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}
