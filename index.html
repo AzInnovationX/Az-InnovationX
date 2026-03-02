@@ -143,77 +143,21 @@
   </header>
 
   <main>
-    <section id="inicio" class="hero-corporate">
-      <!-- Background Video -->
-      <div class="hero-video-bg">
-        <iframe src="https://player.vimeo.com/video/1149380360?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-      </div>
-
-      <!-- Overlay -->
-      <div class="hero-overlay"></div>
-
-      <!-- Particles -->
-      <canvas id="particle-canvas" class="hero-particles"></canvas>
-
-      <div class="container hero-container">
-        <div class="hero-content-new">
-          <!-- Badge -->
-          <div class="hero-badge animate-fadeInDown">
-            <span>🚀 Soluciones Tecnológicas · México 2026</span>
-          </div>
-
-          <!-- Title -->
-          <h1 class="hero-title">
-            <span class="line-1 animate-fadeInUp">Donde las Ideas</span>
-            <span class="line-2 animate-fadeInUp shimmer-text">Cobran Vida</span>
-          </h1>
-
-          <!-- Subtitle -->
-          <p class="hero-subtitle animate-fadeIn">
-            Transformamos tu visión en realidad digital con soluciones tecnológicas innovadoras, seguras y preparadas para el futuro.
-          </p>
-
-          <!-- Buttons -->
-          <div class="hero-buttons animate-fadeInUp-delay">
-            <a href="servicios.html" class="btn-primary">Conocer Servicios →</a>
-            <a href="contacto.html" class="btn-secondary">Hablar con un Experto</a>
-          </div>
+        <section id="certificaciones">
+      <div class="container">
+        <h2 class="section-title">Certificaciones que avalan nuestra excelencia</h2>
+        <p class="section-subtitle" style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem;">
+          En Az InnovationX contamos con certificaciones que avalan nuestra seguridad, calidad y excelencia. Son prueba de nuestro compromiso con la innovación y los más altos estándares del sector.
+          <br><br>
+          Elige un aliado tecnológico con respaldo y confianza.
+        </p>
+        <div style="text-align: center;">
+          <a href="https://certificaciones1.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ver nuestras certificaciones</a>
         </div>
       </div>
-
-      <!-- Metrics Bar -->
-      <div class="hero-metrics animate-fadeIn-delay">
-        <div class="container metrics-container">
-          <div class="metric-item">
-            <h3 class="stat-number" data-target="50" data-suffix="+">0</h3>
-            <p>Proyectos Completados</p>
-          </div>
-          <div class="metric-item">
-            <h3 class="stat-number" data-target="100" data-suffix="%">0</h3>
-            <p>Compromiso Garantizado</p>
-          </div>
-          <div class="metric-item">
-            <h3 class="stat-number" data-target="24" data-suffix="/7">0</h3>
-            <p>Soporte Disponible</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Scroll Indicator -->
-      <div class="hero-scroll-indicator">
-        <div class="mouse">
-          <div class="wheel"></div>
-        </div>
-        <div class="arrow">
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-
-      <div class="hero-decorative-line"></div>
     </section>
-  </main>
 
+  </main>
           <div id="chatbot-container">
     <div id="chatbot-bubble">👋 ¡Hola! ¿En qué puedo ayudarte hoy?</div>
     <div id="chatbot-window">
@@ -317,6 +261,27 @@
 
   <!-- Main Logic Script -->
   <script defer src="js/main.js"></script>
+
+  <!-- Vimeo Lazy Load -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const videoFacade = document.getElementById('video-facade');
+        if (videoFacade) {
+            videoFacade.addEventListener('click', () => {
+                const videoUrl = videoFacade.getAttribute('data-src');
+                if (videoUrl) {
+                    const iframe = document.createElement('iframe');
+                    iframe.setAttribute('src', videoUrl);
+                    iframe.setAttribute('frameborder', '0');
+                    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
+                    iframe.setAttribute('title', 'Servicios Az InnovationX');
+                    videoFacade.innerHTML = '';
+                    videoFacade.appendChild(iframe);
+                }
+            }, { once: true });
+        }
+    });
+  </script>
 
   <!-- PWA Service Worker -->
   <script>
