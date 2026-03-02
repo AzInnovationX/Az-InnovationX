@@ -1,0 +1,18 @@
+:root {
+  --primary-deep-blue: #0A2463;
+  --primary-electric-blue: #3E92CC;
+  --primary-teal: #1B998B;
+  --secondary-coral: #FF6B35;
+  --secondary-purple: #5D2E8C;
+  --secondary-dark-gray: #1A1D29;
+  --neutral-white: #FFFFFF;
+  --neutral-light-gray: #F4F6F8;
+  --neutral-medium-gray: #8892A6;
+  --accent-gold: #D4AF37;
+  --accent-cyan: #00F5FF;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --blur-sutil: blur(12px);
+  --blur-deep: blur(20px);
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
