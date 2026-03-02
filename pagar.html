@@ -120,13 +120,13 @@
         <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
       </ul>
 
-      <div class="mobile-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
 
-      <ul class="nav-links">
+      <ul class="nav-links" id="mobile-menu">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="servicios.html">Servicios</a></li>
         <li><a href="proceso.html">Proceso</a></li>
@@ -148,50 +148,19 @@
         <h2 class="section-title">Realiza tu Pago</h2>
         <p class="payment-description">Elige tu método de pago preferido. Ofrecemos opciones seguras para tu comodidad.</p>
         <div style="text-align: center;">
-          <a href="https://pagosseguros.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Realizar Pago</a>
+          <a href="https://pagosseguros.netlify.app/" target="_blank" rel="noopener noreferrer" class="az-btn az-btn-primary">
+            <span>Realizar Pago</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
         </div>
       </div>
     </section>
 
   </main>
-          <div id="chatbot-container">
-    <div id="chatbot-bubble">👋 ¡Hola! ¿En qué puedo ayudarte hoy?</div>
-    <div id="chatbot-window">
-      <div id="chatbot-header">
-        <div class="avatar">
-          <img src="https://i.ibb.co/cSCSjsyS/11184177.gif" alt="Az Asistente Virtual" loading="lazy" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-        </div>
-        <div class="bot-info">
-          <h4>Az Asistente Virtual</h4>
-          <div class="status-indicator">
-            <span class="status-dot"></span>
-            <p>En línea</p>
-          </div>
-        </div>
-        <div class="header-controls">
-          <button id="chatbot-close-btn" title="Cerrar Chat">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div id="chatbot-messages"></div>
-      <form id="chatbot-input-form">
-        <input type="text" id="chatbot-input" placeholder="Escribe tu mensaje aquí..." autocomplete="off">
-        <button type="submit" id="chatbot-send">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="22" y1="2" x2="11" y2="13"></line>
-            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-          </svg>
-        </button>
-      </form>
-    </div>
-    <button id="chatbot-toggle">
-      <span class="icon-open">🤖</span>
-    </button>
-  </div>
+
 
 
   <footer class="site-footer">
@@ -201,10 +170,6 @@
       <div class="footer-column">
         <img loading="lazy" src="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" alt="Az InnovationX Logo" style="height: 50px;">
         <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Innovación tecnológica que impulsa tu crecimiento digital. Soluciones empresariales con calidad certificada y soporte garantizado.</p>
-        <div class="footer-trust-badges">
-          <div class="trust-badge">✓ +50 Proyectos Completados</div>
-          <div class="trust-badge">✓ Certificaciones Verificadas</div>
-          <div class="trust-badge">✓ Soporte 24/7</div>
         </div>
       </div>
       <!-- Columna 4: Comunidad y Redes -->
@@ -228,6 +193,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white; transition: transform 0.3s ease; margin-bottom: 0.5rem;"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
             <span class="social-name">Blog</span>
           </a>
+          <a href="https://www.youtube.com/@AzInnovationX" target="_blank" rel="noopener noreferrer" class="social-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#FF0000" style="transition: transform 0.3s ease; margin-bottom: 0.5rem;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span class="social-name">YouTube</span>
+          </a>
         </div>
         <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Más de 1,000 seguidores nos respaldan</p>
       </div>
@@ -241,13 +210,7 @@
         <span style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">Empresa Mexicana 🇲🇽</span>
       </div>
       <!-- Centro -->
-      <div class="footer-legal-links">
-        <a href="#">Términos y Condiciones</a>
-        <span>&nbsp;|&nbsp;</span>
-        <a href="#">Política de Privacidad</a>
-        <span>&nbsp;|&nbsp;</span>
-        <a href="#">Aviso Legal</a>
-      </div>
+
       <!-- Lado Derecho -->
       <div></div>
     </div>
@@ -296,5 +259,62 @@
     }
   </script>
 
+  <!-- Chatbot HTML Structure -->
+  <div id="cb-container">
+    <div class="chatbot-bubble" id="chatbot-bubble">
+      <button class="chatbot-bubble-close" id="chatbot-bubble-close" aria-label="Cerrar mensaje">✕</button>
+      <p>👋 ¡Hola! ¿Necesitas ayuda?<br>
+         <strong>¡Estoy aquí para ti!</strong></p>
+      <div class="bubble-tail"></div>
+    </div>
+    <div id="cb-window">
+      <div id="cb-header">
+        <div class="cb-avatar">
+          <img src="https://i.ibb.co/cSCSjsyS/11184177.gif" alt="Az Asistente Virtual" loading="lazy" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+        </div>
+        <div class="cb-bot-info">
+          <h4>Az Asistente Virtual</h4>
+          <p>En línea</p>
+        </div>
+        <div class="cb-header-buttons">
+            <button id="cb-theme-toggle" title="Cambiar Tema" aria-label="Cambiar Tema">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cb-icon-sun">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+            <button id="cb-expand-toggle" title="Expandir/Minimizar" aria-label="Expandir o minimizar el chat">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cb-icon-expand">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                </svg>
+            </button>
+        </div>
+      </div>
+      <div id="cb-messages" role="log" aria-live="polite"></div>
+      <form id="cb-input-form" aria-label="Formulario de entrada de chat">
+        <input type="text" id="cb-input" placeholder="Escribe un mensaje..." autocomplete="off" aria-label="Mensaje de entrada">
+        <button type="submit" id="cb-send" aria-label="Enviar mensaje">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+    </div>
+    <button id="cb-toggle">
+      <span class="cb-icon-open">🤖</span>
+      <span class="cb-icon-close">✕</span>
+    </button>
+  </div>
+  <link rel="stylesheet" href="css/chatbot-new.css">
+  <script src="js/chatbot-new.js" defer></script>
+  <script src="js/hamburger-menu.js" defer></script>
 </body>
 </html>

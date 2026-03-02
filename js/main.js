@@ -26,18 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        if (entry.target.classList.contains('impacto-section')) {
-            const stats = entry.target.querySelectorAll('.stat-number');
-            stats.forEach(stat => {
-                const target = +stat.getAttribute('data-target');
-                animateCounter(stat, target);
-            });
-        }
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll('.fade-in, .timeline-step, .impacto-section, .founder-card, .filosofia-card').forEach(el => {
+  document.querySelectorAll('.fade-in, .timeline-step, .founder-card, .filosofia-card').forEach(el => {
     scrollObserver.observe(el);
   });
 
@@ -85,48 +78,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Parallax effect for hero section
   window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    const heroContent = document.querySelector('.hero-content');
+    const hero = document.querySelector('.hero-corporate');
+    const heroContent = document.querySelector('.hero-content-new');
     if (hero && heroContent) {
       heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
     }
-  });
 
-  // Counter animation for stats
-  function animateCounter(element, target) {
-    let count = 0;
-    const increment = target / 100;
-    const timer = setInterval(() => {
-      count += increment;
-      if (count >= target) {
-        count = target;
-        clearInterval(timer);
+    // Hide scroll indicator
+    const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+    if (scrollIndicator) {
+      if (scrolled > 50) {
+        scrollIndicator.classList.add('hidden');
+      } else {
+        scrollIndicator.classList.remove('hidden');
       }
-      element.textContent = Math.floor(count) + (target === 95 ? '%' : target === 200 ? '+' : target.toString().includes('+') ? '+' : target === 24 ? '/7' : '');
-    }, 20);
-  }
-
-  // Animate counters when visible
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const statNumber = entry.target.querySelector('.stat-number');
-        if (statNumber) {
-            const text = statNumber.textContent;
-            let target = parseInt(text);
-            if (text.includes('%')) target = 95;
-            else if (text.includes('+')) target = 200;
-            else if (text.includes('/')) target = 24;
-            else target = parseInt(text);
-            animateCounter(statNumber, target);
-        }
-        statsObserver.unobserve(entry.target);
-      }
-    });
-  });
-
-  document.querySelectorAll('.stat-card, .impacto-section').forEach(el => {
-    statsObserver.observe(el);
+    }
   });
 
   // --- Hero Section: Interactive Particle System ---
@@ -205,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initParticles() {
       particlesArray = [];
-      let numberOfParticles = (canvas.height * canvas.width) / 9000;
+      let numberOfParticles = window.innerWidth <= 480 ? 8 : 20;
       for (let i = 0; i < numberOfParticles; i++) {
         let size = (Math.random() * 2) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
@@ -256,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Hero Section: Animations & Mouse Effects ---
-  const heroTextContainers = document.querySelectorAll('.hero .text-reveal-container');
+  const heroTextContainers = document.querySelectorAll('.hero-corporate .text-reveal-container');
   const customCursor = document.getElementById('custom-cursor');
   const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
 
@@ -371,199 +337,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- Chatbot Logic Script (Enhanced) ---
-  const chatbotToggle = document.getElementById('chatbot-toggle');
-  const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
-  const chatbotWindow = document.getElementById('chatbot-window');
-  const chatbotBubble = document.getElementById('chatbot-bubble');
-  const messagesContainer = document.getElementById('chatbot-messages');
-  const inputForm = document.getElementById('chatbot-input-form');
-  const inputField = document.getElementById('chatbot-input');
-
-  // 1. Floating Bubble Logic (3-second delay)
-  setTimeout(() => {
-    if (chatbotBubble && !chatbotWindow.classList.contains('active')) {
-      chatbotBubble.style.display = 'block';
-    }
-  }, 3000);
-
-  const closeBubble = () => {
-    if (chatbotBubble) chatbotBubble.style.display = 'none';
-  };
-
-  if (chatbotBubble) {
-    chatbotBubble.addEventListener('click', () => {
-      closeBubble();
-      openChatbot();
-    });
-  }
-
-  const normalizeText = (text) => {
-    return text.toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .trim();
-  };
-
-  const knowledgeBase = {
-    saludo: {
-      keywords: ['hola', 'buenas', 'hey', 'buenos dias', 'buenas tardes', 'buenas noches', 'saludos'],
-      message: "¡Hola! 👋 Bienvenido a Az InnovationX. Soy tu asistente virtual. ¿En qué puedo ayudarte hoy? Puedo informarte sobre nuestros servicios, precios, proceso de trabajo o cómo contactarnos.",
-      quickOptions: ['🌐 Servicios', '💰 Precios', '📋 Proceso', '📬 Contacto']
-    },
-    servicios: {
-      keywords: ['servicios', 'que hacen', 'que ofrecen', 'pagina web', 'app', 'aplicacion', 'chatbot', 'desarrollo'],
-      message: "En Az InnovationX ofrecemos: 🌐 Páginas Web Profesionales, 📱 Aplicaciones Móviles, 🤖 Chatbots Inteligentes y más. ¿Te gustaría conocer más detalles de algún servicio en específico?",
-      buttons: [{ text: "Ver todos los servicios →", url: "servicios.html" }],
-      quickOptions: ['🌐 Web', '📱 Apps', '🤖 Chatbots']
-    },
-    precios: {
-      keywords: ['precio', 'costo', 'cuanto cuesta', 'cuanto cobran', 'presupuesto', 'tarifa', 'planes'],
-      message: "💰 Tenemos planes adaptados a cada necesidad y presupuesto. Te invito a revisar nuestra página de precios donde encontrarás todas las opciones disponibles.",
-      buttons: [{ text: "Ver Precios →", url: "precios.html" }],
-      quickOptions: ['🌐 Web', '💰 Cotizar']
-    },
-    proceso: {
-      keywords: ['proceso', 'como trabajan', 'pasos', 'como funciona', 'metodologia'],
-      message: "📋 Nuestro proceso está diseñado para ser claro y eficiente. Desde la consulta inicial hasta la entrega final, te acompañamos en cada etapa. ¿Te gustaría conocer los detalles?",
-      buttons: [{ text: "Ver Proceso →", url: "proceso.html" }],
-      quickOptions: ['📋 Pasos', '📬 Contacto']
-    },
-    contacto: {
-      keywords: ['contacto', 'hablar', 'comunicarme', 'escribir', 'llamar', 'whatsapp', 'email', 'correo'],
-      message: "📬 Puedes contactarnos directamente desde nuestra sección de contacto. Estaremos felices de atenderte.",
-      buttons: [{ text: "Ir a Contacto →", url: "contacto.html" }],
-      quickOptions: ['📱 WhatsApp', '📧 Email']
-    },
-    nosotros: {
-      keywords: ['quienes son', 'empresa', 'equipo', 'fundador', 'nosotros', 'sobre ustedes'],
-      message: "🏢 Az InnovationX es una empresa mexicana especializada en soluciones tecnológicas innovadoras. Contamos con +50 proyectos completados y certificaciones verificadas.",
-      buttons: [{ text: "Conocer más →", url: "nosotros.html" }],
-      quickOptions: ['🎓 Certificaciones', '📬 Contacto']
-    },
-    certificaciones: {
-      keywords: ['certificaciones', 'certificados', 'acreditaciones', 'estan certificados'],
-      message: "🎓 Sí, contamos con certificaciones verificadas que respaldan la calidad de nuestro trabajo.",
-      buttons: [{ text: "Ver Certificaciones →", url: "certificaciones.html" }],
-      quickOptions: ['🏢 Empresa', '📬 Contacto']
-    },
-    despedida: {
-      keywords: ['gracias', 'bye', 'adios', 'hasta luego', 'nos vemos', 'chao'],
-      message: "¡Fue un placer ayudarte! 😊 Si necesitas algo más, aquí estaré. ¡Hasta pronto! 🚀"
-    },
-    no_entendi: {
-      message: "🤔 No estoy seguro de entender tu pregunta. ¿Podrías reformularla? También puedes preguntarme sobre nuestros servicios, precios, proceso o contacto.",
-      quickOptions: ['🌐 Servicios', '💰 Precios', '📋 Proceso', '📬 Contacto']
-    }
-  };
-
-  const showBotMessage = (response) => {
-    const typingId = 'typing-' + Date.now();
-    const typingIndicator = document.createElement('div');
-    typingIndicator.id = typingId;
-    typingIndicator.className = 'typing-indicator chat-message bot-message';
-    typingIndicator.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
-    messagesContainer.appendChild(typingIndicator);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-    const delay = Math.floor(Math.random() * (800 - 500 + 1)) + 500;
-
-    setTimeout(() => {
-      const existingIndicator = document.getElementById(typingId);
-      if (existingIndicator) existingIndicator.remove();
-
-      const botMsg = document.createElement('div');
-      botMsg.className = 'chat-message bot-message';
-
-      let html = `<p>${response.message}</p>`;
-
-      if (response.buttons) {
-        html += '<div class="options">';
-        response.buttons.forEach(btn => {
-          html += `<button class="option-button" onclick="window.location.href='${btn.url}'">${btn.text}</button>`;
-        });
-        html += '</div>';
-      }
-
-      if (response.quickOptions) {
-        html += '<div class="quick-options">';
-        response.quickOptions.forEach(opt => {
-          html += `<button class="quick-option-btn" onclick="window.handleQuickOption('${opt}')">${opt}</button>`;
-        });
-        html += '</div>';
-      }
-
-      botMsg.innerHTML = html;
-      messagesContainer.appendChild(botMsg);
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }, delay);
-  };
-
-  const showUserMessage = (text) => {
-    const userMsg = document.createElement('div');
-    userMsg.className = 'chat-message user-message';
-    userMsg.textContent = text;
-    messagesContainer.appendChild(userMsg);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  };
-
-  window.handleQuickOption = (opt) => {
-    const cleanOpt = opt.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]/g, '').trim();
-    handleInput(cleanOpt);
-  };
-
-  const handleInput = (input) => {
-    if (!input.trim()) return;
-    showUserMessage(input);
-    const normalized = normalizeText(input);
-
-    let found = false;
-    for (const key in knowledgeBase) {
-      if (knowledgeBase[key].keywords && knowledgeBase[key].keywords.some(kw => normalized.includes(normalizeText(kw)))) {
-        showBotMessage(knowledgeBase[key]);
-        found = true;
-        break;
-      }
-    }
-
-    if (!found) {
-      showBotMessage(knowledgeBase.no_entendi);
-    }
-    inputField.value = '';
-  };
-
-  const openChatbot = () => {
-    if (chatbotWindow) {
-      chatbotWindow.classList.add('active');
-      closeBubble();
-      if (messagesContainer.children.length === 0) {
-        const welcome = {
-          message: "¡Hola! 👋 Soy Az, tu asistente virtual de Az InnovationX. Estoy aquí para ayudarte. ¿Sobre qué te gustaría saber?",
-          quickOptions: ['🌐 Servicios', '💰 Precios', '📋 Proceso', '📬 Contacto']
-        };
-        showBotMessage(welcome);
-      }
-    }
-  };
-
-  const closeChatbot = () => {
-    if (chatbotWindow) chatbotWindow.classList.remove('active');
-  };
-
-  if (chatbotToggle) chatbotToggle.addEventListener('click', openChatbot);
-  if (chatbotCloseBtn) chatbotCloseBtn.addEventListener('click', closeChatbot);
-
-  if (inputForm) {
-    inputForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      handleInput(inputField.value);
-    });
-  }
-
-
-});
-
-// Contact / Solicitudes Form Logic
 document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
