@@ -522,165 +522,305 @@ to{opacity:1;transform:translateY(0)}
 .contact-icon{font-size:1.8rem;margin-right:1rem;color:var(--primary-electric-blue)}
 .contact-item a{color:#fff;text-decoration:none;transition:color .3s ease}
 .contact-item a:hover{color:var(--primary-electric-blue)}
-#chatbot-container{position:fixed;bottom:15px;right:15px;z-index:99999;display:flex;flex-direction:column;align-items:flex-end}
-.step-number {
-  position: absolute;
-  top: -15px;
-  left: 20px;
-  width: 40px;
-  height: 40px;
+/* JULES MEJORA: Diseño Chatbot Moderno Glassmorphism */
+#chatbot-container {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#chatbot-toggle {
+  width: 65px;
+  height: 65px;
   background: linear-gradient(135deg, var(--primary-electric-blue), var(--accent-cyan));
-  border-radius: 12px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(62, 146, 204, 0.5);
+  transition: var(--transition-smooth);
+  position: relative;
+  animation: pulse-glow-neon 2s infinite;
+}
+
+@keyframes pulse-glow-neon {
+  0% { box-shadow: 0 0 0 0 rgba(0, 245, 255, 0.4); transform: scale(1); }
+  50% { box-shadow: 0 0 0 20px rgba(0, 245, 255, 0); transform: scale(1.05); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 245, 255, 0.4); transform: scale(1); }
+}
+
+#chatbot-toggle:hover {
+  transform: scale(1.1) rotate(5deg);
+  filter: brightness(1.2);
+}
+
+#chatbot-toggle .notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff3e3e;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  animation: bounce-badge 2s infinite;
+}
+
+@keyframes bounce-badge {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+  60% { transform: translateY(-3px); }
+}
+
+#chatbot-window {
+  width: 400px;
+  height: 600px;
+  max-width: 90vw;
+  max-height: 80vh;
+  background: rgba(10, 36, 99, 0.75);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  animation: slideInUp-chat 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#chatbot-window.active { display: flex; }
+
+#chatbot-header {
+  padding: 1.5rem;
+  background: linear-gradient(90deg, rgba(62, 146, 204, 0.3), rgba(0, 245, 255, 0.2));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#chatbot-header .bot-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#chatbot-header .avatar {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, var(--primary-electric-blue), var(--accent-cyan));
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
   color: white;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 15px rgba(0, 245, 255, 0.4);
-  transition: var(--transition-smooth);
-  transform: rotate(-5deg);
-}
-.step-card:hover .step-number {
-  transform: scale(1.1) rotate(0deg);
-  box-shadow: 0 6px 20px rgba(0, 245, 255, 0.6);
+  box-shadow: 0 4px 15px rgba(0, 245, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-@keyframes pulse-animation{0%{transform:scale(1);box-shadow:0 6px 20px rgba(62, 146, 204,0.6)}
-50%{transform:scale(1.05);box-shadow:0 8px 30px rgba(62, 146, 204,0.8)}
-100%{transform:scale(1);box-shadow:0 6px 20px rgba(62, 146, 204,0.6)}
-}
-#chatbot-toggle:hover{transform:scale(1.1) rotate(10deg);box-shadow:0 8px 25px rgba(62, 146, 204,0.8);animation: none;} /* JULES OPTIMIZACIÓN: Detener pulso al pasar el cursor */
-#chatbot-toggle::before{position:absolute;top:-15px;left:-5px;font-size:28px;transform:rotate(-15deg);animation:hat-shake 2s infinite ease-in-out;z-index:100000}
-@keyframes hat-shake{0%,100%{transform:rotate(-15deg)}
-50%{transform:rotate(5deg) translateX(2px)}
-}
-#chatbot-toggle .icon-open{font-size:24px;color:white;display:flex !important}
-#chatbot-toggle .icon-close{display:none;font-size:24px;color:white}
-#chatbot-window {
-  width: 90vw;
-  max-width: 420px;
-  height: 75vh;
-  max-height: 680px;
-  background: linear-gradient(135deg, rgba(10, 36, 99, 0.95), rgba(26, 29, 41, 0.9));
-  backdrop-filter: var(--blur-deep);
-  -webkit-backdrop-filter: var(--blur-deep);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  display: none;
+#chatbot-header h4 { margin: 0; font-size: 1.1rem; color: #fff; }
+#chatbot-header p { margin: 0; font-size: 0.8rem; color: var(--accent-cyan); font-weight: 600; }
+
+#chatbot-messages {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
   flex-direction: column;
-  overflow: hidden;
-  margin-bottom: 1.5rem;
-  transform-origin: bottom right;
-  animation: slideInUp-chat 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: var(--transition-smooth);
-}
- #chatbot-window.expanded{position:fixed;top:2.5vh;bottom:2.5vh;left:2.5vw;right:2.5vw;width:auto;height:auto;max-width:100%;max-height:100%;margin:0;transform:none}
-#chatbot-container:has(#chatbot-window.expanded) #chatbot-toggle{display:none}
-#chatbot-window.active{display:flex}
-@keyframes slideInUp-chat{from{opacity:0;transform:translateY(20px) scale(0.95)}
-to{opacity:1;transform:translateY(0) scale(1)}
-}
-#chatbot-header {
-  padding: 1.2rem;
-  background: rgba(10, 36, 99, 0.4);
-  border-bottom: 1px solid var(--glass-border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-#chatbot-header .avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(45deg,var(--primary-electric-blue),var(--accent-gold));margin-right:10px;display:flex;align-items:center;justify-content:center;font-weight:bold;overflow:hidden;border:2px solid rgba(62, 146, 204,0.4);transition:all .3s ease}
-#chatbot-header .avatar:hover{border-color:rgba(62, 146, 204,0.7);transform:scale(1.05)}
-#chatbot-header .avatar img{transition:transform .3s ease}
-#chatbot-header .avatar:hover img{transform:scale(1.1)}
-#chatbot-header .bot-info h4{margin:0;color:#fff;font-weight:700;letter-spacing:-0.01em;font-size:1rem}
-#chatbot-header .bot-info p{margin:0;font-size:.8rem;color:#ffbe0b;opacity:.9;font-weight:500;letter-spacing:.01em}
-#chatbot-messages{flex-grow:1;padding:1rem;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:rgba(0,0,0,0.1);border-radius:12px;margin:.6rem;margin-bottom:0}
-#chatbot-messages::-webkit-scrollbar{width:5px}
-#chatbot-messages::-webkit-scrollbar-track{background:transparent}
-#chatbot-messages::-webkit-scrollbar-thumb{background-color:rgba(62, 146, 204,0.5);border-radius:10px}
-.chat-message{padding:10px 14px;border-radius:15px;max-width:85%;line-height:1.4;animation:fadeIn .3s ease;box-shadow:0 2px 8px rgba(0,0,0,0.1);font-size:.9rem}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}
-to{opacity:1;transform:translateY(0)}
-}
-.bot-message {
-  background: rgba(62, 146, 204, 0.2);
-  align-self: flex-start;
-  border-bottom-left-radius: 4px;
-  border: 1px solid rgba(62, 146, 204, 0.3);
-  color: var(--neutral-white);
+  gap: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-electric-blue) transparent;
 }
 
-/* JULES OPTIMIZACIÓN: Estilos mejorados para el chatbot y burbujas de mensaje */
-#chatbot-toggle {
-  animation: pulse-animation 2s infinite; /* JULES OPTIMIZACIÓN: Animación de pulso siempre activa */
+#chatbot-messages::-webkit-scrollbar { width: 6px; }
+#chatbot-messages::-webkit-scrollbar-thumb { background: var(--primary-electric-blue); border-radius: 10px; }
+
+.chat-message {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  position: relative;
+  animation: messageAppear 0.3s ease-out;
 }
 
-.typing-indicator {
-  display: flex;
-  gap: 6px;
-  padding: 12px 18px;
-  width: fit-content;
-  background: rgba(62, 146, 204, 0.15);
-  border-radius: 15px;
-  margin-bottom: 10px;
-  border: 1px solid rgba(62, 146, 204, 0.2);
-}
-
-.typing-indicator .dot {
-  width: 8px;
-  height: 8px;
-  background: var(--accent-cyan);
-  border-radius: 50%;
-  animation: typing-bounce 1.4s infinite ease-in-out;
-}
-
-.typing-indicator .dot:nth-child(2) { animation-delay: 0.2s; }
-.typing-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes typing-bounce {
-  0%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-8px); }
+@keyframes messageAppear {
+  from { opacity: 0; transform: translateY(10px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .bot-message-wrapper {
   display: flex;
   gap: 10px;
   align-self: flex-start;
-  max-width: 85%;
-  margin-bottom: 8px;
 }
 
 .bot-avatar-msg {
   width: 32px;
   height: 32px;
-  background: linear-gradient(45deg, var(--primary-electric-blue), var(--accent-gold));
+  background: linear-gradient(45deg, var(--primary-electric-blue), var(--accent-cyan));
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
   flex-shrink: 0;
-  font-size: 14px;
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bot-message {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-bottom-left-radius: 4px;
 }
 
 .user-message {
   background: linear-gradient(135deg, var(--primary-electric-blue), #1e40af);
+  color: white;
   align-self: flex-end;
   border-bottom-right-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--neutral-white);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-.chat-message .options{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
-.chat-message .option-button{background:rgba(255,107,53,0.2);border:1px solid rgba(62, 146, 204,0.4);color:white;padding:12px 16px;border-radius:15px;cursor:pointer;transition:all .3s ease;font-size:0.9rem;font-weight:600;letter-spacing:0.01em;min-height:44px;display:flex;align-items:center;justify-content:center;text-align:center;} /* JULES OPTIMIZACIÓN: Botones más táctiles y legibles */
-.chat-message .option-button:hover{background:rgba(62, 146, 204,0.4);transform:translateY(-2px);box-shadow:0 4px 12px rgba(62, 146, 204,0.3)}
-#chatbot-input-form{display:flex;padding:.8rem;border-top:1px solid rgba(255,107,53,0.2)}
-#chatbot-input{flex-grow:1;padding:10px 16px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:20px;color:white;font-size:.9rem;transition:border-color .3s ease;margin-right:8px}
-#chatbot-input:focus{outline:0;border-color:rgba(62, 146, 204,0.5);box-shadow:0 0 0 3px rgba(255,107,53,0.1)}
-#chatbot-send{width:42px;height:42px;border:0;background:linear-gradient(45deg,var(--primary-electric-blue),var(--accent-gold));border-radius:50%;color:white;font-size:1.1rem;cursor:pointer;transition:all .3s ease;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(62, 146, 204,0.4)}
-#chatbot-send:hover{transform:scale(1.1) rotate(10deg);box-shadow:0 6px 15px rgba(62, 146, 204,0.6)}
+
+.message-time {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  margin-top: 4px;
+  display: block;
+  text-align: right;
+}
+
+.bot-message .message-time { text-align: left; }
+
+.chat-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.option-chip {
+  background: rgba(62, 146, 204, 0.2);
+  border: 1px solid var(--primary-electric-blue);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.option-chip:hover {
+  background: linear-gradient(135deg, var(--primary-electric-blue), var(--accent-cyan));
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 245, 255, 0.4);
+}
+
+.progress-bar-container {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-electric-blue), var(--accent-cyan));
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+#chatbot-input-form {
+  padding: 1.2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#chatbot-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  padding: 12px 20px;
+  color: white;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+#chatbot-input:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+}
+
+#chatbot-send {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, var(--primary-electric-blue), var(--accent-cyan));
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 245, 255, 0.3);
+}
+
+#chatbot-send:hover { transform: scale(1.1) rotate(10deg); filter: brightness(1.2); }
+
+.typing-indicator {
+  display: flex;
+  gap: 5px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  width: fit-content;
+  align-self: flex-start;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  animation: typingPulse 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingPulse {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-5px); opacity: 1; }
+}
 .fade-in{opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(0.165,0.84,0.44,1)}
 .fade-in.visible{opacity:1;transform:translateY(0)}
 .floating-element{position:absolute;opacity:.1;animation:float 15s ease-in-out infinite;font-size:1.5rem}
@@ -1800,53 +1940,46 @@ to{transform:translateY(0);opacity:1}
   </div>
 </footer>
   <!-- Chatbot HTML Structure -->
+  <!-- Chatbot HTML Structure -->
   <div id="chatbot-container">
     <div id="chatbot-window">
       <div id="chatbot-header">
-        <div class="avatar">
-          <img src="https://i.ibb.co/cSCSjsyS/11184177.gif" alt="Az Asistente Virtual" loading="lazy" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-        </div>
         <div class="bot-info">
-          <h4>Az Asistente Virtual</h4>
-          <p>En línea</p>
+          <div class="avatar">AZ</div>
+          <div>
+            <h4>Az Asistente Virtual</h4>
+            <p>● En línea</p>
+          </div>
         </div>
-        <div class="header-controls" style="display: flex; gap: 8px;">
-          <button id="chatbot-restart-btn" title="Reiniciar conversación" aria-label="Reiniciar chat" style="background: none; border: none; color: white; cursor: pointer; display: flex; align-items: center; padding: 4px; border-radius: 4px; transition: background 0.3s;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
-              <path d="M21 3v5h-5"></path>
-              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
-              <path d="M3 21v-5h5"></path>
-            </svg>
+        <div class="header-controls" style="display: flex; gap: 10px;">
+          <button id="chatbot-sound-toggle" title="Activar/Desactivar sonido" style="background:none; border:none; color:white; cursor:pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="sound-icon-on"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="sound-icon-off" style="display:none;"><path d="M11 5L6 9H2V15H6L11 19V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
           </button>
-          <button id="chatbot-expand-toggle" title="Expandir/Minimizar" aria-label="Alternar pantalla completa">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-expand">
-              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
-            </svg>
+          <button id="chatbot-restart-btn" title="Reiniciar conversación" style="background:none; border:none; color:white; cursor:pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M3 21v-5h5"></path></svg>
           </button>
-          <button id="chatbot-close-btn" title="Cerrar Chat" aria-label="Cerrar ventana de chat">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
+          <button id="chatbot-close-btn" title="Cerrar Chat" style="background:none; border:none; color:white; cursor:pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
         </div>
+      </div>
+      <div class="progress-bar-container">
+        <div id="chatbot-progress" class="progress-bar"></div>
       </div>
       <div id="chatbot-messages">
-        <!-- Messages will be appended here by JavaScript -->
+        <!-- JULES MEJORA: Los mensajes se generan dinámicamente -->
       </div>
       <form id="chatbot-input-form">
-        <input type="text" id="chatbot-input" placeholder="Escribe un mensaje..." autocomplete="off" aria-label="Mensaje para el bot">
-        <button type="submit" id="chatbot-send" aria-label="Enviar mensaje">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send">
-            <line x1="22" y1="2" x2="11" y2="13"></line>
-            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-          </svg>
+        <input type="text" id="chatbot-input" placeholder="Escribe un mensaje..." autocomplete="off">
+        <button type="submit" id="chatbot-send">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
         </button>
       </form>
     </div>
     <button id="chatbot-toggle">
-      <span class="icon-open">🤖</span>
+      <span class="notification-badge">1</span>
+      <span style="font-size: 28px;">🤖</span>
     </button>
   </div>
   <!-- General Page Scripts -->
@@ -2410,1244 +2543,254 @@ ms`;
 
   });
 
-  // --- Chatbot Logic Script ---
-  let lastBotQuestionKey = null;
-  const affirmativeAnswers = ['si', 'sí', 'yes', 'claro', 'ok', 'está bien', 'esta bien', 'dale', 'va', 'por supuesto', 'acepto', 'afirmativo', 'de acuerdo'];
-  const negativeAnswers = ['no', 'no gracias', 'cancelar', 'ahora no'];
-  const conversationState = {
-    currentTopic: null,
-    mentionedServices: [],
-    budgetRange: null,
-    userFrustration: 0,
-    history: [],
-    suggestedQuote: false,
-    suggestedWebAppAndEcomm: false,
-    suggestedPortfolio: false,
-    path: [], // breadcrumbs
-  }
-;
-  const intents = {
-    greet: ['hola', 'buenos dias', 'buenas tardes'],
-    request_service_info: ['servicio', 'información', 'que haces', 'ayuda', 'productos'],
-    request_quote: ['precio', 'costo', 'cuánto', 'presupuesto', 'tarifa', 'cotización', 'cotizar', 'planes', 'paquetes', 'tienda online', 'chatbot'],
-    request_payment: ['pagar', 'pago', 'métodos de pago', 'cómo pago', 'cuenta bancaria', 'transferencia'],
-    request_contact: ['redes', 'social', 'síguelos', 'facebook', 'instagram', 'tiktok', 'seguir', 'contacto', 'llamar', 'email', 'correo'],
-    request_examples: ['ejemplos', 'portfolio', 'trabajos', 'proyectos anteriores', 'muestra'],
-    request_process: ['tiempo', 'cuándo', 'plazos', 'entrega', 'duración', 'proceso'],
-    request_support: ['soporte', 'mantenimiento', 'garantía', 'actualizaciones'],
-    frustration: ['no funciona', 'no sirve', 'frustrado', 'agente', 'humano', 'persona', 'no entiendo'],
-    request_online_presence_info: ['presencia', 'internet', 'online', 'importancia de estar en linea', 'visibilidad'],
-    request_cybersecurity_info: ['ciberseguridad', 'seguridad', 'proteger', 'riesgos', 'hackers', 'virus'],
-    request_creator_info: ['quien te creo', 'quién te creó', 'creador', 'desarrollador', 'quien te hizo', 'quién te hizo', 'quien te programo', 'quién te programó'],
-    request_hours: ['horario', 'atienden', 'abren', 'cierran', 'horas', 'horarios de atencion'],
-    request_articles: ['artículos', 'blog', 'posts', 'contenido', 'educativo'],
-    request_affiliates: ['afiliados', 'afíliate', 'colaboraciones', 'partnerships', 'programa de afiliados'],
-  }
-;
-
-const chatbotToggle = document.getElementById('chatbot-toggle');
+  // --- JULES MEJORA: Chatbot Inteligente Logic ---
+  const chatbotToggle = document.getElementById('chatbot-toggle');
+  const chatbotWindow = document.getElementById('chatbot-window');
   const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
   const chatbotRestartBtn = document.getElementById('chatbot-restart-btn');
-  const chatbotWindow = document.getElementById('chatbot-window');
-  const messagesContainer = document.getElementById('chatbot-messages');
-  const inputForm = document.getElementById('chatbot-input-form');
-  const inputField = document.getElementById('chatbot-input');
-  const expandToggle = document.getElementById('chatbot-expand-toggle');
-  let misunderstandingCounter = 0;
+  const chatbotMessages = document.getElementById('chatbot-messages');
+  const chatbotInputForm = document.getElementById('chatbot-input-form');
+  const chatbotInput = document.getElementById('chatbot-input');
+  const chatbotProgress = document.getElementById('chatbot-progress');
 
-  if (expandToggle && chatbotWindow) {
-    expandToggle.addEventListener('click', () => {
-      chatbotWindow.classList.toggle('expanded');
-      const icon = expandToggle.querySelector('svg');
-      if (chatbotWindow.classList.contains('expanded')) {
-        icon.innerHTML = '<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>';
-      }
- else {
-        icon.innerHTML = '<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>';
-      }
+  let conversationState = {
+    userName: localStorage.getItem('chat_user_name') || null,
+    soundEnabled: localStorage.getItem('chat_sound') === 'true',
+    currentStep: 0,
+    totalSteps: 3,
+    context: null,
+    history: []
+  };
 
-    });
-  }
+  const intents = [
+    { keywords: ['hola', 'buen', 'dia', 'tardes', 'noches', 'hey', 'saludos'], response: '¡Hola! Qué gusto saludarte. Soy AZ, tu asistente experto. ¿En qué puedo ayudarte hoy?', chips: ['💻 Página Web', '🛒 Tienda Online', '💰 Ver Precios'] },
+    { keywords: ['precio', 'costo', 'cuanto', 'vale', 'tarifa', 'presupuesto', 'cotizar', 'cotizacion'], response: '¡Claro! Tenemos planes que se adaptan a tu medida. El plan Básico inicia desde $2,000 MXN. ¿Te gustaría iniciar una cotización paso a paso?', chips: ['🚀 Iniciar Cotización', '📞 Contactar Asesor'] },
+    { keywords: ['web', 'pagina', 'sitio', 'landing'], response: 'Una página web profesional es la cara de tu negocio al mundo. ¿Buscas algo informativo o para vender?', chips: ['ℹ️ Informativa', '🛒 Para vender'] },
+    { keywords: ['tienda', 'online', 'ecommerce', 'vender', 'carritos'], response: '¡Excelente decisión! Una tienda online te permite vender 24/7. Incluimos pasarelas de pago seguras y WhatsApp.', chips: ['🚀 Iniciar Cotización', '✨ Ver Ejemplos'] },
+    { keywords: ['app', 'movil', 'aplicacion', 'android', 'ios'], response: 'Desarrollamos Apps multiplataforma de alto rendimiento. ¿Tienes ya una idea definida para tu App?', chips: ['💡 Tengo una idea', '🤔 Quiero asesoría'] },
+    { keywords: ['gracias', 'agradezco', 'ok', 'entendido'], response: '¡De nada! Es un placer ayudarte. ¿Hay algo más en lo que pueda apoyarte?', chips: ['🏠 Menú Principal', '📞 Contacto'] },
+    { keywords: ['adios', 'chao', 'nos vemos', 'luego'], response: '¡Hasta luego! Estaré aquí cuando me necesites. ¡Que tengas un gran día!', chips: [] }
+  ];
 
-  // JULES: Lógica para reiniciar la conversación
-  if (chatbotRestartBtn) {
-    chatbotRestartBtn.addEventListener('click', () => {
-      messagesContainer.innerHTML = '';
-      conversationState.currentTopic = null;
-      conversationState.mentionedServices = [];
-      conversationState.history = [];
-      conversationState.path = [];
-      const welcomeMsg = JSON.parse(JSON.stringify(knowledgeBase.saludo));
-      showBotMessage(welcomeMsg, 'saludo');
-    });
-  }
-
-  // JULES: Ajustar visibilidad del chatbot cuando el teclado móvil está abierto
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', () => {
-      if (chatbotWindow.classList.contains('active')) {
-        const keyboardHeight = window.innerHeight - window.visualViewport.height;
-        if (keyboardHeight > 50) {
-          chatbotWindow.style.height = `${window.visualViewport.height - 20}px`;
-          setTimeout(scrollToBottom, 100);
-        } else {
-          chatbotWindow.style.height = '';
+  // JULES MEJORA: Coincidencia difusa simple (fuzzy matching)
+  function isMatch(text, keywords) {
+    const words = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split(/\s+/);
+    return keywords.some(kw => {
+      return words.some(word => {
+        if (word.includes(kw) || kw.includes(word)) return true;
+        // Levenshtein simplificado para errores tipográficos de 1 letra
+        if (Math.abs(word.length - kw.length) <= 1) {
+          let diffs = 0;
+          for (let i = 0; i < Math.min(word.length, kw.length); i++) {
+            if (word[i] !== kw[i]) diffs++;
+          }
+          return diffs <= 1;
         }
-      }
+        return false;
+      });
     });
   }
 
-  
-  const openChatbot = () => {
-    chatbotWindow.classList.add('active');
-    if (messagesContainer.children.length === 0) {
-      // JULES: Mensaje de bienvenida personalizado por hora
-      const hour = new Date().getHours();
-      let greeting = "";
-      if (hour >= 5 && hour < 12) {
-        greeting = "¡Buenos días! ☀️ ¿En qué te puedo ayudar hoy?";
-      } else if (hour >= 12 && hour < 19) {
-        greeting = "¡Buenas tardes! 🌤️ ¿Cómo puedo ayudarte?";
-      } else {
-        greeting = "¡Buenas noches! 🌙 Estoy aquí para ayudarte.";
-      }
-
-      const welcomeMsg = JSON.parse(JSON.stringify(knowledgeBase.saludo));
-      welcomeMsg.message = greeting + "<br><br>" + welcomeMsg.message;
-      showBotMessage(welcomeMsg, 'saludo');
-    }
-
+  function getTimestamp() {
+    const now = new Date();
+    return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
   }
-;
 
-  const closeChatbot = () => {
-    chatbotWindow.classList.remove('active');
+  function scrollToBottom() {
+    chatbotMessages.scrollTo({ top: chatbotMessages.scrollHeight, behavior: 'smooth' });
   }
-;
-  
-  chatbotToggle.addEventListener('click', openChatbot);
-  chatbotCloseBtn.addEventListener('click', closeChatbot);
-  const knowledgeBase = {
-  // Nivel 0: Saludo inicial optimizado
-  saludo: {
-    message: "¡Qué padre que estás aquí! 👋 Soy AZ, tu asistente virtual de Az InnovationX. Estoy listo para ayudarte a llevar tu idea al siguiente nivel. ¿Qué te gustaría hacer?",
-    options: [{
-        text: "🚀 Explorar Servicios",
-        key: "servicios_menu"
-      },
-      {
-        text: "💰 Cotizar un Proyecto",
-        key: "precios_menu"
-      },
-      {
-        text: "🤔 Preguntas Frecuentes",
-        key: "faq_menu"
-      },
-      {
-        text: "✨ Más Opciones",
-        key: "mas_opciones_menu"
-      }
 
-    ]
-  },
-
-  // Nivel 1: Menús principales
-  servicios_menu: {
-    message: "¡Excelente! Nos especializamos en soluciones tecnológicas de alto impacto. ¿Cuál de nuestros servicios te interesa explorar?",
-    onShow: () => {
-      if (conversationState.currentTopic) {
-        return `Veo que hablábamos de ${conversationState.currentTopic}. ¿Te interesa seguir con eso o explorar algo nuevo?`;
-      }
-      return null;
-    },
-    options: [{
-        text: "🌐 Páginas Web",
-        key: "servicio_web"
-      },
-      {
-        text: "📱 Aplicaciones Móviles",
-        key: "servicio_app"
-      },
-      {
-        text: "🛒 Tiendas Online",
-        key: "servicio_ecommerce"
-      },
-      {
-        text: "🤖 Chatbots Inteligentes",
-        key: "servicio_chatbot"
-      },
-      {
-        text: "🔒 Seguridad Informática",
-        key: "servicio_seguridad"
-      },
-      {
-        text: "☁️ Soluciones Cloud",
-        key: "servicio_cloud"
-      },
-      {
-        text: "👕 Artículos AZINNX",
-        key: "articles_info"
-      },
-      {
-        text: "🤝 Programa de Afiliados",
-        key: "affiliate_info"
-      },
-      {
-        text: "🏠 Volver al inicio",
-        key: "saludo"
-      }
-
-    ]
-  },
-
-  precios_menu: {
-    message: "¡Claro! Para darte la información más precisa, por favor dime sobre qué servicio te gustaría saber el costo. Todos nuestros planes incluyen hosting y dominio gratis por un año. ✅",
-    options: [{
-        text: "Página Web One Page",
-        key: "precio_web_one_page"
-      },
-      {
-        text: "Web Empresarial",
-        key: "precio_web_empresarial"
-      },
-      {
-        text: "Tienda Online",
-        key: "precio_tienda"
-      },
-      {
-        text: "App Web (PWA)",
-        key: "precio_pwa"
-      },
-      {
-        text: "Chatbot Básico",
-        key: "precio_chatbot_basico"
-      },
-      {
-        text: "Chatbot Avanzado",
-        key: "precio_chatbot_avanzado"
-      },
-      {
-        text: "Seguridad Web",
-        key: "precio_seguridad"
-      },
-      {
-        text: "Hosting y Mantenimiento",
-        key: "precio_hosting"
-      },
-      {
-        text: "Ver Paquetes Recomendados",
-        key: "precios_paquetes"
-      },
-      {
-        text: "🏠 Volver al inicio",
-        key: "saludo"
-      }
-
-    ]
-  },
-
-  faq_menu: {
-    message: "¡Perfecto! La transparencia es clave para nosotros. ¿Sobre qué tema tienes preguntas?",
-    options: [{
-        text: "Nuestro Proceso de Trabajo",
-        key: "faq_proceso_menu"
-      },
-      {
-        text: "Tecnología que Usamos",
-        key: "faq_tecnologia_menu"
-      },
-      {
-        text: "Soporte y Garantías",
-        key: "faq_soporte_menu"
-      },
-      {
-        text: "🏠 Volver al inicio",
-        key: "saludo"
-      }
-
-    ]
-  },
-
-  mas_opciones_menu: {
-    message: "¿Qué más te gustaría saber sobre nosotros?",
-    options: [{
-        text: "📈 Importancia de la Presencia en Internet",
-        key: "presencia_internet"
-      },
-      {
-        text: "🔒 Tips de Ciberseguridad",
-        key: "ciberseguridad"
-      },
-      {
-        text: "💳 Métodos de Pago",
-        key: "payment_info"
-      },
-      {
-        text: "🎓 Nuestras Certificaciones",
-        key: "certificaciones"
-      },
-      {
-        text: "📍 Nuestra Ubicación",
-        key: "ubicacion"
-      },
-      {
-        text: "✉️ Suscríbete al Newsletter",
-        key: "suscribete"
-      },
-      {
-        text: "📱 Contacto y Redes Sociales",
-        key: "contacto"
-      },
-      {
-        text: "🏠 Volver al inicio",
-        key: "saludo"
-      }
-
-    ]
-  },
-
-  // Nivel 2: Contenido Detallado (copiado del original y vinculado)
-  // Servicios
-  servicio_web: {
-    message: "Creamos páginas web profesionales con diseños modernos, SEO optimizado e integración de APIs. ¡Perfectas para convertir visitantes en clientes!",
-    options: [{
-      text: "Ver más",
-      url: "https://ejemplosdepaginasweb.netlify.app/"
-    }, {
-      text: "Volver a servicios",
-      key: "servicios_menu"
+  function updateProgress(step) {
+    conversationState.currentStep = step;
+    const percentage = (step / conversationState.totalSteps) * 100;
+    chatbotProgress.style.width = `${percentage}%`;
+    const container = document.querySelector('.progress-bar-container');
+    if (container) {
+      container.style.opacity = step > 0 ? '1' : '0';
     }
-],
-    nextContext: 'Páginas Web'
-  },
-  servicio_app: {
-    message: "Desarrollamos apps para Android y multiplataforma con notificaciones push y un diseño intuitivo para conectar con tu audiencia.",
-    options: [{
-      text: "Ver más",
-      url: "https://paginawebaplicaciones.netlify.app/"
-    }, {
-      text: "Volver a servicios",
-      key: "servicios_menu"
-    }
-],
-    nextContext: 'Aplicaciones Móviles'
-  },
-  servicio_ecommerce: {
-    message: "Construimos plataformas de e-commerce robustas con pasarelas de pago seguras y gestión de inventario para que vendas sin parar.",
-    options: [{
-      text: "Ver más",
-      url: "https://paginawebdetiendaonline.netlify.app/"
-    }, {
-      text: "Volver a servicios",
-      key: "servicios_menu"
-    }
-],
-    nextContext: 'Tiendas Online'
-  },
-  servicio_chatbot: {
-    message: "Automatizamos la atención al cliente 24/7 con IA. ¡Respuestas al instante para no perder ni un cliente!",
-    options: [{
-      text: "Ver más",
-      url: "https://chatbotsaz.netlify.app/"
-    }, {
-      text: "Volver a servicios",
-      key: "servicios_menu"
-    }
-],
-    nextContext: 'Chatbots Inteligentes'
-  },
-  servicio_seguridad: {
-    message: "Protegemos tu negocio digital con auditorías y protocolos de ciberseguridad. ¡Tu tranquilidad es nuestra prioridad!",
-    options: [{
-      text: "Ver más",
-      url: "https://paginawebseguridadinformatica.netlify.app/"
-    }, {
-      text: "Volver a servicios",
-      key: "servicios_menu"
-    }
-],
-    nextContext: 'Seguridad Informática'
-  },
-  servicio_cloud: {
-    message: "Migramos y optimizamos tu infraestructura en la nube para darte escalabilidad, alta disponibilidad y backups automáticos.",
-    options: [{
-      text: "Ver más",
-      url: "https://paginawebsolucionescloud.netlify.app/"
-    }, {
-      text: "Volver a servicios",
-      key: "servicios_menu"
-    }
-],
-    nextContext: 'Soluciones Cloud'
-  },
-  articles_info: {
-    message: "Artículos AZINNX es una tienda de artículos tecnológicos diseñados por Az InnovationX. Moda y accesorios con estilo tech: sudaderas, termos, gorras, llaveros, mochilas y más. Tecnología que se viste.",
-    options: [{
-      text: "Sí, llévame a los artículos",
-      url: "https://articulos-azinnx.vercel.app/"
-    }, {
-      text: "Volver a servicios",
-      key: "servicios_menu"
-    }
-]
-  },
-  affiliate_info: {
-    message: "¡Genial! Nuestro programa de 'Afiliados' es una oportunidad increíble para colaborar. Gana comisiones mientras ayudas a otros a crecer con nuestras soluciones tecnológicas. ¿Te gustaría saber más?",
-    options: [{
-      text: "Sí, quiero ser afiliado",
-      url: "https://afiliadosaz.netlify.app/"
-    }, {
-      text: "Volver a servicios",
-      key: "servicios_menu"
-    }
-]
-  },
-
-
-  // Precios
-  precio_web_one_page: {
-    message: "Una <strong>Página Web One Page Profesional</strong> tiene un costo de 💰 $2,000 a $3,000 MXN. Es ideal para emprendedores y marcas que buscan una presencia digital moderna y efectiva. Incluye diseño responsivo, secciones estratégicas, integración con redes sociales y formulario de contacto.",
-    options: [{
-      text: "Ver otros precios",
-      key: "precios_menu"
-    }, {
-      text: "🏠 Volver al inicio",
-      key: "saludo"
-    }
-]
-  },
-  precio_web_empresarial: {
-    message: "Una <strong>Página Web Empresarial Premium</strong> cuesta entre 💰 $2,500 y $3,500 MXN. Es un sitio corporativo profesional enfocado en posicionamiento y ventas, con múltiples secciones, SEO básico y copywriting persuasivo.",
-    options: [{
-      text: "Ver otros precios",
-      key: "precios_menu"
-    }, {
-      text: "🏠 Volver al inicio",
-      key: "saludo"
-    }
-]
-  },
-  precio_tienda: {
-    message: "Una <strong>Tienda Online Básica</strong> tiene un precio de 💰 $2,500 a $3,000 MXN. Es la solución perfecta para empezar a vender en línea, con catálogo de productos, carrito de compras, integración de pagos y WhatsApp.",
-    options: [{
-      text: "Ver otros precios",
-      key: "precios_menu"
-    }, {
-      text: "🏠 Volver al inicio",
-      key: "saludo"
-    }
-]
-  },
-  precio_pwa: {
-    message: "Una <strong>App Web Android (PWA)</strong> tiene un costo de 💰 $2,800 a $3,700 MXN. Es una app instalable que ofrece acceso directo desde el celular, con carga rápida y funcionamiento sin conexión.",
-    options: [{
-      text: "Ver otros precios",
-      key: "precios_menu"
-    }, {
-      text: "🏠 Volver al inicio",
-      key: "saludo"
-    }
-]
-  },
-  precio_chatbot_basico: {
-    message: "Un <strong>Chatbot Web Básico</strong> cuesta entre 💰 $500 y $800 MXN. Es ideal para automatizar respuestas a preguntas frecuentes con un flujo de conversación predefinido.",
-    options: [{
-      text: "Ver otros precios",
-      key: "precios_menu"
-    }, {
-      text: "🏠 Volver al inicio",
-      key: "saludo"
-    }
-]
-  },
-  precio_chatbot_avanzado: {
-    message: "Un <strong>Chatbot Avanzado</strong> tiene un precio de 💰 $800 a $1,200 MXN. Incluye menús interactivos, múltiples flujos de conversación e integración con WhatsApp o correo electrónico.",
-    options: [{
-      text: "Ver otros precios",
-      key: "precios_menu"
-    }, {
-      text: "🏠 Volver al inicio",
-      key: "saludo"
-    }
-]
-  },
-  precio_seguridad: {
-    message: "El servicio de <strong>Seguridad Web Básica</strong> cuesta entre 💰 $2,800 y $3,800 MXN. Incluye un diagnóstico de seguridad, un reporte de vulnerabilidades y la implementación de configuraciones esenciales para proteger tu sitio.",
-    options: [{
-      text: "Ver otros precios",
-      key: "precios_menu"
-    }, {
-      text: "🏠 Volver al inicio",
-      key: "saludo"
-    }
-]
-  },
-  precio_hosting: {
-    message: "Nuestro servicio de <strong>Hosting y Mantenimiento</strong> tiene un costo de 💰 $1,200 a $2,000 MXN. Asegura que tu sitio esté siempre en línea, optimizado, seguro y con respaldos periódicos.",
-    options: [{
-      text: "Ver otros precios",
-      key: "precios_menu"
-    }, {
-      text: "🏠 Volver al inicio",
-      key: "saludo"
-    }
-]
-  },
-  precios_paquetes: {
-    message: "¡Claro! Aquí tienes nuestros paquetes recomendados:<br><br><strong>📦 Web + Chatbot Básico:</strong> $3,000 - $3,800 MXN<br><strong>📦 Web + App + Chatbot:</strong> $5,300 - $7,500 MXN<br><br>Todos nuestros planes incluyen hosting y dominio gratis. ✅",
-    options: [{
-      text: "Ver precios individuales",
-      key: "precios_menu"
-    }, {
-      text: "🏠 Volver al inicio",
-      key: "saludo"
-    }
-]
-  },
-
-
-  // FAQ Menus
-  faq_proceso_menu: {
-    message: "¡Perfecto! Nuestro proceso es súper ágil. ¿Qué te gustaría saber?",
-    options: [{
-      text: "¿Cómo empezamos?",
-      key: "faq_proceso_inicio"
-    }, {
-      text: "¿Qué necesitan de mí?",
-      key: "faq_proceso_requisitos"
-    }, {
-      text: "¿Puedo ver el progreso?",
-      key: "faq_proceso_progreso"
-    }, {
-      text: "Volver a FAQ",
-      key: "faq_menu"
-    }
-]
-  },
-  faq_tecnologia_menu: {
-    message: "¡Nos encanta la tecnología! Usamos lo más moderno y eficiente. ¿Qué quieres saber?",
-    options: [{
-      text: "¿Qué tecnologías usan?",
-      key: "faq_tech_stack"
-    }, {
-      text: "¿Mis datos están seguros?",
-      key: "faq_tech_seguridad"
-    }, {
-      text: "Volver a FAQ",
-      key: "faq_menu"
-    }
-]
-  },
-  faq_soporte_menu: {
-    message: "¡Claro! Nuestro compromiso no termina con la entrega. ¿Qué duda tienes sobre el soporte?",
-    options: [{
-      text: "¿Ofrecen capacitación?",
-      key: "faq_soporte_capacitacion"
-    }, {
-      text: "¿Qué incluye el soporte?",
-      key: "faq_soporte_incluye"
-    }, {
-      text: "¿Tienen garantía?",
-      key: "faq_soporte_garantia"
-    }, {
-      text: "Volver a FAQ",
-      key: "faq_menu"
-    }
-]
-  },
-
-  // FAQ Respuestas
-  faq_proceso_inicio: {
-    message: "¡Súper fácil! 1) Nos cuentas tu idea, 2) Te damos presupuesto, 3) Firmamos contrato, 4) ¡Empezamos a crear!",
-    options: [{
-      text: "Volver al menú de Proceso",
-      key: "faq_proceso_menu"
-    }
-]
-  },
-  faq_proceso_requisitos: {
-    message: "Solo necesitamos que nos cuentes tu visión, compartas contenido (textos, imágenes) y que tengas comunicación fluida con nosotros.",
-    options: [{
-      text: "Volver al menú de Proceso",
-      key: "faq_proceso_menu"
-    }
-]
-  },
-  faq_proceso_progreso: {
-    message: "¡Por supuesto! Te enviamos actualizaciones semanales con capturas y avances. Siempre estarás al tanto.",
-    options: [{
-      text: "Volver al menú de Proceso",
-      key: "faq_proceso_menu"
-    }
-]
-  },
-  faq_tech_stack: {
-    message: "Usamos tecnologías modernas: HTML5, CSS3, JavaScript, React, Node.js, Firebase. Siempre lo más actual y eficiente.",
-    options: [{
-      text: "Volver al menú de Tecnología",
-      key: "faq_tecnologia_menu"
-    }
-]
-  },
-  faq_tech_seguridad: {
-    message: "¡Totalmente! Implementamos protocolos de seguridad SSL, encriptación y cumplimos con estándares internacionales de protección de datos.",
-    options: [{
-      text: "Volver al menú de Tecnología",
-      key: "faq_tecnologia_menu"
-    }
-]
-  },
-  faq_soporte_capacitacion: {
-    message: "¡Sí! Incluimos sesión de capacitación para que sepas manejar tu plataforma como un experto.",
-    options: [{
-      text: "Volver al menú de Soporte",
-      key: "faq_soporte_menu"
-    }
-]
-  },
-  faq_soporte_incluye: {
-    message: "Soporte técnico por 30 días, corrección de bugs, y asesoría para dudas básicas sin costo adicional.",
-    options: [{
-      text: "Volver al menú de Soporte",
-      key: "faq_soporte_menu"
-    }
-]
-  },
-  faq_soporte_garantia: {
-    message: "¡Por supuesto! 30 días de garantía total contra defectos de funcionamiento y bugs.",
-    options: [{
-      text: "Volver al menú de Soporte",
-      key: "faq_soporte_menu"
-    }
-]
-  },
-
-  // Más Opciones
-  presencia_internet: {
-    message: "¡Excelente pregunta! Tener presencia en internet es clave. Te recomiendo ver el video que está al principio de nuestra página para que veas todo el potencial. Tener una buena presencia online te permite llegar a más clientes, construir credibilidad y abrir nuevos canales de venta 24/7. ¿Te gustaría que te contáramos cómo podemos ayudarte a lograrlo?",
-    options: [{
-      text: "Ver el video ahora",
-      key: "go_to_inicio"
-    }, {
-      text: "Sí, cuéntame más",
-      key: "servicio_web"
-    }, {
-      text: "Volver a más opciones",
-      key: "mas_opciones_menu"
-    }
-]
-  },
-  ciberseguridad: {
-    message: "La ciberseguridad es súper importante. No se trata solo de tecnología, sino de proteger el corazón de tu negocio: tus datos y la confianza de tus clientes. Una buena estrategia de seguridad evita pérdidas económicas y de reputación. ¿Quieres algunos consejos básicos para empezar?",
-    options: [{
-      text: "Sí, dame consejos",
-      key: "consejos_ciberseguridad"
-    }, {
-      text: "Ver servicios de seguridad",
-      key: "servicio_seguridad"
-    }, {
-      text: "Volver a más opciones",
-      key: "mas_opciones_menu"
-    }
-]
-  },
-  consejos_ciberseguridad: {
-    message: "¡Claro! Aquí van 3 consejos clave:<br>" +
-      "<ul>" +
-      "<li><strong>Contraseñas Fuertes:</strong> Usa combinaciones largas de letras, números y símbolos. ¡No uses '123456'!</li>" +
-      "<li><strong>Autenticación de Dos Pasos (2FA):</strong> Actívala siempre que puedas. Es una capa extra de seguridad.</li>" +
-      "<li><strong>Mantén todo actualizado:</strong> Tu software, antivirus y aplicaciones deben tener siempre la última versión para protegerte de vulnerabilidades.</li>" +
-      "</ul>" +
-      "<p>Proteger tu negocio es más fácil de lo que parece. ¿Te podemos ayudar con algo más?",
-    options: [{
-      text: "Ver servicios de seguridad",
-      key: "servicio_seguridad"
-    }, {
-      text: "Volver a más opciones",
-      key: "mas_opciones_menu"
-    }
-]
-  },
-  payment_info: {
-    message: "¡Claro! Para realizar tu pago, hemos habilitado una sección segura donde puedes elegir tu método preferido. ¿Te gustaría ir ahora?",
-    options: [{
-      text: "Sí, llevar a Pagos Seguros",
-      key: "go_to_pagos_seguros"
-    }, {
-      text: "Volver a más opciones",
-      key: "mas_opciones_menu"
-    }
-]
-  },
-  certificaciones: {
-    message: "Contamos con certificaciones que avalan nuestra seguridad, calidad y excelencia. Son prueba de nuestro compromiso con la innovación y los más altos estándares del sector. ¿Te gustaría verlas?",
-    options: [{
-      text: "Ver certificaciones",
-      url: "https://certificaciones1.netlify.app/"
-    }, {
-      text: "Volver a más opciones",
-      key: "mas_opciones_menu"
-    }
-]
-  },
-  ubicacion: {
-    message: "Nos encontramos en Estado de Mexico Huixquilucan. ¡Nos encantaría que nos dejaras un comentario en nuestra ubicación de Google Maps! Tu feedback nos ayuda a mejorar.",
-    options: [{
-      text: "Dejar un comentario",
-      url: "https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A"
-    }, {
-      text: "Volver a más opciones",
-      key: "mas_opciones_menu"
-    }
-]
-  },
-  suscribete: {
-    message: "¡Qué bueno que te interesa! Suscríbete para no perderte ninguna de nuestras innovaciones, ofertas especiales y contenido exclusivo. ¡Es la mejor forma de estar al día con el futuro de la tecnología!",
-    options: [{
-      text: "¡Claro, me suscribo!",
-      url: "https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header"
-    }, {
-      text: "Volver a más opciones",
-      key: "mas_opciones_menu"
-    }
-]
-  },
-  contacto: {
-    message: "¡Claro! Aquí tienes todas nuestras redes y formas de contacto. ¡Nos encantará saber de ti!",
-    options: [{
-      text: "WhatsApp",
-      url: "https://wa.me/5653915739"
-    }, {
-      text: "Facebook",
-      url: "https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL"
-    }, {
-      text: "Instagram",
-      url: "https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA=="
-    }, {
-      text: "TikTok",
-      url: "https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1"
-    }, {
-      text: "Email",
-      url: "mailto:soporteseguro98@gmail.com"
-    }, {
-      text: "Volver a más opciones",
-      key: "mas_opciones_menu"
-    }
-],
-  },
-
-
-  // Entradas directas (sin menú) y de sistema
-  creator_info: {
-    message: "Fui creado por Az InnovationX, desarrollado por Evaristo San Juan Azuara, un emprendedor y desarrollador apasionado por la innovación tecnológica y la creación de soluciones digitales inteligentes."
-  },
-  request_hours: {
-    message: "¡Claro! Nuestro horario de atención es:<br><strong>Lunes a Sábado:</strong> 09:00 – 22:00 hrs (hora de México)<br><strong>Domingo:</strong> 09:00 – 14:00 hrs (hora de México)"
-  },
-  ejemplos: {
-    message: "¡Claro! Puedes ver algunos de nuestros trabajos en nuestra sección de aplicaciones.",
-    options: [{
-      text: "Ir a la sección de Aplicaciones",
-      url: "https://appsstoreaz.netlify.app/"
-    }, {
-      text: "🏠 Volver al inicio",
-      key: "saludo"
-    }
-]
-  },
-  presupuesto: {
-    message: "¡Excelente! Para darte una cotización más precisa, ¿podrías indicarme tu presupuesto aproximado para este proyecto?",
-    options: [{
-      text: "Menos de $2,000 MXN",
-      budget: "0-2000"
-    }, {
-      text: "$2,000 - $4,000 MXN",
-      budget: "2000-4000"
-    }, {
-      text: "$4,000 - $6,000 MXN",
-      budget: "4000-6000"
-    }, {
-      text: "Más de $6,000 MXN",
-      budget: "6000+"
-    }, {
-      text: "Prefiero no decirlo",
-      budget: "nda"
-    }
-],
-    nextContext: 'capture_budget'
-  },
-  human_escalation: {
-    message: "Entiendo. Para darte una atención más personalizada, te recomiendo hablar directamente con nuestro equipo técnico vía WhatsApp. ¿Quieres que te redirija?",
-    options: [{
-      text: "Sí, llevar a WhatsApp",
-      url: "https://wa.me/5653915739"
-    }, {
-      text: "No, gracias",
-      key: "saludo"
-    }
-],
-    nextContext: 'whatsapp_redirect'
-  },
-}
-;
-
-  const getProactiveSuggestion = () => {
-    const {
-      currentTopic,
-      mentionedServices,
-      history,
-      suggestedQuote,
-      suggestedWebAppAndEcomm,
-      suggestedPortfolio
-    }
- = conversationState;
-    if (!suggestedWebAppAndEcomm && mentionedServices.includes('Páginas Web') && mentionedServices.includes('Tiendas Online')) {
-      conversationState.suggestedWebAppAndEcomm = true;
-      return "Veo que te interesan tanto las páginas web como las tiendas online. ¿Sabías que nuestras tiendas online son sitios web completos con todo lo que necesitas para vender?";
-    }
-
-    const askedAboutPrice = history.some(input => intents.request_quote.some(kw => input.includes(kw)));
-    if (!suggestedQuote && currentTopic && askedAboutPrice) {
-      conversationState.suggestedQuote = true;
-      return `Si quieres, podemos hacer una cotización más detallada para tu proyecto de ${currentTopic}sin ningún compromiso. Solo di "cotizar".`;
-    }
-
-    if (currentTopic && history.filter(i => i.toLowerCase().includes(currentTopic.toLowerCase().split(' ')[0])).length > 1) {
-      if (!suggestedPortfolio) {
-        conversationState.suggestedPortfolio = true;
-        return `Parece que te interesa mucho ${currentTopic}
-. ¿Te gustaría ver algunos ejemplos de nuestros trabajos en esa área?`;
-      }
-
-    }
-
-    return null;
   }
-;
 
-  const toggleChatbot = () => {
-    const isActive = chatbotWindow.classList.toggle('active');
-    iconOpen.style.display = isActive ? 'none' : 'block';
-    iconClose.style.display = isActive ? 'block' : 'none';
-    if (isActive && messagesContainer.children.length === 0) {
-      showBotMessage(knowledgeBase.saludo, 'saludo');
+  /* JULES MEJORA: Paso X de Y en el flujo de cotización */
+  function getStepText() {
+    if (conversationState.currentStep > 0 && conversationState.context) {
+      return `<br><small style="color: var(--accent-cyan)">Paso ${conversationState.currentStep} de ${conversationState.totalSteps}</small>`;
     }
-
+    return '';
   }
-;
 
-  const showBotMessage = (response, key = null) => {
-    // JULES: Validación básica para evitar mensajes vacíos
-    if (!response || (!response.message && !response.options)) return;
-
-    // JULES: Indicador de "escribiendo..." con estilo mejorado
-    const typingIndicator = document.createElement('div');
-    typingIndicator.classList.add('typing-indicator');
-    typingIndicator.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
-    messagesContainer.appendChild(typingIndicator);
+  function showBotMessage(text, chips = []) {
+    // JULES MEJORA: Animación de "escribiendo..."
+    const typing = document.createElement('div');
+    typing.className = 'typing-indicator';
+    typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+    chatbotMessages.appendChild(typing);
     scrollToBottom();
 
     setTimeout(() => {
-      typingIndicator.remove();
-      const botWrapper = document.createElement('div');
-      botWrapper.classList.add('bot-message-wrapper');
+      typing.remove();
 
-      const botAvatar = document.createElement('div');
-      botAvatar.classList.add('bot-avatar-msg');
-      botAvatar.innerHTML = '🤖';
-      botWrapper.appendChild(botAvatar);
+      const wrapper = document.createElement('div');
+      wrapper.className = 'bot-message-wrapper';
 
-      const botMessageElement = document.createElement('div');
-      botMessageElement.classList.add('chat-message', 'bot-message');
-
-      // JULES: Aplicar animación de bienvenida al primer mensaje
-      if (key === 'saludo' && messagesContainer.children.length <= 1) {
-        botMessageElement.classList.add('welcome-msg-anim');
+      let personalizedText = text;
+      if (conversationState.userName && (text.includes('¡Hola') || text.includes('Genial') || text.includes('Perfecto'))) {
+        personalizedText = text.replace(/!/, `, ${conversationState.userName}!`);
       }
 
-    let message = response.message;
+      wrapper.innerHTML = `
+        <div class="bot-avatar-msg">AZ</div>
+        <div class="chat-message bot-message">
+          ${personalizedText}
+          ${getStepText()}
+          <span class="message-time">${getTimestamp()}</span>
+        </div>
+      `;
+      chatbotMessages.appendChild(wrapper);
 
-    // JULES: Ejecutar lógica onShow para persistencia de contexto
-    if (response.onShow) {
-        const extraMessage = response.onShow();
-        if (extraMessage) message = extraMessage + "<br><br>" + message;
-    }
-
-    if (key) {
-        if (key === 'saludo') {
-            conversationState.path = [];
-        }
- else {
-            const keyIndex = conversationState.path.indexOf(key);
-            if (keyIndex !== -1) {
-                // If key exists, we are going back up the tree
-                conversationState.path = conversationState.path.slice(0, keyIndex + 1);
-            }
- else {
-                conversationState.path.push(key);
-            }
-
-        }
-
-    }
-
-
-    // Follow-up question for leaf nodes
-    if (key && key !== 'saludo' && !response.options && !message.includes('?')) {
-      let followUp = "¿Hay algo más en lo que pueda ayudarte?";
-      if (conversationState.currentTopic) {
-        followUp = `¿Tienes alguna otra pregunta sobre ${conversationState.currentTopic}, o te gustaría explorar otro servicio?`;
+      if (chips.length > 0) {
+        const options = document.createElement('div');
+        options.className = 'chat-options';
+        chips.forEach(chip => {
+          const btn = document.createElement('div');
+          btn.className = 'option-chip';
+          btn.innerText = chip;
+          btn.onclick = () => handleUserInput(chip);
+          options.appendChild(btn);
+        });
+        chatbotMessages.appendChild(options);
       }
-
-      message += `<br><br><em>${followUp}
-</em>`;
-    }
-
-    const messageText = document.createElement('p');
-    messageText.innerHTML = message;
-    botMessageElement.appendChild(messageText);
-    if (response.options) {
-      const optionsContainer = document.createElement('div');
-      optionsContainer.classList.add('options');
-      response.options.forEach(option => {
-        const button = document.createElement('button');
-        button.classList.add('option-button');
-        button.textContent = option.text;
-        if (option.key) button.dataset.key = option.key;
-        if (option.url) button.dataset.url = option.url;
-        if (option.budget) button.dataset.budget = option.budget;
-        optionsContainer.appendChild(button);
-      });
-
-      if (conversationState.path.length > 0) {
-          const backKey = conversationState.path.length > 1 ? conversationState.path[conversationState.path.length - 2] : 'saludo';
-          const backButton = document.createElement('button');
-          backButton.classList.add('option-button');
-          backButton.textContent = '⬅️ Volver';
-          backButton.dataset.key = backKey;
-          optionsContainer.appendChild(backButton);
-      }
-
-      if (conversationState.path.length > 0 && conversationState.path[0] !== 'saludo') {
-          const homeButton = document.createElement('button');
-          homeButton.classList.add('option-button');
-          homeButton.textContent = '🏠 Menú Principal';
-          homeButton.dataset.key = 'saludo';
-          optionsContainer.appendChild(homeButton);
-      }
-
       
-      botMessageElement.appendChild(optionsContainer);
-    }
-
-      botWrapper.appendChild(botMessageElement);
-      messagesContainer.appendChild(botWrapper);
       scrollToBottom();
-      lastBotQuestionKey = response.nextContext || key;
-      if (response.nextContext && !conversationState.mentionedServices.includes(response.nextContext)) {
-        conversationState.mentionedServices.push(response.nextContext);
-        conversationState.currentTopic = response.nextContext;
+      /* JULES MEJORA: Sonido sutil al recibir mensaje */
+      if (conversationState.soundEnabled) {
+        const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
+        audio.volume = 0.4;
+        audio.play().catch(() => {});
       }
-    }, 700);
-  }
-;
-
-  const showUserMessage = (message) => {
-    const userMessageElement = document.createElement('div');
-    userMessageElement.classList.add('chat-message', 'user-message');
-    userMessageElement.textContent = message;
-    messagesContainer.appendChild(userMessageElement);
-    scrollToBottom();
-  }
-;
-
-  const handleInput = (input) => {
-    // JULES: Validación de entrada (vaciía o muy larga)
-    const trimmedInput = input.trim();
-    if (!trimmedInput) return;
-
-    if (trimmedInput.length > 400) {
-      showUserMessage(trimmedInput.substring(0, 100) + "...");
-      showBotMessage({
-        message: "¡Uy! Ese mensaje es un poco largo para procesarlo. ¿Podrías resumirlo o decirme en qué servicio te interesa enfocarte? 😅"
-      });
-      inputField.value = '';
-      return;
-    }
-
-    showUserMessage(trimmedInput);
-    conversationState.history.push(trimmedInput.toLowerCase());
-    inputField.value = '';
-    inputField.disabled = true;
-
-    setTimeout(() => {
-      let response;
-      let responseKey = null;
-      const lowerCaseInput = input.toLowerCase().trim();
-
-      // JULES: Detección de intención en texto libre
-      // JULES: Diccionario de sinónimos y palabras clave para mejor procesamiento de texto libre
-      const intentMap = {
-        precio: ['precio', 'costo', 'cuánto', 'cuanto', 'tarifa', 'cobran', 'plan', 'presupuesto', 'cotizar', 'cotización', 'vale', 'sale'],
-        contacto: ['contacto', 'hablar', 'llamar', 'email', 'correo', 'whatsapp', 'teléfono', 'donde estan', 'ubicacion', 'redes'],
-        servicios: ['servicio', 'qué hacen', 'que hacen', 'ofrecen', 'página web', 'app', 'tienda', 'aplicación', 'software', 'desarrollo', 'crean'],
-        proceso: ['proceso', 'cómo funciona', 'como funciona', 'pasos', 'tiempo', 'tardan', 'metodología', 'metodologia'],
-        pago: ['pago', 'pagar', 'transferencia', 'tarjeta', 'paypal', 'depósito', 'deposito', 'cuenta'],
-        afiliado: ['afiliado', 'afiliarme', 'referido', 'comisión', 'ganar dinero', 'socios', 'socio', 'partnership'],
-        saludo: ['hola', 'buen día', 'buenas', 'hey', 'inicio', 'empezar', 'menú', 'menu']
-      };
-
-      if (lastBotQuestionKey) {
-        if (affirmativeAnswers.includes(lowerCaseInput)) {
-          switch (lastBotQuestionKey) {
-            case 'presupuesto_offer':
-              responseKey = 'presupuesto';
-              break;
-            case 'contact_offer':
-              responseKey = 'contacto';
-              break;
-            case 'whatsapp_redirect':
-              window.open("https://wa.me/5653915739", '_blank');
-              response = {
-                message: "¡Perfecto! Te estoy redirigiendo a WhatsApp. Si no se abre la ventana, puedes hacer clic aquí: <a href='https://wa.me/5653915739' target='_blank'>Abrir WhatsApp</a>"
-              }
-;
-              break;
-          }
-
-        }
- else if (negativeAnswers.includes(lowerCaseInput)) {
-          responseKey = "saludo";
-        }
-
-      }
-
-
-      if (!response) {
-        for (const intent in intents) {
-          if (intents[intent].some(kw => lowerCaseInput.includes(kw))) {
-            switch (intent) {
-              case 'request_payment':
-                responseKey = 'payment_info';
-                break;
-              case 'request_quote':
-                responseKey = 'precios_menu';
-                break;
-              case 'request_contact':
-                responseKey = 'contacto';
-                break;
-              case 'request_examples':
-                responseKey = 'ejemplos';
-                break;
-              case 'frustration':
-                responseKey = 'human_escalation';
-                break;
-              case 'request_service_info':
-                responseKey = 'servicios_menu';
-                break;
-              case 'greet':
-                responseKey = 'saludo';
-                break;
-              case 'request_online_presence_info':
-                responseKey = 'presencia_internet';
-                break;
-              case 'request_cybersecurity_info':
-                responseKey = 'ciberseguridad';
-                break;
-              case 'request_creator_info':
-                responseKey = 'creator_info';
-                break;
-              case 'request_hours':
-                responseKey = 'request_hours';
-                break;
-            }
-
-            if (responseKey) break;
-          }
-
-        }
-
-      }
-
-
-      const history = conversationState.history;
-      if (!response && !responseKey && history.length > 2) {
-        const lastThree = history.slice(-3);
-        if (lastThree[0] === lastThree[1] && lastThree[1] === lastThree[2]) {
-          response = JSON.parse(JSON.stringify(knowledgeBase['human_escalation']));
-          response.message = "Parece que no nos estamos entendiendo. " + response.message;
-          conversationState.history = [];
-        }
-
-      }
-
-
-      // JULES: Mapeo de intenciones a llaves de knowledgeBase
-      if (!response && !responseKey) {
-        for (const [key, keywords] of Object.entries(intentMap)) {
-          if (keywords.some(kw => lowerCaseInput.includes(kw))) {
-            const mapToKB = {
-              precio: 'precios_menu',
-              contacto: 'contacto',
-              servicios: 'servicios_menu',
-              proceso: 'faq_proceso_menu',
-              pago: 'payment_info',
-              afiliado: 'affiliate_info',
-              saludo: 'saludo'
-            };
-            responseKey = mapToKB[key];
-            break;
-          }
-        }
-      }
-
-      if (responseKey) {
-        response = knowledgeBase[responseKey];
-        misunderstandingCounter = 0;
-        conversationState.userFrustration = 0;
-      }
-
-
-      if (!response) {
-        // JULES: Respuesta amigable si no se entiende
-        misunderstandingCounter++;
-        conversationState.userFrustration++;
-        if (misunderstandingCounter >= 2 || conversationState.userFrustration >= 3) {
-          response = knowledgeBase['human_escalation'];
-          misunderstandingCounter = 0;
-        }
- else {
-          response = {
-            message: "No estoy seguro de entender tu pregunta. ¿Quieres que te conecte con un asesor en WhatsApp?",
-            options: [
-              { text: "Hablar con asesor 📱", url: "https://wa.me/5653915739" },
-              { text: "Ver Menú Principal 🏠", key: "saludo" }
-            ]
-          };
-        }
-
-      }
-
-
-      const proactiveSuggestion = getProactiveSuggestion();
-      if (proactiveSuggestion && !response.options) {
-        response.message += `<br><br><div style="border-left: 3px solid #00d4ff; padding-left: 10px; margin-top: 10px; opacity: 0.9;"><em>Sugerencia: ${proactiveSuggestion}
-</em></div>`;
-      }
-
-
-      if (response) {
-        showBotMessage(response, responseKey);
-      }
-
-      inputField.disabled = false;
-      inputField.focus();
     }, 800);
   }
-;
 
-  const scrollToBottom = () => {
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  function showUserMessage(text) {
+    const msg = document.createElement('div');
+    msg.className = 'chat-message user-message';
+    msg.innerHTML = `${text}<span class="message-time">${getTimestamp()}</span>`;
+    chatbotMessages.appendChild(msg);
+    scrollToBottom();
   }
-;
 
-  
-  
-  inputForm.addEventListener('submit', (e) => {
+  function handleUserInput(input) {
+    if (!input.trim()) return;
+    showUserMessage(input);
+
+    // JULES MEJORA: Guardar nombre si se menciona con regex más robusto
+    const nameMatch = input.match(/(?:me llamo|mi nombre es|soy)\s+([a-zA-ZáéíóúÁÉÍÓÚñÑ]+)/i);
+    if (nameMatch && nameMatch[1]) {
+      const name = nameMatch[1].trim();
+      conversationState.userName = name;
+      localStorage.setItem('chat_user_name', name);
+    }
+
+    // JULES MEJORA: Prioridad a flujos específicos y botones
+    if (input === '📱 Sí, ir a WhatsApp') {
+      window.open('https://wa.me/525653915739', '_blank');
+      return;
+    } else if (input === '🏠 Menú Principal' || input === 'Reiniciar') {
+      restartConversation();
+      return;
+    } else if (input === '💰 Ver Planes') {
+       window.location.hash = '#precios';
+       chatbotWindow.classList.remove('active');
+       return;
+    } else if (input === '🚀 Iniciar Cotización') {
+       startQuotation();
+       return;
+    } else if (conversationState.context === 'quote_step_1') {
+       conversationState.projectType = input;
+       updateProgress(2);
+       conversationState.context = 'quote_step_2';
+       showBotMessage('¡Entendido! ¿Cuál es tu presupuesto estimado para este proyecto?', ['$2k - $5k', '$5k - $15k', '$15k+']);
+    } else if (conversationState.context === 'quote_step_2') {
+       conversationState.budget = input;
+       updateProgress(3);
+       conversationState.context = 'quote_step_3';
+       showBotMessage('¡Perfecto! Ya casi terminamos. Por último, ¿cuál es tu nombre para personalizar tu propuesta?', []);
+    } else if (conversationState.context === 'quote_step_3') {
+       conversationState.userName = input;
+       localStorage.setItem('chat_user_name', input);
+       updateProgress(3);
+       conversationState.context = null;
+       showBotMessage(`¡Muchas gracias, ${input}! He registrado tu interés en un proyecto de ${conversationState.projectType}. ¿Te gustaría que un experto te contacte por WhatsApp para finalizar los detalles?`, ['📱 Sí, hablar por WhatsApp', '🏠 Volver al inicio']);
+       return;
+    }
+
+    // Si no es un flujo específico, buscar por intención
+    let found = false;
+    for (const intent of intents) {
+      if (isMatch(input, intent.keywords)) {
+        showBotMessage(intent.response, intent.chips);
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      // JULES MEJORA: Fallback con escalado a WhatsApp
+      showBotMessage('No estoy seguro de entender eso, pero me encantaría ayudarte. ¿Te gustaría hablar con un asesor humano por WhatsApp?', ['📱 Sí, ir a WhatsApp', '🏠 Menú Principal']);
+    }
+  }
+
+  function startQuotation() {
+    updateProgress(1);
+    conversationState.context = 'quote_step_1';
+    showBotMessage('¡Genial! Vamos a cotizar tu proyecto. Paso 1: ¿Qué tipo de solución necesitas?', ['💻 Web Profesional', '🛒 Tienda Online', '📱 App Móvil']);
+  }
+
+  function restartConversation() {
+    chatbotMessages.innerHTML = '';
+    updateProgress(0);
+    showBotMessage('¡Conversación reiniciada! ¿Cómo puedo apoyarte hoy?', ['💻 Página Web', '🛒 Tienda Online', '📱 App Móvil', '💰 Ver Precios']);
+  }
+
+  chatbotToggle.onclick = () => {
+    chatbotWindow.classList.toggle('active');
+    document.querySelector('.notification-badge').style.display = 'none';
+    if (chatbotMessages.children.length === 0) {
+      const hour = new Date().getHours();
+      let greeting = "¡Hola!";
+      if (hour < 12) greeting = "¡Buen día!";
+      else if (hour < 19) greeting = "¡Buenas tardes!";
+      else greeting = "¡Buenas noches!";
+
+      showBotMessage(`${greeting} Bienvenido a Az InnovationX. ¿Qué proyecto tienes en mente?`, ['💻 Página Web', '🛒 Tienda Online', '📱 App Móvil', '💰 Ver Precios']);
+    }
+  };
+
+  chatbotCloseBtn.onclick = () => chatbotWindow.classList.remove('active');
+  chatbotRestartBtn.onclick = restartConversation;
+
+  /* JULES MEJORA: Lógica de sonido activable */
+  const soundToggle = document.getElementById('chatbot-sound-toggle');
+  const soundOn = document.getElementById('sound-icon-on');
+  const soundOff = document.getElementById('sound-icon-off');
+
+  function updateSoundUI() {
+    soundOn.style.display = conversationState.soundEnabled ? 'block' : 'none';
+    soundOff.style.display = conversationState.soundEnabled ? 'none' : 'block';
+  }
+  updateSoundUI();
+
+  soundToggle.onclick = () => {
+    conversationState.soundEnabled = !conversationState.soundEnabled;
+    localStorage.setItem('chat_sound', conversationState.soundEnabled);
+    updateSoundUI();
+  };
+
+  chatbotInputForm.onsubmit = (e) => {
     e.preventDefault();
-    const userInput = inputField.value.trim();
-    if (userInput) {
-      handleInput(userInput);
-    }
-
-  });
-
-  messagesContainer.addEventListener('click', (e) => {
-    if (e.target.classList.contains('option-button')) {
-      const key = e.target.dataset.key;
-      const url = e.target.dataset.url;
-      const budget = e.target.dataset.budget;
-      const text = e.target.textContent;
-
-      showUserMessage(text);
-      conversationState.history.push(text.toLowerCase().trim());
-      inputField.disabled = true;
-
-      setTimeout(() => {
-        // JULES: Persistencia de contexto (presupuesto y servicio)
-        if (budget) conversationState.budgetRange = budget;
-        if (key && knowledgeBase[key] && knowledgeBase[key].nextContext) {
-            conversationState.currentTopic = knowledgeBase[key].nextContext;
-        }
-
-        if (url) {
-          window.open(url, '_blank');
-          showBotMessage({
-            message: "Te he abierto el enlace en una nueva pestaña. ¿Necesitas algo más?",
-            options: [{ text: "⬅️ Volver", key: conversationState.path[conversationState.path.length-1] || 'saludo' }
-]
-          });
-        }
- else if (key === 'go_to_precios') {
-            const preciosSection = document.getElementById('precios');
-            if (preciosSection) {
-                preciosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-
-            closeChatbot();
-        }
- else if (key === 'go_to_pagos_seguros') {
-          const pagosSection = document.getElementById('pagos');
-          if (pagosSection) {
-            pagosSection.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-
-          closeChatbot();
-        }
- else if (key === 'go_to_inicio') {
-          const inicioSection = document.getElementById('inicio');
-          if (inicioSection) {
-            inicioSection.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-
-          closeChatbot();
-        }
- else if (key) {
-          const response = knowledgeBase[key];
-          if (response) {
-            showBotMessage(response, key);
-          }
-
-        }
- else if (budget) {
-          conversationState.budgetRange = text;
-          let tailoredResponse = `¡Entendido! Con un presupuesto de ${text}, podemos explorar varias opciones. Para darte los detalles exactos, lo mejor es que hables con un experto. ¿Quieres que te dirija a WhatsApp para una cotización formal?`;
-          showBotMessage({
-            message: tailoredResponse,
-            options: [{
-              text: "Sí, llevar a WhatsApp",
-              url: "https://wa.me/5653915739"
-            }, {
-              text: "No, gracias",
-              key: "saludo"
-            }
-],
-            nextContext: 'whatsapp_redirect'
-          });
-        }
-
-        inputField.disabled = false;
-        inputField.focus();
-      }, 400);
-    }
-
-  });
+    const val = chatbotInput.value;
+    handleUserInput(val);
+    chatbotInput.value = '';
+  };
 
   // --- Payment Section Logic ---
   function showPaymentInstructions() {
