@@ -1,0 +1,16 @@
+{
+  "name": "Az InnovationX",
+  "short_name": "AZINNX",
+  "description": "Donde las Ideas Cobran Vida - Soluciones Tecnológicas",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A2463",
+  "theme_color": "#3E92CC",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
