@@ -300,6 +300,10 @@
     100% { transform: scale(1) rotateY(0deg); opacity: 1; }
 
 }
+html {
+  scroll-behavior: smooth;
+}
+
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body {
   font-family: 'Inter', sans-serif;
@@ -625,15 +629,12 @@ to{opacity:1;transform:translateY(0)}
 100%{transform:scale(1);box-shadow:0 6px 20px rgba(62, 146, 204,0.6)}
 }
 #chatbot-toggle:hover{transform:scale(1.1) rotate(10deg);box-shadow:0 8px 25px rgba(62, 146, 204,0.8)}
-#chatbot-toggle::before,#contact-button::before{position:absolute;top:-15px;left:-5px;font-size:28px;transform:rotate(-15deg);animation:hat-shake 2s infinite ease-in-out;z-index:100000}
+#chatbot-toggle::before{position:absolute;top:-15px;left:-5px;font-size:28px;transform:rotate(-15deg);animation:hat-shake 2s infinite ease-in-out;z-index:100000}
 @keyframes hat-shake{0%,100%{transform:rotate(-15deg)}
 50%{transform:rotate(5deg) translateX(2px)}
 }
 #chatbot-toggle .icon-open{font-size:24px;color:white;display:flex !important}
 #chatbot-toggle .icon-close{display:none;font-size:24px;color:white}
-#contact-button{width:55px;height:55px;background:linear-gradient(45deg,var(--primary-electric-blue),var(--accent-gold));border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 20px rgba(62, 146, 204,0.6);transition:all .3s ease;border:0;animation:pulse-animation 2s infinite;margin-bottom:15px;text-decoration:none}
-#contact-button:hover{transform:scale(1.1) rotate(10deg);box-shadow:0 8px 25px rgba(62, 146, 204,0.8)}
-#contact-button .icon-contact{font-size:24px;color:white}
 #chatbot-window {
   width: 90vw;
   max-width: 420px;
@@ -654,7 +655,7 @@ to{opacity:1;transform:translateY(0)}
   transition: var(--transition-smooth);
 }
  #chatbot-window.expanded{position:fixed;top:2.5vh;bottom:2.5vh;left:2.5vw;right:2.5vw;width:auto;height:auto;max-width:100%;max-height:100%;margin:0;transform:none}
-#chatbot-container:has(#chatbot-window.expanded) #contact-button,#chatbot-container:has(#chatbot-window.expanded) #chatbot-toggle{display:none}
+#chatbot-container:has(#chatbot-window.expanded) #chatbot-toggle{display:none}
 #chatbot-window.active{display:flex}
 @keyframes slideInUp-chat{from{opacity:0;transform:translateY(20px) scale(0.95)}
 to{opacity:1;transform:translateY(0) scale(1)}
@@ -687,6 +688,30 @@ to{opacity:1;transform:translateY(0)}
   border-bottom-left-radius: 4px;
   border: 1px solid rgba(62, 146, 204, 0.3);
   color: var(--neutral-white);
+}
+
+/* JULES: Estilos para el indicador de escribiendo */
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+  width: fit-content;
+}
+
+.typing-indicator .dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  animation: typing-bounce 1.4s infinite ease-in-out;
+}
+
+.typing-indicator .dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
 }
 
 .user-message {
@@ -834,10 +859,10 @@ to{transform:translateY(0);opacity:1}
 #certificaciones .section-title{background:linear-gradient(45deg,#fff,var(--accent-gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .service-card-button{display:inline-block;padding:10px 20px;margin-top:1rem;background:linear-gradient(45deg,var(--primary-electric-blue),var(--accent-gold));color:white;text-decoration:none;border-radius:50px;font-weight:600;transition:all .3s ease;box-shadow:0 4px 15px rgba(62, 146, 204,0.4);border:0;cursor:pointer;font-size:.9rem}
 .service-card-button:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(62, 146, 204,0.6)}
-#pagos-seguros{position:relative;background-image:url('https://i.ibb.co/0jmSgqzc/PP-2021.gif');background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:scroll;padding:6rem 0;text-align:center}
-#pagos-seguros::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(10,15,30,0.95) 0,rgba(26,26,46,0.85) 100%);z-index:1}
-#pagos-seguros .container{position:relative;z-index:2;color:#fff}
-#pagos-seguros .payment-description{text-align:center;max-width:800px;margin-left:auto;margin-right:auto;margin-bottom:2rem;opacity:.9;line-height:1.6}
+#pagos{position:relative;background-image:url('https://i.ibb.co/0jmSgqzc/PP-2021.gif');background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:scroll;padding:6rem 0;text-align:center}
+#pagos::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(10,15,30,0.95) 0,rgba(26,26,46,0.85) 100%);z-index:1}
+#pagos .container{position:relative;z-index:2;color:#fff}
+#pagos .payment-description{text-align:center;max-width:800px;margin-left:auto;margin-right:auto;margin-bottom:2rem;opacity:.9;line-height:1.6}
 .contact-map-section{background-image:url('https://i.ibb.co/84ffsSxc/Power-BI-gif-header.gif');background-size:cover;background-position:center;background-repeat:no-repeat;position:relative;padding:5rem 0;border-top:1px solid rgba(62, 146, 204,0.3)}
 .contact-map-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,15,30,0.95);z-index:1}
 .map-contact-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
@@ -918,7 +943,7 @@ to{transform:translateY(0);opacity:1}
 /* OPTIMIZACIÓN: CSS minificado para reducir el tamaño del archivo y acelerar la carga */
 .header-controls button:hover{background-color:rgba(255,255,255,0.1);transform:scale(1.1)}
 #chatbot-header .bot-info{margin-right:auto}
- #chatbot-container:has(#chatbot-window.expanded) #contact-button,#chatbot-container:has(#chatbot-window.expanded) #chatbot-toggle{display:none}
+ #chatbot-container:has(#chatbot-window.expanded) #chatbot-toggle{display:none}
 
 /* Ocultar menú móvil en desktop */
 .nav-links {
@@ -1226,7 +1251,7 @@ to{transform:translateY(0);opacity:1}
       <ul class="nav-menu-horizontal">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#pasos">Proceso</a></li>
+        <li><a href="#proceso">Proceso</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#certificaciones">Certificaciones</a></li>
         
@@ -1235,15 +1260,15 @@ to{transform:translateY(0);opacity:1}
             Recursos <span class="arrow">▼</span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="https://appsstoreaz.netlify.app/" target="_blank" rel="noopener noreferrer">Aplicaciones</a></li>
-            <li><a href="https://articulos-azinnx.vercel.app/" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="https://uxwing.com/wp-content/themes/uxwing/download/seo-marketing/articles-icon.png" alt="Articulos Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px;">Articulos AZINNX</a></li>
+            <li><a href="#aplicaciones">Aplicaciones</a></li>
+            <li><a href="#articulos">Articulos</a></li>
             <li><a href="https://azinnovationx.blogspot.com/" target="_blank" rel="noopener noreferrer">Blog</a></li>
-            <li><a href="https://afiliadosaz.netlify.app/" target="_blank" rel="noopener noreferrer">Afíliate</a></li>
+            <li><a href="#afiliate">Afíliate</a></li>
           </ul>
         </li>
         
         <li><a href="#precios">Precios</a></li>
-        <li><a href="#pagos-seguros">Pagar</a></li>
+        <li><a href="#pagos">Pagar</a></li>
         <li><a href="#contacto" class="nav-cta">Contacto</a></li>
       </ul>
       
@@ -1256,15 +1281,15 @@ to{transform:translateY(0);opacity:1}
       <ul class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#pasos">Proceso</a></li>
+        <li><a href="#proceso">Proceso</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#certificaciones">Certificaciones</a></li>
-        <li><a href="https://appsstoreaz.netlify.app/" target="_blank" rel="noopener noreferrer">Aplicaciones</a></li>
-        <li><a href="https://articulos-azinnx.vercel.app/" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="https://uxwing.com/wp-content/themes/uxwing/download/seo-marketing/articles-icon.png" alt="Articulos Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px;">Articulos AZINNX</a></li>
+        <li><a href="#aplicaciones">Aplicaciones</a></li>
+        <li><a href="#articulos">Articulos</a></li>
         <li><a href="#precios">Precios</a></li>
-        <li><a href="#pagos-seguros">Realiza tu pago</a></li>
+        <li><a href="#pagos">Realiza tu pago</a></li>
         <li><a href="https://azinnovationx.blogspot.com/" target="_blank" rel="noopener noreferrer">BLOG</a></li>
-        <li><a href="https://afiliadosaz.netlify.app/" target="_blank" rel="noopener noreferrer">Afiliate</a></li>
+        <li><a href="#afiliate">Afíliate</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -1353,7 +1378,7 @@ to{transform:translateY(0);opacity:1}
     </section>
 
 
-    <section id="pasos" class="steps-section" style="background-image: url('https://i.ibb.co/0jXB2q0N/original-6324df23375f93646b5c1504758f5572.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+    <section id="proceso" class="steps-section" style="background-image: url('https://i.ibb.co/0jXB2q0N/original-6324df23375f93646b5c1504758f5572.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
       <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
       <div class="container" style="position: relative; z-index: 2;">
         <h2 class="section-title">Nuestro Proceso Simplificado</h2>
@@ -1427,7 +1452,32 @@ to{transform:translateY(0);opacity:1}
         </div>
       </div>
     </section>
-        <section id="precios">
+
+    <!-- JULES: Sección Aplicaciones -->
+    <section id="aplicaciones" class="container" style="background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; padding: 6rem 0;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 1;"></div>
+      <div style="position: relative; z-index: 2; text-align: center;">
+        <h2 class="section-title">Nuestras Aplicaciones</h2>
+        <p style="max-width: 800px; margin: 0 auto 2rem; opacity: 0.9;">Explora nuestra galería de aplicaciones móviles y soluciones digitales diseñadas para resolver problemas reales.</p>
+        <div style="text-align: center;">
+          <a href="https://appsstoreaz.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ver App Store</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- JULES: Sección Artículos -->
+    <section id="articulos" style="background-image: url('https://i.ibb.co/0jXB2q0N/original-6324df23375f93646b5c1504758f5572.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; padding: 6rem 0;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(10, 36, 99, 0.85); z-index: 1;"></div>
+      <div class="container" style="position: relative; z-index: 2; text-align: center;">
+        <h2 class="section-title">Artículos AZINNX</h2>
+        <p style="max-width: 800px; margin: 0 auto 2rem; opacity: 0.9;">Moda y accesorios tecnológicos con estilo único. Descubre nuestra exclusiva tienda de artículos diseñados por Az InnovationX.</p>
+        <div style="text-align: center;">
+          <a href="https://articulos-azinnx.vercel.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ir a la Tienda</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="precios">
       <div class="container">
         <h2 class="section-title">Planes y Precios</h2>
         <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem;">
@@ -1439,7 +1489,7 @@ to{transform:translateY(0);opacity:1}
       </div>
     </section>
   
-    <section id="pagos-seguros" class="fade-in">
+    <section id="pagos" class="fade-in">
       <div class="container">
         <h2 class="section-title">Realiza tu Pago</h2>
         <p class="payment-description">Elige tu método de pago preferido. Ofrecemos opciones seguras para tu comodidad.</p>
@@ -1448,73 +1498,125 @@ to{transform:translateY(0);opacity:1}
         </div>
       </div>
     </section>
+
+    <!-- JULES: Sección Afíliate -->
+    <section id="afiliate" class="container" style="background-image: url('https://i.ibb.co/sdFwRrvN/68747470733a2f2f63646e2e64726962626c652e636f6d2f75736572732f373337393239322f73637265656e73686f7473.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; padding: 6rem 0;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
+      <div style="position: relative; z-index: 2; text-align: center;">
+        <h2 class="section-title">Programa de Afiliados</h2>
+        <p style="max-width: 800px; margin: 0 auto 2rem; opacity: 0.9;">Gana comisiones mientras ayudas a otros a crecer con nuestras soluciones tecnológicas. Únete a nuestra red de colaboradores.</p>
+        <div style="text-align: center;">
+          <a href="https://afiliadosaz.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ser Afiliado</a>
+        </div>
+      </div>
+    </section>
 </main>
-<div id="contacto" class="contact-map-section">
+<section id="contacto" class="contact-map-section" style="background-image: url('https://i.ibb.co/8D12BWNX/45405a22b539b3cbfe5fe96846324dc1.gif');">
   <div class="container">
-    <div class="map-contact-grid">
-      <!-- Mapa -->
-      <div class="map-container">
-        <img loading="lazy" src="https://i.ibb.co/bMCfFV4W/Generated-Image-December-14-2025-9-34-AM.png"
-alt="Mapa de ubicación de Az InnovationX en Huixquilucan, Estado de México."
-style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border: 0;">
-      </div>
+    <h2 class="section-title">Contacto Profesional</h2>
+    <div class="map-contact-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
 
-      <!-- Información de Contacto -->
-      <div class="contact-info-corporate">
-        <h3 class="contact-title">Información de Contacto</h3>
+      <!-- JULES: Información de Contacto Visual -->
+      <div class="contact-info-corporate" style="background: rgba(10, 36, 99, 0.7); backdrop-filter: blur(15px); border-radius: 24px; padding: 2.5rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+        <h3 class="contact-title" style="color: var(--accent-cyan); margin-bottom: 2rem;">Hablemos de tu Proyecto</h3>
         
-        <div class="contact-item-corporate">
-          <div class="contact-icon-wrapper" style="font-size: 24px;">
-            📍
+        <div class="contact-item-corporate" style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+          <div class="contact-icon-wrapper" style="width: 50px; height: 50px; background: linear-gradient(45deg, #25D366, #128C7E); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+            📱
           </div>
           <div class="contact-details">
-            <h4>Ubicación</h4>
-            <p>Az InnovationX</p>
-            <p>Estado de México, Huixquilucan</p>
-            <a href="https://maps.app.goo.gl/VrvD1Z7wKA4YrFU1A" target="_blank" rel="noopener noreferrer">
-              ¡Déjanos un comentario! ⭐
-            </a>
+            <h4 style="color: #fff; margin-bottom: 0.3rem;">WhatsApp</h4>
+            <a href="https://wa.me/5653915739" target="_blank" rel="noopener noreferrer" style="color: var(--primary-electric-blue); font-weight: 600; text-decoration: none;">+52 56 5391 5739</a>
+            <p style="font-size: 0.85rem; opacity: 0.8;">Atención inmediata</p>
           </div>
         </div>
 
-        <div class="contact-item-corporate">
-          <div class="contact-icon-wrapper" style="font-size: 24px;">
-             <img loading="lazy" src="https://i.ibb.co/fVcKnZC8/images.jpg" alt="images" style="width: 24px; height: 24px;">
+        <div class="contact-item-corporate" style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+          <div class="contact-icon-wrapper" style="width: 50px; height: 50px; background: linear-gradient(45deg, var(--primary-electric-blue), var(--accent-gold)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+            📧
           </div>
           <div class="contact-details">
-            <h4>WhatsApp</h4>
-            <a href="https://wa.me/5653915739?text=Hola%2C%20buen%20d%C3%ADa.%20He%20llegado%20a%20este%20contacto%20desde%20su%20p%C3%A1gina%20web.%20Me%20encuentro%20interesado%20en%20conocer%20m%C3%A1s%20acerca%20de%20sus%20servicios.%20%C2%BFPodr%C3%ADa%20brindarme%20informaci%C3%B3n%20para%20continuar%3F%20Quedo%20atento.">+52 56 5391 5739</a>
-            <p>¡Escríbenos ahora!</p>
+            <h4 style="color: #fff; margin-bottom: 0.3rem;">Email</h4>
+            <a href="#" id="email-link" data-email="soporteseguro98@gmail.com" style="color: var(--primary-electric-blue); font-weight: 600; text-decoration: none;">soporteseguro98@gmail.com</a>
+            <p style="font-size: 0.85rem; opacity: 0.8;">Click para copiar</p>
           </div>
         </div>
 
-        <div class="contact-item-corporate">
-          <div class="contact-icon-wrapper" style="font-size: 24px;">
-            <img loading="lazy" src="https://i.ibb.co/rf5DCSyX/images.png" alt="images" border="0" style="width: 24px; height: 24px;">
+        <div class="contact-item-corporate" style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+          <div class="contact-icon-wrapper" style="width: 50px; height: 50px; background: linear-gradient(45deg, #3b5998, #8b9dc3); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+            🌐
           </div>
           <div class="contact-details">
-            <h4>Gmail</h4>
-            <a href="mailto:soporteseguro98@gmail.com">soporteseguro98@gmail.com</a>
-            <p>Respuesta en 24 horas</p>
+            <h4 style="color: #fff; margin-bottom: 0.8rem;">Síguenos</h4>
+            <div class="social-icons" style="display: flex; gap: 1rem;">
+              <a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer"><img src="https://i.ibb.co/r2FCqXxN/facebook-fb.gif" alt="Facebook" style="width: 30px; height: 30px;"></a>
+              <a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank" rel="noopener noreferrer"><img src="https://i.ibb.co/svGfRtTx/200.gif" alt="Instagram" style="width: 30px; height: 30px;"></a>
+              <a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank" rel="noopener noreferrer"><img src="https://i.ibb.co/ynv3hw6X/tiktok-logo-logo.gif" alt="TikTok" style="width: 30px; height: 30px;"></a>
+            </div>
           </div>
         </div>
 
-        <div class="contact-item-corporate">
-          <div class="contact-icon-wrapper" style="font-size: 24px;">
-            🕒
-          </div>
-          <div class="contact-details">
-            <h4>Horario de Atención</h4>
-            <p>Lunes a Sábado: 09:00 – 22:00 hrs (hora de México)</p>
-            <p>Domingo: 09:00 – 14:00 hrs (hora de México)</p>
-          </div>
+        <div style="margin-top: 3rem; border-radius: 15px; overflow: hidden; height: 200px; border: 1px solid rgba(255,255,255,0.1);">
+           <img src="https://i.ibb.co/bMCfFV4W/Generated-Image-December-14-2025-9-34-AM.png" alt="Mapa" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
       </div>
+
+      <!-- JULES: Formulario de Solicitudes Completo -->
+      <div class="contact-form-container" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border-radius: 24px; padding: 2.5rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+        <form id="contactForm" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nombre Completo *</label>
+              <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+            </div>
+            <div class="form-row" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Teléfono / WhatsApp</label>
+                <input type="tel" id="phone" name="phone" placeholder="55 1234 5678">
+              </div>
+            </div>
+            <div class="form-row" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label for="service">Servicio de Interés</label>
+                <select id="service" name="service">
+                  <option value="Página web">Página web</option>
+                  <option value="Tienda online">Tienda online</option>
+                  <option value="App móvil">App móvil</option>
+                  <option value="Branding">Branding</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="budget">Presupuesto Aproximado</label>
+                <select id="budget" name="budget">
+                  <option value="Menos de $5,000 MXN">Menos de $5,000 MXN</option>
+                  <option value="$5,000–$15,000">$5,000–$15,000</option>
+                  <option value="$15,000–$30,000">$15,000–$30,000</option>
+                  <option value="Más de $30,000">Más de $30,000</option>
+                  <option value="No lo tengo definido">No lo tengo definido</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Descripción del proyecto *</label>
+              <textarea id="message" name="message" placeholder="Cuéntanos sobre tu idea..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" style="margin-top: 1rem;">Enviar Solicitud 🚀</button>
+            <div id="form-success" class="success-message">¡Tu solicitud fue enviada! Nos pondremos en contacto contigo pronto. 🎉</div>
+            <div id="form-error" class="error-message">Hubo un error al enviar. Por favor intenta de nuevo.</div>
+          </div>
+        </form>
+      </div>
+
     </div>
   </div>
-</div>
+</section>
 
-<footer class="site-footer">
+<footer id="footer" class="site-footer">
   <div class="container">
     <div class="footer-main-grid">
       <!-- Columna 1: Acerca de Az InnovationX -->
@@ -1533,10 +1635,10 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
         <ul style="list-style: none; padding: 0;">
           <li style="margin-bottom: 0.8rem;"><a href="#inicio" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Inicio</a></li>
           <li style="margin-bottom: 0.8rem;"><a href="#servicios" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Servicios</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="#pasos" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Proceso</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#proceso" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Proceso</a></li>
           <li style="margin-bottom: 0.8rem;"><a href="#nosotros" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Nosotros</a></li>
           <li style="margin-bottom: 0.8rem;"><a href="#certificaciones" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Certificaciones</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://appsstoreaz.netlify.app/" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Solicitudes</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#aplicaciones" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Aplicaciones</a></li>
           <li style="margin-bottom: 0.8rem;"><a href="#precios" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">Precios</a></li>
         </ul>
       </div>
@@ -1544,12 +1646,12 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
       <div class="footer-column">
         <h4>Recursos</h4>
         <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.8rem;"><a href="https://appsstoreaz.netlify.app/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"> <img loading="lazy" src="https://i.ibb.co/7xy6NTnm/13.gif" alt="13" border="0" style="width: 24px; height: 24px;"> Aplicaciones</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://articulos-azinnx.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"> <img loading="lazy" src="https://uxwing.com/wp-content/themes/uxwing/download/seo-marketing/articles-icon.png" alt="Articulos Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px;"> Articulos AZINNX</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#articulos" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"> <img loading="lazy" src="https://uxwing.com/wp-content/themes/uxwing/download/seo-marketing/articles-icon.png" alt="Articulos Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px;"> Articulos AZINNX</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#pagos" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">💰 Pagos Seguros</a></li>
           <li style="margin-bottom: 0.8rem;"><a href="https://azinnovationx.blogspot.com/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"> <img loading="lazy" src="https://i.ibb.co/9DHGJrD/Blogger-Gif.gif" alt="Blogger-Gif" style="width: 24px; height: 24px;"> Blog de Innovación</a></li>
           <li style="margin-bottom: 0.8rem;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSci7AEJ6vcJBIUrjxHMPNdcmrT1g4GcYx0DzMTd5CrM4nwo1A/viewform?usp=header" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">📧 Suscríbete al Newsletter</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://certificaciones1.netlify.app/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">🎓 Certificaciones</a></li>
-          <li style="margin-bottom: 0.8rem;"><a href="https://afiliadosaz.netlify.app/" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">🤝 Afiliate</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#afiliate" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">🤝 Afíliate</a></li>
+          <li style="margin-bottom: 0.8rem;"><a href="#contacto" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">✉️ Contacto</a></li>
         </ul>
       </div>
       <!-- Columna 4: Comunidad y Redes -->
@@ -1623,9 +1725,6 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
         </button>
       </form>
     </div>
-    <a href="https://contactosoli.netlify.app/" target="_blank" rel="noopener noreferrer" id="contact-button" class="floating-button">
-      <span class="icon-contact">✉️</span>
-    </a>
     <button id="chatbot-toggle">
       <span class="icon-open">🤖</span>
     </button>
@@ -1670,7 +1769,47 @@ style="width: 100%; height: 400px; object-fit: fill; border-radius: 20px; border
     if (contactForm) {
       contactForm.addEventListener("submit", async function(e) {
         e.preventDefault();
-        // ... el resto del código del formulario ...
+        const successMsg = document.getElementById("form-success");
+        const errorMsg = document.getElementById("form-error");
+        const submitBtn = contactForm.querySelector(".submit-btn");
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="loading"></span> Enviando...';
+
+        try {
+          const formData = new FormData(contactForm);
+          const data = Object.fromEntries(formData.entries());
+
+          // JULES: Guardar en Firebase Firestore si está configurado correctamente
+          if (firebaseConfig.apiKey !== "TU_API_KEY") {
+            await db.collection("solicitudes").add({
+              ...data,
+              timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+          }
+
+          // JULES: Fallback o complemento con mailto para asegurar que el usuario tenga una vía de envío
+          const subject = encodeURIComponent(`Nueva Solicitud de Proyecto - ${data.name}`);
+          const body = encodeURIComponent(`Nombre: ${data.name}\nEmail: ${data.email}\nTeléfono: ${data.phone}\nServicio: ${data.service}\nPresupuesto: ${data.budget}\nMensaje: ${data.message}`);
+          const mailtoLink = `mailto:soporteseguro98@gmail.com?subject=${subject}&body=${body}`;
+
+          successMsg.style.display = "block";
+          errorMsg.style.display = "none";
+          contactForm.reset();
+
+          // Abrir mailto después de un pequeño delay
+          setTimeout(() => {
+            window.location.href = mailtoLink;
+          }, 1000);
+
+        } catch (error) {
+          console.error("Error al enviar formulario:", error);
+          errorMsg.style.display = "block";
+          successMsg.style.display = "none";
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = "Enviar Solicitud 🚀";
+        }
       });
     }
   </script>
@@ -2213,7 +2352,20 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
   const openChatbot = () => {
     chatbotWindow.classList.add('active');
     if (messagesContainer.children.length === 0) {
-      showBotMessage(knowledgeBase.saludo, 'saludo');
+      // JULES: Mensaje de bienvenida personalizado por hora
+      const hour = new Date().getHours();
+      let greeting = "";
+      if (hour >= 5 && hour < 12) {
+        greeting = "¡Buenos días! ☀️ ¿En qué te puedo ayudar hoy?";
+      } else if (hour >= 12 && hour < 19) {
+        greeting = "¡Buenas tardes! 🌤️ ¿Cómo puedo ayudarte?";
+      } else {
+        greeting = "¡Buenas noches! 🌙 Estoy aquí para ayudarte.";
+      }
+
+      const welcomeMsg = JSON.parse(JSON.stringify(knowledgeBase.saludo));
+      welcomeMsg.message = greeting + "<br><br>" + welcomeMsg.message;
+      showBotMessage(welcomeMsg, 'saludo');
     }
 
   }
@@ -2253,6 +2405,12 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
   // Nivel 1: Menús principales
   servicios_menu: {
     message: "¡Excelente! Nos especializamos en soluciones tecnológicas de alto impacto. ¿Cuál de nuestros servicios te interesa explorar?",
+    onShow: () => {
+      if (conversationState.currentTopic) {
+        return `Veo que hablábamos de ${conversationState.currentTopic}. ¿Te interesa seguir con eso o explorar algo nuevo?`;
+      }
+      return null;
+    },
     options: [{
         text: "🌐 Páginas Web",
         key: "servicio_web"
@@ -2930,9 +3088,24 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
 ;
 
   const showBotMessage = (response, key = null) => {
-    const botMessageElement = document.createElement('div');
-    botMessageElement.classList.add('chat-message', 'bot-message');
+    // JULES: Indicador de "escribiendo..."
+    const typingIndicator = document.createElement('div');
+    typingIndicator.classList.add('chat-message', 'bot-message', 'typing-indicator');
+    typingIndicator.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+    messagesContainer.appendChild(typingIndicator);
+    scrollToBottom();
+
+    setTimeout(() => {
+      typingIndicator.remove();
+      const botMessageElement = document.createElement('div');
+      botMessageElement.classList.add('chat-message', 'bot-message');
     let message = response.message;
+
+    // JULES: Ejecutar lógica onShow para persistencia de contexto
+    if (response.onShow) {
+        const extraMessage = response.onShow();
+        if (extraMessage) message = extraMessage + "<br><br>" + message;
+    }
 
     if (key) {
         if (key === 'saludo') {
@@ -3001,14 +3174,14 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
       botMessageElement.appendChild(optionsContainer);
     }
 
-    messagesContainer.appendChild(botMessageElement);
-    scrollToBottom();
-    lastBotQuestionKey = response.nextContext || key;
-    if (response.nextContext && !conversationState.mentionedServices.includes(response.nextContext)) {
-      conversationState.mentionedServices.push(response.nextContext);
-      conversationState.currentTopic = response.nextContext;
-    }
-
+      messagesContainer.appendChild(botMessageElement);
+      scrollToBottom();
+      lastBotQuestionKey = response.nextContext || key;
+      if (response.nextContext && !conversationState.mentionedServices.includes(response.nextContext)) {
+        conversationState.mentionedServices.push(response.nextContext);
+        conversationState.currentTopic = response.nextContext;
+      }
+    }, 700);
   }
 ;
 
@@ -3031,6 +3204,16 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
       let response;
       let responseKey = null;
       const lowerCaseInput = input.toLowerCase().trim();
+
+      // JULES: Detección de intención en texto libre
+      const intentMap = {
+        precio: ['precio', 'costo', 'cuánto', 'cuanto', 'tarifa', 'cobran', 'plan'],
+        contacto: ['contacto', 'hablar', 'llamar', 'email', 'correo', 'whatsapp'],
+        servicios: ['servicio', 'qué hacen', 'que hacen', 'ofrecen', 'página web', 'app', 'tienda'],
+        proceso: ['proceso', 'cómo funciona', 'como funciona', 'pasos', 'tiempo'],
+        pago: ['pago', 'pagar', 'transferencia', 'tarjeta', 'paypal'],
+        afiliado: ['afiliado', 'afiliarme', 'referido', 'comisión', 'ganar dinero']
+      };
 
       if (lastBotQuestionKey) {
         if (affirmativeAnswers.includes(lowerCaseInput)) {
@@ -3117,6 +3300,24 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
       }
 
 
+      // JULES: Mapeo de intenciones a llaves de knowledgeBase
+      if (!response && !responseKey) {
+        for (const [key, keywords] of Object.entries(intentMap)) {
+          if (keywords.some(kw => lowerCaseInput.includes(kw))) {
+            const mapToKB = {
+              precio: 'precios_menu',
+              contacto: 'contacto',
+              servicios: 'servicios_menu',
+              proceso: 'faq_proceso_menu',
+              pago: 'payment_info',
+              afiliado: 'affiliate_info'
+            };
+            responseKey = mapToKB[key];
+            break;
+          }
+        }
+      }
+
       if (responseKey) {
         response = knowledgeBase[responseKey];
         misunderstandingCounter = 0;
@@ -3125,6 +3326,7 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
 
 
       if (!response) {
+        // JULES: Respuesta amigable si no se entiende
         misunderstandingCounter++;
         conversationState.userFrustration++;
         if (misunderstandingCounter >= 2 || conversationState.userFrustration >= 3) {
@@ -3132,26 +3334,13 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
           misunderstandingCounter = 0;
         }
  else {
-          let defaultMessage = "No he entendido muy bien. ";
-          if (conversationState.currentTopic) {
-            defaultMessage += `¿Tu pregunta está relacionada con ${conversationState.currentTopic}
-? `;
-          }
-
-          defaultMessage += "Puedes intentar con otras palabras o elegir una de las opciones principales.";
           response = {
-            message: defaultMessage,
-            options: [{
-                text: "Nuestros Servicios",
-                key: "servicios_menu"
-              },
-              {
-                text: "Preguntas Frecuentes",
-                key: "faq_menu"
-              },
+            message: "No estoy seguro de entender tu pregunta. ¿Quieres que te conecte con un asesor en WhatsApp?",
+            options: [
+              { text: "Hablar con asesor 📱", url: "https://wa.me/5653915739" },
+              { text: "Ver Menú Principal 🏠", key: "saludo" }
             ]
-          }
-;
+          };
         }
 
       }
@@ -3202,6 +3391,12 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
       inputField.disabled = true;
 
       setTimeout(() => {
+        // JULES: Persistencia de contexto (presupuesto y servicio)
+        if (budget) conversationState.budgetRange = budget;
+        if (key && knowledgeBase[key] && knowledgeBase[key].nextContext) {
+            conversationState.currentTopic = knowledgeBase[key].nextContext;
+        }
+
         if (url) {
           window.open(url, '_blank');
           showBotMessage({
@@ -3219,7 +3414,7 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
             closeChatbot();
         }
  else if (key === 'go_to_pagos_seguros') {
-          const pagosSection = document.getElementById('pagos-seguros');
+          const pagosSection = document.getElementById('pagos');
           if (pagosSection) {
             pagosSection.scrollIntoView({
               behavior: 'smooth',
@@ -3461,7 +3656,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<script>
 </body>
 
 </html>
