@@ -107,199 +107,6 @@
 }
 
 
-.welcome-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 10, 20, 0.75);
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(150%);
-    z-index: 10005;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn-dm .6s cubic-bezier(0.25, 1, 0.5, 1);
-    transform-style: preserve-3d;
-}
-
-
-.welcome-modal-content {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(145deg, #2c1e3a, #1a1a1a);
-    padding: 2.5rem 3.5rem;
-    border-radius: 25px;
-    text-align: center;
-    border: 2px solid transparent;
-    position: relative;
-    overflow: hidden;
-    transform: scale(0.8) rotateY(-15deg);
-    opacity: 0;
-    animation: scaleIn-dm-bounce .6s .2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-    width: 90%;
-    max-width: 450px;
-}
-
-
-/* Borde animado de luces */
-.welcome-modal-content::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 25px;
-    border: 2px solid transparent;
-    background: linear-gradient(45deg, var(--primary-electric-blue), var(--accent-gold), #165b33, #007bff) border-box;
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    animation: animated-border 3s linear infinite;
-}
-
-
-@keyframes animated-border {
-    to {
-        transform: rotate(360deg);
-    }
-
-}
-
-
-
-#welcome-greeting {
-    font-size: 2.2rem;
-    font-weight: 800;
-    background: linear-gradient(45deg, var(--accent-gold), #fff, var(--primary-electric-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: .5rem;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    animation: text-shimmer 4s infinite;
-}
-
-
-@keyframes text-shimmer {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-}
-
-
-.welcome-modal-content p {
-    color: #e0e0e0;
-    opacity: .9;
-    font-weight: 500;
-    font-size: 1.05rem;
-}
-
-
-/* Icono y animación */
-.welcome-icon {
-    margin-bottom: 1.5rem;
-    animation: icon-float 5s ease-in-out infinite;
-    transform-style: preserve-3d;
-}
-
-
-.welcome-icon svg {
-    width: 64px;
-    height: 64px;
-    filter: drop-shadow(0 0 15px var(--accent-gold));
-    transition: transform 0.3s ease;
-}
-
-
-@keyframes icon-float {
-    0%, 100% {
-        transform: translateY(0) rotateY(0deg);
-    }
-
-    50% {
-        transform: translateY(-15px) rotateY(15deg);
-    }
-
-}
-
-
-/* Efecto nieve */
-.snow-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-}
-
-
-.snowflake {
-    position: absolute;
-    top: -10px;
-    background: #fff;
-    border-radius: 50%;
-    opacity: 0;
-    animation: fall linear forwards;
-}
-
-
-@keyframes fall {
-    0% {
-        opacity: 0.8;
-        transform: translate(var(--initial-x), 0) rotate(0deg);
-    }
-
-    100% {
-        opacity: 0;
-        transform: translate(calc(var(--initial-x) + var(--wind)), 110vh) rotate(720deg);
-    }
-
-}
-
-
-
-/* Animaciones de entrada/salida */
-@keyframes fadeIn-dm {
-    from {
-        opacity: 0;
-        backdrop-filter: blur(0) saturate(100%);
-    }
-
-    to {
-        opacity: 1;
-        backdrop-filter: blur(12px) saturate(150%);
-    }
-
-}
-
-
-@keyframes fadeOut {
-    from { opacity: 1; transform: scale(1); }
-
-    to { opacity: 0; transform: scale(0.9); }
-
-}
-
-
-@keyframes scaleIn-dm-bounce {
-    0% { transform: scale(0.8) rotateY(-15deg); opacity: 0; }
-
-    60% { transform: scale(1.05) rotateY(5deg); opacity: 1; }
-
-    80% { transform: scale(0.98) rotateY(-2deg); }
-
-    100% { transform: scale(1) rotateY(0deg); opacity: 1; }
-
-}
 html {
   scroll-behavior: smooth;
 }
@@ -488,14 +295,46 @@ section{padding:6rem 0;position:relative}
 }
 .service-icon{animation:subtle-float 6s ease-in-out infinite}
 .service-card h3 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   margin-bottom: 0.8rem;
   color: var(--accent-cyan);
   text-shadow: 0 2px 8px rgba(0, 245, 255, 0.3);
 }
-.service-card p{font-size:.95rem;line-height:1.5;opacity:.9;margin-bottom:1rem}
+.service-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.service-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  background: rgba(62, 146, 204, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  border: 1px solid rgba(62, 146, 204, 0.2);
+  transition: var(--transition-smooth);
+}
+
+.service-card:hover .service-icon-wrapper {
+  background: rgba(62, 146, 204, 0.2);
+  border-color: var(--accent-cyan);
+  transform: scale(1.1) rotate(5deg);
+}
+
+.service-icon-wrapper svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--accent-cyan);
+  filter: drop-shadow(0 0 8px rgba(0, 245, 255, 0.5));
+}
 @media(max-width:768px){.service-card .service-card-content{display:flex;flex-direction:column;align-items:center;height:100%}
 }
 .steps-section{background:linear-gradient(135deg,rgba(10,15,30,0.8),rgba(26,26,46,0.7));border-top:1px solid rgba(255,107,53,0.2);border-bottom:1px solid rgba(255,107,53,0.2)}
@@ -512,16 +351,58 @@ section{padding:6rem 0;position:relative}
 .bento-box{background:linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0.05));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:1.5rem;position:relative;overflow:hidden;transition:all .5s cubic-bezier(0.23,1,0.320,1);box-shadow:0 10px 25px rgba(0,0,0,0.25);opacity:0;transform:translateY(20px)}
 .bento-box.visible{opacity:1;transform:translateY(0)}
 .bento-box:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 15px 35px rgba(0,0,0,0.4),0 0 15px rgba(62, 146, 204,0.4);border-color:rgba(62, 146, 204,0.5)}
-.bento-box h3{color:var(--primary-electric-blue);margin-bottom:.8rem;font-size:1.3rem;font-weight:700;letter-spacing:-0.01em;text-shadow:0 2px 8px rgba(62, 146, 204,0.4)}
-.bento-box p{line-height:1.6;opacity:.9;font-size:.95rem}
-.bento-icon{font-size:2rem;position:absolute;top:1.2rem;right:1.2rem;opacity:.7;filter:drop-shadow(0 0 8px rgba(62, 146, 204,0.5))}
+.bento-box h3 {
+  color: var(--accent-cyan);
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 8px rgba(0, 245, 255, 0.3);
+}
+.bento-box p {
+  line-height: 1.7;
+  opacity: 0.85;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+.bento-icon {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  opacity: 0.6;
+  transition: var(--transition-smooth);
+}
+.bento-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--accent-cyan);
+}
+.bento-box:hover .bento-icon {
+  opacity: 1;
+  transform: scale(1.2) rotate(-10deg);
+}
 .box-1{grid-column:span 1}
 .box-2{grid-column:span 1}
 .box-3{grid-column:span 1;display:flex;align-items:center;justify-content:center;text-align:center;font-size:1.1rem;font-weight:600;padding:2rem 1rem}
 .box-4{grid-column:span 1;display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:1rem;padding:2rem 1rem}
 .box-5{grid-column:span 1}
-.stat{text-align:center;padding:1rem;border-radius:12px;background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);transition:all .3s ease;min-width:120px}
-.stat:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.2);background:rgba(255,107,53,0.2)}
+.stat {
+  text-align: center;
+  padding: 1.2rem;
+  border-radius: 16px;
+  background: rgba(62, 146, 204, 0.1);
+  border: 1px solid rgba(62, 146, 204, 0.2);
+  transition: var(--transition-smooth);
+  min-width: 130px;
+}
+.stat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 245, 255, 0.2);
+  background: rgba(62, 146, 204, 0.2);
+  border-color: var(--accent-cyan);
+}
 .stat-number{font-size:1.8rem;font-weight:800;background:linear-gradient(45deg,var(--accent-gold),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 2px 8px rgba(255,165,0,0.4);display:block}
 .stat-label{font-size:.85rem;opacity:.8}
 .deco-shape{position:absolute;background:linear-gradient(45deg,rgba(255,107,53,0.2),rgba(140,76,158,0.2));border-radius:50%;filter:blur(20px);z-index:-1}
@@ -623,7 +504,29 @@ to{opacity:1;transform:translateY(0)}
 .contact-item a{color:#fff;text-decoration:none;transition:color .3s ease}
 .contact-item a:hover{color:var(--primary-electric-blue)}
 #chatbot-container{position:fixed;bottom:15px;right:15px;z-index:99999;display:flex;flex-direction:column;align-items:flex-end}
-#chatbot-toggle{width:55px;height:55px;background:linear-gradient(45deg,var(--primary-electric-blue),var(--accent-gold));border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 20px rgba(62, 146, 204,0.6);transition:all .3s ease;border:0;animation:pulse-animation 2s infinite}
+.step-number {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary-electric-blue), var(--accent-cyan));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: white;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(0, 245, 255, 0.4);
+  transition: var(--transition-smooth);
+  transform: rotate(-5deg);
+}
+.step-card:hover .step-number {
+  transform: scale(1.1) rotate(0deg);
+  box-shadow: 0 6px 20px rgba(0, 245, 255, 0.6);
+}
+
 @keyframes pulse-animation{0%{transform:scale(1);box-shadow:0 6px 20px rgba(62, 146, 204,0.6)}
 50%{transform:scale(1.05);box-shadow:0 8px 30px rgba(62, 146, 204,0.8)}
 100%{transform:scale(1);box-shadow:0 6px 20px rgba(62, 146, 204,0.6)}
@@ -894,11 +797,87 @@ to{transform:translateY(0);opacity:1}
 .contact-icon-wrapper svg{width:24px;height:24px;fill:white}
 .contact-details h4{color:#fff;font-weight:600;margin-bottom:.5rem;font-size:1.1rem}
 .contact-details p{color:rgba(255,255,255,0.8);margin:.3rem 0;font-size:.95rem}
-.contact-details a{color:var(--primary-electric-blue);text-decoration:none;font-weight:500;transition:color .3s ease}
+.contact-details a{color:var(--primary-electric-blue);text-decoration:none;font-weight:500;transition:color .3s ease;word-break: break-all;}
 .contact-details a:hover{color:var(--accent-gold);text-decoration:underline}
 .badge-attention{display:inline-block;background:rgba(255,107,53,0.2);border:1px solid var(--primary-electric-blue);color:var(--primary-electric-blue);padding:4px 12px;border-radius:15px;font-size:.75rem;font-weight:600;margin-top:.5rem}
-@media(max-width:968px){.map-contact-grid{grid-template-columns:1fr;gap:2rem}
-.map-container iframe{height:300px}
+
+/* Contact Section Refinement */
+.contact-info-corporate {
+  background: rgba(10, 36, 99, 0.8);
+  backdrop-filter: var(--blur-deep);
+  -webkit-backdrop-filter: var(--blur-deep);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+}
+
+.contact-item-corporate {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: var(--transition-smooth);
+}
+
+.contact-item-corporate:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.contact-form-container {
+  background: rgba(10, 36, 99, 0.4);
+  backdrop-filter: blur(25px);
+  border-radius: 24px;
+  padding: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.contact-form .form-group label {
+  color: var(--accent-cyan);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  color: #fff;
+  width: 100%;
+}
+
+.contact-form .submit-btn {
+  margin-top: 0.5rem;
+  background: linear-gradient(135deg, var(--primary-electric-blue), var(--accent-cyan));
+  border: none;
+  padding: 1.2rem;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 20px rgba(0, 245, 255, 0.2);
+  width: 100%;
+}
+
+@media(max-width:968px){
+  .map-contact-grid{grid-template-columns:1fr;gap:2rem}
+  .map-container iframe{height:300px}
+  .contact-info-corporate, .contact-form-container {
+    padding: 1.5rem;
+  }
+  .form-row.two-cols {
+    grid-template-columns: 1fr !important;
+  }
 }
 .site-footer {
   background: linear-gradient(180deg, var(--secondary-dark-gray) 0%, #050a18 100%);
@@ -1238,6 +1217,76 @@ to{transform:translateY(0);opacity:1}
 @media (max-width: 768px) { #video-facade { background-position: center 30% !important; }
  }
 
+/* Estilos para Tarjetas Compactas y Grid Secundario */
+.glass-card-compact {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-deep);
+  -webkit-backdrop-filter: var(--blur-deep);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: var(--transition-smooth);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  margin-bottom: 2rem;
+}
+
+.glass-card-compact:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 20px 40px rgba(0, 245, 255, 0.15);
+}
+
+.secondary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.secondary-grid .glass-card-compact {
+  margin-bottom: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.compact-img {
+  max-width: 120px;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 12px;
+  opacity: 0.8;
+}
+
+.badge-price {
+  background: rgba(0, 245, 255, 0.1);
+  color: var(--accent-cyan);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid rgba(0, 245, 255, 0.3);
+}
+
+.stat-mini .stat-number {
+  font-size: 1.5rem;
+  background: linear-gradient(45deg, var(--accent-cyan), var(--neutral-white));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .glass-card-compact {
+    padding: 1.5rem;
+  }
+  .secondary-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
 </style>
 </head>
 
@@ -1298,9 +1347,9 @@ to{transform:translateY(0);opacity:1}
     <section id="inicio" class="hero">
       <canvas id="particle-canvas" style="position: absolute; top: 0; left: 0; z-index: 1;"></canvas>
       <div id="custom-cursor" class="custom-cursor"></div>
-      <div class="floating-element" data-parallax-speed="3">⭐</div>
-      <div class="floating-element" data-parallax-speed="-2">🎁</div>
-      <div class="floating-element" data-parallax-speed="1">❄️</div>
+      <div class="floating-element" data-parallax-speed="3">🚀</div>
+      <div class="floating-element" data-parallax-speed="-2">💡</div>
+      <div class="floating-element" data-parallax-speed="1">✨</div>
       <div class="hero-content">
         <div class="text-reveal-container">
           <h1>Donde las Ideas Cobran Vida</h1>
@@ -1321,7 +1370,9 @@ to{transform:translateY(0);opacity:1}
         <div class="services-grid">
           <div class="service-card">
             <div class="service-card-content">
-              <div class="service-icon">🌐</div>
+              <div class="service-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
               <h3>Páginas Web Profesionales</h3>
               <p>Diseños modernos y adaptables para convertir visitantes en clientes.</p>
               <img src="https://i.ibb.co/kVStpRH6/for-blog-3.gif" alt="Páginas Web Profesionales" loading="lazy" class="service-image">
@@ -1330,7 +1381,9 @@ to{transform:translateY(0);opacity:1}
           </div>
           <div class="service-card">
             <div class="service-card-content">
-              <div class="service-icon">📱</div>
+              <div class="service-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              </div>
               <h3>Aplicaciones Móviles</h3>
               <p>Apps Android y multiplataforma que conectan con tu audiencia.</p>
               <img src="https://i.ibb.co/7xy6NTnm/13.gif" alt="Aplicaciones Móviles" loading="lazy" class="service-image">
@@ -1339,7 +1392,9 @@ to{transform:translateY(0);opacity:1}
           </div>
           <div class="service-card">
             <div class="service-card-content">
-              <div class="service-icon">🛒</div>
+              <div class="service-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              </div>
               <h3>Tiendas Online</h3>
               <p>Plataformas de e-commerce robustas y seguras para impulsar tus ventas.</p>
               <img src="https://i.ibb.co/Wv2kGCfL/app-online-store.gif" alt="Tiendas Online" loading="lazy" class="service-image">
@@ -1348,7 +1403,9 @@ to{transform:translateY(0);opacity:1}
           </div>
           <div class="service-card">
             <div class="service-card-content">
-              <div class="service-icon">🤖</div>
+              <div class="service-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              </div>
               <h3>Chatbots Inteligentes</h3>
               <p>Automatiza la atención al cliente las 24 horas del día con asistentes inteligentes totalmente integrados en tu sitio web o blog.</p>
               <img src="https://i.ibb.co/zWJ5ZntM/ded0bbdd8485e424327257405a86a884.gif" alt="Chatbots Inteligentes" loading="lazy" class="service-image">
@@ -1357,7 +1414,9 @@ to{transform:translateY(0);opacity:1}
           </div>
           <div class="service-card">
             <div class="service-card-content">
-              <div class="service-icon">🔒</div>
+              <div class="service-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
               <h3>Seguridad Informática</h3>
               <p>Protege tu negocio digital con auditorías y protocolos de ciberseguridad.</p>
               <img src="https://i.ibb.co/wr7MyB9L/giphy.gif" alt="Seguridad Informática" loading="lazy" class="service-image">
@@ -1366,7 +1425,9 @@ to{transform:translateY(0);opacity:1}
           </div>
           <div class="service-card">
             <div class="service-card-content">
-              <div class="service-icon">☁️</div>
+              <div class="service-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+              </div>
               <h3>Soluciones Cloud</h3>
               <p>Migración y optimización en la nube para escalabilidad sin límites.</p>
               <img src="https://i.ibb.co/Pvth5B1V/nube-animada.gif" alt="Soluciones Cloud" loading="lazy" class="service-image">
@@ -1407,7 +1468,9 @@ to{transform:translateY(0);opacity:1}
         <h2 class="section-title">¿Quiénes somos?</h2>
         <div class="bento-grid">
           <div class="bento-box box-1">
-            <span class="bento-icon">🚀</span>
+            <div class="bento-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.71-2.13.09-2.91a2.18 2.18 0 0 0-3.09-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg>
+            </div>
             <h3>Nuestra Misión</h3>
             <p>Convertimos ideas en soluciones digitales con impacto real, ayudando a emprendedores a resolver desafíos tecnológicos con innovación y agilidad.</p>
             <span class="deco-shape shape-1"></span>
@@ -1432,7 +1495,9 @@ to{transform:translateY(0);opacity:1}
             <span class="deco-shape shape-3"></span>
           </div>
           <div class="bento-box box-5">
-            <span class="bento-icon">💡</span>
+            <div class="bento-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"></path></svg>
+            </div>
             <h3>Ingenio y Visión</h3>
             <p>Nos apasiona automatizar, optimizar y dar vida a ideas que transforman. En cada proyecto ponemos nuestro máximo ingenio.</p>
           </div>
@@ -1441,171 +1506,169 @@ to{transform:translateY(0);opacity:1}
     </section>
     <section id="certificaciones">
       <div class="container">
-        <h2 class="section-title">Certificaciones que avalan nuestra excelencia</h2>
-        <p class="section-subtitle" style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem;">
-          En Az InnovationX contamos con certificaciones que avalan nuestra seguridad, calidad y excelencia. Son prueba de nuestro compromiso con la innovación y los más altos estándares del sector.
-          <br><br>
-          Elige un aliado tecnológico con respaldo y confianza.
-        </p>
-        <div style="text-align: center;">
-          <a href="https://certificaciones1.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ver nuestras certificaciones</a>
+        <div class="glass-card-compact">
+          <h2 class="section-title">Certificaciones de Excelencia</h2>
+          <p class="section-subtitle">
+            Avalamos nuestra seguridad y calidad con estándares internacionales. Tu proyecto está en manos de expertos certificados.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; opacity: 0.7;">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/business-professional-services/certificate-line-icon.png" alt="Cert 1" style="height: 50px; filter: invert(1);">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/shield-icon.png" alt="Cert 2" style="height: 50px; filter: invert(1);">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/quality-management/quality-icon.png" alt="Cert 3" style="height: 50px; filter: invert(1);">
+          </div>
+          <a href="https://certificaciones1.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ver Certificaciones</a>
         </div>
       </div>
     </section>
 
-    <!-- JULES: Sección Aplicaciones -->
-    <section id="aplicaciones" class="container" style="background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; padding: 6rem 0;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 1;"></div>
-      <div style="position: relative; z-index: 2; text-align: center;">
-        <h2 class="section-title">Nuestras Aplicaciones</h2>
-        <p style="max-width: 800px; margin: 0 auto 2rem; opacity: 0.9;">Explora nuestra galería de aplicaciones móviles y soluciones digitales diseñadas para resolver problemas reales.</p>
-        <div style="text-align: center;">
-          <a href="https://appsstoreaz.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ver App Store</a>
+    <!-- JULES: Sección Aplicaciones y Artículos combinada para mejor flujo -->
+    <section id="recursos-store" class="container">
+      <div class="secondary-grid">
+        <div id="aplicaciones" class="glass-card-compact featured">
+          <h2 class="section-title">App Store</h2>
+          <p>Explora nuestras soluciones digitales diseñadas para optimizar negocios reales.</p>
+          <img src="https://i.ibb.co/7xy6NTnm/13.gif" alt="Apps" class="compact-img">
+          <a href="https://appsstoreaz.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Explorar Apps</a>
         </div>
-      </div>
-    </section>
-
-    <!-- JULES: Sección Artículos -->
-    <section id="articulos" style="background-image: url('https://i.ibb.co/0jXB2q0N/original-6324df23375f93646b5c1504758f5572.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; padding: 6rem 0;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(10, 36, 99, 0.85); z-index: 1;"></div>
-      <div class="container" style="position: relative; z-index: 2; text-align: center;">
-        <h2 class="section-title">Artículos AZINNX</h2>
-        <p style="max-width: 800px; margin: 0 auto 2rem; opacity: 0.9;">Moda y accesorios tecnológicos con estilo único. Descubre nuestra exclusiva tienda de artículos diseñados por Az InnovationX.</p>
-        <div style="text-align: center;">
+        <div id="articulos" class="glass-card-compact featured">
+          <h2 class="section-title">Artículos AZ</h2>
+          <p>Moda y accesorios con estilo tech. Tecnología que se viste.</p>
+          <img src="https://i.ibb.co/wr7MyB9L/giphy.gif" alt="Articulos" class="compact-img">
           <a href="https://articulos-azinnx.vercel.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ir a la Tienda</a>
         </div>
       </div>
     </section>
 
-    <section id="precios">
-      <div class="container">
-        <h2 class="section-title">Planes y Precios</h2>
-        <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 2rem;">
-          En Az InnovationX, diseñamos soluciones personalizadas que impulsan tu crecimiento. Contáctanos para el plan ideal.
-        </p>
-        <div style="text-align: center;">
-          <a href="https://precios1.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ver Paquetes Detallados</a>
+    <section id="precios-pagos" class="container">
+      <div class="secondary-grid">
+        <div id="precios" class="glass-card-compact">
+          <h2 class="section-title">Planes</h2>
+          <p>Soluciones personalizadas que impulsan tu crecimiento digital.</p>
+          <div class="price-tags" style="margin: 1.5rem 0; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <span class="badge-price">Básico</span>
+            <span class="badge-price">Pro</span>
+            <span class="badge-price">Elite</span>
+          </div>
+          <a href="https://precios1.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ver Tarifas</a>
         </div>
-      </div>
-    </section>
-  
-    <section id="pagos" class="fade-in">
-      <div class="container">
-        <h2 class="section-title">Realiza tu Pago</h2>
-        <p class="payment-description">Elige tu método de pago preferido. Ofrecemos opciones seguras para tu comodidad.</p>
-        <div style="text-align: center;">
-          <a href="https://pagosseguros.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Realizar Pago</a>
+        <div id="pagos" class="glass-card-compact">
+          <h2 class="section-title">Pagos</h2>
+          <p>Métodos de pago seguros y flexibles para tu comodidad.</p>
+          <div class="payment-trust-icons" style="margin: 1.5rem 0; display: flex; justify-content: center; gap: 1rem; opacity: 0.8;">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/paypal-icon.png" alt="PayPal" style="height: 30px; filter: invert(1);">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/visa-icon.png" alt="Visa" style="height: 30px; filter: invert(1);">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/mastercard-icon.png" alt="MC" style="height: 30px; filter: invert(1);">
+          </div>
+          <a href="https://pagosseguros.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Pagar Ahora</a>
         </div>
       </div>
     </section>
 
-    <!-- JULES: Sección Afíliate -->
-    <section id="afiliate" class="container" style="background-image: url('https://i.ibb.co/sdFwRrvN/68747470733a2f2f63646e2e64726962626c652e636f6d2f75736572732f373337393239322f73637265656e73686f7473.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; padding: 6rem 0;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
-      <div style="position: relative; z-index: 2; text-align: center;">
+    <section id="afiliate" class="container">
+      <div class="glass-card-compact" style="background: linear-gradient(135deg, rgba(62, 146, 204, 0.1), rgba(0, 245, 255, 0.05));">
         <h2 class="section-title">Programa de Afiliados</h2>
-        <p style="max-width: 800px; margin: 0 auto 2rem; opacity: 0.9;">Gana comisiones mientras ayudas a otros a crecer con nuestras soluciones tecnológicas. Únete a nuestra red de colaboradores.</p>
-        <div style="text-align: center;">
-          <a href="https://afiliadosaz.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ser Afiliado</a>
+        <p class="section-subtitle">Gana comisiones refiriendo nuestras soluciones tecnológicas líderes.</p>
+        <div class="stat-mini" style="margin-bottom: 2rem;">
+          <span class="stat-number">🚀 Gana hasta 15%</span>
         </div>
+        <a href="https://afiliadosaz.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Unirme al Programa</a>
       </div>
     </section>
 </main>
-<section id="contacto" class="contact-map-section" style="background-image: url('https://i.ibb.co/8D12BWNX/45405a22b539b3cbfe5fe96846324dc1.gif');">
+<section id="contacto" class="contact-map-section" style="background-image: url('https://i.ibb.co/mCLbxQwg/Generated-Image-October-18-2025-10-13-AM.png');">
   <div class="container">
-    <h2 class="section-title">Contacto Profesional</h2>
-    <div class="map-contact-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+    <h2 class="section-title">Hablemos de tu Próximo Proyecto</h2>
+    <div class="map-contact-grid">
 
       <!-- JULES: Información de Contacto Visual -->
-      <div class="contact-info-corporate" style="background: rgba(10, 36, 99, 0.7); backdrop-filter: blur(15px); border-radius: 24px; padding: 2.5rem; border: 1px solid rgba(255, 255, 255, 0.1);">
-        <h3 class="contact-title" style="color: var(--accent-cyan); margin-bottom: 2rem;">Hablemos de tu Proyecto</h3>
+      <div class="contact-info-corporate">
+        <h3 class="contact-title">Información de Contacto</h3>
         
-        <div class="contact-item-corporate" style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
-          <div class="contact-icon-wrapper" style="width: 50px; height: 50px; background: linear-gradient(45deg, #25D366, #128C7E); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-            📱
+        <div class="contact-item-corporate">
+          <div class="contact-icon-wrapper" style="background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 8px 16px rgba(37, 211, 102, 0.2);">
+            <svg style="width: 28px; height: 28px; fill: white;" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
           </div>
           <div class="contact-details">
-            <h4 style="color: #fff; margin-bottom: 0.3rem;">WhatsApp</h4>
-            <a href="https://wa.me/5653915739" target="_blank" rel="noopener noreferrer" style="color: var(--primary-electric-blue); font-weight: 600; text-decoration: none;">+52 56 5391 5739</a>
-            <p style="font-size: 0.85rem; opacity: 0.8;">Atención inmediata</p>
+            <h4>WhatsApp</h4>
+            <a href="https://wa.me/525653915739" target="_blank" rel="noopener noreferrer">+52 56 5391 5739</a>
+            <p>Respuesta en menos de 1 hora</p>
           </div>
         </div>
 
-        <div class="contact-item-corporate" style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
-          <div class="contact-icon-wrapper" style="width: 50px; height: 50px; background: linear-gradient(45deg, var(--primary-electric-blue), var(--accent-gold)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-            📧
+        <div class="contact-item-corporate">
+          <div class="contact-icon-wrapper" style="box-shadow: 0 8px 16px rgba(62, 146, 204, 0.2);">
+            <svg style="width: 28px; height: 28px; fill: white;" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
           </div>
           <div class="contact-details">
-            <h4 style="color: #fff; margin-bottom: 0.3rem;">Email</h4>
-            <a href="#" id="email-link" data-email="soporteseguro98@gmail.com" style="color: var(--primary-electric-blue); font-weight: 600; text-decoration: none;">soporteseguro98@gmail.com</a>
-            <p style="font-size: 0.85rem; opacity: 0.8;">Click para copiar</p>
+            <h4>Email Corporativo</h4>
+            <a href="mailto:soporteseguro98@gmail.com" id="email-link" data-email="soporteseguro98@gmail.com">soporteseguro98@gmail.com</a>
+            <p>Click para copiar dirección</p>
           </div>
         </div>
 
-        <div class="contact-item-corporate" style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
-          <div class="contact-icon-wrapper" style="width: 50px; height: 50px; background: linear-gradient(45deg, #3b5998, #8b9dc3); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-            🌐
+        <div class="contact-item-corporate">
+          <div class="contact-icon-wrapper" style="background: linear-gradient(135deg, #6e8efb, #a777e3); box-shadow: 0 8px 16px rgba(110, 142, 251, 0.2);">
+            <svg style="width: 28px; height: 28px; fill: white;" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
           </div>
           <div class="contact-details">
-            <h4 style="color: #fff; margin-bottom: 0.8rem;">Síguenos</h4>
-            <div class="social-icons" style="display: flex; gap: 1rem;">
-              <a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer"><img src="https://i.ibb.co/r2FCqXxN/facebook-fb.gif" alt="Facebook" style="width: 30px; height: 30px;"></a>
-              <a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank" rel="noopener noreferrer"><img src="https://i.ibb.co/svGfRtTx/200.gif" alt="Instagram" style="width: 30px; height: 30px;"></a>
-              <a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank" rel="noopener noreferrer"><img src="https://i.ibb.co/ynv3hw6X/tiktok-logo-logo.gif" alt="TikTok" style="width: 30px; height: 30px;"></a>
+            <h4 style="margin-bottom: 0.8rem;">Nuestras Redes</h4>
+            <div class="social-icons" style="display: flex; gap: 0.8rem;">
+              <a href="https://www.facebook.com/AzInnovationX?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;"><svg style="width: 20px; height: 20px; fill: white;" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+              <a href="https://www.instagram.com/azinnovationx?igsh=MWN6Y2I1OWZycHVkOA==" target="_blank" rel="noopener noreferrer" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;"><svg style="width: 20px; height: 20px; fill: white;" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.981 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.058-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+              <a href="https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1" target="_blank" rel="noopener noreferrer" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;"><svg style="width: 20px; height: 20px; fill: white;" viewBox="0 0 448 512"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14z"/></svg></a>
             </div>
           </div>
         </div>
 
-        <div style="margin-top: 3rem; border-radius: 15px; overflow: hidden; height: 200px; border: 1px solid rgba(255,255,255,0.1);">
-           <img src="https://i.ibb.co/bMCfFV4W/Generated-Image-December-14-2025-9-34-AM.png" alt="Mapa" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="margin-top: 2rem; border-radius: 20px; overflow: hidden; height: 180px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
+           <img src="https://i.ibb.co/bMCfFV4W/Generated-Image-December-14-2025-9-34-AM.png" alt="Sede Az InnovationX" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8);">
         </div>
       </div>
 
       <!-- JULES: Formulario de Solicitudes Completo -->
-      <div class="contact-form-container" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border-radius: 24px; padding: 2.5rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+      <div class="contact-form-container">
         <form id="contactForm" class="contact-form">
           <div class="form-row">
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 1.2rem;">
               <label for="name">Nombre Completo *</label>
-              <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+              <input type="text" id="name" name="name" placeholder="Ej. Juan Pérez" required>
             </div>
-            <div class="form-row" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-row two-cols" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem;">
               <div class="form-group">
                 <label for="email">Email *</label>
-                <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                <input type="email" id="email" name="email" placeholder="correo@empresa.com" required>
               </div>
               <div class="form-group">
-                <label for="phone">Teléfono / WhatsApp</label>
-                <input type="tel" id="phone" name="phone" placeholder="55 1234 5678">
+                <label for="phone">Teléfono</label>
+                <input type="tel" id="phone" name="phone" placeholder="+52 ...">
               </div>
             </div>
-            <div class="form-row" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-row two-cols" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem;">
               <div class="form-group">
-                <label for="service">Servicio de Interés</label>
-                <select id="service" name="service">
-                  <option value="Página web">Página web</option>
-                  <option value="Tienda online">Tienda online</option>
-                  <option value="App móvil">App móvil</option>
-                  <option value="Branding">Branding</option>
-                  <option value="Otro">Otro</option>
+                <label for="service">Servicio</label>
+                <select id="service" name="service" style="cursor: pointer;">
+                  <option value="Página web">Página Web Pro</option>
+                  <option value="Tienda online">E-commerce</option>
+                  <option value="App móvil">Aplicación Móvil</option>
+                  <option value="Chatbot">Chatbot IA</option>
+                  <option value="Otro">Consultoría / Otro</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="budget">Presupuesto Aproximado</label>
-                <select id="budget" name="budget">
-                  <option value="Menos de $5,000 MXN">Menos de $5,000 MXN</option>
-                  <option value="$5,000–$15,000">$5,000–$15,000</option>
-                  <option value="$15,000–$30,000">$15,000–$30,000</option>
-                  <option value="Más de $30,000">Más de $30,000</option>
-                  <option value="No lo tengo definido">No lo tengo definido</option>
+                <label for="budget">Presupuesto</label>
+                <select id="budget" name="budget" style="cursor: pointer;">
+                  <option value="Básico">$2,000 - $5,000 MXN</option>
+                  <option value="Medio">$5,000 - $15,000</option>
+                  <option value="Avanzado">$15,000+</option>
+                  <option value="Personalizado">Por definir</option>
                 </select>
               </div>
             </div>
-            <div class="form-group">
-              <label for="message">Descripción del proyecto *</label>
-              <textarea id="message" name="message" placeholder="Cuéntanos sobre tu idea..." required></textarea>
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <label for="message">Cuéntanos tu Idea *</label>
+              <textarea id="message" name="message" placeholder="Describe brevemente lo que necesitas..." required style="min-height: 120px;"></textarea>
             </div>
-            <button type="submit" class="submit-btn" style="margin-top: 1rem;">Enviar Solicitud 🚀</button>
+            <button type="submit" class="submit-btn">INICIAR PROYECTO 🚀</button>
             <div id="form-success" class="success-message">¡Tu solicitud fue enviada! Nos pondremos en contacto contigo pronto. 🎉</div>
             <div id="form-error" class="error-message">Hubo un error al enviar. Por favor intenta de nuevo.</div>
           </div>
@@ -3562,71 +3625,6 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
 
     });
   }
-
-});
-// Script para el modal de bienvenida navideño
-document.addEventListener('DOMContentLoaded', () => {
-    const welcomeModal = document.getElementById('welcome-modal');
-    if (welcomeModal) {
-        const greetingEl = document.getElementById('welcome-greeting');
-        const morningIcon = document.getElementById('welcome-icon-morning');
-        const afternoonIcon = document.getElementById('welcome-icon-afternoon');
-        const nightIcon = document.getElementById('welcome-icon-night');
-        const snowContainer = document.querySelector('.snow-container');
-
-        const hour = new Date().getHours();
-        let greeting = '¡Felices Fiestas!';
-        let activeIcon = nightIcon;
-
-        if (hour >= 5 && hour < 12) {
-            greeting = '¡Feliz Mañana Navideña!';
-            activeIcon = morningIcon;
-        }
- else if (hour >= 12 && hour < 19) {
-            greeting = '¡Feliz Tarde Navideña!';
-            activeIcon = afternoonIcon;
-        }
- else {
-            greeting = '¡Feliz Noche Navideña!';
-            activeIcon = nightIcon;
-        }
-
-
-        if (greetingEl) greetingEl.textContent = greeting;
-        if (activeIcon) activeIcon.style.display = 'block';
-
-        // Crear copos de nieve
-        if (snowContainer) {
-            for (let i = 0; i < 15; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.className = 'snowflake';
-                const size = Math.random() * 3 + 1;
-                snowflake.style.width = `${size}px`;
-                snowflake.style.height = `${size}px`;
-                snowflake.style.left = `${Math.random() * 100}
-%`;
-                snowflake.style.animationDuration = `${Math.random() * 5 + 8}s`;
-                snowflake.style.animationDelay = `${Math.random() * 5}s`;
-                // Variables para la animación 'fall'
-                snowflake.style.setProperty('--initial-x', `${Math.random() * 100 - 50}vw`);
-                snowflake.style.setProperty('--wind', `${Math.random() * 20 - 10}vw`);
-                snowContainer.appendChild(snowflake);
-            }
-
-        }
-
-
-        // Mostrar el modal
-        welcomeModal.style.display = 'flex';
-
-        // Ocultar automáticamente después de 4 segundos
-        setTimeout(() => {
-            welcomeModal.style.animation = 'fadeOut 0.5s ease-out forwards';
-            setTimeout(() => {
-                welcomeModal.style.display = 'none';
-            }, 500);
-        }, 4000);
-    }
 
 });
 </script>
