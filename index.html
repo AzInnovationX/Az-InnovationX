@@ -121,7 +121,15 @@ body {
   overflow-x: hidden;
   letter-spacing: 0.02em;
   min-height: 100vh;
-  font-size: 16px;
+  /* JULES OPTIMIZACIÓN: Tipografía fluida para mejor legibilidad en todo dispositivo */
+  font-size: clamp(0.95rem, 1vw + 0.5rem, 1.1rem);
+}
+
+/* JULES OPTIMIZACIÓN: Corrección para Safari iOS que no soporta background-attachment: fixed correctamente */
+@supports (-webkit-touch-callout: none) {
+  body {
+    background-attachment: scroll;
+  }
 }
 .container{max-width:1280px;margin:0 auto;padding:0 2rem}
 header {
@@ -166,7 +174,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0
 }
 .nav-links.active{display:flex}
 .nav-links.active li{margin:0;text-align:center}
-.nav-links a{color:#fff;text-decoration:none;transition:all .3s ease;position:relative;font-weight:500;letter-spacing:.03em;text-transform:uppercase;font-size:.85rem;padding:.8rem 0}
+.nav-links a{color:#fff;text-decoration:none;transition:all .3s ease;position:relative;font-weight:500;letter-spacing:.03em;text-transform:uppercase;font-size:0.95rem;padding:1rem 0;display:block;min-height:44px;} /* JULES OPTIMIZACIÓN: Área táctil de al menos 44px */
 .nav-links a:hover {
   color: var(--accent-cyan);
 }
@@ -182,8 +190,19 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0
   transition: width 0.3s ease;
 }
 .nav-links a:hover::after{width:100%}
-.mobile-menu{display:flex;flex-direction:column;cursor:pointer;z-index:1001;padding:5px}
+.mobile-menu{display:flex;flex-direction:column;justify-content:center;cursor:pointer;z-index:1001;padding:10px;min-width:44px;min-height:44px;} /* JULES OPTIMIZACIÓN: Touch target accesible */
 .mobile-menu span{width:24px;height:3px;background:var(--neutral-white);margin:3px 0;transition:.3s;border-radius:2px}
+
+/* JULES OPTIMIZACIÓN: Animación de bienvenida para el primer mensaje */
+.welcome-msg-anim {
+  animation: welcomeBounce 0.8s cubic-bezier(0.36, 0, 0.66, -0.56) both;
+}
+
+@keyframes welcomeBounce {
+  0% { opacity: 0; transform: translateY(20px) scale(0.8); }
+  50% { opacity: 1; transform: translateY(-10px) scale(1.05); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
 .mobile-menu.active span:nth-child(1){transform:rotate(-45deg) translate(-4px,5px)}
 .mobile-menu.active span:nth-child(2){opacity:0}
 .mobile-menu.active span:nth-child(3){transform:rotate(45deg) translate(-4px,-5px)}
@@ -268,7 +287,7 @@ to{opacity:1;transform:translateY(0)}
 section{padding:6rem 0;position:relative}
 .section-title{text-align:center;font-size:clamp(2rem,4vw,2.75rem);margin-bottom:3rem;font-weight:800;letter-spacing:-0.02em;background:linear-gradient(45deg,#fff,var(--accent-gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 4px 15px rgba(0,0,0,0.2);position:relative;z-index:2;padding:0 1rem}
 #pagos .section-subtitle{position:relative;z-index:2;color:#fff;text-align:center;max-width:600px;margin:-1.5rem auto 2.5rem}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%, 280px),1fr));gap:1.5rem;margin-top:2rem} /* JULES OPTIMIZACIÓN: Evita desbordamiento horizontal en móviles muy pequeños */
 .service-card {
   background: var(--glass-bg);
   backdrop-filter: var(--blur-deep);
@@ -531,7 +550,7 @@ to{opacity:1;transform:translateY(0)}
 50%{transform:scale(1.05);box-shadow:0 8px 30px rgba(62, 146, 204,0.8)}
 100%{transform:scale(1);box-shadow:0 6px 20px rgba(62, 146, 204,0.6)}
 }
-#chatbot-toggle:hover{transform:scale(1.1) rotate(10deg);box-shadow:0 8px 25px rgba(62, 146, 204,0.8)}
+#chatbot-toggle:hover{transform:scale(1.1) rotate(10deg);box-shadow:0 8px 25px rgba(62, 146, 204,0.8);animation: none;} /* JULES OPTIMIZACIÓN: Detener pulso al pasar el cursor */
 #chatbot-toggle::before{position:absolute;top:-15px;left:-5px;font-size:28px;transform:rotate(-15deg);animation:hat-shake 2s infinite ease-in-out;z-index:100000}
 @keyframes hat-shake{0%,100%{transform:rotate(-15deg)}
 50%{transform:rotate(5deg) translateX(2px)}
@@ -593,17 +612,25 @@ to{opacity:1;transform:translateY(0)}
   color: var(--neutral-white);
 }
 
-/* JULES: Estilos para el indicador de escribiendo */
+/* JULES OPTIMIZACIÓN: Estilos mejorados para el chatbot y burbujas de mensaje */
+#chatbot-toggle {
+  animation: pulse-animation 2s infinite; /* JULES OPTIMIZACIÓN: Animación de pulso siempre activa */
+}
+
 .typing-indicator {
   display: flex;
-  gap: 4px;
-  padding: 12px 16px;
+  gap: 6px;
+  padding: 12px 18px;
   width: fit-content;
+  background: rgba(62, 146, 204, 0.15);
+  border-radius: 15px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(62, 146, 204, 0.2);
 }
 
 .typing-indicator .dot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   background: var(--accent-cyan);
   border-radius: 50%;
   animation: typing-bounce 1.4s infinite ease-in-out;
@@ -614,18 +641,40 @@ to{opacity:1;transform:translateY(0)}
 
 @keyframes typing-bounce {
   0%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-6px); }
+  40% { transform: translateY(-8px); }
+}
+
+.bot-message-wrapper {
+  display: flex;
+  gap: 10px;
+  align-self: flex-start;
+  max-width: 85%;
+  margin-bottom: 8px;
+}
+
+.bot-avatar-msg {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(45deg, var(--primary-electric-blue), var(--accent-gold));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .user-message {
-  background: var(--glass-bg);
+  background: linear-gradient(135deg, var(--primary-electric-blue), #1e40af);
   align-self: flex-end;
   border-bottom-right-radius: 4px;
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--neutral-white);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 .chat-message .options{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
-.chat-message .option-button{background:rgba(255,107,53,0.2);border:1px solid rgba(62, 146, 204,0.4);color:white;padding:8px 12px;border-radius:15px;cursor:pointer;transition:all .3s ease;font-size:.85rem;font-weight:500;letter-spacing:.01em}
+.chat-message .option-button{background:rgba(255,107,53,0.2);border:1px solid rgba(62, 146, 204,0.4);color:white;padding:12px 16px;border-radius:15px;cursor:pointer;transition:all .3s ease;font-size:0.9rem;font-weight:600;letter-spacing:0.01em;min-height:44px;display:flex;align-items:center;justify-content:center;text-align:center;} /* JULES OPTIMIZACIÓN: Botones más táctiles y legibles */
 .chat-message .option-button:hover{background:rgba(62, 146, 204,0.4);transform:translateY(-2px);box-shadow:0 4px 12px rgba(62, 146, 204,0.3)}
 #chatbot-input-form{display:flex;padding:.8rem;border-top:1px solid rgba(255,107,53,0.2)}
 #chatbot-input{flex-grow:1;padding:10px 16px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:20px;color:white;font-size:.9rem;transition:border-color .3s ease;margin-right:8px}
@@ -687,7 +736,7 @@ footer p{font-size:.8rem}
 #chatbot-header .bot-info h4{font-size:.9rem}
 #chatbot-header .bot-info p{font-size:.75rem}
 .chat-message{font-size:.85rem;padding:8px 12px}
-.chat-message .option-button{font-size:.8rem;padding:6px 10px}
+.chat-message .option-button{font-size:0.9rem;padding:12px 16px}
 #chatbot-input{font-size:.85rem;padding:8px 14px}
 #chatbot-send{width:38px;height:38px;font-size:1rem}
 .custom-cursor{display:none !important}
@@ -715,7 +764,7 @@ footer p{font-size:.8rem}
 .paypal-btn{display:inline-flex;align-items:center;padding:12px 24px;background:linear-gradient(45deg,#0070ba,#009cde);color:white;text-decoration:none;border-radius:50px;font-weight:700;transition:all .3s ease;box-shadow:0 8px 25px rgba(0,112,186,0.4);border:0;cursor:pointer;font-size:.9rem;text-transform:uppercase}
 .paypal-btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,112,186,0.6);background:#005ea6}
 .transfer-btn-icon{width:24px;height:24px;margin-right:8px;vertical-align:middle}
-.payment-options-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:2rem;position:relative;z-index:2}
+.payment-options-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%, 300px),1fr));gap:2rem;margin-top:2rem;position:relative;z-index:2} /* JULES OPTIMIZACIÓN: Grid adaptativo sin overflow */
 .payment-option-card{background:linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.05));backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:2rem;text-align:center;transition:all .4s cubic-bezier(0.175,0.885,0.32,1.275);box-shadow:0 10px 30px rgba(0,0,0,0.3);display:flex;flex-direction:column;justify-content:space-between}
 .payment-option-card:hover{transform:translateY(-10px) scale(1.03);box-shadow:0 20px 40px rgba(0,0,0,0.5),0 0 20px rgba(62, 146, 204,0.4);border-color:rgba(62, 146, 204,0.5)}
 .payment-option-header .payment-icon{max-height:40px;margin-bottom:1rem;filter:grayscale(30%) brightness(1.2)}
@@ -752,7 +801,7 @@ to{transform:translateY(0);opacity:1}
 .contact-item a{font-size:.85rem}
 #chatbot-window{width:98vw;max-width:300px;height:85vh;max-height:450px}
 .chat-message{font-size:.8rem}
-.chat-message .option-button{font-size:.75rem;padding:5px 8px}
+.chat-message .option-button{font-size:0.9rem;padding:12px 16px}
 #chatbot-input{font-size:.8rem;padding:6px 12px}
 #chatbot-send{width:36px;height:36px;font-size:.9rem}
 }
@@ -1293,8 +1342,8 @@ to{transform:translateY(0);opacity:1}
 <body>
   <header>
     <nav class="container">
-      <a href="#inicio" class="logo">
-        <img src="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" alt="Az InnovationX Logo" loading="lazy" style="height: 45px; width: auto; object-fit: contain; vertical-align: middle;">
+      <a href="#inicio" class="logo" aria-label="Volver al inicio">
+        <img src="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" alt="Az InnovationX Logo" loading="lazy" style="height: clamp(35px, 5vw, 45px); width: auto; object-fit: contain; vertical-align: middle;">
       </a>
       
       <ul class="nav-menu-horizontal">
@@ -1321,7 +1370,7 @@ to{transform:translateY(0);opacity:1}
         <li><a href="#contacto" class="nav-cta">Contacto</a></li>
       </ul>
       
-      <div class="mobile-menu">
+      <div class="mobile-menu" aria-label="Abrir menú de navegación" role="button" tabindex="0">
         <span></span>
         <span></span>
         <span></span>
@@ -1512,9 +1561,9 @@ to{transform:translateY(0);opacity:1}
             Avalamos nuestra seguridad y calidad con estándares internacionales. Tu proyecto está en manos de expertos certificados.
           </p>
           <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; opacity: 0.7;">
-            <img src="https://uxwing.com/wp-content/themes/uxwing/download/business-professional-services/certificate-line-icon.png" alt="Cert 1" style="height: 50px; filter: invert(1);">
-            <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/shield-icon.png" alt="Cert 2" style="height: 50px; filter: invert(1);">
-            <img src="https://uxwing.com/wp-content/themes/uxwing/download/quality-management/quality-icon.png" alt="Cert 3" style="height: 50px; filter: invert(1);">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/business-professional-services/certificate-line-icon.png" alt="Cert 1" loading="lazy" style="height: 50px; filter: invert(1);" width="50" height="50">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/shield-icon.png" alt="Cert 2" loading="lazy" style="height: 50px; filter: invert(1);" width="50" height="50">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/quality-management/quality-icon.png" alt="Cert 3" loading="lazy" style="height: 50px; filter: invert(1);" width="50" height="50">
           </div>
           <a href="https://certificaciones1.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Ver Certificaciones</a>
         </div>
@@ -1555,9 +1604,9 @@ to{transform:translateY(0);opacity:1}
           <h2 class="section-title">Pagos</h2>
           <p>Métodos de pago seguros y flexibles para tu comodidad.</p>
           <div class="payment-trust-icons" style="margin: 1.5rem 0; display: flex; justify-content: center; gap: 1rem; opacity: 0.8;">
-            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/paypal-icon.png" alt="PayPal" style="height: 30px; filter: invert(1);">
-            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/visa-icon.png" alt="Visa" style="height: 30px; filter: invert(1);">
-            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/mastercard-icon.png" alt="MC" style="height: 30px; filter: invert(1);">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/paypal-icon.png" alt="PayPal" loading="lazy" style="height: 30px; filter: invert(1);" width="30" height="30">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/visa-icon.png" alt="Visa" loading="lazy" style="height: 30px; filter: invert(1);" width="30" height="30">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/mastercard-icon.png" alt="MC" loading="lazy" style="height: 30px; filter: invert(1);" width="30" height="30">
           </div>
           <a href="https://pagosseguros.netlify.app/" target="_blank" rel="noopener noreferrer" class="cta-button">Pagar Ahora</a>
         </div>
@@ -1621,7 +1670,7 @@ to{transform:translateY(0);opacity:1}
         </div>
 
         <div style="margin-top: 2rem; border-radius: 20px; overflow: hidden; height: 180px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
-           <img src="https://i.ibb.co/bMCfFV4W/Generated-Image-December-14-2025-9-34-AM.png" alt="Sede Az InnovationX" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8);">
+           <img src="https://i.ibb.co/bMCfFV4W/Generated-Image-December-14-2025-9-34-AM.png" alt="Sede Az InnovationX" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8);" width="400" height="180">
         </div>
       </div>
 
@@ -1684,7 +1733,7 @@ to{transform:translateY(0);opacity:1}
     <div class="footer-main-grid">
       <!-- Columna 1: Acerca de Az InnovationX -->
       <div class="footer-column">
-        <img loading="lazy" src="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" alt="Az InnovationX Logo" style="height: 50px;">
+        <img loading="lazy" src="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" alt="Az InnovationX Logo" style="height: 50px;" width="140" height="50">
         <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Innovación tecnológica que impulsa tu crecimiento digital. Soluciones empresariales con calidad certificada y soporte garantizado.</p>
         <div class="footer-trust-badges">
           <div class="trust-badge">✓ +50 Proyectos Completados</div>
@@ -1761,13 +1810,21 @@ to{transform:translateY(0);opacity:1}
           <h4>Az Asistente Virtual</h4>
           <p>En línea</p>
         </div>
-        <div class="header-controls">
-          <button id="chatbot-expand-toggle" title="Expandir/Minimizar">
+        <div class="header-controls" style="display: flex; gap: 8px;">
+          <button id="chatbot-restart-btn" title="Reiniciar conversación" aria-label="Reiniciar chat" style="background: none; border: none; color: white; cursor: pointer; display: flex; align-items: center; padding: 4px; border-radius: 4px; transition: background 0.3s;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+              <path d="M21 3v5h-5"></path>
+              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+              <path d="M3 21v-5h5"></path>
+            </svg>
+          </button>
+          <button id="chatbot-expand-toggle" title="Expandir/Minimizar" aria-label="Alternar pantalla completa">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-expand">
               <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
             </svg>
           </button>
-          <button id="chatbot-close-btn" title="Cerrar Chat">
+          <button id="chatbot-close-btn" title="Cerrar Chat" aria-label="Cerrar ventana de chat">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -1779,8 +1836,8 @@ to{transform:translateY(0);opacity:1}
         <!-- Messages will be appended here by JavaScript -->
       </div>
       <form id="chatbot-input-form">
-        <input type="text" id="chatbot-input" placeholder="Escribe un mensaje..." autocomplete="off">
-        <button type="submit" id="chatbot-send">
+        <input type="text" id="chatbot-input" placeholder="Escribe un mensaje..." autocomplete="off" aria-label="Mensaje para el bot">
+        <button type="submit" id="chatbot-send" aria-label="Enviar mensaje">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send">
             <line x1="22" y1="2" x2="11" y2="13"></line>
             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -2390,6 +2447,7 @@ ms`;
 
 const chatbotToggle = document.getElementById('chatbot-toggle');
   const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
+  const chatbotRestartBtn = document.getElementById('chatbot-restart-btn');
   const chatbotWindow = document.getElementById('chatbot-window');
   const messagesContainer = document.getElementById('chatbot-messages');
   const inputForm = document.getElementById('chatbot-input-form');
@@ -2408,6 +2466,34 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
         icon.innerHTML = '<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>';
       }
 
+    });
+  }
+
+  // JULES: Lógica para reiniciar la conversación
+  if (chatbotRestartBtn) {
+    chatbotRestartBtn.addEventListener('click', () => {
+      messagesContainer.innerHTML = '';
+      conversationState.currentTopic = null;
+      conversationState.mentionedServices = [];
+      conversationState.history = [];
+      conversationState.path = [];
+      const welcomeMsg = JSON.parse(JSON.stringify(knowledgeBase.saludo));
+      showBotMessage(welcomeMsg, 'saludo');
+    });
+  }
+
+  // JULES: Ajustar visibilidad del chatbot cuando el teclado móvil está abierto
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+      if (chatbotWindow.classList.contains('active')) {
+        const keyboardHeight = window.innerHeight - window.visualViewport.height;
+        if (keyboardHeight > 50) {
+          chatbotWindow.style.height = `${window.visualViewport.height - 20}px`;
+          setTimeout(scrollToBottom, 100);
+        } else {
+          chatbotWindow.style.height = '';
+        }
+      }
     });
   }
 
@@ -3151,17 +3237,34 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
 ;
 
   const showBotMessage = (response, key = null) => {
-    // JULES: Indicador de "escribiendo..."
+    // JULES: Validación básica para evitar mensajes vacíos
+    if (!response || (!response.message && !response.options)) return;
+
+    // JULES: Indicador de "escribiendo..." con estilo mejorado
     const typingIndicator = document.createElement('div');
-    typingIndicator.classList.add('chat-message', 'bot-message', 'typing-indicator');
+    typingIndicator.classList.add('typing-indicator');
     typingIndicator.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
     messagesContainer.appendChild(typingIndicator);
     scrollToBottom();
 
     setTimeout(() => {
       typingIndicator.remove();
+      const botWrapper = document.createElement('div');
+      botWrapper.classList.add('bot-message-wrapper');
+
+      const botAvatar = document.createElement('div');
+      botAvatar.classList.add('bot-avatar-msg');
+      botAvatar.innerHTML = '🤖';
+      botWrapper.appendChild(botAvatar);
+
       const botMessageElement = document.createElement('div');
       botMessageElement.classList.add('chat-message', 'bot-message');
+
+      // JULES: Aplicar animación de bienvenida al primer mensaje
+      if (key === 'saludo' && messagesContainer.children.length <= 1) {
+        botMessageElement.classList.add('welcome-msg-anim');
+      }
+
     let message = response.message;
 
     // JULES: Ejecutar lógica onShow para persistencia de contexto
@@ -3237,7 +3340,8 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
       botMessageElement.appendChild(optionsContainer);
     }
 
-      messagesContainer.appendChild(botMessageElement);
+      botWrapper.appendChild(botMessageElement);
+      messagesContainer.appendChild(botWrapper);
       scrollToBottom();
       lastBotQuestionKey = response.nextContext || key;
       if (response.nextContext && !conversationState.mentionedServices.includes(response.nextContext)) {
@@ -3258,8 +3362,21 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
 ;
 
   const handleInput = (input) => {
-    showUserMessage(input);
-    conversationState.history.push(input.toLowerCase().trim());
+    // JULES: Validación de entrada (vaciía o muy larga)
+    const trimmedInput = input.trim();
+    if (!trimmedInput) return;
+
+    if (trimmedInput.length > 400) {
+      showUserMessage(trimmedInput.substring(0, 100) + "...");
+      showBotMessage({
+        message: "¡Uy! Ese mensaje es un poco largo para procesarlo. ¿Podrías resumirlo o decirme en qué servicio te interesa enfocarte? 😅"
+      });
+      inputField.value = '';
+      return;
+    }
+
+    showUserMessage(trimmedInput);
+    conversationState.history.push(trimmedInput.toLowerCase());
     inputField.value = '';
     inputField.disabled = true;
 
@@ -3269,13 +3386,15 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
       const lowerCaseInput = input.toLowerCase().trim();
 
       // JULES: Detección de intención en texto libre
+      // JULES: Diccionario de sinónimos y palabras clave para mejor procesamiento de texto libre
       const intentMap = {
-        precio: ['precio', 'costo', 'cuánto', 'cuanto', 'tarifa', 'cobran', 'plan'],
-        contacto: ['contacto', 'hablar', 'llamar', 'email', 'correo', 'whatsapp'],
-        servicios: ['servicio', 'qué hacen', 'que hacen', 'ofrecen', 'página web', 'app', 'tienda'],
-        proceso: ['proceso', 'cómo funciona', 'como funciona', 'pasos', 'tiempo'],
-        pago: ['pago', 'pagar', 'transferencia', 'tarjeta', 'paypal'],
-        afiliado: ['afiliado', 'afiliarme', 'referido', 'comisión', 'ganar dinero']
+        precio: ['precio', 'costo', 'cuánto', 'cuanto', 'tarifa', 'cobran', 'plan', 'presupuesto', 'cotizar', 'cotización', 'vale', 'sale'],
+        contacto: ['contacto', 'hablar', 'llamar', 'email', 'correo', 'whatsapp', 'teléfono', 'donde estan', 'ubicacion', 'redes'],
+        servicios: ['servicio', 'qué hacen', 'que hacen', 'ofrecen', 'página web', 'app', 'tienda', 'aplicación', 'software', 'desarrollo', 'crean'],
+        proceso: ['proceso', 'cómo funciona', 'como funciona', 'pasos', 'tiempo', 'tardan', 'metodología', 'metodologia'],
+        pago: ['pago', 'pagar', 'transferencia', 'tarjeta', 'paypal', 'depósito', 'deposito', 'cuenta'],
+        afiliado: ['afiliado', 'afiliarme', 'referido', 'comisión', 'ganar dinero', 'socios', 'socio', 'partnership'],
+        saludo: ['hola', 'buen día', 'buenas', 'hey', 'inicio', 'empezar', 'menú', 'menu']
       };
 
       if (lastBotQuestionKey) {
@@ -3373,7 +3492,8 @@ const chatbotToggle = document.getElementById('chatbot-toggle');
               servicios: 'servicios_menu',
               proceso: 'faq_proceso_menu',
               pago: 'payment_info',
-              afiliado: 'affiliate_info'
+              afiliado: 'affiliate_info',
+              saludo: 'saludo'
             };
             responseKey = mapToKB[key];
             break;
