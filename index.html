@@ -1817,8 +1817,30 @@ to{transform:translateY(0);opacity:1}
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js')
-        .then(reg => console.log('SW registered', reg.scope))
+        .then(reg => {
+          console.log('SW registered', reg.scope);
+
+          // JULES: Forzar recarga si hay una actualización pendiente
+          reg.addEventListener('updatefound', () => {
+            const newWorker = reg.installing;
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                // Hay un nuevo SW instalado y uno viejo controlando.
+                // sw.js v2 tiene self.skipWaiting(), así que se activará pronto.
+              }
+            });
+          });
+        })
         .catch(err => console.log('SW failed', err));
+    });
+
+    // JULES: Recargar la página cuando el nuevo SW tome el control
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!refreshing) {
+        refreshing = true;
+        window.location.reload();
+      }
     });
   }
 
