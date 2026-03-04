@@ -1707,12 +1707,12 @@ to{transform:translateY(0);opacity:1}
         <li><a href="#certificaciones">Certificaciones</a></li>
         
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle">
+          <a href="javascript:void(0)" class="dropdown-toggle">
             Recursos <span class="arrow">▼</span>
           </a>
           <ul class="dropdown-menu">
             <li><a href="#aplicaciones">Aplicaciones</a></li>
-            <li><a href="#articulos">Articulos</a></li>
+            <li><a href="#articulos">Artículos</a></li>
             <li><a href="https://azinnovationx.blogspot.com/" target="_blank" rel="noopener noreferrer">Blog</a></li>
             <li><a href="#afiliate">Afíliate</a></li>
           </ul>
@@ -1735,12 +1735,17 @@ to{transform:translateY(0);opacity:1}
         <li><a href="#proceso">Proceso</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#certificaciones">Certificaciones</a></li>
-        <li><a href="#aplicaciones">Aplicaciones</a></li>
-        <li><a href="#articulos">Articulos</a></li>
+        <li class="dropdown-mobile">
+          <a href="javascript:void(0)" class="dropdown-toggle-mobile" style="display: flex; justify-content: center; align-items: center; gap: 8px;">Recursos <span>▼</span></a>
+          <ul class="dropdown-menu-mobile" style="display: none; list-style: none; background: rgba(255,255,255,0.05); padding: 0.5rem 0;">
+            <li><a href="#aplicaciones" style="font-size: 0.85rem; padding: 0.8rem 0;">Aplicaciones</a></li>
+            <li><a href="#articulos" style="font-size: 0.85rem; padding: 0.8rem 0;">Artículos</a></li>
+            <li><a href="https://azinnovationx.blogspot.com/" target="_blank" rel="noopener noreferrer" style="font-size: 0.85rem; padding: 0.8rem 0;">Blog</a></li>
+            <li><a href="#afiliate" style="font-size: 0.85rem; padding: 0.8rem 0;">Afíliate</a></li>
+          </ul>
+        </li>
         <li><a href="#precios">Precios</a></li>
-        <li><a href="#pagos">Realiza tu pago</a></li>
-        <li><a href="https://azinnovationx.blogspot.com/" target="_blank" rel="noopener noreferrer">BLOG</a></li>
-        <li><a href="#afiliate">Afíliate</a></li>
+        <li><a href="#pagos">Pagar</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -2249,37 +2254,54 @@ to{transform:translateY(0);opacity:1}
 
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
+      // Real-time visual validation
+      contactForm.querySelectorAll('input, select, textarea').forEach(input => {
+        input.addEventListener('input', () => {
+          if (input.checkValidity()) {
+            input.classList.remove('invalid');
+            input.classList.add('valid');
+          } else {
+            input.classList.remove('valid');
+            input.classList.add('invalid');
+          }
+        });
+      });
+
       contactForm.addEventListener("submit", async function(e) {
         e.preventDefault();
         const successMsg = document.getElementById("form-success");
         const errorMsg = document.getElementById("form-error");
         const submitBtn = contactForm.querySelector(".submit-btn");
 
+        if (!contactForm.checkValidity()) {
+          contactForm.reportValidity();
+          return;
+        }
+
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="loading"></span> Enviando...';
+        submitBtn.innerHTML = '<span class="loading"></span> ENVIANDO...';
 
         try {
           const formData = new FormData(contactForm);
           const data = Object.fromEntries(formData.entries());
 
-          // JULES: Guardar en Firebase Firestore si está configurado correctamente
+          // Guardar en Firebase Firestore si está configurado
           if (firebaseConfig.apiKey !== "TU_API_KEY") {
-            await db.collection("solicitudes").add({
+            await db.collection("contactos").add({
               ...data,
               timestamp: firebase.firestore.FieldValue.serverTimestamp()
             });
           }
 
-          // JULES: Fallback o complemento con mailto para asegurar que el usuario tenga una vía de envío
-          const subject = encodeURIComponent(`Nueva Solicitud de Proyecto - ${data.name}`);
-          const body = encodeURIComponent(`Nombre: ${data.name}\nEmail: ${data.email}\nTeléfono: ${data.phone}\nServicio: ${data.service}\nPresupuesto: ${data.budget}\nMensaje: ${data.message}`);
+          const subject = encodeURIComponent(`🚀 Nueva Solicitud de Proyecto - ${data.name}`);
+          const body = encodeURIComponent(`Nuevo lead interesado:\n\n👤 Nombre: ${data.name}\n📧 Email: ${data.email}\n📞 Teléfono: ${data.phone || 'No proporcionado'}\n🛠️ Servicio: ${data.service}\n💰 Presupuesto: ${data.budget}\n📝 Descripción: ${data.message}`);
           const mailtoLink = `mailto:soporteseguro98@gmail.com?subject=${subject}&body=${body}`;
 
           successMsg.style.display = "block";
           errorMsg.style.display = "none";
           contactForm.reset();
+          contactForm.querySelectorAll('.valid, .invalid').forEach(el => el.classList.remove('valid', 'invalid'));
 
-          // Abrir mailto después de un pequeño delay
           setTimeout(() => {
             window.location.href = mailtoLink;
           }, 1000);
@@ -2290,7 +2312,7 @@ to{transform:translateY(0);opacity:1}
           successMsg.style.display = "none";
         } finally {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = "Enviar Solicitud 🚀";
+          submitBtn.innerHTML = "INICIAR PROYECTO 🚀";
         }
       });
     }
@@ -2358,9 +2380,22 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.classList.toggle('active');
   });
 
+  // Mobile Dropdown Toggle
+  const dropdownToggleMobile = document.querySelector('.dropdown-toggle-mobile');
+  const dropdownMenuMobile = document.querySelector('.dropdown-menu-mobile');
+  if (dropdownToggleMobile && dropdownMenuMobile) {
+    dropdownToggleMobile.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isVisible = dropdownMenuMobile.style.display === 'block';
+      dropdownMenuMobile.style.display = isVisible ? 'none' : 'block';
+      dropdownToggleMobile.querySelector('span').style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+  }
+
   // Close menu when a link is clicked
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
+      if (link.classList.contains('dropdown-toggle-mobile')) return;
       if (navLinks.classList.contains('active')) {
         mobileMenu.classList.remove('active');
         navLinks.classList.remove('active');
@@ -2795,13 +2830,14 @@ ms`;
   };
 
   const intents = [
-    { keywords: ['hola', 'buen', 'dia', 'tardes', 'noches', 'hey', 'saludos'], response: '¡Hola! Qué gusto saludarte. Soy AZ, tu asistente experto. ¿En qué puedo ayudarte hoy?', chips: ['💻 Página Web', '🛒 Tienda Online', '💰 Ver Precios'] },
-    { keywords: ['precio', 'costo', 'cuanto', 'vale', 'tarifa', 'presupuesto', 'cotizar', 'cotizacion'], response: '¡Claro! Tenemos planes que se adaptan a tu medida. El plan Básico inicia desde $2,000 MXN. ¿Te gustaría iniciar una cotización paso a paso?', chips: ['🚀 Iniciar Cotización', '📞 Contactar Asesor'] },
-    { keywords: ['web', 'pagina', 'sitio', 'landing'], response: 'Una página web profesional es la cara de tu negocio al mundo. ¿Buscas algo informativo o para vender?', chips: ['ℹ️ Informativa', '🛒 Para vender'] },
-    { keywords: ['tienda', 'online', 'ecommerce', 'vender', 'carritos'], response: '¡Excelente decisión! Una tienda online te permite vender 24/7. Incluimos pasarelas de pago seguras y WhatsApp.', chips: ['🚀 Iniciar Cotización', '✨ Ver Ejemplos'] },
-    { keywords: ['app', 'movil', 'aplicacion', 'android', 'ios'], response: 'Desarrollamos Apps multiplataforma de alto rendimiento. ¿Tienes ya una idea definida para tu App?', chips: ['💡 Tengo una idea', '🤔 Quiero asesoría'] },
-    { keywords: ['gracias', 'agradezco', 'ok', 'entendido'], response: '¡De nada! Es un placer ayudarte. ¿Hay algo más en lo que pueda apoyarte?', chips: ['🏠 Menú Principal', '📞 Contacto'] },
-    { keywords: ['adios', 'chao', 'nos vemos', 'luego'], response: '¡Hasta luego! Estaré aquí cuando me necesites. ¡Que tengas un gran día!', chips: [] }
+    { keywords: ['hola', 'buen', 'dia', 'tardes', 'noches', 'hey', 'saludos', 'que tal'], response: '¡Hola! Qué gusto saludarte. Soy AZ, tu asistente experto de Az InnovationX. ¿En qué puedo ayudarte hoy?', chips: ['💻 Página Web', '🛒 Tienda Online', '💰 Ver Precios', '📈 Afiliados'] },
+    { keywords: ['precio', 'costo', 'cuanto', 'vale', 'tarifa', 'presupuesto', 'cotizar', 'cotizacion'], response: '¡Claro! Tenemos planes que se adaptan a tu medida. El plan Básico inicia desde $2,000 MXN. ¿Te gustaría iniciar una cotización paso a paso ahora mismo?', chips: ['🚀 Iniciar Cotización', '📞 Contactar Asesor'] },
+    { keywords: ['web', 'pagina', 'sitio', 'landing', 'blog'], response: 'Una página web profesional es la cara de tu negocio al mundo. En Az InnovationX creamos sitios rápidos, seguros y optimizados. ¿Buscas algo informativo o una tienda online?', chips: ['ℹ️ Informativa', '🛒 Tienda Online'] },
+    { keywords: ['tienda', 'online', 'ecommerce', 'vender', 'carritos', 'shopify'], response: '¡Excelente decisión! Una tienda online te permite vender 24/7. Nuestras soluciones incluyen pasarelas de pago, gestión de inventario y vinculación con WhatsApp.', chips: ['🚀 Iniciar Cotización', '✨ Ver Ejemplos'] },
+    { keywords: ['app', 'movil', 'aplicacion', 'android', 'ios', 'celular'], response: 'Desarrollamos Apps multiplataforma de alto rendimiento con tecnología de punta. ¿Tienes ya una idea definida o necesitas asesoría desde cero?', chips: ['💡 Tengo una idea', '🤔 Quiero asesoría'] },
+    { keywords: ['gracias', 'agradezco', 'ok', 'entendido', 'perfecto', 'bien'], response: '¡De nada! Es un placer ayudarte. Recuerda que en Az InnovationX estamos para hacer realidad tus ideas. ¿Hay algo más en lo que pueda apoyarte?', chips: ['🏠 Menú Principal', '📞 Contacto'] },
+    { keywords: ['adios', 'chao', 'nos vemos', 'luego', 'bye'], response: '¡Hasta luego! Ha sido un gusto conversar contigo. Estaré aquí cuando me necesites. ¡Que tengas un gran día!', chips: [] },
+    { keywords: ['afiliado', 'ganar', 'dinero', 'comision', 'unirme'], response: '¡Nuestro programa de afiliados es genial! Puedes ganar hasta un 15% de comisión por cada proyecto referido que se concrete. ¿Te interesa saber más?', chips: ['🤝 Unirme', '💰 Ver detalles'] }
   ];
 
   function escapeHTML(str) {
@@ -2811,6 +2847,8 @@ ms`;
   }
 
   function levenshtein(a, b) {
+    if (a.length === 0) return b.length;
+    if (b.length === 0) return a.length;
     const matrix = [];
     for (let i = 0; i <= b.length; i++) matrix[i] = [i];
     for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
@@ -2824,12 +2862,13 @@ ms`;
   }
 
   function isMatch(text, keywords) {
-    const cleanText = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const cleanText = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    if (!cleanText) return false;
     const words = cleanText.split(/\s+/);
     return keywords.some(kw => {
-      const cleanKw = kw.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const cleanKw = kw.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
       if (cleanText.includes(cleanKw)) return true;
-      return words.some(word => levenshtein(word, cleanKw) <= 1);
+      return words.some(word => word.length > 3 && levenshtein(word, cleanKw) <= 1);
     });
   }
 
@@ -2851,23 +2890,17 @@ ms`;
     conversationState.currentStep = step;
     const percentage = (step / conversationState.totalSteps) * 100;
     chatbotProgress.style.width = `${percentage}%`;
-    if (step > 0) {
-      progressBarContainer.style.opacity = '1';
-    } else {
-      progressBarContainer.style.opacity = '0';
-    }
+    progressBarContainer.style.opacity = step > 0 ? '1' : '0';
   }
 
-  /* JULES MEJORA: Paso X de Y en el flujo de cotización */
   function getStepText() {
     if (conversationState.currentStep > 0 && conversationState.context) {
-      return `<br><small style="color: var(--accent-cyan)">Paso ${conversationState.currentStep} de ${conversationState.totalSteps}</small>`;
+      return `<br><small style="color: var(--accent-cyan); font-weight: bold; opacity: 0.9;">Paso ${conversationState.currentStep} de ${conversationState.totalSteps}</small>`;
     }
     return '';
   }
 
   function showBotMessage(text, chips = []) {
-    // JULES MEJORA: Animación de "escribiendo..."
     const typing = document.createElement('div');
     typing.className = 'typing-indicator';
     typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
@@ -2881,7 +2914,7 @@ ms`;
       wrapper.className = 'bot-message-wrapper';
       
       let personalizedText = text;
-      if (conversationState.userName && (text.includes('¡Hola') || text.includes('Genial') || text.includes('Perfecto'))) {
+      if (conversationState.userName && (text.includes('¡Hola') || text.includes('Genial') || text.includes('Perfecto') || text.includes('Entendido'))) {
         personalizedText = text.replace(/!/, `, ${conversationState.userName}!`);
       }
 
@@ -2909,13 +2942,12 @@ ms`;
       }
       
       scrollToBottom();
-      /* JULES MEJORA: Sonido sutil al recibir mensaje */
       if (conversationState.soundEnabled) {
         const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
-        audio.volume = 0.4;
+        audio.volume = 0.3;
         audio.play().catch(() => {});
       }
-    }, 800);
+    }, 700);
   }
 
   function showUserMessage(text) {
@@ -2927,20 +2959,62 @@ ms`;
   }
 
   function handleUserInput(input) {
-    if (!input.trim()) return;
+    if (!input || !input.trim()) return;
     const sanitizedInput = escapeHTML(input);
     showUserMessage(sanitizedInput);
     
-    // JULES MEJORA: Extracción de nombre robusta con Regex
+    // Extracción de nombre con Regex robusto
     const nameMatch = sanitizedInput.match(/(?:me llamo|soy|mi nombre es)\s+([a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)/i);
     if (nameMatch && nameMatch[1]) {
-      const name = nameMatch[1].trim().split(/\s+/)[0];
-      if (name.length > 2) {
-        conversationState.userName = name;
-        localStorage.setItem('chat_user_name', name);
+      const detectedName = nameMatch[1].trim().split(/\s+/)[0];
+      if (detectedName.length > 2) {
+        conversationState.userName = detectedName;
+        localStorage.setItem('chat_user_name', detectedName);
       }
     }
 
+    // Lógica de pasos de cotización prioritaria
+    if (conversationState.context === 'quote_step_1') {
+       conversationState.projectType = input;
+       updateProgress(2);
+       conversationState.context = 'quote_step_2';
+       showBotMessage('¡Entendido! ¿Cuál es tu presupuesto estimado para este proyecto?', ['$2k - $5k MXN', '$5k - $15k MXN', '$15k+', 'Por definir']);
+       return;
+    } else if (conversationState.context === 'quote_step_2') {
+       conversationState.budget = input;
+       updateProgress(3);
+       conversationState.context = 'quote_step_3';
+       showBotMessage('¡Perfecto! Ya casi terminamos. Por último, ¿cuál es tu nombre para personalizar tu propuesta?', []);
+       return;
+    } else if (conversationState.context === 'quote_step_3') {
+       conversationState.userName = input;
+       localStorage.setItem('chat_user_name', input);
+       updateProgress(3);
+       conversationState.context = null;
+       showBotMessage(`¡Muchas gracias, ${input}! He registrado tu interés en un proyecto de ${conversationState.projectType}. ¿Te gustaría que un experto te contacte por WhatsApp para finalizar los detalles?`, ['📱 Sí, hablar por WhatsApp', '🏠 Volver al inicio']);
+       return;
+    }
+
+    // Manejo de chips y comandos específicos
+    if (input.includes('WhatsApp')) {
+      window.open('https://wa.me/525653915739', '_blank');
+      return;
+    } else if (input.includes('Menú Principal') || input.includes('Reiniciar') || input.includes('Volver al inicio')) {
+      restartConversation();
+      return;
+    } else if (input.includes('Iniciar Cotización')) {
+       startQuotation();
+       return;
+    } else if (input.includes('Ver Precios')) {
+      window.location.hash = '#precios';
+      chatbotWindow.classList.remove('active');
+      return;
+    } else if (input.includes('Afiliados') || input.includes('Unirme')) {
+      window.open('https://afiliadosaz.netlify.app/', '_blank');
+      return;
+    }
+
+    // Sistema de Intents
     let found = false;
     for (const intent of intents) {
       if (isMatch(input, intent.keywords)) {
@@ -2951,42 +3025,14 @@ ms`;
     }
 
     if (!found) {
-      // JULES MEJORA: Fallback con escalado a WhatsApp
-      showBotMessage('No estoy seguro de entender eso, pero me encantaría ayudarte. ¿Te gustaría hablar con un asesor humano por WhatsApp?', ['📱 Sí, ir a WhatsApp', '🏠 Menú Principal']);
-    }
-
-    if (input.includes('WhatsApp')) {
-      window.open('https://wa.me/525653915739', '_blank');
-    } else if (input.includes('Menú Principal') || input.includes('Reiniciar') || input.includes('Volver al inicio')) {
-      restartConversation();
-    } else if (input.includes('Ver Precios') || input.includes('Ver Planes')) {
-       window.location.hash = '#precios';
-       chatbotWindow.classList.remove('active');
-    } else if (input.includes('Iniciar Cotización')) {
-       startQuotation();
-    } else if (conversationState.context === 'quote_step_1') {
-       conversationState.projectType = input;
-       updateProgress(2);
-       conversationState.context = 'quote_step_2';
-       showBotMessage('¡Entendido! ¿Cuál es tu presupuesto estimado para este proyecto?', ['$2k - $5k', '$5k - $15k', '$15k+']);
-    } else if (conversationState.context === 'quote_step_2') {
-       conversationState.budget = input;
-       updateProgress(3);
-       conversationState.context = 'quote_step_3';
-       showBotMessage('¡Perfecto! Ya casi terminamos. Por último, ¿cuál es tu nombre para personalizar tu propuesta?', []);
-    } else if (conversationState.context === 'quote_step_3') {
-       conversationState.userName = input;
-       localStorage.setItem('chat_user_name', input);
-       updateProgress(3);
-       conversationState.context = null;
-       showBotMessage(`¡Muchas gracias, ${input}! He registrado tu interés en un proyecto de ${conversationState.projectType}. ¿Te gustaría que un experto te contacte por WhatsApp para finalizar los detalles?`, ['📱 Sí, hablar por WhatsApp', '🏠 Volver al inicio']);
+      showBotMessage('No estoy seguro de entender eso, pero me encantaría ayudarte. ¿Te gustaría hablar con un asesor humano por WhatsApp o prefieres volver al menú principal?', ['📱 Hablar por WhatsApp', '🏠 Menú Principal']);
     }
   }
 
   function startQuotation() {
     updateProgress(1);
     conversationState.context = 'quote_step_1';
-    showBotMessage('¡Genial! Vamos a cotizar tu proyecto. Paso 1: ¿Qué tipo de solución necesitas?', ['💻 Web Profesional', '🛒 Tienda Online', '📱 App Móvil']);
+    showBotMessage('¡Genial! Vamos a cotizar tu proyecto. Paso 1: ¿Qué tipo de solución necesitas?', ['💻 Web Profesional', '🛒 Tienda Online', '📱 App Móvil', '🤖 Chatbot IA']);
   }
 
   function restartConversation() {
