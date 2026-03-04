@@ -884,6 +884,8 @@ to{opacity:1;transform:translateY(0)}
   height: 4px;
   background: rgba(255, 255, 255, 0.1);
   width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .progress-bar {
@@ -909,7 +911,7 @@ to{opacity:1;transform:translateY(0)}
   border-radius: 30px;
   padding: 12px 20px;
   color: white;
-  font-size: 0.95rem;
+  font-size: 16px;
   transition: all 0.3s ease;
 }
 
@@ -962,6 +964,36 @@ to{opacity:1;transform:translateY(0)}
   0%, 100% { transform: translateY(0); opacity: 0.4; }
   50% { transform: translateY(-5px); opacity: 1; }
 }
+
+#greeting-card {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  width: 220px;
+  background: rgba(10, 36, 99, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 12px 15px;
+  color: white;
+  font-size: 0.85rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  display: none;
+  animation: welcomeBounce 0.8s cubic-bezier(0.36, 0, 0.66, -0.56);
+  z-index: 99998;
+}
+
+#greeting-card::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 25px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid rgba(10, 36, 99, 0.85);
+}
+
 .fade-in{opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(0.165,0.84,0.44,1)}
 .fade-in.visible{opacity:1;transform:translateY(0)}
 .floating-element{position:absolute;opacity:.1;animation:float 15s ease-in-out infinite;font-size:1.5rem}
@@ -1018,7 +1050,7 @@ footer p{font-size:.8rem}
 #chatbot-header .bot-info p{font-size:.75rem}
 .chat-message{font-size:.85rem;padding:8px 12px}
 .chat-message .option-button{font-size:0.9rem;padding:12px 16px}
-#chatbot-input{font-size:.85rem;padding:8px 14px}
+#chatbot-input{font-size:16px;padding:8px 14px}
 #chatbot-send{width:38px;height:38px;font-size:1rem}
 .custom-cursor{display:none !important}
 .video-container{margin:1.5rem auto 0;border-radius:12px}
@@ -1080,7 +1112,7 @@ to{transform:translateY(0);opacity:1}
 #chatbot-window{width:98vw;max-width:300px;height:85vh;max-height:450px}
 .chat-message{font-size:.8rem}
 .chat-message .option-button{font-size:0.9rem;padding:12px 16px}
-#chatbot-input{font-size:.8rem;padding:6px 12px}
+#chatbot-input{font-size:16px;padding:6px 12px}
 #chatbot-send{width:36px;height:36px;font-size:.9rem}
 }
 #certificaciones{position:relative;background-image:url('https://i.ibb.co/1HNVGcn/comunidad-motion-gif-1.gif');background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:scroll;border-top:1px solid rgba(255,107,53,0.2);border-bottom:1px solid rgba(255,107,53,0.2)}
@@ -1250,6 +1282,40 @@ to{transform:translateY(0);opacity:1}
 .header-controls button:hover{background-color:rgba(255,255,255,0.1);transform:scale(1.1)}
 #chatbot-header .bot-info{margin-right:auto}
  #chatbot-container:has(#chatbot-window.expanded) #chatbot-toggle{display:none}
+
+/* Chatbot Light Mode Styles */
+#chatbot-window.light-mode {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+#chatbot-window.light-mode #chatbot-header {
+  background: linear-gradient(90deg, #f0f4f8, #e2e8f0);
+  border-bottom-color: #cbd5e1;
+}
+#chatbot-window.light-mode #chatbot-header h4 { color: #0a2463; }
+#chatbot-window.light-mode #chatbot-header .header-controls button { color: #475569; }
+#chatbot-window.light-mode .bot-message {
+  background: #f1f5f9;
+  color: #1e293b;
+  border-color: #e2e8f0;
+}
+#chatbot-window.light-mode .user-message {
+  background: linear-gradient(135deg, #3e92cc, #2563eb);
+}
+#chatbot-window.light-mode #chatbot-input-form {
+  background: #f8fafc;
+  border-top-color: #e2e8f0;
+}
+#chatbot-window.light-mode #chatbot-input {
+  background: #fff;
+  color: #1e293b;
+  border-color: #cbd5e1;
+}
+#chatbot-window.light-mode #chatbot-input:focus {
+  border-color: #3e92cc;
+  box-shadow: 0 0 0 3px rgba(62, 146, 204, 0.2);
+}
 
 /* Ocultar menú móvil en desktop */
 .nav-links {
@@ -2092,6 +2158,15 @@ to{transform:translateY(0);opacity:1}
   <!-- Chatbot HTML Structure -->
   <!-- Chatbot HTML Structure -->
   <div id="chatbot-container">
+    <div id="greeting-card">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 20px;">👋</span>
+        <div>
+          <strong>¡Hola! Soy AZ</strong>
+          <p style="margin: 0; font-size: 0.75rem; opacity: 0.9;">¿En qué puedo ayudarte hoy?</p>
+        </div>
+      </div>
+    </div>
     <div id="chatbot-window">
       <div id="chatbot-header">
         <div class="bot-info">
@@ -2102,6 +2177,10 @@ to{transform:translateY(0);opacity:1}
           </div>
         </div>
         <div class="header-controls" style="display: flex; gap: 10px;">
+          <button id="chatbot-theme-toggle" title="Cambiar Tema" style="background:none; border:none; color:white; cursor:pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="theme-icon-light"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="theme-icon-dark" style="display:none;"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
+          </button>
           <button id="chatbot-sound-toggle" title="Activar/Desactivar sonido" style="background:none; border:none; color:white; cursor:pointer;">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="sound-icon-on"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="sound-icon-off" style="display:none;"><path d="M11 5L6 9H2V15H6L11 19V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
@@ -2702,10 +2781,13 @@ ms`;
   const chatbotInputForm = document.getElementById('chatbot-input-form');
   const chatbotInput = document.getElementById('chatbot-input');
   const chatbotProgress = document.getElementById('chatbot-progress');
+  const greetingCard = document.getElementById('greeting-card');
+  const progressBarContainer = document.querySelector('.progress-bar-container');
   
   let conversationState = {
     userName: localStorage.getItem('chat_user_name') || null,
     soundEnabled: localStorage.getItem('chat_sound') === 'true',
+    isDarkMode: localStorage.getItem('chat_theme') !== 'light',
     currentStep: 0,
     totalSteps: 3,
     context: null,
@@ -2722,28 +2804,43 @@ ms`;
     { keywords: ['adios', 'chao', 'nos vemos', 'luego'], response: '¡Hasta luego! Estaré aquí cuando me necesites. ¡Que tengas un gran día!', chips: [] }
   ];
 
-  // JULES MEJORA: Coincidencia difusa simple (fuzzy matching)
+  function escapeHTML(str) {
+    const p = document.createElement('p');
+    p.textContent = str;
+    return p.innerHTML;
+  }
+
+  function levenshtein(a, b) {
+    const matrix = [];
+    for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+    for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+    for (let i = 1; i <= b.length; i++) {
+      for (let j = 1; j <= a.length; j++) {
+        if (b.charAt(i - 1) === a.charAt(j - 1)) matrix[i][j] = matrix[i - 1][j - 1];
+        else matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
+      }
+    }
+    return matrix[b.length][a.length];
+  }
+
   function isMatch(text, keywords) {
-    const words = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split(/\s+/);
+    const cleanText = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const words = cleanText.split(/\s+/);
     return keywords.some(kw => {
-      return words.some(word => {
-        if (word.includes(kw) || kw.includes(word)) return true;
-        // Levenshtein simplificado para errores tipográficos de 1 letra
-        if (Math.abs(word.length - kw.length) <= 1) {
-          let diffs = 0;
-          for (let i = 0; i < Math.min(word.length, kw.length); i++) {
-            if (word[i] !== kw[i]) diffs++;
-          }
-          return diffs <= 1;
-        }
-        return false;
-      });
+      const cleanKw = kw.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      if (cleanText.includes(cleanKw)) return true;
+      return words.some(word => levenshtein(word, cleanKw) <= 1);
     });
   }
 
   function getTimestamp() {
     const now = new Date();
-    return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    return `${hours}:${minutes} ${ampm}`;
   }
 
   function scrollToBottom() {
@@ -2754,6 +2851,11 @@ ms`;
     conversationState.currentStep = step;
     const percentage = (step / conversationState.totalSteps) * 100;
     chatbotProgress.style.width = `${percentage}%`;
+    if (step > 0) {
+      progressBarContainer.style.opacity = '1';
+    } else {
+      progressBarContainer.style.opacity = '0';
+    }
   }
 
   /* JULES MEJORA: Paso X de Y en el flujo de cotización */
@@ -2826,12 +2928,14 @@ ms`;
 
   function handleUserInput(input) {
     if (!input.trim()) return;
-    showUserMessage(input);
+    const sanitizedInput = escapeHTML(input);
+    showUserMessage(sanitizedInput);
     
-    // JULES MEJORA: Guardar nombre si se menciona
-    if (input.toLowerCase().includes('mi nombre es') || input.toLowerCase().includes('soy ')) {
-      const name = input.split(/soy|es/i).pop().trim();
-      if (name) {
+    // JULES MEJORA: Extracción de nombre robusta con Regex
+    const nameMatch = sanitizedInput.match(/(?:me llamo|soy|mi nombre es)\s+([a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)/i);
+    if (nameMatch && nameMatch[1]) {
+      const name = nameMatch[1].trim().split(/\s+/)[0];
+      if (name.length > 2) {
         conversationState.userName = name;
         localStorage.setItem('chat_user_name', name);
       }
@@ -2851,14 +2955,14 @@ ms`;
       showBotMessage('No estoy seguro de entender eso, pero me encantaría ayudarte. ¿Te gustaría hablar con un asesor humano por WhatsApp?', ['📱 Sí, ir a WhatsApp', '🏠 Menú Principal']);
     }
 
-    if (input === '📱 Sí, ir a WhatsApp') {
+    if (input.includes('WhatsApp')) {
       window.open('https://wa.me/525653915739', '_blank');
-    } else if (input === '🏠 Menú Principal' || input === 'Reiniciar') {
+    } else if (input.includes('Menú Principal') || input.includes('Reiniciar') || input.includes('Volver al inicio')) {
       restartConversation();
-    } else if (input === '💰 Ver Planes') {
+    } else if (input.includes('Ver Precios') || input.includes('Ver Planes')) {
        window.location.hash = '#precios';
        chatbotWindow.classList.remove('active');
-    } else if (input === '🚀 Iniciar Cotización') {
+    } else if (input.includes('Iniciar Cotización')) {
        startQuotation();
     } else if (conversationState.context === 'quote_step_1') {
        conversationState.projectType = input;
@@ -2894,20 +2998,95 @@ ms`;
   chatbotToggle.onclick = () => {
     chatbotWindow.classList.toggle('active');
     document.querySelector('.notification-badge').style.display = 'none';
+    if (greetingCard) greetingCard.style.display = 'none';
+
+    if (chatbotWindow.classList.contains('active')) {
+      // Focus optimization for mobile
+      setTimeout(() => {
+        chatbotInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 300);
+    }
+
     if (chatbotMessages.children.length === 0) {
       const hour = new Date().getHours();
       let greeting = "¡Hola!";
-      if (hour < 12) greeting = "¡Buen día!";
-      else if (hour < 19) greeting = "¡Buenas tardes!";
+      if (hour >= 5 && hour < 12) greeting = "¡Buen día!";
+      else if (hour >= 12 && hour < 19) greeting = "¡Buenas tardes!";
       else greeting = "¡Buenas noches!";
       
       showBotMessage(`${greeting} Bienvenido a Az InnovationX. ¿Qué proyecto tienes en mente?`, ['💻 Página Web', '🛒 Tienda Online', '📱 App Móvil', '💰 Ver Precios']);
     }
   };
 
+  // JULES: Floating Greeting Card (1.5s delay, 5s visible)
+  if (!sessionStorage.welcomeGreetingShown) {
+    setTimeout(() => {
+      if (!chatbotWindow.classList.contains('active')) {
+        greetingCard.style.display = 'block';
+        sessionStorage.welcomeGreetingShown = 'true';
+        setTimeout(() => {
+          greetingCard.style.display = 'none';
+        }, 5000);
+      }
+    }, 1500);
+  }
+
+  // JULES: Proactive trigger (45s inactivity)
+  let proactiveTimer;
+  function resetProactiveTimer() {
+    clearTimeout(proactiveTimer);
+    if (!sessionStorage.chatbotProactiveShown && !chatbotWindow.classList.contains('active')) {
+      proactiveTimer = setTimeout(() => {
+        if (!chatbotWindow.classList.contains('active')) {
+          chatbotToggle.click();
+          sessionStorage.chatbotProactiveShown = 'true';
+        }
+      }, 45000);
+    }
+  }
+
+  window.addEventListener('mousemove', resetProactiveTimer);
+  window.addEventListener('keypress', resetProactiveTimer);
+  window.addEventListener('touchstart', resetProactiveTimer);
+  resetProactiveTimer();
+
+  // Mobile Keyboard Optimization
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+      if (chatbotWindow.classList.contains('active')) {
+        chatbotMessages.style.height = (window.visualViewport.height * 0.6) + 'px';
+        scrollToBottom();
+      }
+    });
+  }
+
   chatbotCloseBtn.onclick = () => chatbotWindow.classList.remove('active');
   chatbotRestartBtn.onclick = restartConversation;
   
+  // JULES: Theme Toggle Logic
+  const themeToggle = document.getElementById('chatbot-theme-toggle');
+  const themeIconLight = document.getElementById('theme-icon-light');
+  const themeIconDark = document.getElementById('theme-icon-dark');
+
+  function updateThemeUI() {
+    if (conversationState.isDarkMode) {
+      chatbotWindow.classList.remove('light-mode');
+      themeIconLight.style.display = 'block';
+      themeIconDark.style.display = 'none';
+    } else {
+      chatbotWindow.classList.add('light-mode');
+      themeIconLight.style.display = 'none';
+      themeIconDark.style.display = 'block';
+    }
+  }
+  updateThemeUI();
+
+  themeToggle.onclick = () => {
+    conversationState.isDarkMode = !conversationState.isDarkMode;
+    localStorage.setItem('chat_theme', conversationState.isDarkMode ? 'dark' : 'light');
+    updateThemeUI();
+  };
+
   /* JULES MEJORA: Lógica de sonido activable */
   const soundToggle = document.getElementById('chatbot-sound-toggle');
   const soundOn = document.getElementById('sound-icon-on');
