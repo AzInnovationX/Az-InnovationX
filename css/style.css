@@ -1467,6 +1467,34 @@ to{transform:translateY(0);opacity:1}
 .footer-legal-links{display:flex;gap:1.5rem;justify-content:center}
 .footer-legal-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:.85rem;transition:color .3s ease}
 .footer-legal-links a:hover{color:var(--primary-electric-blue)}
+
+.telegram-link {
+  background: linear-gradient(135deg, #0088cc, #00aaff);
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem !important;
+  box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+}
+
+.telegram-link:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 136, 204, 0.6);
+  background: linear-gradient(135deg, #00aaff, #0088cc);
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.telegram-link:active {
+  transform: translateY(-1px);
+}
 .payment-methods-footer{text-align:right}
 .payment-methods-footer p{font-size:.85rem;color:rgba(255,255,255,0.7);margin-bottom:.5rem}
 .payment-icons{display:flex;gap:.8rem;justify-content:flex-end;align-items:center}
