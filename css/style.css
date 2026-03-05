@@ -70,10 +70,11 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0
   gap: 0.8rem;
   list-style: none;
   border-bottom: 1px solid var(--glass-border);
+  z-index: 1002;
 }
 .nav-links.active{display:flex}
-.nav-links.active li{margin:0;text-align:center}
-.nav-links a{color:#fff;text-decoration:none;transition:all .3s ease;position:relative;font-weight:500;letter-spacing:.03em;text-transform:uppercase;font-size:.85rem;padding:.8rem 0}
+.nav-links.active li{margin:0;text-align:center;width:100%}
+.nav-links a{color:#fff;text-decoration:none;transition:all .3s ease;position:relative;font-weight:500;letter-spacing:.03em;text-transform:uppercase;font-size:.85rem;padding:.8rem 0;display:block;width:100%}
 .nav-links a:hover {
   color: var(--accent-cyan);
 }
@@ -636,6 +637,8 @@ to{opacity:1;transform:translateY(0)}
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 5;
 }
 
 .social-item {
@@ -700,7 +703,8 @@ to{opacity:1;transform:translateY(0)}
 .contact-icon{font-size:1.8rem;margin-right:1rem;color:var(--primary-electric-blue)}
 .contact-item a{color:#fff;text-decoration:none;transition:color .3s ease}
 .contact-item a:hover{color:var(--primary-electric-blue)}
-#chatbot-container{position:fixed;bottom:24px;right:24px;z-index:99999;display:flex;flex-direction:column;align-items:flex-end}
+#chatbot-container{position:fixed;bottom:24px;right:24px;z-index:99999;display:flex;flex-direction:column;align-items:flex-end;pointer-events:none}
+#chatbot-container > * {pointer-events:auto}
 #chatbot-toggle {
   width: 60px;
   height: 60px;
@@ -1460,10 +1464,15 @@ to{transform:translateY(0);opacity:1}
 }
 
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu,
+.dropdown.touch-active .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+
+.dropdown.touch-active .arrow {
+  transform: rotate(180deg);
 }
 
 
