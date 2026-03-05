@@ -454,7 +454,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const messagesContainer = document.getElementById('chatbot-messages');
   const inputForm = document.getElementById('chatbot-input-form');
   const inputField = document.getElementById('chatbot-input');
-  const expandToggle = document.getElementById('chatbot-expand-toggle');
   let misunderstandingCounter = 0;
 
   // UX Improvement: Show/Hide typing indicator
@@ -508,18 +507,6 @@ document.addEventListener('DOMContentLoaded', () => {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   };
 
-  if (expandToggle && chatbotWindow) {
-    expandToggle.addEventListener('click', () => {
-      chatbotWindow.classList.toggle('expanded');
-      const icon = expandToggle.querySelector('svg');
-      if (chatbotWindow.classList.contains('expanded')) {
-        icon.innerHTML = '<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>';
-      } else {
-        icon.innerHTML = '<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>';
-      }
-    });
-  }
-
   const welcomeBubble = document.getElementById('chat-welcome-bubble');
   if (welcomeBubble) {
     const closeWelcomeBtn = welcomeBubble.querySelector('.close-welcome-bubble');
@@ -545,6 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const openChatbot = () => {
     if (chatbotWindow) {
         chatbotWindow.classList.add('active');
+        chatbotWindow.classList.add('expanded');
         const chatbotContainer = document.getElementById('chatbot-container');
         if (chatbotContainer) chatbotContainer.classList.add('chat-open');
         if (welcomeBubble) welcomeBubble.style.display = 'none';
