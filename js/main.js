@@ -446,6 +446,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const expandToggle = document.getElementById('chatbot-expand-toggle');
   let misunderstandingCounter = 0;
 
+  // UX Improvement: Show/Hide typing indicator
+  const showTypingIndicator = () => {
+    // Prevent duplicate indicators
+    if (document.getElementById('chatbot-typing')) return;
+
+    const indicator = document.createElement('div');
+    indicator.id = 'chatbot-typing';
+    indicator.className = 'message-wrapper bot';
+    indicator.innerHTML = `
+      <div class="bot-avatar-small">
+        <div style="width:100%; height:100%; background: var(--electric-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">AZ</div>
+      </div>
+      <div class="typing-indicator">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
+    `;
+    messagesContainer.appendChild(indicator);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  };
+
+  const hideTypingIndicator = () => {
+    const indicator = document.getElementById('chatbot-typing');
+    if (indicator) indicator.remove();
+  };
+
   if (expandToggle && chatbotWindow) {
     expandToggle.addEventListener('click', () => {
       chatbotWindow.classList.toggle('expanded');
@@ -486,13 +513,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (welcomeBubble) welcomeBubble.style.display = 'none';
 
         if (!sessionStorage.getItem('chatbot_welcomed')) {
-            showBotMessage({
-                message: "¡Bienvenido/a a Az InnovationX! 🎉 Soy tu asistente virtual. Puedo ayudarte a encontrar el servicio perfecto para tu negocio. ¿Por dónde empezamos?",
-                options: knowledgeBase.saludo.options
-            }, 'saludo');
-            sessionStorage.setItem('chatbot_welcomed', 'true');
+            showTypingIndicator();
+            setTimeout(() => {
+                showBotMessage({
+                    message: "¡Bienvenido/a a Az InnovationX! 🎉 Soy AZ, tu asistente virtual. He sido diseñado para ayudarte a encontrar la solución tecnológica ideal para tu negocio de forma rápida y sencilla.<br><br>¿Por dónde te gustaría empezar hoy?",
+                    options: knowledgeBase.saludo.options
+                }, 'saludo');
+                sessionStorage.setItem('chatbot_welcomed', 'true');
+            }, 1000);
         } else if (messagesContainer && messagesContainer.children.length === 0) {
-            showBotMessage(knowledgeBase.saludo, 'saludo');
+            showTypingIndicator();
+            setTimeout(() => {
+                showBotMessage(knowledgeBase.saludo, 'saludo');
+            }, 800);
         }
     }
   };
@@ -506,18 +539,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const knowledgeBase = {
   saludo: {
-    message: "¡Qué padre que estás aquí! 👋 Soy AZ, tu asistente virtual de Az InnovationX. Estoy listo para ayudarte a llevar tu idea al siguiente nivel. ¿Qué te gustaría hacer?",
+    message: "¡Qué gusto saludarte! 👋 Soy AZ. Mi misión es ayudarte a escalar tu negocio con tecnología.<br><br>¿Cómo puedo apoyarte hoy?",
     options: [{
-        text: "🚀 Explorar Servicios",
+        text: "🚀 Ver Servicios",
         key: "servicios_menu"
       },
       {
-        text: "💰 Cotizar un Proyecto",
+        text: "💰 Ver Precios",
         key: "precios_menu"
       },
       {
-        text: "🤔 Preguntas Frecuentes",
-        key: "faq_menu"
+        text: "📱 Hablar con Asesor",
+        key: "human_escalation"
       },
       {
         text: "✨ Más Opciones",
@@ -1130,12 +1163,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const showBotMessage = (response, key = null) => {
     if (!messagesContainer) return;
 
+    hideTypingIndicator(); // Ensure indicator is gone
+
     const wrapper = document.createElement('div');
     wrapper.classList.add('message-wrapper', 'bot');
 
     const avatar = document.createElement('div');
     avatar.classList.add('bot-avatar-small');
-    avatar.innerHTML = '<img src="https://i.ibb.co/cSCSjsyS/11184177.gif" alt="Bot" style="width:100%; height:100%; object-fit:cover;">';
+    avatar.innerHTML = '<div style="width:100%; height:100%; background: var(--electric-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">AZ</div>';
 
     const botMessageElement = document.createElement('div');
     botMessageElement.classList.add('chat-message', 'bot-message');
@@ -1170,34 +1205,67 @@ document.addEventListener('DOMContentLoaded', () => {
     if (response.options) {
       const optionsContainer = document.createElement('div');
       optionsContainer.classList.add('options');
-      response.options.forEach(option => {
+
+      // UX Improvement: Progressive Options (Max 4 relevant buttons)
+      const optionsToShow = response.options.slice(0, 4);
+
+      const createButton = (option) => {
         const button = document.createElement('button');
         button.classList.add('option-button');
         button.textContent = option.text;
         if (option.key) button.dataset.key = option.key;
         if (option.url) button.dataset.url = option.url;
         if (option.budget) button.dataset.budget = option.budget;
-        optionsContainer.appendChild(button);
+        return button;
+      };
+
+      optionsToShow.forEach(option => {
+        optionsContainer.appendChild(createButton(option));
       });
+
+      // Navigation Buttons (Home/Back) - Keep them together
+      const navContainer = document.createElement('div');
+      navContainer.classList.add('options');
+      navContainer.style.marginTop = '4px';
 
       if (conversationState.path.length > 0) {
           const backKey = conversationState.path.length > 1 ? conversationState.path[conversationState.path.length - 2] : 'saludo';
           const backButton = document.createElement('button');
-          backButton.classList.add('option-button');
+          backButton.classList.add('option-button', 'nav-btn');
           backButton.textContent = '⬅️ Volver';
           backButton.dataset.key = backKey;
-          optionsContainer.appendChild(backButton);
+          navContainer.appendChild(backButton);
       }
 
       if (conversationState.path.length > 0 && conversationState.path[0] !== 'saludo') {
           const homeButton = document.createElement('button');
-          homeButton.classList.add('option-button');
-          homeButton.textContent = '🏠 Menú Principal';
+          homeButton.classList.add('option-button', 'nav-btn');
+          homeButton.textContent = '🏠 Inicio';
           homeButton.dataset.key = 'saludo';
-          optionsContainer.appendChild(homeButton);
+          navContainer.appendChild(homeButton);
+      }
+
+      // Show "Ver más" if there are more than 4 options
+      if (response.options.length > 4) {
+          const verMasBtn = document.createElement('button');
+          verMasBtn.classList.add('option-button');
+          verMasBtn.textContent = '➕ Ver más...';
+          verMasBtn.onclick = () => {
+              verMasBtn.remove();
+              response.options.slice(4).forEach(opt => {
+                  optionsContainer.appendChild(createButton(opt));
+              });
+              // Move nav container to bottom again
+              botMessageElement.appendChild(navContainer);
+              messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          };
+          optionsContainer.appendChild(verMasBtn);
       }
 
       botMessageElement.appendChild(optionsContainer);
+      if (navContainer.children.length > 0) {
+          botMessageElement.appendChild(navContainer);
+      }
     }
 
     wrapper.appendChild(avatar);
@@ -1232,18 +1300,22 @@ document.addEventListener('DOMContentLoaded', () => {
     inputField.value = '';
     inputField.disabled = true;
 
+    // UX Improvement: Show typing indicator for a more natural feel
+    showTypingIndicator();
+
     setTimeout(() => {
       let response;
       let responseKey = null;
       const lowerCaseInput = input.toLowerCase().trim();
 
+      // 1. Check for specific context-based answers (like Yes/No to a redirect)
       if (lastBotQuestionKey) {
         if (affirmativeAnswers.includes(lowerCaseInput)) {
           switch (lastBotQuestionKey) {
             case 'whatsapp_redirect':
               window.open("https://wa.me/5653915739", '_blank');
               response = {
-                message: "¡Perfecto! Te estoy redirigiendo a WhatsApp. Si no se abre la ventana, puedes hacer clic aquí: <a href='https://wa.me/5653915739' target='_blank'>Abrir WhatsApp</a>"
+                message: "¡Entendido! Te estoy redirigiendo a WhatsApp. Si no se abre la ventana, puedes hacer clic aquí: <a href='https://wa.me/5653915739' target='_blank'>Abrir WhatsApp</a>"
               };
               break;
           }
@@ -1252,7 +1324,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      if (!response) {
+      // 2. Keyword Matching (Intents) if no specific response was found yet
+      if (!response && !responseKey) {
         for (const intent in intents) {
           if (intents[intent].some(kw => lowerCaseInput.includes(kw))) {
             switch (intent) {
@@ -1267,6 +1340,8 @@ document.addEventListener('DOMContentLoaded', () => {
               case 'request_cybersecurity_info': responseKey = 'ciberseguridad'; break;
               case 'request_creator_info': responseKey = 'creator_info'; break;
               case 'request_hours': responseKey = 'request_hours'; break;
+              case 'request_articles': responseKey = 'articles_info'; break;
+              case 'request_affiliates': responseKey = 'affiliate_info'; break;
             }
             if (responseKey) break;
           }
@@ -1284,7 +1359,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (responseKey) {
-        response = knowledgeBase[responseKey];
+        response = JSON.parse(JSON.stringify(knowledgeBase[responseKey]));
+
+        // UX Improvement: Enhanced transition messages
+        if (responseKey !== 'saludo') {
+          const transitions = [
+            "Entendido, déjame ayudarte con eso...",
+            "¡Buena pregunta! Aquí tienes la información:",
+            "Excelente elección, esto es lo que necesitas saber:",
+            "Claro, déjame buscar eso para ti..."
+          ];
+          const randomTransition = transitions[Math.floor(Math.random() * transitions.length)];
+          response.message = `<em>${randomTransition}</em><br><br>${response.message}`;
+        }
+
         misunderstandingCounter = 0;
         conversationState.userFrustration = 0;
       }
@@ -1296,16 +1384,18 @@ document.addEventListener('DOMContentLoaded', () => {
           response = knowledgeBase['human_escalation'];
           misunderstandingCounter = 0;
         } else {
-          let defaultMessage = "No he entendido muy bien. ";
+          let defaultMessage = "No he encontrado una respuesta exacta para eso. ";
           if (conversationState.currentTopic) {
             defaultMessage += `¿Tu pregunta está relacionada con ${conversationState.currentTopic}? `;
           }
-          defaultMessage += "Puedes intentar con otras palabras o elegir una de las opciones principales.";
+          defaultMessage += "Prueba con palabras clave como 'precios', 'servicios' o 'contacto', o elige una de estas opciones:";
           response = {
             message: defaultMessage,
             options: [
-              { text: "Nuestros Servicios", key: "servicios_menu" },
-              { text: "Preguntas Frecuentes", key: "faq_menu" },
+              { text: "🚀 Ver Servicios", key: "servicios_menu" },
+              { text: "💰 Consultar Precios", key: "precios_menu" },
+              { text: "🤔 Preguntas Frecuentes", key: "faq_menu" },
+              { text: "📱 Hablar con un Asesor", key: "human_escalation" }
             ]
           };
         }
@@ -1322,7 +1412,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       inputField.disabled = false;
       inputField.focus();
-    }, 800);
+    }, 1200); // Slightly longer delay for typing indicator effect
   };
 
   if (inputForm) {
@@ -1351,7 +1441,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (url) {
               window.open(url, '_blank');
               showBotMessage({
-                message: "Te he abierto el enlace en una nueva pestaña. ¿Necesitas algo más?",
+                message: "<em>¡Listo!</em><br><br>Te he abierto el enlace en una nueva pestaña para que no pierdas nuestra conversación. ¿Necesitas algo más?",
                 options: [{ text: "⬅️ Volver", key: conversationState.path[conversationState.path.length-1] || 'saludo' }]
               });
             } else if (key === 'go_to_pagos_seguros') {
