@@ -427,11 +427,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const welcomeBubble = document.getElementById('chat-welcome-bubble');
   if (welcomeBubble) {
+    const closeWelcomeBtn = welcomeBubble.querySelector('.close-welcome-bubble');
+    if (closeWelcomeBtn) {
+      closeWelcomeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        welcomeBubble.style.display = 'none';
+      });
+    }
+
     setTimeout(() => {
       if (chatbotWindow && !chatbotWindow.classList.contains('active')) {
         welcomeBubble.style.display = 'block';
         setTimeout(() => {
-          welcomeBubble.style.display = 'none';
+          if (welcomeBubble && welcomeBubble.style.display !== 'none') {
+            welcomeBubble.style.display = 'none';
+          }
         }, 8000);
       }
     }, 3000);
@@ -995,6 +1005,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }, {
       text: "TikTok",
       url: "https://www.tiktok.com/@innovationx09?_t=ZS-8yJNEWarLPO&_r=1"
+    }, {
+      text: "YouTube",
+      url: "https://www.youtube.com/@AzInnovationX"
     }, {
       text: "Email",
       url: "mailto:soporteseguro98@gmail.com"
