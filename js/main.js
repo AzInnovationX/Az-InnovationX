@@ -423,24 +423,29 @@ document.addEventListener('DOMContentLoaded', () => {
     leadData: {}
   };
   const intents = {
-    greet: ['hola', 'buenos dias', 'buenas tardes'],
-    request_service_info: ['servicio', 'información', 'que haces', 'ayuda', 'productos'],
-    request_quote: ['precio', 'costo', 'cuánto', 'presupuesto', 'tarifa', 'cotización', 'cotizar', 'planes', 'paquetes', 'tienda online', 'chatbot'],
-    request_payment: ['pagar', 'pago', 'métodos de pago', 'cómo pago', 'cuenta bancaria', 'transferencia'],
-    request_contact: ['redes', 'social', 'síguelos', 'facebook', 'instagram', 'tiktok', 'seguir', 'contacto', 'llamar', 'email', 'correo'],
-    request_examples: ['ejemplos', 'portfolio', 'trabajos', 'proyectos anteriores', 'muestra'],
-    request_process: ['tiempo', 'cuándo', 'plazos', 'entrega', 'duración', 'proceso'],
-    request_support: ['soporte', 'mantenimiento', 'garantía', 'actualizaciones'],
-    request_about: ['quienes somos', 'nosotros', 'historia', 'equipo', 'fundador', 'evaristo'],
-    request_process_direct: ['pasos', 'metodologia', 'metodología', 'como trabajan', 'cómo trabajan', 'proceso'],
-    frustration: ['no funciona', 'no sirve', 'frustrado', 'agente', 'humano', 'persona', 'no entiendo'],
-    request_online_presence_info: ['presencia', 'internet', 'online', 'importancia de estar en linea', 'visibilidad'],
-    request_cybersecurity_info: ['ciberseguridad', 'seguridad', 'proteger', 'riesgos', 'hackers', 'virus'],
-    request_creator_info: ['quien te creo', 'quién te creó', 'creador', 'desarrollador', 'quien te hizo', 'quién te hizo', 'quien te programo', 'quién te programó'],
-    request_hours: ['horario', 'atienden', 'abren', 'cierran', 'horas', 'horarios de atencion'],
-    request_articles: ['artículos', 'blog', 'posts', 'contenido', 'educativo'],
-    request_affiliates: ['afiliados', 'afíliate', 'colaboraciones', 'partnerships', 'programa de afiliados'],
-    lead_keywords: ['proyecto', 'presupuesto', 'cotización', 'contratar', 'cotizar'],
+    greet: ['hola', 'buenos dias', 'buenas tardes', 'buen día', 'que tal', 'hey', 'saludos'],
+    request_service_info: ['servicio', 'información', 'que haces', 'ayuda', 'productos', 'ofreces', 'hacen', 'catalogo', 'portafolio'],
+    request_quote: ['precio', 'costo', 'cuánto', 'presupuesto', 'tarifa', 'cotización', 'cotizar', 'planes', 'paquetes', 'cuanto vale', 'valor', 'invertir', 'inversión'],
+    request_payment: ['pagar', 'pago', 'métodos de pago', 'cómo pago', 'cuenta bancaria', 'transferencia', 'tarjeta', 'paypal', 'efectivo', 'oxxo'],
+    request_contact: ['redes', 'social', 'síguelos', 'facebook', 'instagram', 'tiktok', 'seguir', 'contacto', 'llamar', 'email', 'correo', 'teléfono', 'whatsapp'],
+    request_location: ['donde están', 'donde estan', 'ubicacion', 'ubicación', 'donde se encuentran', 'direccion', 'dirección', 'mapa', 'oficina'],
+    request_examples: ['ejemplos', 'portfolio', 'trabajos', 'proyectos anteriores', 'muestra', 'referencias', 'clientes', 'casos de éxito'],
+    request_process: ['tiempo', 'cuándo', 'plazos', 'entrega', 'duración', 'proceso', 'cuanto tardan', 'etapas'],
+    request_support: ['soporte', 'mantenimiento', 'garantía', 'actualizaciones', 'ayuda técnica', 'fallas', 'errores'],
+    request_about: ['quienes somos', 'nosotros', 'historia', 'equipo', 'fundador', 'evaristo', 'misión', 'visión', 'empresa'],
+    request_process_direct: ['pasos', 'metodologia', 'metodología', 'como trabajan', 'cómo trabajan', 'proceso', 'fases'],
+    frustration: ['no funciona', 'no sirve', 'frustrado', 'agente', 'humano', 'persona', 'no entiendo', 'mal servicio', 'ayuda real'],
+    request_online_presence_info: ['presencia', 'internet', 'online', 'importancia de estar en linea', 'visibilidad', 'google', 'aparecer en internet'],
+    request_cybersecurity_info: ['ciberseguridad', 'seguridad', 'proteger', 'riesgos', 'hackers', 'virus', 'protección', 'seguro'],
+    request_creator_info: ['quien te creo', 'quién te creó', 'creador', 'desarrollador', 'quien te hizo', 'quién te hizo', 'quien te programo', 'quién te programó', 'autor'],
+    request_hours: ['horario', 'atienden', 'abren', 'cierran', 'horas', 'horarios de atencion', 'disponibilidad'],
+    request_articles: ['artículos', 'blog', 'posts', 'contenido', 'educativo', 'noticias', 'tips'],
+    request_affiliates: ['afiliados', 'afíliate', 'colaboraciones', 'partnerships', 'programa de afiliados', 'socio', 'ganar dinero'],
+    lead_keywords: ['proyecto', 'presupuesto', 'cotización', 'contratar', 'cotizar', 'quiero empezar', 'interesado'],
+    request_pwa: ['pwa', 'aplicacion web', 'app web', 'instalable'],
+    request_ecommerce: ['tienda', 'carrito', 'ventas online', 'ecommerce', 'vender por internet'],
+    request_web: ['pagina web', 'sitio web', 'landing page', 'one page'],
+    request_chatbot: ['chatbot', 'asistente virtual', 'automatizar chat', 'bot'],
   };
 
   const chatbotToggle = document.getElementById('chatbot-toggle');
@@ -479,16 +484,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (indicator) indicator.remove();
   };
 
-  const az_ui_showQuickReplies = () => {
+  const az_ui_showQuickReplies = (options = []) => {
     const existing = document.querySelector('.quick-replies-container');
     if (existing) existing.remove();
 
+    if (options.length === 0) return;
+
     const container = document.createElement('div');
     container.className = 'quick-replies-container';
-
-    const options = [
-      { text: "💰 Ver precios", val: "Ver precios" }
-    ];
 
     options.forEach(opt => {
       const chip = document.createElement('button');
@@ -550,7 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showTypingIndicator();
             setTimeout(() => {
                 showBotMessage({
-                    message: "¡Bienvenido/a a Az InnovationX! 🎉 Soy AZ, tu asistente virtual. He sido diseñado para ayudarte a encontrar la solución tecnológica ideal para tu negocio de forma rápida y sencilla.",
+                    message: "👋 ¡Hola! ¿En qué podemos ayudarte? Resolvemos tus dudas al instante. 🚀",
                     options: null
                 }, 'saludo_part1');
 
@@ -558,11 +561,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     showTypingIndicator();
                     setTimeout(() => {
                         showBotMessage({
-                            message: "¿Con qué te puedo ayudar hoy? 👇",
+                            message: "¿En qué podemos apoyarte hoy? 👇",
                             options: knowledgeBase.saludo.options
                         }, 'saludo');
                         sessionStorage.setItem('chatbot_welcomed', 'true');
-                        az_ui_showQuickReplies();
                     }, 1000);
                 }, 500);
             }, 1000);
@@ -570,7 +572,6 @@ document.addEventListener('DOMContentLoaded', () => {
             showTypingIndicator();
             setTimeout(() => {
                 showBotMessage(knowledgeBase.saludo, 'saludo');
-                az_ui_showQuickReplies();
             }, 800);
         }
     }
@@ -589,7 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const knowledgeBase = {
   saludo: {
-    message: "¡Qué gusto saludarte! 👋 Soy AZ. Mi misión es ayudarte a escalar tu negocio con tecnología.<br><br>¿Cómo puedo apoyarte hoy?",
+    message: "👋 ¡Hola! ¿En qué podemos ayudarte? Resolvemos tus dudas al instante. 🚀",
     options: [{
         text: "🚀 Servicios",
         key: "servicios_menu"
@@ -1482,18 +1483,25 @@ document.addEventListener('DOMContentLoaded', () => {
               case 'request_payment': responseKey = 'payment_info'; break;
               case 'request_quote': responseKey = 'precios_menu'; break;
               case 'request_contact': responseKey = 'contacto'; break;
+              case 'request_location': responseKey = 'ubicacion'; break;
               case 'request_examples': responseKey = 'ejemplos'; break;
               case 'frustration': responseKey = 'human_escalation'; break;
               case 'request_service_info': responseKey = 'servicios_menu'; break;
               case 'greet': responseKey = 'saludo'; break;
               case 'request_about': responseKey = 'nosotros_info'; break;
+              case 'request_process':
               case 'request_process_direct': responseKey = 'proceso_info'; break;
+              case 'request_support': responseKey = 'faq_soporte_menu'; break;
               case 'request_online_presence_info': responseKey = 'presencia_internet'; break;
               case 'request_cybersecurity_info': responseKey = 'ciberseguridad'; break;
               case 'request_creator_info': responseKey = 'creator_info'; break;
               case 'request_hours': responseKey = 'request_hours'; break;
               case 'request_articles': responseKey = 'articles_info'; break;
               case 'request_affiliates': responseKey = 'affiliate_info'; break;
+              case 'request_pwa': responseKey = 'servicio_app'; break;
+              case 'request_ecommerce': responseKey = 'servicio_ecommerce'; break;
+              case 'request_web': responseKey = 'servicio_web'; break;
+              case 'request_chatbot': responseKey = 'servicio_chatbot'; break;
             }
             if (responseKey) break;
           }
