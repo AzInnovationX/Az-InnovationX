@@ -431,6 +431,8 @@ document.addEventListener('DOMContentLoaded', () => {
     request_examples: ['ejemplos', 'portfolio', 'trabajos', 'proyectos anteriores', 'muestra'],
     request_process: ['tiempo', 'cuándo', 'plazos', 'entrega', 'duración', 'proceso'],
     request_support: ['soporte', 'mantenimiento', 'garantía', 'actualizaciones'],
+    request_about: ['quienes somos', 'nosotros', 'historia', 'equipo', 'fundador', 'evaristo'],
+    request_process_direct: ['pasos', 'metodologia', 'metodología', 'como trabajan', 'cómo trabajan', 'proceso'],
     frustration: ['no funciona', 'no sirve', 'frustrado', 'agente', 'humano', 'persona', 'no entiendo'],
     request_online_presence_info: ['presencia', 'internet', 'online', 'importancia de estar en linea', 'visibilidad'],
     request_cybersecurity_info: ['ciberseguridad', 'seguridad', 'proteger', 'riesgos', 'hackers', 'virus'],
@@ -485,10 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
     container.className = 'quick-replies-container';
 
     const options = [
-      { text: "💰 Ver precios", val: "Ver precios" },
-      { text: "🛠️ Servicios", val: "Servicios" },
-      { text: "📞 Contactar", val: "Contactar" },
-      { text: "📋 Ver proceso", val: "Ver proceso" }
+      { text: "💰 Ver precios", val: "Ver precios" }
     ];
 
     options.forEach(opt => {
@@ -592,16 +591,20 @@ document.addEventListener('DOMContentLoaded', () => {
   saludo: {
     message: "¡Qué gusto saludarte! 👋 Soy AZ. Mi misión es ayudarte a escalar tu negocio con tecnología.<br><br>¿Cómo puedo apoyarte hoy?",
     options: [{
-        text: "🚀 Ver Servicios",
+        text: "🚀 Servicios",
         key: "servicios_menu"
       },
       {
-        text: "💰 Ver Precios",
+        text: "💰 Precios",
         key: "precios_menu"
       },
       {
-        text: "📱 Hablar con Asesor",
-        key: "human_escalation"
+        text: "📋 Nuestro Proceso",
+        key: "proceso_info"
+      },
+      {
+        text: "👥 Sobre Nosotros",
+        key: "nosotros_info"
       },
       {
         text: "✨ Más Opciones",
@@ -716,11 +719,11 @@ document.addEventListener('DOMContentLoaded', () => {
   mas_opciones_menu: {
     message: "¿Qué más te gustaría saber sobre nosotros?",
     options: [{
-        text: "📈 Importancia de la Presencia en Internet",
+        text: "📈 Presencia en Internet",
         key: "presencia_internet"
       },
       {
-        text: "🔒 Tips de Ciberseguridad",
+        text: "🔒 Ciberseguridad",
         key: "ciberseguridad"
       },
       {
@@ -728,20 +731,24 @@ document.addEventListener('DOMContentLoaded', () => {
         key: "payment_info"
       },
       {
-        text: "🎓 Nuestras Certificaciones",
+        text: "🎓 Certificaciones",
         key: "certificaciones"
       },
       {
-        text: "📍 Nuestra Ubicación",
+        text: "📍 Ubicación",
         key: "ubicacion"
       },
       {
-        text: "✉️ Suscríbete al Newsletter",
+        text: "✉️ Newsletter",
         key: "suscribete"
       },
       {
-        text: "📱 Contacto y Redes Sociales",
+        text: "📱 Redes Sociales",
         key: "contacto"
+      },
+      {
+        text: "💬 Hablar con Asesor",
+        key: "human_escalation"
       },
       {
         text: "🏠 Volver al inicio",
@@ -1133,6 +1140,29 @@ document.addEventListener('DOMContentLoaded', () => {
       key: "mas_opciones_menu"
     }],
   },
+  nosotros_info: {
+    message: "Az InnovationX es una iniciativa impulsada por la innovación, la estrategia y la seguridad. Nuestro equipo, liderado por <strong>Evaristo San Juan Azuara</strong> (Ingeniero en Seguridad Informática), se dedica a crear soluciones digitales preparadas para el futuro.<br><br>Con más de <strong>50 proyectos exitosos</strong>, nos enfocamos en resultados reales e impacto positivo.",
+    options: [
+      { text: "🎯 Filosofía", key: "filosofia_info" },
+      { text: "📊 Impacto", key: "impacto_info" },
+      { text: "🏠 Inicio", key: "saludo" }
+    ]
+  },
+  filosofia_info: {
+    message: "Nuestra filosofía se basa en dos pilares:<br>1. <strong>Ingenio y Visión:</strong> Aplicamos creatividad técnica y pensamiento estratégico.<br>2. <strong>Mentalidad Emprendedora:</strong> Diseñamos plataformas escalables que crecen contigo.",
+    options: [{ text: "⬅️ Volver", key: "nosotros_info" }]
+  },
+  impacto_info: {
+    message: "Hemos completado exitosamente más de <strong>50 proyectos</strong>, manteniendo un compromiso del 100% en cada desarrollo para asegurar la excelencia.",
+    options: [{ text: "⬅️ Volver", key: "nosotros_info" }]
+  },
+  proceso_info: {
+    message: "Nuestro proceso de innovación consta de 4 etapas clave:<br><br>1. <strong>Consulta y Estrategia:</strong> Entendemos tu visión y definimos el plan.<br>2. <strong>Diseño y Prototipado:</strong> Interfaces UX/UI centradas en el usuario.<br>3. <strong>Desarrollo Ágil:</strong> Código limpio y entregas incrementales.<br>4. <strong>Lanzamiento y Soporte:</strong> Despliegue seguro y acompañamiento continuo.",
+    options: [
+      { text: "🚀 Iniciar Proyecto", url: "contacto.html" },
+      { text: "🏠 Inicio", key: "saludo" }
+    ]
+  },
   creator_info: {
     message: "Fui creado por Az InnovationX, desarrollado por Evaristo San Juan Azuara, un emprendedor y desarrollador apasionado por la innovación tecnológica y la creación de soluciones digitales inteligentes."
   },
@@ -1456,6 +1486,8 @@ document.addEventListener('DOMContentLoaded', () => {
               case 'frustration': responseKey = 'human_escalation'; break;
               case 'request_service_info': responseKey = 'servicios_menu'; break;
               case 'greet': responseKey = 'saludo'; break;
+              case 'request_about': responseKey = 'nosotros_info'; break;
+              case 'request_process_direct': responseKey = 'proceso_info'; break;
               case 'request_online_presence_info': responseKey = 'presencia_internet'; break;
               case 'request_cybersecurity_info': responseKey = 'ciberseguridad'; break;
               case 'request_creator_info': responseKey = 'creator_info'; break;
