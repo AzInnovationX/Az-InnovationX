@@ -514,12 +514,14 @@ document.addEventListener('DOMContentLoaded', () => {
       closeWelcomeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         welcomeBubble.style.display = 'none';
+        sessionStorage.setItem('welcome_bubble_shown', 'true');
       });
     }
 
     setTimeout(() => {
-      if (chatbotWindow && !chatbotWindow.classList.contains('active')) {
+      if (chatbotWindow && !chatbotWindow.classList.contains('active') && !sessionStorage.getItem('welcome_bubble_shown')) {
         welcomeBubble.style.display = 'block';
+        sessionStorage.setItem('welcome_bubble_shown', 'true');
         setTimeout(() => {
           if (welcomeBubble && welcomeBubble.style.display !== 'none') {
             welcomeBubble.style.display = 'none';
@@ -535,7 +537,10 @@ document.addEventListener('DOMContentLoaded', () => {
         chatbotWindow.classList.add('expanded');
         const chatbotContainer = document.getElementById('chatbot-container');
         if (chatbotContainer) chatbotContainer.classList.add('chat-open');
-        if (welcomeBubble) welcomeBubble.style.display = 'none';
+        if (welcomeBubble) {
+            welcomeBubble.style.display = 'none';
+            sessionStorage.setItem('welcome_bubble_shown', 'true');
+        }
 
         if (!sessionStorage.getItem('chatbot_welcomed')) {
             showTypingIndicator();
