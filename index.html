@@ -169,6 +169,9 @@
 
   </main>
     <div id="chatbot-container">
+    <div id="chat-welcome-bubble">
+      👋 ¡Hola! ¿Listo para llevar tu negocio al siguiente nivel? Escríbeme, tengo algo especial para ti 🚀
+    </div>
     <div id="chatbot-window">
       <div id="chatbot-header">
         <div class="avatar">
@@ -176,7 +179,11 @@
         </div>
         <div class="bot-info">
           <h4>Az Asistente Virtual</h4>
-          <p>En línea</p>
+          <div class="status-online">
+            <span class="status-dot"></span>
+            <span>En línea</span>
+          </div>
+          <p class="subtitle">Respuesta en segundos · Disponible 24/7</p>
         </div>
         <div class="header-controls">
           <button id="chatbot-expand-toggle" title="Expandir/Minimizar">
@@ -196,7 +203,7 @@
         <!-- Messages will be appended here by JavaScript -->
       </div>
       <form id="chatbot-input-form">
-        <input type="text" id="chatbot-input" placeholder="Escribe un mensaje..." autocomplete="off">
+        <input type="text" id="chatbot-input" placeholder="Escríbeme, estoy aquí para ayudarte... 💬" autocomplete="off">
         <button type="submit" id="chatbot-send">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send">
             <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -218,9 +225,6 @@
         <img loading="lazy" src="https://i.ibb.co/gZLWHchp/a4b11b8d-45a9-4456-b035-c8f0bfe6133f.jpg" alt="Az InnovationX Logo" style="height: 50px;">
         <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Innovación tecnológica que impulsa tu crecimiento digital. Soluciones empresariales con calidad certificada y soporte garantizado.</p>
         <div class="footer-trust-badges">
-          <div class="trust-badge">✓ +50 Proyectos Completados</div>
-          <div class="trust-badge">✓ Certificaciones Verificadas</div>
-          <div class="trust-badge">✓ Soporte 24/7</div>
         </div>
       </div>
       <!-- Columna 4: Comunidad y Redes -->
@@ -240,6 +244,10 @@
             <img loading="lazy" src="https://i.ibb.co/ynv3hw6X/tiktok-logo-logo.gif" alt="TikTok" />
             <span class="social-name">TikTok</span>
           </a>
+          <a href="https://www.youtube.com/@AzInnovationX" target="_blank" rel="noopener noreferrer" class="social-item">
+            <img loading="lazy" src="https://i.postimg.cc/y6y0WHJY/neonytrans.gif" alt="YouTube" />
+            <span class="social-name">YouTube</span>
+          </a>
           <a href="https://azinnovationx.blogspot.com/" target="_blank" rel="noopener noreferrer" class="social-item">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white; transition: transform 0.3s ease; margin-bottom: 0.5rem;"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
             <span class="social-name">Blog</span>
@@ -258,10 +266,6 @@
       </div>
       <!-- Centro -->
       <div class="footer-legal-links">
-        <a href="#">Términos y Condiciones</a>
-        <span>&nbsp;|&nbsp;</span>
-        <a href="#">Política de Privacidad</a>
-        <span>&nbsp;|&nbsp;</span>
         <a href="#">Aviso Legal</a>
       </div>
       <!-- Lado Derecho -->

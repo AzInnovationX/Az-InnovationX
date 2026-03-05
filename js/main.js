@@ -425,10 +425,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const welcomeBubble = document.getElementById('chat-welcome-bubble');
+  if (welcomeBubble) {
+    setTimeout(() => {
+      if (chatbotWindow && !chatbotWindow.classList.contains('active')) {
+        welcomeBubble.style.display = 'block';
+        setTimeout(() => {
+          welcomeBubble.style.display = 'none';
+        }, 8000);
+      }
+    }, 3000);
+  }
+
   const openChatbot = () => {
     if (chatbotWindow) {
         chatbotWindow.classList.add('active');
-        if (messagesContainer && messagesContainer.children.length === 0) {
+        if (welcomeBubble) welcomeBubble.style.display = 'none';
+
+        if (!sessionStorage.getItem('chatbot_welcomed')) {
+            showBotMessage({
+                message: "¡Bienvenido/a a Az InnovationX! 🎉 Soy tu asistente virtual. Puedo ayudarte a encontrar el servicio perfecto para tu negocio. ¿Por dónde empezamos?",
+                options: knowledgeBase.saludo.options
+            }, 'saludo');
+            sessionStorage.setItem('chatbot_welcomed', 'true');
+        } else if (messagesContainer && messagesContainer.children.length === 0) {
             showBotMessage(knowledgeBase.saludo, 'saludo');
         }
     }
@@ -1063,8 +1083,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const showBotMessage = (response, key = null) => {
     if (!messagesContainer) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('message-wrapper', 'bot');
+
+    const avatar = document.createElement('div');
+    avatar.classList.add('bot-avatar-small');
+    avatar.innerHTML = '<img src="https://i.ibb.co/cSCSjsyS/11184177.gif" alt="Bot" style="width:100%; height:100%; object-fit:cover;">';
+
     const botMessageElement = document.createElement('div');
     botMessageElement.classList.add('chat-message', 'bot-message');
+
     let message = response.message;
 
     if (key) {
@@ -1091,6 +1120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageText = document.createElement('p');
     messageText.innerHTML = message;
     botMessageElement.appendChild(messageText);
+
     if (response.options) {
       const optionsContainer = document.createElement('div');
       optionsContainer.classList.add('options');
@@ -1124,8 +1154,11 @@ document.addEventListener('DOMContentLoaded', () => {
       botMessageElement.appendChild(optionsContainer);
     }
 
-    messagesContainer.appendChild(botMessageElement);
+    wrapper.appendChild(avatar);
+    wrapper.appendChild(botMessageElement);
+    messagesContainer.appendChild(wrapper);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
     lastBotQuestionKey = response.nextContext || key;
     if (response.nextContext && !conversationState.mentionedServices.includes(response.nextContext)) {
       conversationState.mentionedServices.push(response.nextContext);
@@ -1135,10 +1168,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const showUserMessage = (message) => {
     if (!messagesContainer) return;
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('message-wrapper', 'user');
+
     const userMessageElement = document.createElement('div');
     userMessageElement.classList.add('chat-message', 'user-message');
     userMessageElement.textContent = message;
-    messagesContainer.appendChild(userMessageElement);
+
+    wrapper.appendChild(userMessageElement);
+    messagesContainer.appendChild(wrapper);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   };
 
