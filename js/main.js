@@ -418,6 +418,9 @@ document.addEventListener('DOMContentLoaded', () => {
     suggestedWebAppAndEcomm: false,
     suggestedPortfolio: false,
     path: [], // breadcrumbs
+    userName: null,
+    leadFlowStep: 0,
+    leadData: {}
   };
   const intents = {
     greet: ['hola', 'buenos dias', 'buenas tardes'],
@@ -435,6 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
     request_hours: ['horario', 'atienden', 'abren', 'cierran', 'horas', 'horarios de atencion'],
     request_articles: ['artículos', 'blog', 'posts', 'contenido', 'educativo'],
     request_affiliates: ['afiliados', 'afíliate', 'colaboraciones', 'partnerships', 'programa de afiliados'],
+    lead_keywords: ['proyecto', 'presupuesto', 'cotización', 'contratar', 'cotizar'],
   };
 
   const chatbotToggle = document.getElementById('chatbot-toggle');
@@ -471,6 +475,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const hideTypingIndicator = () => {
     const indicator = document.getElementById('chatbot-typing');
     if (indicator) indicator.remove();
+  };
+
+  const az_ui_showQuickReplies = () => {
+    const existing = document.querySelector('.quick-replies-container');
+    if (existing) existing.remove();
+
+    const container = document.createElement('div');
+    container.className = 'quick-replies-container';
+
+    const options = [
+      { text: "💰 Ver precios", val: "Ver precios" },
+      { text: "🛠️ Servicios", val: "Servicios" },
+      { text: "📞 Contactar", val: "Contactar" },
+      { text: "📋 Ver proceso", val: "Ver proceso" }
+    ];
+
+    options.forEach(opt => {
+      const chip = document.createElement('button');
+      chip.className = 'quick-reply-chip';
+      chip.textContent = opt.text;
+      chip.onclick = () => {
+        container.remove();
+        handleInput(opt.val);
+      };
+      container.appendChild(chip);
+    });
+
+    messagesContainer.appendChild(container);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
   };
 
   if (expandToggle && chatbotWindow) {
@@ -510,28 +543,46 @@ document.addEventListener('DOMContentLoaded', () => {
   const openChatbot = () => {
     if (chatbotWindow) {
         chatbotWindow.classList.add('active');
+        const chatbotContainer = document.getElementById('chatbot-container');
+        if (chatbotContainer) chatbotContainer.classList.add('chat-open');
         if (welcomeBubble) welcomeBubble.style.display = 'none';
 
         if (!sessionStorage.getItem('chatbot_welcomed')) {
             showTypingIndicator();
             setTimeout(() => {
                 showBotMessage({
-                    message: "¡Bienvenido/a a Az InnovationX! 🎉 Soy AZ, tu asistente virtual. He sido diseñado para ayudarte a encontrar la solución tecnológica ideal para tu negocio de forma rápida y sencilla.<br><br>¿Por dónde te gustaría empezar hoy?",
-                    options: knowledgeBase.saludo.options
-                }, 'saludo');
-                sessionStorage.setItem('chatbot_welcomed', 'true');
+                    message: "¡Bienvenido/a a Az InnovationX! 🎉 Soy AZ, tu asistente virtual. He sido diseñado para ayudarte a encontrar la solución tecnológica ideal para tu negocio de forma rápida y sencilla.",
+                    options: null
+                }, 'saludo_part1');
+
+                setTimeout(() => {
+                    showTypingIndicator();
+                    setTimeout(() => {
+                        showBotMessage({
+                            message: "¿Con qué te puedo ayudar hoy? 👇",
+                            options: knowledgeBase.saludo.options
+                        }, 'saludo');
+                        sessionStorage.setItem('chatbot_welcomed', 'true');
+                        az_ui_showQuickReplies();
+                    }, 1000);
+                }, 500);
             }, 1000);
         } else if (messagesContainer && messagesContainer.children.length === 0) {
             showTypingIndicator();
             setTimeout(() => {
                 showBotMessage(knowledgeBase.saludo, 'saludo');
+                az_ui_showQuickReplies();
             }, 800);
         }
     }
   };
 
   const closeChatbot = () => {
-    if (chatbotWindow) chatbotWindow.classList.remove('active');
+    if (chatbotWindow) {
+        chatbotWindow.classList.remove('active');
+        const chatbotContainer = document.getElementById('chatbot-container');
+        if (chatbotContainer) chatbotContainer.classList.remove('chat-open');
+    }
   };
 
   if (chatbotToggle) chatbotToggle.addEventListener('click', openChatbot);
@@ -1294,11 +1345,32 @@ document.addEventListener('DOMContentLoaded', () => {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   };
 
+  const az_ui_detectName = (input) => {
+    const patterns = [
+      /(?:me llamo|soy|mi nombre es)\s+([a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)/i,
+      /^soy\s+([a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)/i,
+      /^me llamo\s+([a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)/i
+    ];
+
+    for (const pattern of patterns) {
+      const match = input.match(pattern);
+      if (match && match[1]) {
+        const name = match[1].trim().split(' ')[0];
+        conversationState.userName = name;
+        return true;
+      }
+    }
+    return false;
+  };
+
   const handleInput = (input) => {
     showUserMessage(input);
     conversationState.history.push(input.toLowerCase().trim());
     inputField.value = '';
     inputField.disabled = true;
+
+    // Detect Name
+    az_ui_detectName(input);
 
     // UX Improvement: Show typing indicator for a more natural feel
     showTypingIndicator();
@@ -1307,6 +1379,54 @@ document.addEventListener('DOMContentLoaded', () => {
       let response;
       let responseKey = null;
       const lowerCaseInput = input.toLowerCase().trim();
+
+      // Lead Qualification Flow
+      if (conversationState.leadFlowStep > 0) {
+        switch (conversationState.leadFlowStep) {
+          case 1:
+            conversationState.leadData.tipo = input;
+            conversationState.leadFlowStep = 2;
+            response = { message: "¿Cuál es tu presupuesto aproximado? 💰\nEj: Menos de $5,000 / $5,000-$20,000 / Más de $20,000 MXN" };
+            break;
+          case 2:
+            conversationState.leadData.presupuesto = input;
+            conversationState.leadFlowStep = 3;
+            response = { message: "¿Para cuándo lo necesitas? ⏳\nEj: Urgente (1-2 semanas) / 1 mes / Sin prisa" };
+            break;
+          case 3:
+            conversationState.leadData.tiempo = input;
+            conversationState.leadFlowStep = 0;
+            response = {
+              message: "¡Perfecto! Con esa información podemos prepararte una propuesta. ¿Quieres que un asesor de AZ InnovationX te contacte?",
+              options: [
+                { text: "✅ Sí, contáctenme", url: "https://wa.me/5653915739" },
+                { text: "📋 Ver opciones primero", key: "saludo" }
+              ]
+            };
+            break;
+        }
+        if (response) {
+           if (conversationState.userName) {
+              const prefix = Math.random() > 0.5 ? `Claro, ${conversationState.userName}. ` : `Perfecto, ${conversationState.userName}. `;
+              response.message = prefix + response.message;
+           }
+           showBotMessage(response);
+           inputField.disabled = false;
+           inputField.focus();
+           return;
+        }
+      }
+
+      // Detect Lead Keyword to start flow
+      if (intents.lead_keywords.some(kw => lowerCaseInput.includes(kw))) {
+        conversationState.leadFlowStep = 1;
+        response = { message: "¿Qué tipo de proyecto necesitas? 🚀\nEj: Tienda en línea, App, Sitio web, Automatización..." };
+        if (conversationState.userName) response.message = `¡Genial, ${conversationState.userName}! ` + response.message;
+        showBotMessage(response);
+        inputField.disabled = false;
+        inputField.focus();
+        return;
+      }
 
       // 1. Check for specific context-based answers (like Yes/No to a redirect)
       if (lastBotQuestionKey) {
@@ -1360,6 +1480,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (responseKey) {
         response = JSON.parse(JSON.stringify(knowledgeBase[responseKey]));
+
+        // Personalize with name
+        if (conversationState.userName && Math.random() > 0.3 && responseKey !== 'saludo') {
+          const nameGreetings = [
+            `Claro, ${conversationState.userName}. `,
+            `Perfecto, ${conversationState.userName}. `,
+            `Mira, ${conversationState.userName}, `,
+            `Con gusto, ${conversationState.userName}. `
+          ];
+          const randomNameGreet = nameGreetings[Math.floor(Math.random() * nameGreetings.length)];
+          response.message = randomNameGreet + response.message;
+        }
 
         // UX Improvement: Enhanced transition messages
         if (responseKey !== 'saludo') {
