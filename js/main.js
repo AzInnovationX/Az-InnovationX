@@ -1135,10 +1135,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }],
   },
   nosotros_info: {
-    message: "Az InnovationX es una iniciativa impulsada por la innovación, la estrategia y la seguridad. Nuestro equipo, liderado por <strong>Evaristo San Juan Azuara</strong> (Ingeniero en Seguridad Informática), se dedica a crear soluciones digitales preparadas para el futuro.<br><br>Con más de <strong>50 proyectos exitosos</strong>, nos enfocamos en resultados reales e impacto positivo.",
+    message: "Az InnovationX es una iniciativa impulsada por la innovación, la estrategia y la seguridad. Nuestro equipo, liderado por <strong>Evaristo San Juan Azuara</strong> (Ingeniero en Seguridad Informática), se dedica a crear soluciones digitales preparadas para el futuro.<br><br>Nos enfocamos en generar resultados reales e impacto positivo a través de la tecnología.",
     options: [
       { text: "🎯 Filosofía", key: "filosofia_info" },
-      { text: "📊 Impacto", key: "impacto_info" },
+      { text: "📊 Compromiso", key: "impacto_info" },
       { text: "🏠 Inicio", key: "saludo" }
     ]
   },
@@ -1147,7 +1147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     options: [{ text: "⬅️ Volver", key: "nosotros_info" }]
   },
   impacto_info: {
-    message: "Hemos completado exitosamente más de <strong>50 proyectos</strong>, manteniendo un compromiso del 100% en cada desarrollo para asegurar la excelencia.",
+    message: "Mantenemos un compromiso del 100% en cada desarrollo para asegurar la excelencia y el éxito de cada uno de nuestros socios comerciales.",
     options: [{ text: "⬅️ Volver", key: "nosotros_info" }]
   },
   proceso_info: {
